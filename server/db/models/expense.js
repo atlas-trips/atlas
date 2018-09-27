@@ -8,7 +8,7 @@ const Expense = db.define('expense', {
   },
   amount: {
     type: Sequelize.INTEGER,
-    defaultValue: null,
+    defaultValue: 0,
   },
   isPaid: {
     type: Sequelize.BOOLEAN,
