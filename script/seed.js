@@ -14,9 +14,9 @@ async function seed() {
   ])
 
   const trips = await Promise.all([
-    Trip.create({name: 'Vegas', start_date: '2018-10-10 00:00:00', end_date: '2018-10-13 00:00:00' }),
-    Trip.create({name: 'Paris', start_date: '2018-12-01 00:00:00', end_date: '2018-12-08 00:00:00'}),
-    Trip.create({name: 'Cancun', start_date: '2019-01-01 00:00:00', end_date: '2019-01-07 00:00:00'})
+    Trip.create({name: 'Vegas', startDate: '2018-10-10 00:00:00', endDate: '2018-10-13 00:00:00' }),
+    Trip.create({name: 'Paris', startDate: '2018-12-01 00:00:00', endDate: '2018-12-08 00:00:00'}),
+    Trip.create({name: 'Cancun', startDate: '2019-01-01 00:00:00', endDate: '2019-01-07 00:00:00'})
   ])
 
   const activities = await Promise.all([
@@ -45,6 +45,7 @@ async function seed() {
 
 
   console.log(`seeded successfully`)
+
 
 
 
