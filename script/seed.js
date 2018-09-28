@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Trip, Activity, Expense, Transportation, Accomodation } = require('../server/db/models')
+const {User, Trip, Activity, Expense, Transportation, Accommodation } = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -25,7 +25,7 @@ async function seed() {
     Activity.create({location: 'xxxx', name: 'Beach', description: "I don't like sand", date: '2019-01-02 00:00:00', isDecided: true, votes: 1, tripId: 3  })
   ])
 
-  const accommmodations = await Promise.all([
+  const accommodations = await Promise.all([
     Accommodation.create({name: 'Hotel', startDate: '2016-08-09 04:05:02', endDate: '2016-08-11 04:05:02', location: 'Brazil', userId: 1, tripId: 1}),
     Accommodation.create({name: 'Car rental', startDate: '2017-08-09 04:05:02', endDate: '2017-09-19 04:05:02', location: 'California', userId: 2, tripId: 2}),
     Accommodation.create({name: 'Camping', startDate: '2018-08-09 04:05:02', endDate: '2018-08-15 04:05:02', location: 'Wyoming', userId: 3, tripId: 3}),
