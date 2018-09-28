@@ -15,3 +15,22 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+
+router.get('/:id', async(req, res, next) => {
+  try{
+    const id = Number(req.params.id);
+    console.log(typeof id)
+    if(isNaN(id)){
+      res.status(400).send("Bad Request");
+    }
+    else if(req.user && req.user.id === id){
+      const user = await User.findById(id);
+      res.json(user);
+    } else {
+      res.status(403).send("Forbidden")
+    }
+  } catch (err) {
+    next(err);
+  }
+})
