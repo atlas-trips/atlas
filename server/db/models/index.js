@@ -1,5 +1,5 @@
 const User = require('./user')
-const Accommodation = require('./accommodation')
+// const Accommodation = require('./accommodation')
 const Expense = require('./expense')
 const Transportation = require('./transportation')
 const Trip = require('./trip')
@@ -16,7 +16,7 @@ Expense.belongsTo(User)
 
 module.exports = {
   User,
-  Accommodation,
+  // Accommodation,
   Expense,
   Transportation,
   Trip,
