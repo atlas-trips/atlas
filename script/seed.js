@@ -1,7 +1,8 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Trip, Activity, Expense, Transportation, Accomodation } = require('../server/db/models')
+const {User, Trip, Activity, Expense, Transportation, Accommodation } = require('../server/db/models')
+
 
 async function seed() {
   await db.sync({force: true})
@@ -25,18 +26,18 @@ async function seed() {
     Activity.create({location: 'xxxx', name: 'Beach', description: "I don't like sand", date: '2019-01-02 00:00:00', isDecided: true, votes: 1, tripId: 3  })
   ])
 
-  const accommmodations = await Promise.all([
+  const accommodations = await Promise.all([
     Accommodation.create({name: 'Hotel', startDate: '2016-08-09 04:05:02', endDate: '2016-08-11 04:05:02', location: 'Brazil', userId: 1, tripId: 1}),
     Accommodation.create({name: 'Car rental', startDate: '2017-08-09 04:05:02', endDate: '2017-09-19 04:05:02', location: 'California', userId: 2, tripId: 2}),
     Accommodation.create({name: 'Camping', startDate: '2018-08-09 04:05:02', endDate: '2018-08-15 04:05:02', location: 'Wyoming', userId: 3, tripId: 3}),
   ])
- 
+
   const transportations = await Promise.all([
     Transportation.create({method: 'Flight', date: '2016-08-09 04:05:02', flightNum: 187, userId: 1, tripId: 1}),
     Transportation.create({method: 'Car', date: '2017-08-09 04:05:02', flightNum: null, userId: 2, tripId: 2}),
     Transportation.create({method: 'Bus', date: '2018-08-09 04:05:02', flightNum: null, userId: 3, tripId: 3})
   ])
- 
+
   const expenses = await Promise.all([
     Expense.create({name: 'Burger King', amount: 30, activityId: 1, userId: 1, isPaid: false}),
     Expense.create({name: 'McDonald\'s', amount: 25, activityId: 2, userId: 2, isPaid: false}),
