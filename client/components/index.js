@@ -6,3 +6,8 @@
 export {default as Navbar} from './Navbar'
 export {Login, Signup} from './AuthForm'
 export {default as Dashboard} from './Dashboard'
+export {default as Accommodations} from './Accommodations'
+export {default as Calendar} from './Calendar'
+export {default as Expenses} from './Expenses'
+export {default as Itinerary} from './Itinerary'
+export {default as Travel} from './Travel'

@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Sidebar from './Sidebar';
 
 const dummyData = [
   {
@@ -46,16 +47,22 @@ const Dashboard = (props) => {
   const { user } = props;
   const onATrip = singleTrip(dummyData).length;
   return onATrip ? (
-    <div>
-      <h1>{user.name}'s Trip:</h1>
-      <h3>Replace this whole section with a single trip component</h3>
-      <h5>I'd recommend passing in singleTrip(dummyData) as props for the trip</h5>
+    <div style={{display: 'flex', marginLeft: '100px'}}>
+      <Sidebar />
+      <div>
+        <h1>{user.name}'s Trip:</h1>
+        <h3>Replace this whole section with a single trip component</h3>
+        <h5>I'd recommend passing in singleTrip(dummyData) as props for the trip</h5>
+      </div>
     </div>
   ) : (
-    <div>
-      <h1>{user.name}'s upcoming trips:</h1>
-      <h3>Replace this whole section with multiple trips component</h3>
-      <h5>Realistically we'll get all trips from state, for now I guess use dummy data</h5>
+    <div style={{display: 'flex', marginLeft: '100px'}}>
+      <Sidebar />
+      <div>
+        <h1>{user.name}'s upcoming trips:</h1>
+        <h3>Replace this whole section with multiple trips component</h3>
+        <h5>Realistically we'll get all trips from state, for now I guess use dummy data</h5>
+      </div>
     </div>
   );
 };
