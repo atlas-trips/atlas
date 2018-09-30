@@ -5,8 +5,16 @@ const Transportation = require('./transportation')
 const Trip = require('./trip')
 const Activity = require('./activity')
 
-User.belongsToMany(Trip, {through: 'subscription'})
-Trip.belongsToMany(User, {through: 'subscription'})
+//join tables
+User.belongsToMany(Trip, {through: 'subscription'});
+Trip.belongsToMany(User, {through: 'subscription'});
+User.belongsToMany(Accommodation, {through: 'booking'});
+Accommodation.belongsToMany(User, {through: 'booking'});
+User.belongsToMany(Transportation, {through: 'travel'});
+Transportation.belongsToMany(User, {through: 'travel'});
+Activity.belongsToMany(User, {through: 'plan'});
+User.belongsToMany(Activity, {through: 'plan'});
+//associations
 Trip.hasMany(Activity)
 Trip.hasMany(Accommodation)
 Accommodation.belongsTo(Trip);
