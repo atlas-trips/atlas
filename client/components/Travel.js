@@ -1,5 +1,5 @@
-import React from 'react';
-import Sidebar from './Sidebar';
+import React from 'react'
+import Sidebar from './Sidebar'
 
 const Travel = () => {
   return (
@@ -9,7 +9,7 @@ const Travel = () => {
         <h1>Travel goes here</h1>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Travel;
+export default Travel

@@ -4,19 +4,19 @@ const db = require('../db')
 const Accommodation = db.define('accommodation', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   startDate: {
     type: Sequelize.DATE,
-    allowNull: false,
+    allowNull: false
   },
   endDate: {
     type: Sequelize.DATE,
-    allowNull: false,
+    allowNull: false
   },
   location: {
-    type: Sequelize.STRING,
-  },
+    type: Sequelize.STRING
+  }
 })
 
-module.exports = Accommodation;
+module.exports = Accommodation

@@ -1,5 +1,6 @@
 import React from 'react'
-import ParticipantsOverview from './ParticipantsOverview';
+import ParticipantsOverview from './ParticipantsOverview'
+import ActivitiesOverview from './ActivitiesOverview'
 
 const divStyle = {
   textAlign: 'center',
@@ -15,9 +16,13 @@ const SingleTrip = props => {
   return (
     <div>
       <span style={divStyle}>
-        {trip.name}: {trip.startDate.slice(0, 10)} to {trip.endDate.slice(0, 10)}
+        {trip.name}: {trip.startDate.slice(0, 10)} to{' '}
+        {trip.endDate.slice(0, 10)}
       </span>
-      <ParticipantsOverview />
+      <div style={{display: 'flex', flexWrap: 'wrap'}}>
+        <ParticipantsOverview />
+        <ActivitiesOverview />
+      </div>
     </div>
   )
 }
