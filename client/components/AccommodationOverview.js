@@ -45,7 +45,9 @@ const AccommodationOverview = () => {
                         {accom.name} - {accom.start}
                     </div>
                 )
-            })}  
+            })}
+            ...
+            <Link to="/accommodations">See more</Link>  
         </div>
     )
 }
