@@ -1,6 +1,7 @@
 import React from 'react'
 import ParticipantsOverview from './ParticipantsOverview'
 import ActivitiesOverview from './ActivitiesOverview'
+import AccommodationOverview from './AccommodationOverview'
 
 const divStyle = {
   textAlign: 'center',
@@ -22,6 +23,7 @@ const SingleTrip = props => {
       <div style={{display: 'flex', flexWrap: 'wrap'}}>
         <ParticipantsOverview />
         <ActivitiesOverview />
+        <AccommodationOverview />
       </div>
     </div>
   )
