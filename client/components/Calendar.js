@@ -1,5 +1,5 @@
-import React from 'react';
-import Sidebar from './Sidebar';
+import React from 'react'
+import Sidebar from './Sidebar'
 
 const Calendar = () => {
   return (
@@ -9,7 +9,7 @@ const Calendar = () => {
         <h1>Calendar goes here</h1>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Calendar;
+export default Calendar

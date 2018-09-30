@@ -52,9 +52,8 @@ const Dashboard = props => {
     <div style={{display: 'flex', marginLeft: '100px'}}>
       <Sidebar />
       <div style={{margin: '0 auto'}}>
-        <h4>
-          {user.name}'s Trip: <SingleTrip trip={singleTrip(dummyData)} />
-        </h4>
+        <h4>{user.name}'s Trip:</h4>
+        <SingleTrip trip={singleTrip(dummyData)} />
       </div>
     </div>
   ) : (

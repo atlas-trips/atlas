@@ -1,5 +1,5 @@
-import React from 'react';
-import Sidebar from './Sidebar';
+import React from 'react'
+import Sidebar from './Sidebar'
 
 const Expenses = () => {
   return (
@@ -9,7 +9,7 @@ const Expenses = () => {
         <h1>Expenses go here</h1>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Expenses;
+export default Expenses

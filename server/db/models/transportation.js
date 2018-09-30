@@ -4,14 +4,14 @@ const db = require('../db')
 const Transportation = db.define('transportation', {
   method: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   date: {
-    type: Sequelize.DATE,
+    type: Sequelize.DATE
   },
   flightNum: {
-    type: Sequelize.STRING,
-  },
+    type: Sequelize.STRING
+  }
 })
 
-module.exports = Transportation;
+module.exports = Transportation
