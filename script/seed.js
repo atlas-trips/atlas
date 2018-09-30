@@ -17,7 +17,17 @@ async function seed() {
   const users = await Promise.all([
     User.create({email: 'cody@email.com', password: '123', name: 'Cody'}),
     User.create({email: 'murphy@email.com', password: '123', name: 'Murphy'}),
-    User.create({email: 'bob@email.com', password: '12345', name: 'Bob'})
+    User.create({email: 'sam@email.com', password: '12345', name: 'Sam'}),
+    User.create({email: 'jane@email.com', password: '12345', name: 'Jane'}),
+    User.create({email: 'John@email.com', password: '12345', name: 'John'}),
+    User.create({email: 'elizabeth@email.com', password: '12345', name: 'Elizabeth'}),
+    User.create({email: 'gary@email.com', password: '12345', name: 'Gary'}),
+    User.create({email: 'sally@email.com', password: '12345', name: 'Sally'}),
+    User.create({email: 'jessica@email.com', password: '12345', name: 'Jessica'}),
+    User.create({email: 'matt@email.com', password: '12345', name: 'Matt'}),
+    User.create({email: 'david@email.com', password: '12345', name: 'David'}),
+    User.create({email: 'fred@email.com', password: '12345', name: 'Fred'}),
+    User.create({email: 'jessie@email.com', password: '12345', name: 'Jessie'})
   ])
 
   const trips = await Promise.all([
@@ -35,6 +45,26 @@ async function seed() {
       name: 'Cancun',
       startDate: '2019-01-01 00:00:00',
       endDate: '2019-01-07 00:00:00'
+    }),
+    Trip.create({
+      name: 'Thailand',
+      startDate: '2019-02-11 00:00:00',
+      endDate: '2019-02-22 00:00:00'
+    }),
+    Trip.create({
+      name: 'Japan',
+      startDate: '2018-09-20 00:00:00',
+      endDate: '2018-10-07 00:00:00'
+    }),
+    Trip.create({
+      name: 'Brasil',
+      startDate: '2019-11-05 00:00:00',
+      endDate: '2019-11-17 00:00:00'
+    }),
+    Trip.create({
+      name: 'Italy',
+      startDate: '2018-09-25 00:00:00',
+      endDate: '2018-10-07 00:00:00'
     })
   ])
 
@@ -50,8 +80,8 @@ async function seed() {
     }),
     Activity.create({
       location: 'xxxx',
-      name: 'The Venetian',
-      description: 'Boats and stuff',
+      name: 'Venetian Shopping',
+      description: 'Also riding around on boats and stuff',
       date: '2018-10-10 00:00:00',
       isDecided: true,
       votes: 2,
@@ -65,82 +95,282 @@ async function seed() {
       isDecided: true,
       votes: 1,
       tripId: 3
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Eiffel Tower',
+      description: "Climb to the top, look at the city",
+      date: '2018-12-05 00:00:00',
+      isDecided: true,
+      votes: 5,
+      tripId: 2
+    }),
+    Activity.create({
+      location: 'xxx',
+      name: 'Cirque de Soleil',
+      description: "Ka - at MGM Grand",
+      date: '2018-10-11 00:00:00',
+      isDecided: true,
+      votes: 1,
+      tripId: 1
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Spa',
+      description: "Get massages",
+      date: '2019-01-05 00:00:00',
+      isDecided: true,
+      votes: 1,
+      tripId: 3
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Old City',
+      description: "Walk around and shop",
+      date: '2019-01-06 00:00:00',
+      isDecided: true,
+      votes: 3,
+      tripId: 3
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Shoot guns',
+      description: "Go shooting at range off the strip",
+      date: '2018-10-12 00:00:00',
+      isDecided: true,
+      votes: 5,
+      tripId: 1
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Akihabara',
+      description: "Exploring and shopping",
+      date: '2018-09-25 00:00:00',
+      isDecided: true,
+      votes: 1,
+      tripId: 5
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Babymetal concert',
+      description: "headbanging to metal jpop",
+      date: '2019-09-26 00:00:00',
+      isDecided: true,
+      votes: 6,
+      tripId: 5
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Rock Climbing',
+      description: "Tonsai roof at Tonsai bay",
+      date: '2019-02-15 00:00:00',
+      isDecided: true,
+      votes: 8,
+      tripId: 4
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Night market',
+      description: "Eat and explore in Krabi town",
+      date: '2019-02-16 00:00:00',
+      isDecided: true,
+      votes: 5,
+      tripId: 4
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Carnival',
+      description: "In Rio. All day long",
+      date: '2019-11-12 00:00:00',
+      isDecided: false,
+      votes: 1,
+      tripId: 6
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Chilling on the beach',
+      description: "recovering from Carnival",
+      date: '2019-11-13 00:00:00',
+      isDecided: true,
+      votes: 7,
+      tripId: 6
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Leaning Tower of Pisa',
+      description: "climbing until we reach the top",
+      date: '2018-10-06 00:00:00',
+      isDecided: true,
+      votes: 5,
+      tripId: 7
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Walking across the Ponte Vecchio',
+      description: "more tourism in Firenze",
+      date: '2018-10-04 00:00:00',
+      isDecided: true,
+      votes: 3,
+      tripId: 7
+    }),
+    Activity.create({
+      location: 'xxxx',
+      name: 'Colosseum',
+      description: "pretending we're in Gladiator",
+      date: '2019-10-03 00:00:00',
+      isDecided: false,
+      votes: 1,
+      tripId: 7
     })
   ])
 
   const accommodations = await Promise.all([
     Accommodation.create({
-      name: 'Hotel',
-      startDate: '2016-08-09 04:05:02',
-      endDate: '2016-08-11 04:05:02',
-      location: 'Brazil',
+      name: 'The Venetian',
+      startDate: '2018-10-10 04:05:02',
+      endDate: '2018-10-13 04:05:02',
+      location: 'Las Vegas Strip',
       userId: 1,
       tripId: 1
     }),
     Accommodation.create({
-      name: 'Car rental',
-      startDate: '2017-08-09 04:05:02',
-      endDate: '2017-09-19 04:05:02',
-      location: 'California',
+      name: 'The Venetian',
+      startDate: '2018-10-10 04:05:02',
+      endDate: '2018-10-13 04:05:02',
+      location: 'Las Vegas Strip',
       userId: 2,
+      tripId: 1
+    }),
+    Accommodation.create({
+      name: 'Temptation Cancun Resort',
+      startDate: '2019-01-01 00:00:00',
+      endDate: '2019-01-07 00:00:00',
+      location: 'Boulevard Kukulcan Km 3.5, Zona Hotelera, 77500 Cancún, Q.R., Mexico',
+      userId: 5,
+      tripId: 3
+    }),
+    Accommodation.create({
+      name: 'Le Roch Hotel and Spa',
+      startDate: '2018-12-01 00:00:00',
+      endDate: '2018-12-08 00:00:00',
+      location: '28 Rue Saint-Roch, Paris France 75001',
+      userId: 3,
       tripId: 2
     }),
     Accommodation.create({
-      name: 'Camping',
-      startDate: '2018-08-09 04:05:02',
-      endDate: '2018-08-15 04:05:02',
-      location: 'Wyoming',
-      userId: 3,
-      tripId: 3
+      name: 'Tonsai Bay Resort',
+      startDate: '2019-02-11 00:00:00',
+      endDate: '2019-02-22 00:00:00',
+      location: 'Tonsai Bay',
+      userId: 4,
+      tripId: 4
+    }),
+    Accommodation.create({
+      name: 'Hotel Niwa Tokyo',
+      startDate: '2018-09-20 00:00:00',
+      endDate: '2018-10-07 00:00:00',
+      location: '１丁目-1-16 神田三崎町 Chiyoda, Tokyo 101-0061, Japan',
+      userId: 7,
+      tripId: 5
+    }),
+    Accommodation.create({
+      name: 'Excel Roma Montemario',
+      startDate: '2019-10-03 00:00:00',
+      endDate: '2019-10-04 00:00:00',
+      location: 'Via degli Scolopi, 31, 00136 Roma RM, Italy',
+      userId: 9,
+      tripId: 7
     })
   ])
 
   const transportations = await Promise.all([
     Transportation.create({
-      method: 'Flight',
-      date: '2016-08-09 04:05:02',
-      flightNum: 187,
+      method: 'Car',
+      date: '2018-10-10 10:05:02',
+      flightNum: null,
       userId: 1,
       tripId: 1
     }),
     Transportation.create({
-      method: 'Car',
-      date: '2017-08-09 04:05:02',
-      flightNum: null,
-      userId: 2,
+      method: 'Flight',
+      date: '2018-12-01 06:30:00',
+      flightNum: 'AF 19',
+      userId: 3,
       tripId: 2
     }),
     Transportation.create({
-      method: 'Bus',
-      date: '2018-08-09 04:05:02',
+      method: 'Flight',
+      date: '2018-09-20 11:20:00',
+      flightNum: 'NH 109',
+      userId: 7,
+      tripId: 5
+    }),
+    Transportation.create({
+      method: 'Flight',
+      date: '2019-02-12 14:30:00',
+      flightNum: 'FD 525',
+      userId: 4,
+      tripId: 4
+    }),
+    Transportation.create({
+      method: 'Train',
+      date: '2019-10-02 15:50:00',
       flightNum: null,
-      userId: 3,
-      tripId: 3
+      userId: 9,
+      tripId: 7
     })
   ])
 
   const expenses = await Promise.all([
     Expense.create({
-      name: 'Burger King',
+      name: 'Museum entry fee',
       amount: 30,
       activityId: 1,
       userId: 1,
       isPaid: false
     }),
     Expense.create({
-      name: "McDonald's",
-      amount: 25,
+      name: "Bag from Gucci",
+      amount: 250,
       activityId: 2,
       userId: 2,
-      isPaid: false
+      isPaid: true,
     }),
     Expense.create({
       name: 'Ice cream',
-      amount: 15,
+      amount: 5,
       activityId: 3,
       userId: 3,
       isPaid: false
-    })
+    }),
+    Expense.create({
+      name: 'entry',
+      amount: 10,
+      activityId: 4,
+      userId: 3,
+      isPaid: false
+    }),
+    Expense.create({
+      name: 'Ticket',
+      amount: 35,
+      activityId: 5,
+      userId: 3,
+      isPaid: false
+    }),
+    Expense.create({
+      name: 'Swedish Massage',
+      amount: 15,
+      activityId: 6,
+      userId: 4,
+      isPaid: true,
+    }),
+    Expense.create({
+      name: 'ammo',
+      amount: 20,
+      activityId: 8,
+      userId: 6,
+      isPaid: false
+    }),
   ])
 
   console.log(`seeded successfully`)
