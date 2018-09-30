@@ -1,9 +1,27 @@
 import axios from 'axios';
-import history from '../history';
+//import history from '../history';
 
-const GET_ACCOMODATIONS = 'GET_ACCOMODATIONS';
+const GET_ACCOMMODATIONS = 'GET_ACCOMMODATIONS';
 
-const accomodations = {};
+const initialAccom = {};
 
 
-const getAccomodations = accomodation =>  ({type: GET_ACCOMODATIONS, accomodation})
+const getAccommodations = accommodations =>  ({type: GET_ACCOMMODATIONS, accommodations});
+
+export const fetchAccommodations = () => async dispatch => {
+    try {
+        const res = await axios.get('/api/accommodations')
+        dispatch(getAccommodations(res.data))
+    } catch (err){
+        console.log(err);
+    }
+}
+
+export default function (state = initialAccom, action){
+    switch(action.type){
+        case GET_ACCOMMODATIONS:
+            return action.accommodations;
+        default:
+            return state; 
+    }
+}
