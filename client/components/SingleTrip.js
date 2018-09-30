@@ -1,4 +1,5 @@
 import React from 'react'
+import ParticipantsOverview from './ParticipantsOverview';
 
 const divStyle = {
   textAlign: 'center',
@@ -12,9 +13,12 @@ const SingleTrip = props => {
   const trip = props.trip[0]
 
   return (
-    <span style={divStyle}>
-      {trip.name}: {trip.startDate.slice(0, 10)} to {trip.endDate.slice(0, 10)}
-    </span>
+    <div>
+      <span style={divStyle}>
+        {trip.name}: {trip.startDate.slice(0, 10)} to {trip.endDate.slice(0, 10)}
+      </span>
+      <ParticipantsOverview />
+    </div>
   )
 }
 
