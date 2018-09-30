@@ -20,8 +20,6 @@
   color: white;
 }
 
-
-
 .landing-text {
   align-self: center;
   margin: 0 auto;
@@ -42,7 +40,6 @@
   background: rgba(240, 248, 255, 0);
   color: white;
 }
-
 
 body {
   font-family: sans-serif;
@@ -65,4 +62,3 @@ form div {
   margin: 1em;
   display: inline-block;
 }
-

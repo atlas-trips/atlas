@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import {Link} from 'react-router-dom'
 
 const tempSidebarStyles = {
   display: 'flex',
@@ -13,48 +13,46 @@ const tempSidebarStyles = {
   left: 0,
   bottom: 80,
   backgroundColor: 'yellow',
-  alignItems: 'center',
+  alignItems: 'center'
 }
 
-const tempContainerStyles = {
-
-}
+const tempContainerStyles = {}
 
 const Sidebar = () => {
   return (
     <div style={tempSidebarStyles}>
       <div style={{...tempContainerStyles, marginTop: '150px'}}>
         <Link to="/dashboard">
-          <img src="/images/home.png" height="50" alt="home"/>
+          <img src="/images/home.png" height="50" alt="home" />
         </Link>
       </div>
       <div style={tempContainerStyles}>
         <Link to="/accommodations">
-          <img src="/images/bed.png" height="50" alt="bed"/>
+          <img src="/images/bed.png" height="50" alt="bed" />
         </Link>
       </div>
       <div style={tempContainerStyles}>
         <Link to="/travel">
-          <img src="/images/plane.png" height="50" alt="plane"/>
+          <img src="/images/plane.png" height="50" alt="plane" />
         </Link>
       </div>
       <div style={tempContainerStyles}>
         <Link to="/calendar">
-          <img src="/images/calendar.png" height="50" alt="calendar"/>
+          <img src="/images/calendar.png" height="50" alt="calendar" />
         </Link>
       </div>
       <div style={tempContainerStyles}>
         <Link to="/itinerary">
-          <img src="/images/activity.png" height="50" alt="activity"/>
+          <img src="/images/activity.png" height="50" alt="activity" />
         </Link>
       </div>
       <div style={{...tempContainerStyles, marginBottom: '100px'}}>
         <Link to="/expenses">
-          <img src="/images/money.png" height="50" alt="money"/>
+          <img src="/images/money.png" height="50" alt="money" />
         </Link>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

@@ -1,5 +1,5 @@
-import React from 'react';
-import Sidebar from './Sidebar';
+import React from 'react'
+import Sidebar from './Sidebar'
 
 const Accommodations = () => {
   return (
@@ -9,7 +9,7 @@ const Accommodations = () => {
         <h1>accommodations go here</h1>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Accommodations;
+export default Accommodations

@@ -4,16 +4,16 @@ const db = require('../db')
 const Expense = db.define('expense', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
+    allowNull: false
   },
   amount: {
     type: Sequelize.INTEGER,
-    defaultValue: null,
+    defaultValue: null
   },
   isPaid: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false,
-  },
+    defaultValue: false
+  }
 })
 
-module.exports = Expense;
+module.exports = Expense

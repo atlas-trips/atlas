@@ -1,5 +1,5 @@
-import React from 'react';
-import Sidebar from './Sidebar';
+import React from 'react'
+import Sidebar from './Sidebar'
 
 const Itinerary = () => {
   return (
@@ -9,7 +9,7 @@ const Itinerary = () => {
         <h1>Itinerary goes here</h1>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Itinerary;
+export default Itinerary
