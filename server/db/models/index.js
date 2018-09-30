@@ -8,6 +8,8 @@ const Activity = require('./activity')
 User.belongsToMany(Trip, {through: 'subscription'})
 Trip.belongsToMany(User, {through: 'subscription'})
 Trip.hasMany(Activity)
+Trip.hasMany(Accommodation)
+Accommodation.belongsTo(Trip);
 Activity.belongsTo(Trip)
 Activity.hasMany(Expense)
 Expense.belongsTo(Activity)
