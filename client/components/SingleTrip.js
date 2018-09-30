@@ -1,7 +1,6 @@
 import React from 'react'
 import ParticipantsOverview from './ParticipantsOverview'
 import ActivitiesOverview from './ActivitiesOverview'
-import AccommodationsOverview from './AccommodationsOverview'
 
 const divStyle = {
   textAlign: 'center',
