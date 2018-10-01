@@ -4,14 +4,15 @@ const Expense = require('./expense')
 const Transportation = require('./transportation')
 const Trip = require('./trip')
 const Activity = require('./activity')
+const Travel = require('./travel')
 
 //join tables
 User.belongsToMany(Trip, {through: 'subscription'});
 Trip.belongsToMany(User, {through: 'subscription'});
 User.belongsToMany(Accommodation, {through: 'booking'});
 Accommodation.belongsToMany(User, {through: 'booking'});
-User.belongsToMany(Transportation, {through: 'travel'});
-Transportation.belongsToMany(User, {through: 'travel'});
+User.belongsToMany(Transportation, {through: Travel, foreignKey: 'userId'});
+Transportation.belongsToMany(User, {through: Travel, foreignKey: 'transportationId'});
 Activity.belongsToMany(User, {through: 'plan'});
 User.belongsToMany(Activity, {through: 'plan'});
 //associations
@@ -30,5 +31,6 @@ module.exports = {
   Expense,
   Transportation,
   Trip,
-  Activity
+  Activity,
+  Travel
 }
