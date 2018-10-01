@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Trip} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -19,7 +19,6 @@ router.get('/', async (req, res, next) => {
 router.get('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id)
-    console.log(typeof id)
     if (isNaN(id)) {
       res.status(400).send('Bad Request')
     } else if (req.user && req.user.id === id) {
@@ -30,5 +29,22 @@ router.get('/:id', async (req, res, next) => {
     }
   } catch (err) {
     next(err)
+  }
+})
+
+
+router.get('/:id/trips', async (req, res, next) => {
+  try{
+    const id = Number(req.params.id);
+    if(isNaN(id)){
+      res.status(400).send('Bad Request');
+    } else if(req.user && req.user.id === id){
+      const trips = await User.find({where: {id: id}, include: [Trip]});
+      res.json(trips);
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  } catch(err){
+    next(err);
   }
 })
