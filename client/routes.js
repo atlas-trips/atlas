@@ -9,11 +9,12 @@ import {
   Accommodations,
   Calendar,
   Expenses,
-  Itinerary,
+  Activities,
   Travel,
   Landing,
-  Transportation
+  TripForm
 } from './components';
+import {me} from './store'
 import { me } from './store';
 
 /**
@@ -40,8 +41,9 @@ class Routes extends Component {
             <Route path="/accommodations" component={Accommodations} />
             <Route path="/calendar" component={Calendar} />
             <Route path="/expenses" component={Expenses} />
-            <Route path="/itinerary" component={Itinerary} />
-            <Route exact path="/travel" component={Travel} />
+            <Route path="/activities" component={Activities} />
+            <Route path="/travel" component={Travel} />
+            <Route path="/new" component={TripForm} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
