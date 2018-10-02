@@ -22,7 +22,8 @@ export const fetchTrips = (id) => async dispatch => {
 
 export const fetchSelected = (tripId) => async dispatch => {
     try {
-        
+        const trip = await axios.get(`/api/trips/${tripId}`);
+        dispatch(getSelected(trip.data))
     } catch (err){
         console.log(err);
     }

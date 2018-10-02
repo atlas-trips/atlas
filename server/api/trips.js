@@ -15,7 +15,15 @@ router.get('/:id', async(req, res, next) => {
         if(!trip){
             res.status(404).send("Not Found")
         }
-        res.json(trip);
+
+        const isAuthorized = {}
+        trip.users.forEach(user=> isAuthorized[user.id] = true );
+        if(req.user && isAuthorized[req.user.id]){
+            //const newArr = trip.users.filter(user => user.id !== req.user.id)
+            res.json(trip)
+        } else {
+            res.status(403).send('Forbidden');
+        }
     } catch(err){
         next(err);
     }

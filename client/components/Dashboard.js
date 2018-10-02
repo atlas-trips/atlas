@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import Sidebar from './Sidebar'
 import AllTrips from './AllTrips'
 import SingleTrip from './SingleTrip'
-import {fetchTrips} from '../store/trip' 
+import {fetchTrips, fetchSelected} from '../store/trip' 
 import { throws } from 'assert';
 
 const dummyData = [
@@ -61,23 +61,25 @@ class Dashboard extends React.Component {
     this.props.fetchTrips(this.props.user.id)
   }
 
-  handleClick(evt, id){
+  async handleClick(evt, id){
     evt.preventDefault();
-    //this.setState({selected: true});
-    console.log(id);
-    //call
+    await this.props.fetchSelected(id);
+    this.setState({selected: true});
   }
   
   render(){
     const {user} = this.props;
-    const onATrip = false //Object.keys(this.props.selected).length;
+    //const onATrip = false //Object.keys(this.props.selected).length;
     if(this.props.trips.length > 0){
       return (
        <div style={{display: 'flex', marginLeft: '100px'}}>
         <Sidebar />
         <div style={{margin: '0 auto'}}>
           {this.state.selected ? (
-            <h3>{user.name}'s Trip:</h3>
+            <div className='selected-trip'>
+              <h3>{user.name}'s Trip:</h3>
+              <SingleTrip trip={this.props.selected} />
+            </div>
           ) : (
             <AllTrips trips={this.props.trips} click={this.handleClick} />
           ) }       
@@ -105,7 +107,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchTrips: (id) => dispatch(fetchTrips(id))
+  fetchTrips: (id) => dispatch(fetchTrips(id)),
+  fetchSelected: (tripId) => dispatch(fetchSelected(tripId))
 })
 
 export default connect(mapStateToProps, mapDispatch)(Dashboard)
