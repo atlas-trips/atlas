@@ -1,40 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-const dummyData = [
-  {
-    id: 1,
-    name: 'Beach',
-    description: 'Getting sunburnt'
-  },
-  {
-    id: 2,
-    name: 'Museum',
-    description: 'Looking at art'
-  },
-  {
-    id: 3,
-    name: 'Hiking',
-    description: 'Getting tired'
-  },
-  {
-    id: 4,
-    name: 'Climbing Leaning Tower of Pisa',
-    description: 'Getting dizzy'
-  },
-  {
-    id: 5,
-    name: 'Casino',
-    description: 'Losing rest of trip funds'
-  }
-]
 
 const tempActivitiesStyles = {
   textAlign: 'center',
   margin: '3px'
 }
 
-const ActivitiesOverview = () => {
+const ActivitiesOverview = (props) => {
   return (
     <div
       style={{
@@ -45,10 +18,10 @@ const ActivitiesOverview = () => {
       }}
     >
       <h4>Activities:</h4>
-      {dummyData.filter((item, idx) => idx < 3).map(activity => {
+      {props.activities.filter((item, idx) => idx < 3).map(activity => {
         return (
           <div style={tempActivitiesStyles} key={activity.id}>
-            {activity.name} - {activity.description}
+            {activity.name}
           </div>
         )
       })}
