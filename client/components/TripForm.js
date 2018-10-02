@@ -74,6 +74,7 @@ class TripForm extends Component {
       endDate: formatDate(this.state.to)
     }
     this.props.makeTrip(newTrip);
+    this.props.history.push('/dashboard');
   }
   render() {
     const { from, to, tripName } = this.state;
