@@ -15,8 +15,14 @@ export const fetchTrips = (id) => async dispatch => {
     try{
         const res = await axios.get(`/api/users/${id}/trips`);
         dispatch(getTrips(res.data));
-        //sets first trip as selected for now, will update  
-        dispatch(getSelected(res.data[0]));
+    } catch (err){
+        console.log(err);
+    }
+}
+
+export const fetchSelected = (tripId) => async dispatch => {
+    try {
+        
     } catch (err){
         console.log(err);
     }
@@ -27,7 +33,6 @@ export default function (state = defaultTrip, action){
         case GET_TRIPS:
             return {...state, all: action.trips}
         case GET_SELECTED_TRIP:
-              
             return {...state, selected: action.trip}
         default:
             return state;

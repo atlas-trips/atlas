@@ -12,8 +12,7 @@ const divStyle = {
 }
 
 const SingleTrip = props => {
-  const trip = props.trip[0]
-
+  const trip = props.trip
   return (
     <div>
       <span style={divStyle}>
@@ -21,9 +20,9 @@ const SingleTrip = props => {
         {trip.endDate.slice(0, 10)}
       </span>
       <div style={{display: 'flex', flexWrap: 'wrap'}}>
-        <ParticipantsOverview />
-        <ActivitiesOverview />
-        <AccommodationOverview />
+        {/* <ParticipantsOverview />*/}
+        {/*<ActivitiesOverview />*/}
+        {/*<AccommodationOverview />*/}
       </div>
     </div>
   )
