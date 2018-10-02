@@ -3,6 +3,7 @@ import Helmet from 'react-helmet';
 import DayPicker, { DateUtils } from 'react-day-picker';
 import { connect } from 'react-redux';
 import 'react-day-picker/lib/style.css';
+import { makeTrip } from '../store/trip';
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -75,7 +76,7 @@ class TripForm extends Component {
       startDate: formatDate(this.state.from),
       endDate: formatDate(this.state.to)
     }
-    makeTrip(newTrip);
+    this.props.makeTrip(newTrip);
   }
   render() {
     const { from, to, tripName } = this.state;
