@@ -35,7 +35,6 @@ class Activities extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
-  componentDidMount
 
   render() {
     console.log('user', this.props.state)
