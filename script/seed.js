@@ -15,24 +15,76 @@ async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const cody = await User.create({email: 'cody@email.com', password: '123', name: 'Cody'})
-  const murphy = await User.create({email: 'murphy@email.com', password: '123', name: 'Murphy'})
-  const sam = await User.create({email: 'sam@email.com', password: '12345', name: 'Sam'})
-  const jane = await User.create({email: 'jane@email.com', password: '12345', name: 'Jane'})
-  const john = await User.create({email: 'John@email.com', password: '12345', name: 'John'})
-  const elizabeth = await User.create({email: 'elizabeth@email.com', password: '12345', name: 'Elizabeth'})
-  const gary = await User.create({email: 'gary@email.com', password: '12345', name: 'Gary'})
-  const sally = await User.create({email: 'sally@email.com', password: '12345', name: 'Sally'})
-  const jessica = await User.create({email: 'jessica@email.com', password: '12345', name: 'Jessica'})
-  const matt = await User.create({email: 'matt@email.com', password: '12345', name: 'Matt'})
-  const david = await User.create({email: 'david@email.com', password: '12345', name: 'David'})
-  const fred = await User.create({email: 'fred@email.com', password: '12345', name: 'Fred'})
-  const jessie = await User.create({email: 'jessie@email.com', password: '12345', name: 'Jessie'})
+  const cody = await User.create({
+    email: 'cody@email.com',
+    password: '123',
+    name: 'Cody'
+  })
+  const murphy = await User.create({
+    email: 'murphy@email.com',
+    password: '123',
+    name: 'Murphy'
+  })
+  const sam = await User.create({
+    email: 'sam@email.com',
+    password: '12345',
+    name: 'Sam'
+  })
+  const jane = await User.create({
+    email: 'jane@email.com',
+    password: '12345',
+    name: 'Jane'
+  })
+  const john = await User.create({
+    email: 'John@email.com',
+    password: '12345',
+    name: 'John'
+  })
+  const elizabeth = await User.create({
+    email: 'elizabeth@email.com',
+    password: '12345',
+    name: 'Elizabeth'
+  })
+  const gary = await User.create({
+    email: 'gary@email.com',
+    password: '12345',
+    name: 'Gary'
+  })
+  const sally = await User.create({
+    email: 'sally@email.com',
+    password: '12345',
+    name: 'Sally'
+  })
+  const jessica = await User.create({
+    email: 'jessica@email.com',
+    password: '12345',
+    name: 'Jessica'
+  })
+  const matt = await User.create({
+    email: 'matt@email.com',
+    password: '12345',
+    name: 'Matt'
+  })
+  const david = await User.create({
+    email: 'david@email.com',
+    password: '12345',
+    name: 'David'
+  })
+  const fred = await User.create({
+    email: 'fred@email.com',
+    password: '12345',
+    name: 'Fred'
+  })
+  const jessie = await User.create({
+    email: 'jessie@email.com',
+    password: '12345',
+    name: 'Jessie'
+  })
 
   const vegas = await Trip.create({
     name: 'Vegas',
     startDate: '2018-10-10 00:00:00',
-    endDate: '2018-10-13 00:00:00',
+    endDate: '2018-10-13 00:00:00'
   })
   const paris = await Trip.create({
     name: 'Paris',
@@ -72,34 +124,36 @@ async function seed() {
   })
 
   london.createUser({
-    email: 'bob@email.com', password: '123456', name: 'Bob'
+    email: 'bob@email.com',
+    password: '123456',
+    name: 'Bob'
   })
-  vegas.addUser(cody);
-  vegas.addUser(murphy);
-  paris.addUser(sam);
-  cancun.addUser(john);
-  thailand.addUser(jane);
-  japan.addUser(gary);
-  italy.addUser(jessica);
+  vegas.addUser(cody)
+  vegas.addUser(murphy)
+  paris.addUser(sam)
+  cancun.addUser(john)
+  thailand.addUser(jane)
+  japan.addUser(gary)
+  italy.addUser(jessica)
 
   const museum = await Activity.create({
-      location: 'xxxxxxx',
-      name: 'Museum',
-      description: 'Looking at some paintings',
-      date: '2018-12-02 00:00:00',
-      isDecided: true,
-      votes: 2,
-      tripId: 2,
-    })
+    location: 'xxxxxxx',
+    name: 'Museum',
+    description: 'Looking at some paintings',
+    date: '2018-12-02 00:00:00',
+    isDecided: true,
+    votes: 2,
+    tripId: 2
+  })
   const shopping = await Activity.create({
-      location: 'xxxx',
-      name: 'Venetian Shopping',
-      description: 'Also riding around on boats and stuff',
-      date: '2018-10-10 00:00:00',
-      isDecided: true,
-      votes: 2,
-      tripId: 1
-    })
+    location: 'xxxx',
+    name: 'Venetian Shopping',
+    description: 'Also riding around on boats and stuff',
+    date: '2018-10-10 00:00:00',
+    isDecided: true,
+    votes: 2,
+    tripId: 1
+  })
   const beach = await Activity.create({
     location: 'xxxx',
     name: 'Beach',
@@ -112,7 +166,7 @@ async function seed() {
   const eiffel = await Activity.create({
     location: 'xxxx',
     name: 'Eiffel Tower',
-    description: "Climb to the top, look at the city",
+    description: 'Climb to the top, look at the city',
     date: '2018-12-05 00:00:00',
     isDecided: true,
     votes: 5,
@@ -121,7 +175,7 @@ async function seed() {
   const circus = await Activity.create({
     location: 'xxx',
     name: 'Cirque de Soleil',
-    description: "Ka - at MGM Grand",
+    description: 'Ka - at MGM Grand',
     date: '2018-10-11 00:00:00',
     isDecided: true,
     votes: 1,
@@ -130,7 +184,7 @@ async function seed() {
   const spa = await Activity.create({
     location: 'xxxx',
     name: 'Spa',
-    description: "Get massages",
+    description: 'Get massages',
     date: '2019-01-05 00:00:00',
     isDecided: true,
     votes: 1,
@@ -139,7 +193,7 @@ async function seed() {
   const oldCity = await Activity.create({
     location: 'xxxx',
     name: 'Old City',
-    description: "Walk around and shop",
+    description: 'Walk around and shop',
     date: '2019-01-06 00:00:00',
     isDecided: true,
     votes: 3,
@@ -148,7 +202,7 @@ async function seed() {
   const shooting = await Activity.create({
     location: 'xxxx',
     name: 'Shoot guns',
-    description: "Go shooting at range off the strip",
+    description: 'Go shooting at range off the strip',
     date: '2018-10-12 00:00:00',
     isDecided: true,
     votes: 5,
@@ -157,7 +211,7 @@ async function seed() {
   const akb = await Activity.create({
     location: 'xxxx',
     name: 'Akihabara',
-    description: "Exploring and shopping",
+    description: 'Exploring and shopping',
     date: '2018-09-25 00:00:00',
     isDecided: true,
     votes: 1,
@@ -166,7 +220,7 @@ async function seed() {
   const babymetal = await Activity.create({
     location: 'xxxx',
     name: 'Babymetal concert',
-    description: "headbanging to metal jpop",
+    description: 'headbanging to metal jpop',
     date: '2019-09-26 00:00:00',
     isDecided: true,
     votes: 6,
@@ -175,7 +229,7 @@ async function seed() {
   const climbing = await Activity.create({
     location: 'xxxx',
     name: 'Rock Climbing',
-    description: "Tonsai roof at Tonsai bay",
+    description: 'Tonsai roof at Tonsai bay',
     date: '2019-02-15 00:00:00',
     isDecided: true,
     votes: 8,
@@ -184,7 +238,7 @@ async function seed() {
   const market = await Activity.create({
     location: 'xxxx',
     name: 'Night market',
-    description: "Eat and explore in Krabi town",
+    description: 'Eat and explore in Krabi town',
     date: '2019-02-16 00:00:00',
     isDecided: true,
     votes: 5,
@@ -193,7 +247,7 @@ async function seed() {
   const carnival = await Activity.create({
     location: 'xxxx',
     name: 'Carnival',
-    description: "In Rio. All day long",
+    description: 'In Rio. All day long',
     date: '2019-11-12 00:00:00',
     isDecided: false,
     votes: 1,
@@ -202,7 +256,7 @@ async function seed() {
   const beachTwo = await Activity.create({
     location: 'xxxx',
     name: 'Chilling on the beach',
-    description: "recovering from Carnival",
+    description: 'recovering from Carnival',
     date: '2019-11-13 00:00:00',
     isDecided: true,
     votes: 7,
@@ -211,7 +265,7 @@ async function seed() {
   const pisa = await Activity.create({
     location: 'xxxx',
     name: 'Leaning Tower of Pisa',
-    description: "climbing until we reach the top",
+    description: 'climbing until we reach the top',
     date: '2018-10-06 00:00:00',
     isDecided: true,
     votes: 5,
@@ -220,7 +274,7 @@ async function seed() {
   const florence = await Activity.create({
     location: 'xxxx',
     name: 'Walking across the Ponte Vecchio',
-    description: "more tourism in Firenze",
+    description: 'more tourism in Firenze',
     date: '2018-10-04 00:00:00',
     isDecided: true,
     votes: 3,
@@ -236,22 +290,22 @@ async function seed() {
     tripId: 7
   })
 
-  museum.addUser(sam);
-  shopping.addUser(cody);
-  shopping.addUser(murphy);
-  circus.addUser(cody);
-  shooting.addUser(cody);
-  circus.addUser(murphy);
-  shooting.addUser(murphy);
-  spa.addUser(john);
-  oldCity.addUser(john);
-  akb.addUser(gary);
-  babymetal.addUser(gary);
-  climbing.addUser(jane);
-  market.addUser(jane);
-  pisa.addUser(jessica);
-  florence.addUser(jessica);
-  gladiator.addUser(jessica);
+  museum.addUser(sam)
+  shopping.addUser(cody)
+  shopping.addUser(murphy)
+  circus.addUser(cody)
+  shooting.addUser(cody)
+  circus.addUser(murphy)
+  shooting.addUser(murphy)
+  spa.addUser(john)
+  oldCity.addUser(john)
+  akb.addUser(gary)
+  babymetal.addUser(gary)
+  climbing.addUser(jane)
+  market.addUser(jane)
+  pisa.addUser(jessica)
+  florence.addUser(jessica)
+  gladiator.addUser(jessica)
 
   const venetian = await Accommodation.create({
     name: 'The Venetian',
@@ -265,7 +319,8 @@ async function seed() {
     name: 'Temptation Cancun Resort',
     startDate: '2019-01-01 00:00:00',
     endDate: '2019-01-07 00:00:00',
-    location: 'Boulevard Kukulcan Km 3.5, Zona Hotelera, 77500 Cancún, Q.R., Mexico',
+    location:
+      'Boulevard Kukulcan Km 3.5, Zona Hotelera, 77500 Cancún, Q.R., Mexico',
     userId: 5,
     tripId: 3
   })
@@ -302,13 +357,13 @@ async function seed() {
     tripId: 7
   })
 
-  venetian.addUser(cody);
-  venetian.addUser(murphy);
-  temptation.addUser(john);
-  leRoch.addUser(sam);
-  tonsai.addUser(jane);
-  niwa.addUser(gary);
-  roma.addUser(jessica);
+  venetian.addUser(cody)
+  venetian.addUser(murphy)
+  temptation.addUser(john)
+  leRoch.addUser(sam)
+  tonsai.addUser(jane)
+  niwa.addUser(gary)
+  roma.addUser(jessica)
 
   const car = await Transportation.create({
     method: 'Car',
@@ -350,32 +405,32 @@ async function seed() {
     Travel.create({
       tripId: 1,
       userId: 1,
-      transportationId: 1,
+      transportationId: 1
     }),
     Travel.create({
       tripId: 1,
       userId: 2,
-      transportationId: 1,
+      transportationId: 1
     }),
     Travel.create({
       tripId: 2,
       userId: 3,
-      transportationId: 2,
+      transportationId: 2
     }),
     Travel.create({
       tripId: 5,
       userId: 7,
-      transportationId: 3,
+      transportationId: 3
     }),
     Travel.create({
       tripId: 4,
       userId: 4,
-      transportationId: 4,
+      transportationId: 4
     }),
     Travel.create({
       tripId: 7,
       userId: 9,
-      transportationId: 5,
+      transportationId: 5
     })
   ])
 
@@ -388,11 +443,11 @@ async function seed() {
       isPaid: false
     }),
     Expense.create({
-      name: "Bag from Gucci",
+      name: 'Bag from Gucci',
       amount: 250,
       activityId: 2,
       userId: 2,
-      isPaid: true,
+      isPaid: true
     }),
     Expense.create({
       name: 'Ice cream',
@@ -420,7 +475,7 @@ async function seed() {
       amount: 15,
       activityId: 6,
       userId: 4,
-      isPaid: true,
+      isPaid: true
     }),
     Expense.create({
       name: 'ammo',
@@ -428,7 +483,7 @@ async function seed() {
       activityId: 8,
       userId: 6,
       isPaid: false
-    }),
+    })
   ])
 
   console.log(`seeded successfully`)

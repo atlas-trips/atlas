@@ -3,10 +3,11 @@ import createLogger from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
-import accommodation from './accommodation';
-import trip from './trip';
+import accommodation from './accommodation'
+import trip from './trip'
+import activity from './activity'
 
-const reducer = combineReducers({user, accommodation, trip})
+const reducer = combineReducers({user, accommodation, trip, activity})
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
@@ -16,3 +17,4 @@ export default store
 export * from './user'
 export * from './accommodation'
 export * from './trip'
+export * from './activity'
