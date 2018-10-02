@@ -43,7 +43,6 @@ class Activities extends Component {
       <div>
         <Sidebar />
         <div style={{marginLeft: '100px'}}>
-          <h1>Activity form will go here</h1>
           <img src="images/mexico-city-map.jpg" width="50%" />
           <h1>_______________</h1>
           <input
