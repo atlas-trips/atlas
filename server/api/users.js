@@ -39,7 +39,7 @@ router.get('/:id/trips', async (req, res, next) => {
     if(isNaN(id)){
       res.status(400).send('Bad Request');
     } else if(req.user && req.user.id === id){
-      const trips = await User.find({where: {id: id}, include: [Trip]});
+      const trips = await User.find({where: {id: id}, include: [Trips]});
       res.json(trips);
     } else {
       res.status(403).send('Forbidden');
