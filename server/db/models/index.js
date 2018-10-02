@@ -18,12 +18,15 @@ User.belongsToMany(Activity, {through: 'plan'});
 //associations
 Trip.hasMany(Activity)
 Trip.hasMany(Accommodation)
+Trip.hasMany(Transportation);
+Transportation.belongsTo(Trip);
 Accommodation.belongsTo(Trip);
 Activity.belongsTo(Trip)
 Activity.hasMany(Expense)
 Expense.belongsTo(Activity)
 User.hasOne(Expense)
 Expense.belongsTo(User)
+
 
 module.exports = {
   User,
