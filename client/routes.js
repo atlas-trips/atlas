@@ -11,7 +11,8 @@ import {
   Expenses,
   Activities,
   Travel,
-  Landing
+  Landing,
+  TripForm,
 } from './components'
 import {me} from './store'
 
@@ -41,6 +42,7 @@ class Routes extends Component {
             <Route path="/expenses" component={Expenses} />
             <Route path="/activities" component={Activities} />
             <Route path="/travel" component={Travel} />
+            <Route path="/new" component={TripForm} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

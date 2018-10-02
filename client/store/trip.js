@@ -1,15 +1,17 @@
 import axios from 'axios'
 
-const GET_TRIPS = 'GET_TRIPS'
-const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP'
+const GET_TRIPS = 'GET_TRIPS';
+const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP';
+const SET_NEW_TRIP = 'SET_NEW_TRIP'
 
 const defaultTrip = {
   all: [],
   selected: {}
 }
 
-const getTrips = trips => ({type: GET_TRIPS, trips})
-const getSelected = trip => ({type: GET_SELECTED_TRIP, trip})
+const getTrips = trips => ({type: GET_TRIPS, trips});
+const getSelected = trip => ({type: GET_SELECTED_TRIP, trip});
+const setNewTrip = trip => ({type: SET_NEW_TRIP, trip});
 
 export const fetchTrips = id => async dispatch => {
   try {
@@ -29,13 +31,24 @@ export const fetchSelected = tripId => async dispatch => {
   }
 }
 
-export default function(state = defaultTrip, action) {
-  switch (action.type) {
-    case GET_TRIPS:
-      return {...state, all: action.trips}
-    case GET_SELECTED_TRIP:
-      return {...state, selected: action.trip}
-    default:
-      return state
+export const makeTrip = trip => async dispatch => {
+  try {
+    const { data:newTrip } = await axios.post('/api/trips', trip)
+    dispatch(setNewTrip(newTrip));
+  } catch (error) {
+    console.log(error);
   }
+}
+
+export default function (state = defaultTrip, action){
+    switch(action.type){
+        case GET_TRIPS:
+            return {...state, all: action.trips}
+        case GET_SELECTED_TRIP:
+            return {...state, selected: action.trip}
+        case SET_NEW_TRIP:
+          return {...state, all: [...state.all, action.trip]}
+        default:
+            return state;
+    }
 }

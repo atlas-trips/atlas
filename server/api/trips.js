@@ -5,6 +5,21 @@ router.get('/', (req, res, next) => {
     res.send("This is the trips route. Hello")
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    const { name, startDate, endDate } = req.body;
+    const newTripObj = {
+      name,
+      startDate,
+      endDate,
+    }
+    const newTrip = await Trip.create(newTripObj);
+    res.status(201).send(newTrip);
+  } catch (error) {
+    next
+  }
+})
+
 router.get('/:id', async(req, res, next) => {
     try{
         const id = Number(req.params.id);
