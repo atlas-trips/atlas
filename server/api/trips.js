@@ -13,9 +13,9 @@ router.post('/', async (req, res, next) => {
       startDate,
       endDate,
     }
-    console.log('new trip obj', newTripObj)
     const newTrip = await Trip.create(newTripObj);
-    console.log('new trip', newTrip)
+    const user = await User.findById(req.user.id);
+    user.addTrip(newTrip);
     res.status(201).send(newTrip);
   } catch (error) {
     next(error)
@@ -36,7 +36,6 @@ router.get('/:id', async(req, res, next) => {
         const isAuthorized = {}
         trip.users.forEach(user=> isAuthorized[user.id] = true );
         if(req.user && isAuthorized[req.user.id]){
-            //const newArr = trip.users.filter(user => user.id !== req.user.id)
             res.json(trip)
         } else {
             res.status(403).send('Forbidden');
