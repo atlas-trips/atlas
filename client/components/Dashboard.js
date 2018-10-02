@@ -56,6 +56,7 @@ class Dashboard extends React.Component {
       selected: false
     }
     this.handleClick = this.handleClick.bind(this);
+    this.goBack = this.goBack.bind(this);
   }
   componentDidMount(){
     this.props.fetchTrips(this.props.user.id)
@@ -66,6 +67,11 @@ class Dashboard extends React.Component {
     await this.props.fetchSelected(id);
     this.setState({selected: true});
   }
+
+  goBack(evt){
+    evt.preventDefault()
+    this.setState({selected: false})
+  }
   
   render(){
     const {user} = this.props;
@@ -75,8 +81,10 @@ class Dashboard extends React.Component {
        <div style={{display: 'flex', marginLeft: '100px'}}>
         <Sidebar />
         <div style={{margin: '0 auto'}}>
+         
           {this.state.selected ? (
             <div className='selected-trip'>
+               <a href="/dashboard" onClick={this.goBack} ><h4>{'< Back'}</h4></a>
               <h3>{user.name}'s Trip:</h3>
               <SingleTrip trip={this.props.selected} />
             </div>
