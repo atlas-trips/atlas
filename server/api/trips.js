@@ -13,10 +13,12 @@ router.post('/', async (req, res, next) => {
       startDate,
       endDate,
     }
+    console.log('new trip obj', newTripObj)
     const newTrip = await Trip.create(newTripObj);
+    console.log('new trip', newTrip)
     res.status(201).send(newTrip);
   } catch (error) {
-    next
+    next(error)
   }
 })
 
