@@ -1,28 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const dummyData = [
-    {
-        id: 1,
-        name: 'Motel 6',
-        start: "2018-09-01"
-    },
-    {
-        id: 2,
-        name: 'The Ritz-Carlton',
-        start: '2018-09-04'
-    },
-    {
-        id: 3,
-        name: 'Four Seasons',
-        start: '2018-09-05'
-    },
-    {
-        id: 4,
-        name: 'Best Westin',
-        start: '2016-09-08'
-    }
-]
 
 
 const tempActivitiesStyles = {
@@ -30,7 +8,7 @@ const tempActivitiesStyles = {
     margin: '3px'
   }
 
-const AccommodationOverview = () => {
+const AccommodationOverview = (props) => {
     return (
         <div style={{
             textAlign: 'center',
@@ -39,7 +17,7 @@ const AccommodationOverview = () => {
             marginTop: '50px'
         }}>
             <h4>Accommodations:</h4>
-            {dummyData.filter((item, idx) => idx < 3).map(accom =>{
+            {props.accommodations.filter((item, idx) => idx < 3).map(accom =>{
                 return (
                     <div style={tempActivitiesStyles} key={accom.id}>
                         {accom.name} - {accom.start}

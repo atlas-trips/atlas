@@ -1,28 +1,5 @@
 import React from 'react'
 
-const dummyData = [
-  {
-    id: 1,
-    name: 'Bob',
-    email: 'bob@email.com'
-  },
-  {
-    id: 2,
-    name: 'Fred',
-    email: 'fred@email.com'
-  },
-  {
-    id: 3,
-    name: 'Jamie',
-    email: 'jamie@email.com'
-  },
-  {
-    id: 4,
-    name: 'Kate',
-    email: 'kate@email.com'
-  }
-]
-
 const tempStyles = {
   display: 'flex',
   flexWrap: 'wrap',
@@ -36,7 +13,7 @@ const tempPersonStyles = {
   padding: '10px'
 }
 
-const ParticipantsOverview = () => {
+const ParticipantsOverview = (props) => {
   return (
     <div
       style={{
@@ -48,7 +25,7 @@ const ParticipantsOverview = () => {
     >
       <h4>Who's coming:</h4>
       <div style={tempStyles}>
-        {dummyData.map(person => {
+        {props.peeps.map(person => {
           return (
             <div style={tempPersonStyles} key={person.id}>
               <img src="/images/person.png" width="50" alt="person icon" />
