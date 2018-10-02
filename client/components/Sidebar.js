@@ -42,7 +42,7 @@ const Sidebar = () => {
         </Link>
       </div>
       <div style={tempContainerStyles}>
-        <Link to="/itinerary">
+        <Link to="/activities">
           <img src="/images/activity.png" height="50" alt="activity" />
         </Link>
       </div>
