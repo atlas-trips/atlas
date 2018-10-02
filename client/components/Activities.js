@@ -57,20 +57,20 @@ class Itinerary extends Component {
               placeholder="Name of Activity"
             />
 
+            <div>
+              <DayPicker
+                selectedDays={this.state.selectedDay}
+                onDayClick={this.handleDayClick}
+              />
+              <p>
+                {this.state.selectedDay
+                  ? this.state.selectedDay.toLocaleDateString()
+                  : 'Please select a day'}
+              </p>
+            </div>
+
             <button type="submit">Add activity</button>
           </form>
-
-          <div>
-            <DayPicker
-              selectedDays={this.state.selectedDay}
-              onDayClick={this.handleDayClick}
-            />
-            <p>
-              {this.state.selectedDay
-                ? this.state.selectedDay.toLocaleDateString()
-                : 'Please select a day'}
-            </p>
-          </div>
         </div>
       </div>
     )
@@ -82,7 +82,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    send: obj => dispatch(sendItineraryInfo(obj))
+  }
 }
 
 export default connect(mapStateToProps)(Itinerary)
