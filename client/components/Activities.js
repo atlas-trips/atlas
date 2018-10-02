@@ -3,13 +3,15 @@ import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 import Sidebar from './Sidebar'
 import {connect} from 'react-redux'
+import {sendActivityInfo} from '../store/activity'
 
-class Itinerary extends Component {
+class Activities extends Component {
   constructor(props) {
     super(props)
     this.state = {
       activityName: '',
       activitySearch: '',
+      activityLocation: '',
       selectedDay: null
     }
     this.handleDayClick = this.handleDayClick.bind(this)
@@ -23,14 +25,20 @@ class Itinerary extends Component {
     })
   }
 
-  handleSubmit() {}
+  handleSubmit(event) {
+    const {id} = this.props
+    this.props.send(this.state)
+    event.preventDefault()
+  }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
   }
 
+  componentDidMount
+
   render() {
-    console.log('state is', this.state)
+    console.log('user', this.props.state)
 
     return (
       <div>
@@ -57,6 +65,15 @@ class Itinerary extends Component {
               placeholder="Name of Activity"
             />
 
+            <label htmlFor="activityLocation" />
+            <input
+              type="text"
+              name="activityLocation"
+              value={this.state.name}
+              onChange={this.handleChange}
+              placeholder="location"
+            />
+
             <div>
               <DayPicker
                 selectedDays={this.state.selectedDay}
@@ -72,19 +89,25 @@ class Itinerary extends Component {
             <button type="submit">Add activity</button>
           </form>
         </div>
+
+        <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
+          activities will go here by day
+        </div>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  trip: state.trip,
+  activities: state.activities
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    send: obj => dispatch(sendItineraryInfo(obj))
+    send: obj => dispatch(sendActivityInfo(obj))
   }
 }
 
-export default connect(mapStateToProps)(Itinerary)
+export default connect(mapStateToProps, mapDispatchToProps)(Activities)
