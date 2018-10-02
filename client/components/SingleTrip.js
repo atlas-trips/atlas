@@ -12,8 +12,7 @@ const divStyle = {
 }
 
 const SingleTrip = props => {
-  const trip = props.trip[0]
-
+  const trip = props.trip
   return (
     <div>
       <span style={divStyle}>

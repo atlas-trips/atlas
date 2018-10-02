@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import Sidebar from './Sidebar'
 import AllTrips from './AllTrips'
 import SingleTrip from './SingleTrip'
+import {fetchTrips, fetchSelected} from '../store/trip' 
+import { throws } from 'assert';
 
 const dummyData = [
   {
@@ -22,6 +24,7 @@ const dummyData = [
   }
 ]
 
+/*
 const getTime = () => {
   const currentTime = new Date()
   let day = currentTime.getDate()
@@ -44,31 +47,68 @@ const singleTrip = trips => {
     return now >= tripStart && now <= tripEnd
   })
 }
+*/
 
-const Dashboard = props => {
-  const {user} = props
-  const onATrip = singleTrip(dummyData).length
-  return onATrip ? (
-    <div style={{display: 'flex', marginLeft: '100px'}}>
-      <Sidebar />
-      <div style={{margin: '0 auto'}}>
-        <h4>{user.name}'s Trip:</h4>
-        <SingleTrip trip={singleTrip(dummyData)} />
-      </div>
-    </div>
-  ) : (
-    <div style={{display: 'flex', marginLeft: '100px'}}>
-      <Sidebar />
-      <div>
-        <h1>{user.name}'s upcoming trips:</h1>
-        <AllTrips trips={dummyData} />
-      </div>
-    </div>
-  )
+class Dashboard extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selected: false
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentDidMount(){
+    this.props.fetchTrips(this.props.user.id)
+  }
+
+  async handleClick(evt, id){
+    evt.preventDefault();
+    await this.props.fetchSelected(id);
+    this.setState({selected: true});
+  }
+  
+  render(){
+    const {user} = this.props;
+    //const onATrip = false //Object.keys(this.props.selected).length;
+    if(this.props.trips.length > 0){
+      return (
+       <div style={{display: 'flex', marginLeft: '100px'}}>
+        <Sidebar />
+        <div style={{margin: '0 auto'}}>
+          {this.state.selected ? (
+            <div className='selected-trip'>
+              <h3>{user.name}'s Trip:</h3>
+              <SingleTrip trip={this.props.selected} />
+            </div>
+          ) : (
+            <AllTrips trips={this.props.trips} click={this.handleClick} />
+          ) }       
+        </div>
+       </div>
+      )
+    } else {
+      return(
+        <div className='noTrips'>
+          <Sidebar />
+          <div className="noTrips-content">
+            <h3>No Trips Available</h3>
+          </div>
+        </div>
+      )
+    }
+
+  }
 }
 
 const mapStateToProps = state => ({
-  user: state.user
+  user: state.user,
+  trips: state.trip.all,
+  selected: state.trip.selected
 })
 
-export default connect(mapStateToProps)(Dashboard)
+const mapDispatch = dispatch => ({
+  fetchTrips: (id) => dispatch(fetchTrips(id)),
+  fetchSelected: (tripId) => dispatch(fetchSelected(tripId))
+})
+
+export default connect(mapStateToProps, mapDispatch)(Dashboard)
