@@ -41,7 +41,7 @@ const MapWithASearchBox = compose(
           onBoundsChange(refs.map)
           }
           },
-          100,
+          Infinity,
           { maxWait: 500 }
           ),
         onSearchBoxMounted: ref => {
