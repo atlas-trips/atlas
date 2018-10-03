@@ -51,7 +51,12 @@ router.get('/:id', async (req, res, next) => {
     }
     const trip = await Trip.find({
       where: {id: id},
-      include: [User, Accommodation, Activity, Transportation]
+      include: [
+        {model: User, include: [Transportation]},
+        Accommodation,
+        Activity,
+        Transportation
+      ]
     });
     if (!trip) {
       res.status(404).send('Not Found');
