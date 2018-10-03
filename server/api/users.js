@@ -32,19 +32,18 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-
 router.get('/:id/trips', async (req, res, next) => {
-  try{
-    const id = Number(req.params.id);
-    if(isNaN(id)){
-      res.status(400).send('Bad Request');
-    } else if(req.user && req.user.id === id){
-      const {trips} = await User.find({where: {id: id}, include: [Trip]});
-      res.json(trips);
+  try {
+    const id = Number(req.params.id)
+    if (isNaN(id)) {
+      res.status(400).send('Bad Request')
+    } else if (req.user && req.user.id === id) {
+      const {trips} = await User.find({where: {id: id}, include: [Trip]})
+      res.json(trips)
     } else {
-      res.status(403).send('Forbidden');
+      res.status(403).send('Forbidden')
     }
-  } catch(err){
-    next(err);
+  } catch (err) {
+    next(err)
   }
 })

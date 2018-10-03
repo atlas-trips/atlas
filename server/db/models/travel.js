@@ -4,8 +4,8 @@ const db = require('../db')
 const Travel = db.define('travel', {
   tripId: {
     type: Sequelize.INTEGER,
-    allowNull: false,
-}
+    allowNull: false
+  }
 })
 
-module.exports = Travel;
+module.exports = Travel
