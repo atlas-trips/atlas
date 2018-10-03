@@ -28,8 +28,21 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.get('/:id/activities', async (req, res, next) => {
+  try {
+    const tripId = req.params.id;
+    const activities = await Activity.findAll({
+      where: {
+        tripId
+      }
+    });
+    res.send(activities);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.post('/:id/activities', async (req, res, next) => {
-  console.log('in the post activities route, body ', req.body);
   try {
     await Activity.create({
       location: req.body.location,

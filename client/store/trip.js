@@ -20,10 +20,9 @@ const getActivities = activities => ({
   activities
 });
 
-const sendActivity = activity => ({
-  type: SET_ACTIVITY,
-  activity
-});
+const sendActivity = activity => {
+  return {type: SET_ACTIVITY, activity};
+};
 
 export const fetchTrips = id => async dispatch => {
   try {
@@ -52,10 +51,9 @@ export const makeTrip = trip => async dispatch => {
   }
 };
 
-export const fetchActivities = () => async dispatch => {
+export const fetchActivities = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/trips/${tripId}/activities`);
-    console.log('data from fetchActivities is', res);
+    const {res} = await axios.get(`/api/trips/${id}/activities`);
     dispatch(getActivities(res.data));
   } catch (err) {
     console.log(err);
@@ -64,11 +62,12 @@ export const fetchActivities = () => async dispatch => {
 
 export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
   try {
-    const {data} = await axios.post(
+    const res = await axios.post(
       `/api/trips/${tripId}/activities`,
       activityInfo
     );
-    dispatch(sendActivity(data));
+    console.log('DATA', res.data);
+    dispatch(sendActivity(res.data));
   } catch (err) {
     console.log(err);
   }

@@ -34,10 +34,11 @@ class Activities extends Component {
   handleSubmit(event) {
     event.preventDefault();
     const newActivity = {
-      location: this.state.activityLocation,
+      location: this.props.map,
       name: this.state.activityName,
       date: this.state.selectedDay,
-      tripId: this.props.trip.id
+      tripId: this.props.trip.id,
+      votes: 0
     };
     this.props.send(newActivity, this.props.trip.id);
   }
@@ -46,9 +47,11 @@ class Activities extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  render() {
-    console.log('user', this.props);
+  componentDidMount() {
+    this.props.fetchActivities(this.props.trip.id);
+  }
 
+  render() {
     return (
       <div>
         <Sidebar />
@@ -60,13 +63,6 @@ class Activities extends Component {
               </div>
 
               <h1>_______________</h1>
-              <input
-                type="text"
-                name="activitySearch"
-                value={this.state.activitySearch}
-                onChange={this.handleChange}
-                placeholder="Search for Activity"
-              />
 
               <form onSubmit={this.handleSubmit}>
                 <label htmlFor="activityName" />
@@ -76,15 +72,6 @@ class Activities extends Component {
                   value={this.state.activityName}
                   onChange={this.handleChange}
                   placeholder="Name of Activity"
-                />
-
-                <label htmlFor="activityLocation" />
-                <input
-                  type="text"
-                  name="activityLocation"
-                  value={this.state.activityLocation}
-                  onChange={this.handleChange}
-                  placeholder="location"
                 />
 
                 <div>
@@ -115,13 +102,14 @@ class Activities extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  trip: state.trip.selected
+  trip: state.trip.selected,
+  map: state.map
 });
 
 const mapDispatchToProps = dispatch => {
   return {
     send: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId)),
-    fetchActivities: () => dispatch(fetchActivities())
+    fetchActivities: id => dispatch(fetchActivities(id))
   };
 };
 
