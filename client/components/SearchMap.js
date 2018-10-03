@@ -1,5 +1,6 @@
 import React from 'react';
 const _ = require("lodash");
+import {debounce} from 'lodash';
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
@@ -29,12 +30,20 @@ const MapWithASearchBox = compose(
         onMapMounted: ref => {
           refs.map = ref;
         },
-        onBoundsChanged: () => {
+        onBoundsChanged: debounce(
+          () => {
           this.setState({
-            bounds: refs.map.getBounds(),
-            center: refs.map.getCenter(),
+          bounds: refs.map.getBounds(),
+          center: refs.map.getCenter()
           })
-        },
+          let { onBoundsChange } = this.props
+          if (onBoundsChange) {
+          onBoundsChange(refs.map)
+          }
+          },
+          100,
+          { maxWait: 500 }
+          ),
         onSearchBoxMounted: ref => {
           refs.searchBox = ref;
         },
