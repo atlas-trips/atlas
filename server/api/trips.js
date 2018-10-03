@@ -45,5 +45,19 @@ router.get('/:id', async(req, res, next) => {
     }
 })
 
+router.get('/:id/accommodations', async (req, res, next) => {
+  try {
+    const tripId = req.params.id;
+    const accommodations = await Accommodation.findAll({
+      where: {
+        tripId,
+      }
+    })
+    res.send(accommodations)
+  } catch (error) {
+    next(error);
+  }
+})
+
 
 module.exports = router

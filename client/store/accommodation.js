@@ -14,9 +14,9 @@ const setNewAccommodation = accomodation => ({
   accomodation,
 })
 
-export const getAccommodations = () => async dispatch => {
+export const getAccommodations = tripId => async dispatch => {
     try {
-        const res = await axios.get('/api/accommodations')
+        const res = await axios.get(`/api/trips/${tripId}/accommodations`)
         dispatch(setAccommodations(res.data))
     } catch (err){
         console.log(err);
@@ -36,6 +36,8 @@ export default function (state = initialState, action){
     switch(action.type){
         case SET_ACCOMMODATIONS:
             return {...state, accommodations: action.accommodations };
+        case SET_NEW_ACCOMMODATION:
+          return {...state, accommodations: [...state.accommodations, action.accommodation]}
         default:
             return state;
     }
