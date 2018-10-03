@@ -13,7 +13,7 @@ const tempPersonStyles = {
   padding: '10px'
 }
 
-const ParticipantsOverview = (props) => {
+const ParticipantsOverview = props => {
   return (
     <div
       style={{

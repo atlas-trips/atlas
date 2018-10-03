@@ -28,6 +28,21 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+router.post('/:id/activities', async (req, res, next) => {
+  console.log('in the post activities route, body ', req.body);
+  try {
+    await Activity.create({
+      location: req.body.location,
+      name: req.body.name,
+      date: req.body.date,
+      tripId: req.body.tripId
+    });
+    res.status(201).send();
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get('/:id', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
@@ -41,7 +56,6 @@ router.get('/:id', async (req, res, next) => {
     if (!trip) {
       res.status(404).send('Not Found');
     }
-
     const isAuthorized = {};
     trip.users.forEach(user => (isAuthorized[user.id] = true));
     if (req.user && isAuthorized[req.user.id]) {
@@ -51,6 +65,20 @@ router.get('/:id', async (req, res, next) => {
     }
   } catch (err) {
     next(err);
+  }
+});
+
+router.get('/:id/accommodations', async (req, res, next) => {
+  try {
+    const tripId = req.params.id;
+    const accommodations = await Accommodation.findAll({
+      where: {
+        tripId
+      }
+    });
+    res.send(accommodations);
+  } catch (error) {
+    next(error);
   }
 });
 

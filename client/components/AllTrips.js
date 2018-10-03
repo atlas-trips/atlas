@@ -23,7 +23,11 @@ const AllTrips = props => {
     <div style={containerStyle}>
       {trips.map(trip => {
         return (
-          <div key={trip.name} style={divStyle} onClick={evt => props.click(evt, trip.id)}>
+          <div
+            key={trip.name}
+            style={divStyle}
+            onClick={evt => props.click(evt, trip.id)}
+          >
             <h1>{trip.name}</h1>
             <h2>
               {trip.startDate.slice(0, 10)} to {trip.endDate.slice(0, 10)}
