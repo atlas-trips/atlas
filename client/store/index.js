@@ -5,14 +5,14 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import user from './user';
 import accommodation from './accommodation';
 import trip from './trip';
-import activity from './activity';
+
 import transportation from './transportation';
 
 const reducer = combineReducers({
   user,
   accommodation,
   trip,
-  activity,
+
   transportation
 });
 const middleware = composeWithDevTools(
@@ -24,4 +24,3 @@ export default store;
 export * from './user';
 export * from './accommodation';
 export * from './trip';
-export * from './activity';

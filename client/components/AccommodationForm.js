@@ -3,7 +3,7 @@ import Helmet from 'react-helmet'
 import DayPicker, {DateUtils} from 'react-day-picker'
 import {connect} from 'react-redux'
 import 'react-day-picker/lib/style.css'
-import {makeTrip} from '../store/trip'
+import {getNewAccommodation} from '../store/accommodation'
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -32,7 +32,7 @@ const formatDate = date => {
   return `${year}-${month}-${day} 00:00:00`
 }
 
-class TripForm extends Component {
+class AccommodationForm extends Component {
   static defaultProps = {
     numberOfMonths: 2
   }
@@ -48,7 +48,8 @@ class TripForm extends Component {
     return {
       from: undefined,
       to: undefined,
-      tripName: ''
+      location: '',
+      name: ''
     }
   }
   handleDayClick(day) {
@@ -59,35 +60,53 @@ class TripForm extends Component {
     this.setState(this.getInitialState())
   }
   handleChange(event) {
-    this.setState({
-      tripName: event.target.value
-    })
+    const {name, value} = event.target
+    this.setState({[name]: value})
   }
   handleSubmit() {
     if (
       this.state.from === undefined ||
       this.state.to === undefined ||
-      this.state.tripName === ''
+      this.state.name === '' ||
+      this.state.location === ''
     ) {
-      alert('You must include a trip name, a start date, and an end date')
+      alert(
+        'You must include a location name, address, start date, and an end date'
+      )
       return
     }
-    const newTrip = {
-      name: this.state.tripName,
+    const newAccommodation = {
+      name: this.state.name,
+      location: this.state.location,
       startDate: formatDate(this.state.from),
-      endDate: formatDate(this.state.to)
+      endDate: formatDate(this.state.to),
+      tripId: this.props.trip.id
     }
-    this.props.makeTrip(newTrip)
+    this.props.makeAccommodation(newAccommodation)
     this.props.history.push('/dashboard')
   }
   render() {
-    const {from, to, tripName} = this.state
+    const {from, to, name, location} = this.state
     const modifiers = {start: from, end: to}
     return (
       <div style={{textAlign: 'center'}}>
         <div>
-          <label htmlFor="tripName">Trip Name:</label>
-          <input type="text" value={tripName} onChange={this.handleChange} />
+          <label htmlFor="name">Accommodation Name:</label>
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="location">Accommodation Address:</label>
+          <input
+            type="text"
+            name="location"
+            value={location}
+            onChange={this.handleChange}
+          />
         </div>
         <div className="RangeExample">
           <p>
@@ -121,8 +140,12 @@ class TripForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  makeTrip: trip => dispatch(makeTrip(trip))
+const mapStateToProps = state => ({
+  trip: state.trip.selected
 })
 
-export default connect(null, mapDispatchToProps)(TripForm)
+const mapDispatchToProps = dispatch => ({
+  makeAccommodation: trip => dispatch(getNewAccommodation(trip))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccommodationForm)

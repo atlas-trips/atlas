@@ -1,13 +1,12 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 
-
 const tempActivitiesStyles = {
   textAlign: 'center',
   margin: '3px'
 }
 
-const ActivitiesOverview = (props) => {
+const ActivitiesOverview = props => {
   return (
     <div
       style={{
@@ -26,7 +25,7 @@ const ActivitiesOverview = (props) => {
         )
       })}
       ...
-      <Link to="/itinerary">See more</Link>
+      <Link to="/activities">See more</Link>
     </div>
   )
 }
