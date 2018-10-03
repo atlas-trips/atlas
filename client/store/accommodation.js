@@ -18,12 +18,12 @@ const setNewAccommodation = accomodation => ({
 })
 
 export const getAccommodations = tripId => async dispatch => {
-    try {
-        const res = await axios.get(`/api/trips/${tripId}/accommodations`)
-        dispatch(setAccommodations(res.data))
-    } catch (err){
-        console.log(err);
-    }
+  try {
+    const res = await axios.get(`/api/trips/${tripId}/accommodations`)
+    dispatch(setAccommodations(res.data))
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 export const getNewAccommodation = accommo => async dispatch => {
@@ -38,13 +38,16 @@ export const getNewAccommodation = accommo => async dispatch => {
   }
 }
 
-export default function (state = initialState, action){
-    switch(action.type){
-        case SET_ACCOMMODATIONS:
-            return {...state, accommodations: action.accommodations };
-        case SET_NEW_ACCOMMODATION:
-          return {...state, accommodations: [...state.accommodations, action.accommodation]}
-        default:
-            return state;
-    }
+export default function(state = initialState, action) {
+  switch (action.type) {
+    case SET_ACCOMMODATIONS:
+      return {...state, accommodations: action.accommodations}
+    case SET_NEW_ACCOMMODATION:
+      return {
+        ...state,
+        accommodations: [...state.accommodations, action.accommodation]
+      }
+    default:
+      return state
+  }
 }

@@ -17,22 +17,21 @@ const tempSidebarStyles = {
 }
 
 const tempContainerStyles = {}
-const defaultPath ='/dashboard';
+const defaultPath = '/dashboard'
 
 class Sidebar extends React.Component {
-  constructor(props){
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
+  constructor(props) {
+    super(props)
+    this.handleClick = this.handleClick.bind(this)
   }
-  handleClick(evt, selected){
-    evt.preventDefault();
-    if(!selected){
-      alert("Please Select a Trip First");
+  handleClick(evt, selected) {
+    evt.preventDefault()
+    if (!selected) {
+      alert('Please Select a Trip First')
     }
-
   }
-  
-  render(){
+
+  render() {
     const selected = Object.keys(this.props.selected).length !== 0
     return (
       <div style={tempSidebarStyles}>
@@ -41,28 +40,43 @@ class Sidebar extends React.Component {
             <img src="/images/home.png" height="50" alt="home" />
           </Link>
         </div>
-        <div style={tempContainerStyles} onClick={e => this.handleClick(e, selected)}>
-          <Link to={selected? '/accommodations' : defaultPath }>
+        <div
+          style={tempContainerStyles}
+          onClick={e => this.handleClick(e, selected)}
+        >
+          <Link to={selected ? '/accommodations' : defaultPath}>
             <img src="/images/bed.png" height="50" alt="bed" />
           </Link>
         </div>
-        <div style={tempContainerStyles} onClick={e => this.handleClick(e, selected)} >
-          <Link to={selected? "/travel" : defaultPath}>
+        <div
+          style={tempContainerStyles}
+          onClick={e => this.handleClick(e, selected)}
+        >
+          <Link to={selected ? '/travel' : defaultPath}>
             <img src="/images/plane.png" height="50" alt="plane" />
           </Link>
         </div>
-        <div style={tempContainerStyles} onClick={e => this.handleClick(e, selected)}>
-          <Link to={selected? "/calendar" : defaultPath}>
+        <div
+          style={tempContainerStyles}
+          onClick={e => this.handleClick(e, selected)}
+        >
+          <Link to={selected ? '/calendar' : defaultPath}>
             <img src="/images/calendar.png" height="50" alt="calendar" />
           </Link>
         </div>
-        <div style={tempContainerStyles} onClick={e => this.handleClick(e, selected)}>
-          <Link to={selected? "/activities" : defaultPath}>
+        <div
+          style={tempContainerStyles}
+          onClick={e => this.handleClick(e, selected)}
+        >
+          <Link to={selected ? '/activities' : defaultPath}>
             <img src="/images/activity.png" height="50" alt="activity" />
           </Link>
         </div>
-        <div style={{...tempContainerStyles, marginBottom: '100px'}} onClick={e => this.handleClick(e, selected)}>
-          <Link to={selected? "/expenses" : defaultPath}>
+        <div
+          style={{...tempContainerStyles, marginBottom: '100px'}}
+          onClick={e => this.handleClick(e, selected)}
+        >
+          <Link to={selected ? '/expenses' : defaultPath}>
             <img src="/images/money.png" height="50" alt="money" />
           </Link>
         </div>
@@ -75,4 +89,4 @@ const mapState = state => ({
   selected: state.trip.selected
 })
 
-export default connect(mapState, null)(Sidebar);
+export default connect(mapState, null)(Sidebar)
