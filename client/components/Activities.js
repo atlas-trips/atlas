@@ -4,6 +4,7 @@ import 'react-day-picker/lib/style.css'
 import Sidebar from './Sidebar'
 import {connect} from 'react-redux'
 import {sendActivityInfo, fetchActivities} from '../store/trip'
+import MapWithASearchBox from './SearchMap';
 
 class Activities extends Component {
   constructor(props) {
@@ -48,7 +49,8 @@ class Activities extends Component {
       <div>
         <Sidebar />
         <div style={{marginLeft: '100px'}}>
-          <img src="images/mexico-city-map.jpg" width="50%" />
+          <MapWithASearchBox />
+
           <h1>_______________</h1>
           <input
             type="text"
