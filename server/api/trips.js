@@ -17,11 +17,11 @@ router.post('/', async (req, res, next) => {
     const newTripObj = {
       name,
       startDate,
-      endDate
-    };
-    console.log('new trip obj', newTripObj);
+      endDate,
+    }
     const newTrip = await Trip.create(newTripObj);
-    console.log('new trip', newTrip);
+    const user = await User.findById(req.user.id);
+    user.addTrip(newTrip);
     res.status(201).send(newTrip);
   } catch (error) {
     next(error);
@@ -44,7 +44,9 @@ router.get('/:id', async (req, res, next) => {
       ]
     });
     if (!trip) {
-      res.status(404).send('Not Found');
+      res.status(404).send('Not Found')
+    } catch(err){
+        next(err);
     }
 
     const isAuthorized = {};
