@@ -62,3 +62,12 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.travel-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.travel-container-info {
+  margin-left: 25px;
+}

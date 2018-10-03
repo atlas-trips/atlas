@@ -1,85 +1,85 @@
-const router = require('express').Router()
+const router = require('express').Router();
 const {
   User,
   Trip,
   Accommodation,
   Activity,
   Transportation
-} = require('../db/models')
+} = require('../db/models');
 
 router.get('/', (req, res, next) => {
-  res.send('This is the trips route. Hello')
-})
+  res.send('This is the trips route. Hello');
+});
 
 router.post('/', async (req, res, next) => {
   try {
-    const {name, startDate, endDate} = req.body
+    const {name, startDate, endDate} = req.body;
     const newTripObj = {
       name,
       startDate,
       endDate
-    }
-    const newTrip = await Trip.create(newTripObj)
-    const user = await User.findById(req.user.id)
-    user.addTrip(newTrip)
-    res.status(201).send(newTrip)
+    };
+    const newTrip = await Trip.create(newTripObj);
+    const user = await User.findById(req.user.id);
+    user.addTrip(newTrip);
+    res.status(201).send(newTrip);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
 router.post('/:id/activities', async (req, res, next) => {
-  console.log('in the post activities route, body ', req.body)
+  console.log('in the post activities route, body ', req.body);
   try {
     await Activity.create({
       location: req.body.location,
       name: req.body.name,
       date: req.body.date,
       tripId: req.body.tripId
-    })
-    res.status(201).send()
+    });
+    res.status(201).send();
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 router.get('/:id', async (req, res, next) => {
   try {
-    const id = Number(req.params.id)
+    const id = Number(req.params.id);
     if (isNaN(id)) {
-      res.status(400).send('Bad Request')
+      res.status(400).send('Bad Request');
     }
     const trip = await Trip.find({
       where: {id: id},
       include: [User, Accommodation, Activity, Transportation]
-    })
+    });
     if (!trip) {
-      res.status(404).send('Not Found')
+      res.status(404).send('Not Found');
     }
-    const isAuthorized = {}
-    trip.users.forEach(user => (isAuthorized[user.id] = true))
+    const isAuthorized = {};
+    trip.users.forEach(user => (isAuthorized[user.id] = true));
     if (req.user && isAuthorized[req.user.id]) {
-      res.json(trip)
+      res.json(trip);
     } else {
-      res.status(403).send('Forbidden')
+      res.status(403).send('Forbidden');
     }
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 router.get('/:id/accommodations', async (req, res, next) => {
   try {
-    const tripId = req.params.id
+    const tripId = req.params.id;
     const accommodations = await Accommodation.findAll({
       where: {
         tripId
       }
-    })
-    res.send(accommodations)
+    });
+    res.send(accommodations);
   } catch (error) {
-    next(error)
+    next(error);
   }
-})
+});
 
-module.exports = router
+module.exports = router;
