@@ -3,7 +3,7 @@ import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 import Sidebar from './Sidebar'
 import {connect} from 'react-redux'
-import {sendActivityInfo} from '../store/activity'
+import {sendActivityInfo} from '../store/trip'
 
 class Activities extends Component {
   constructor(props) {
@@ -26,18 +26,23 @@ class Activities extends Component {
   }
 
   handleSubmit(event) {
-    const {id} = this.props
-    this.props.send(this.state)
     event.preventDefault()
+    const newActivity = {
+      location: this.state.activityLocation,
+      name: this.state.activityName,
+      date: this.state.selectedDay,
+      tripId: this.props.trip.id
+    }
+    console.log('id is', this.props.trip.id)
+    this.props.send(newActivity, this.props.trip.id)
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value})
   }
 
-
   render() {
-    console.log('user', this.props.state)
+    console.log('user', this.props)
 
     return (
       <div>
@@ -48,7 +53,7 @@ class Activities extends Component {
           <input
             type="text"
             name="activitySearch"
-            value={this.state.name}
+            value={this.state.activitySearch}
             onChange={this.handleChange}
             placeholder="Search for Activity"
           />
@@ -58,7 +63,7 @@ class Activities extends Component {
             <input
               type="text"
               name="activityName"
-              value={this.state.name}
+              value={this.state.activityName}
               onChange={this.handleChange}
               placeholder="Name of Activity"
             />
@@ -67,7 +72,7 @@ class Activities extends Component {
             <input
               type="text"
               name="activityLocation"
-              value={this.state.name}
+              value={this.state.activityLocation}
               onChange={this.handleChange}
               placeholder="location"
             />
@@ -98,13 +103,12 @@ class Activities extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  trip: state.trip,
-  activities: state.activities
+  trip: state.trip.selected
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    send: obj => dispatch(sendActivityInfo(obj))
+    send: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId))
   }
 }
 

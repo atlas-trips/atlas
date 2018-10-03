@@ -12,7 +12,7 @@ import {
   Activities,
   Travel,
   Landing,
-  TripForm,
+  TripForm
 } from './components'
 import {me} from './store'
 

@@ -1,32 +1,40 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import {fetchAccommodations} from '../store/accommodation';
-import {connect} from 'react-redux';
+import {fetchAccommodations} from '../store/accommodation'
+import {connect} from 'react-redux'
 
 class Accommodations extends React.Component {
-  constructor(props){
-    super(props);
+  constructor(props) {
+    super(props)
   }
 
-  componentDidMount(){
-    this.props.fetchAccommodations();
+  componentDidMount() {
+    this.props.fetchAccommodations()
   }
-  render(){
+  render() {
     return (
       <div>
         <Sidebar />
         <div style={{marginLeft: '100px'}}>
           <h1>accommodations go here</h1>
-          <br/>
-          <div className='accommodation-container'>
-            {this.props.accommodations.length > 0 ? this.props.accommodations.map(accom => {
-              return (
-                <div className="single-accomodation" key={`accom${accom.id}`} >
-                  <h4>{accom.name}</h4>
-                  <p>{accom.startDate.slice(0,10)} - {accom.endDate.slice(0,10)}</p>
-                </div>
-              )
-            }) : 'No Accommodations Booked'}
+          <br />
+          <div className="accommodation-container">
+            {this.props.accommodations.length > 0
+              ? this.props.accommodations.map(accom => {
+                  return (
+                    <div
+                      className="single-accomodation"
+                      key={`accom${accom.id}`}
+                    >
+                      <h4>{accom.name}</h4>
+                      <p>
+                        {accom.startDate.slice(0, 10)} -{' '}
+                        {accom.endDate.slice(0, 10)}
+                      </p>
+                    </div>
+                  )
+                })
+              : 'No Accommodations Booked'}
           </div>
         </div>
       </div>

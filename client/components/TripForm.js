@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Helmet from 'react-helmet';
-import DayPicker, { DateUtils } from 'react-day-picker';
-import { connect } from 'react-redux';
-import 'react-day-picker/lib/style.css';
-import { makeTrip } from '../store/trip';
+import React, {Component} from 'react'
+import Helmet from 'react-helmet'
+import DayPicker, {DateUtils} from 'react-day-picker'
+import {connect} from 'react-redux'
+import 'react-day-picker/lib/style.css'
+import {makeTrip} from '../store/trip'
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -24,68 +24,72 @@ const helmetStyle = `
 `
 
 const formatDate = date => {
-  const data = date.toLocaleDateString().split('/');
-  let [ month, day, year ] = data;
+  const data = date.toLocaleDateString().split('/')
+  let [month, day, year] = data
   if (day.length === 1) {
-    day = '0' + day;
+    day = '0' + day
   }
   if (month.length === 1) {
-    month = '0' + day;
+    month = '0' + day
   }
   return `${year}-${month}-${day} 00:00:00`
 }
 
 class TripForm extends Component {
   static defaultProps = {
-    numberOfMonths: 2,
-  };
+    numberOfMonths: 2
+  }
   constructor(props) {
-    super(props);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.handleDayClick = this.handleDayClick.bind(this)
+    this.handleResetClick = this.handleResetClick.bind(this)
+    this.state = this.getInitialState()
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   getInitialState() {
     return {
       from: undefined,
       to: undefined,
-      tripName: '',
-    };
+      tripName: ''
+    }
   }
   handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state);
-    this.setState(range);
+    const range = DateUtils.addDayToRange(day, this.state)
+    this.setState(range)
   }
   handleResetClick() {
-    this.setState(this.getInitialState());
+    this.setState(this.getInitialState())
   }
   handleChange(event) {
     this.setState({
-      tripName: event.target.value,
+      tripName: event.target.value
     })
   }
   handleSubmit() {
-    if (this.state.from === undefined || this.state.to === undefined || this.state.tripName === '') {
-      alert('You must include a trip name, a start date, and an end date');
-      return;
+    if (
+      this.state.from === undefined ||
+      this.state.to === undefined ||
+      this.state.tripName === ''
+    ) {
+      alert('You must include a trip name, a start date, and an end date')
+      return
     }
     const newTrip = {
       name: this.state.tripName,
       startDate: formatDate(this.state.from),
       endDate: formatDate(this.state.to)
     }
-    this.props.makeTrip(newTrip);
+    this.props.makeTrip(newTrip)
   }
   render() {
-    const { from, to, tripName } = this.state;
-    const modifiers = { start: from, end: to };
+    const {from, to, tripName} = this.state
+    const modifiers = {start: from, end: to}
     return (
       <div style={{textAlign: 'center'}}>
         <div>
           <label htmlFor="tripName">Trip Name:</label>
-          <input type="text" value={tripName} onChange={this.handleChange}/>
+          <input type="text" value={tripName} onChange={this.handleChange} />
         </div>
         <div className="RangeExample">
           <p>
@@ -105,7 +109,7 @@ class TripForm extends Component {
           <DayPicker
             className="Selectable"
             numberOfMonths={this.props.numberOfMonths}
-            selectedDays={[from, { from, to }]}
+            selectedDays={[from, {from, to}]}
             modifiers={modifiers}
             onDayClick={this.handleDayClick}
           />
@@ -115,12 +119,12 @@ class TripForm extends Component {
         </div>
         <button onClick={this.handleSubmit}>Create New Trip</button>
       </div>
-    );
+    )
   }
 }
 
 const mapDispatchToProps = dispatch => ({
-  makeTrip: trip => dispatch(makeTrip(trip)),
+  makeTrip: trip => dispatch(makeTrip(trip))
 })
 
-export default connect(null, mapDispatchToProps)(TripForm);
+export default connect(null, mapDispatchToProps)(TripForm)
