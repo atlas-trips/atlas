@@ -10,7 +10,8 @@ class Accommodations extends React.Component {
   }
 
   componentDidMount(){
-    this.props.getAccommodations();
+    const tripId = this.props.trip.id
+    this.props.getAccommodations(tripId);
   }
   render(){
     return (
@@ -24,6 +25,7 @@ class Accommodations extends React.Component {
               return (
                 <div className="single-accomodation" key={`accom${accom.id}`} >
                   <h4>{accom.name}</h4>
+                  <h5>{accom.location}</h5>
                   <p>{accom.startDate.slice(0,10)} - {accom.endDate.slice(0,10)}</p>
                 </div>
               )
@@ -37,11 +39,12 @@ class Accommodations extends React.Component {
 }
 
 const mapState = state => ({
-  accommodations: state.accommodation.accommodations
+  accommodations: state.accommodation.accommodations,
+  trip: state.trip.selected
 })
 
 const mapDispatch = dispatch => ({
-  getAccommodations: () => dispatch(getAccommodations())
+  getAccommodations: tripId => dispatch(getAccommodations(tripId))
 })
 
 export default connect(mapState, mapDispatch)(Accommodations)
