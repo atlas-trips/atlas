@@ -3,7 +3,7 @@ import DayPicker from 'react-day-picker'
 import 'react-day-picker/lib/style.css'
 import Sidebar from './Sidebar'
 import {connect} from 'react-redux'
-import {sendActivityInfo} from '../store/trip'
+import {sendActivityInfo, fetchActivities} from '../store/trip'
 
 class Activities extends Component {
   constructor(props) {
@@ -108,7 +108,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    send: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId))
+    send: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId)),
+    fetchActivities: () => dispatch(fetchActivities())
   }
 }
 

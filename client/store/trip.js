@@ -54,7 +54,7 @@ export const makeTrip = trip => async dispatch => {
 
 export const fetchActivities = () => async dispatch => {
   try {
-    const res = await axios.get('/api/activities')
+    const res = await axios.get(`/api/trips/${tripId}/activities`)
     dispatch(getActivities(res.data))
   } catch (err) {
     console.log(err)
