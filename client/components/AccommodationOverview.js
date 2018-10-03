@@ -1,8 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-
-
 const tempActivitiesStyles = {
     textAlign: 'center',
     margin: '3px'
@@ -25,7 +23,7 @@ const AccommodationOverview = (props) => {
                 )
             })}
             ...
-            <Link to="/accommodations">See more</Link>  
+            <Link to="/accommodations">See more</Link>
         </div>
     )
 }
