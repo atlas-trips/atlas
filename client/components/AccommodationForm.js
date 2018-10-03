@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import Helmet from 'react-helmet';
-import DayPicker, { DateUtils } from 'react-day-picker';
-import { connect } from 'react-redux';
-import 'react-day-picker/lib/style.css';
-import { getNewAccommodation } from '../store/accommodation'
+import React, {Component} from 'react'
+import Helmet from 'react-helmet'
+import DayPicker, {DateUtils} from 'react-day-picker'
+import {connect} from 'react-redux'
+import 'react-day-picker/lib/style.css'
+import {getNewAccommodation} from '../store/accommodation'
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -24,72 +24,89 @@ const helmetStyle = `
 `
 
 const formatDate = date => {
-  const data = date.toLocaleDateString().split('/');
-  let [ month, day, year ] = data;
+  const data = date.toLocaleDateString().split('/')
+  let [month, day, year] = data
   if (day.length === 1) {
-    day = '0' + day;
+    day = '0' + day
   }
   return `${year}-${month}-${day} 00:00:00`
 }
 
 class AccommodationForm extends Component {
   static defaultProps = {
-    numberOfMonths: 2,
-  };
+    numberOfMonths: 2
+  }
   constructor(props) {
-    super(props);
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.state = this.getInitialState();
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    super(props)
+    this.handleDayClick = this.handleDayClick.bind(this)
+    this.handleResetClick = this.handleResetClick.bind(this)
+    this.state = this.getInitialState()
+    this.handleChange = this.handleChange.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
   getInitialState() {
     return {
       from: undefined,
       to: undefined,
       location: '',
-      name: '',
-    };
+      name: ''
+    }
   }
   handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state);
-    this.setState(range);
+    const range = DateUtils.addDayToRange(day, this.state)
+    this.setState(range)
   }
   handleResetClick() {
-    this.setState(this.getInitialState());
+    this.setState(this.getInitialState())
   }
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    const {name, value} = event.target
+    this.setState({[name]: value})
   }
   handleSubmit() {
-    if (this.state.from === undefined || this.state.to === undefined || this.state.name === '' || this.state.location === '') {
-      alert('You must include a location name, address, start date, and an end date');
-      return;
+    if (
+      this.state.from === undefined ||
+      this.state.to === undefined ||
+      this.state.name === '' ||
+      this.state.location === ''
+    ) {
+      alert(
+        'You must include a location name, address, start date, and an end date'
+      )
+      return
     }
     const newAccommodation = {
       name: this.state.name,
       location: this.state.location,
       startDate: formatDate(this.state.from),
       endDate: formatDate(this.state.to),
-      tripId: this.props.trip.id,
+      tripId: this.props.trip.id
     }
-    this.props.makeAccommodation(newAccommodation);
-    this.props.history.push('/dashboard');
+    this.props.makeAccommodation(newAccommodation)
+    this.props.history.push('/dashboard')
   }
   render() {
-    const { from, to, name, location } = this.state;
-    const modifiers = { start: from, end: to };
+    const {from, to, name, location} = this.state
+    const modifiers = {start: from, end: to}
     return (
       <div style={{textAlign: 'center'}}>
         <div>
           <label htmlFor="name">Accommodation Name:</label>
-          <input type="text" name="name" value={name} onChange={this.handleChange}/>
+          <input
+            type="text"
+            name="name"
+            value={name}
+            onChange={this.handleChange}
+          />
         </div>
         <div>
           <label htmlFor="location">Accommodation Address:</label>
-          <input type="text" name="location" value={location} onChange={this.handleChange}/>
+          <input
+            type="text"
+            name="location"
+            value={location}
+            onChange={this.handleChange}
+          />
         </div>
         <div className="RangeExample">
           <p>
@@ -109,7 +126,7 @@ class AccommodationForm extends Component {
           <DayPicker
             className="Selectable"
             numberOfMonths={this.props.numberOfMonths}
-            selectedDays={[from, { from, to }]}
+            selectedDays={[from, {from, to}]}
             modifiers={modifiers}
             onDayClick={this.handleDayClick}
           />
@@ -119,16 +136,16 @@ class AccommodationForm extends Component {
         </div>
         <button onClick={this.handleSubmit}>Create New Trip</button>
       </div>
-    );
+    )
   }
 }
 
 const mapStateToProps = state => ({
-  trip: state.trip.selected,
+  trip: state.trip.selected
 })
 
 const mapDispatchToProps = dispatch => ({
-  makeAccommodation: trip => dispatch(getNewAccommodation(trip)),
+  makeAccommodation: trip => dispatch(getNewAccommodation(trip))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccommodationForm);
+export default connect(mapStateToProps, mapDispatchToProps)(AccommodationForm)
