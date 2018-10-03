@@ -1,17 +1,20 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const SET_ACCOMMODATIONS = 'SET_ACCOMMODATIONS';
-const SET_NEW_ACCOMMODATION = 'SET_NEW_ACCOMMODATION';
+const SET_ACCOMMODATIONS = 'SET_ACCOMMODATIONS'
+const SET_NEW_ACCOMMODATION = 'SET_NEW_ACCOMMODATION'
 
 const initialState = {
   selected: {},
-  accommodations: [],
-};
+  accommodations: []
+}
 
-const setAccommodations = accommodations =>  ({type: SET_ACCOMMODATIONS, accommodations});
+const setAccommodations = accommodations => ({
+  type: SET_ACCOMMODATIONS,
+  accommodations
+})
 const setNewAccommodation = accomodation => ({
   type: SET_NEW_ACCOMMODATION,
-  accomodation,
+  accomodation
 })
 
 export const getAccommodations = tripId => async dispatch => {
@@ -25,10 +28,13 @@ export const getAccommodations = tripId => async dispatch => {
 
 export const getNewAccommodation = accommo => async dispatch => {
   try {
-    const { data:accommodation } = await axios.post('/api/accommodations', accommo);
-    dispatch(setNewAccommodation(accommodation));
+    const {data: accommodation} = await axios.post(
+      '/api/accommodations',
+      accommo
+    )
+    dispatch(setNewAccommodation(accommodation))
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
 }
 

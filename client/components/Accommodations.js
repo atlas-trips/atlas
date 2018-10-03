@@ -1,19 +1,19 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import {getAccommodations} from '../store/accommodation';
-import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+import {getAccommodations} from '../store/accommodation'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class Accommodations extends React.Component {
-  constructor(props){
-    super(props);
+  constructor(props) {
+    super(props)
   }
 
   componentDidMount(){
     const tripId = this.props.trip.id
     this.props.getAccommodations(tripId);
   }
-  render(){
+  render() {
     return (
       <div>
         <Sidebar />
@@ -31,7 +31,7 @@ class Accommodations extends React.Component {
               )
             }) : 'No Accommodations Booked'}
           </div>
-          <Link to='/addaccommodation'>Add a new accommodation:</Link>
+          <Link to="/addaccommodation">Add a new accommodation:</Link>
         </div>
       </div>
     )

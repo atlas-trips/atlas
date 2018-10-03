@@ -13,7 +13,7 @@ import {
   Travel,
   Landing,
   TripForm,
-  AccommodationForm,
+  AccommodationForm
 } from './components'
 import {me} from './store'
 
