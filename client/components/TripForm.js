@@ -29,9 +29,6 @@ const formatDate = date => {
   if (day.length === 1) {
     day = '0' + day
   }
-  if (month.length === 1) {
-    month = '0' + day
-  }
   return `${year}-${month}-${day} 00:00:00`
 }
 
@@ -81,6 +78,7 @@ class TripForm extends Component {
       endDate: formatDate(this.state.to)
     }
     this.props.makeTrip(newTrip)
+    this.props.history.push('/dashboard')
   }
   render() {
     const {from, to, tripName} = this.state

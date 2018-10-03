@@ -1,28 +1,47 @@
 import axios from 'axios'
-//import history from '../history';
 
-const GET_ACCOMMODATIONS = 'GET_ACCOMMODATIONS'
+const SET_ACCOMMODATIONS = 'SET_ACCOMMODATIONS'
+const SET_NEW_ACCOMMODATION = 'SET_NEW_ACCOMMODATION'
 
-const initialAccom = {}
+const initialState = {
+  selected: {},
+  accommodations: []
+}
 
-const getAccommodations = accommodations => ({
-  type: GET_ACCOMMODATIONS,
+const setAccommodations = accommodations => ({
+  type: SET_ACCOMMODATIONS,
   accommodations
 })
+const setNewAccommodation = accomodation => ({
+  type: SET_NEW_ACCOMMODATION,
+  accomodation
+})
 
-export const fetchAccommodations = () => async dispatch => {
+export const getAccommodations = () => async dispatch => {
   try {
     const res = await axios.get('/api/accommodations')
-    dispatch(getAccommodations(res.data))
+    dispatch(setAccommodations(res.data))
   } catch (err) {
     console.log(err)
   }
 }
 
-export default function(state = initialAccom, action) {
+export const getNewAccommodation = accommo => async dispatch => {
+  try {
+    const {data: accommodation} = await axios.post(
+      '/api/accommodations',
+      accommo
+    )
+    dispatch(setNewAccommodation(accommodation))
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export default function(state = initialState, action) {
   switch (action.type) {
-    case GET_ACCOMMODATIONS:
-      return action.accommodations
+    case SET_ACCOMMODATIONS:
+      return {...state, accommodations: action.accommodations}
     default:
       return state
   }

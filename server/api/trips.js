@@ -20,6 +20,8 @@ router.post('/', async (req, res, next) => {
       endDate
     }
     const newTrip = await Trip.create(newTripObj)
+    const user = await User.findById(req.user.id)
+    user.addTrip(newTrip)
     res.status(201).send(newTrip)
   } catch (error) {
     next(error)
@@ -30,9 +32,9 @@ router.post('/:id/activities', async (req, res, next) => {
   console.log('in the post activities route, body ', req.body)
   try {
     await Activity.create({
-      location: req.body.activityLocation,
-      name: req.body.activityName,
-      date: req.body.selectedDay,
+      location: req.body.location,
+      name: req.body.name,
+      date: req.body.date,
       tripId: req.body.tripId
     })
     res.status(201).send()
@@ -58,7 +60,6 @@ router.get('/:id', async (req, res, next) => {
     const isAuthorized = {}
     trip.users.forEach(user => (isAuthorized[user.id] = true))
     if (req.user && isAuthorized[req.user.id]) {
-      //const newArr = trip.users.filter(user => user.id !== req.user.id)
       res.json(trip)
     } else {
       res.status(403).send('Forbidden')

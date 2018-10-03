@@ -33,7 +33,7 @@ class Activities extends Component {
       date: this.state.selectedDay,
       tripId: this.props.trip.id
     }
-    console.log('id is', this.props.trip.id)
+    console.log('id is', typeof this.props.trip.id)
     this.props.send(newActivity, this.props.trip.id)
   }
 

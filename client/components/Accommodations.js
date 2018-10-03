@@ -1,7 +1,8 @@
 import React from 'react'
 import Sidebar from './Sidebar'
-import {fetchAccommodations} from '../store/accommodation'
+import {getAccommodations} from '../store/accommodation'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class Accommodations extends React.Component {
   constructor(props) {
@@ -9,7 +10,7 @@ class Accommodations extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAccommodations()
+    this.props.getAccommodations()
   }
   render() {
     return (
@@ -36,6 +37,7 @@ class Accommodations extends React.Component {
                 })
               : 'No Accommodations Booked'}
           </div>
+          <Link to="/addaccommodation">Add a new accommodation:</Link>
         </div>
       </div>
     )
@@ -43,11 +45,11 @@ class Accommodations extends React.Component {
 }
 
 const mapState = state => ({
-  accommodations: state.accommodation
+  accommodations: state.accommodation.accommodations
 })
 
 const mapDispatch = dispatch => ({
-  fetchAccommodations: () => dispatch(fetchAccommodations())
+  getAccommodations: () => dispatch(getAccommodations())
 })
 
 export default connect(mapState, mapDispatch)(Accommodations)
