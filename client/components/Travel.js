@@ -47,7 +47,7 @@ class Travel extends Component {
 
     return users.map(user => {
       return (
-        <div key={user.id}>
+        <div key={user.id} className="travel-container-card">
           <h1>{user.name}</h1>
           {user.transportation.map(transport => {
             return (
@@ -55,7 +55,12 @@ class Travel extends Component {
                 <hr />
                 <h3>{transport.method}</h3>
                 <h3>{transport.flightNum}</h3>
-                <h3>{transport.date}</h3>
+                <h3>
+                  {transport.date.replace(
+                    /(\d{4})\-(\d{2})\-(\d{2}).*/,
+                    '$3-$2-$1'
+                  )}
+                </h3>
               </div>
             );
           })}
@@ -73,43 +78,38 @@ class Travel extends Component {
 
         <div className="travel-container-info" style={{marginLeft: '100px'}}>
           {this.displaySummary()}
-
-          <form>
-            <select onChange={this.onChange} name="user">
-              {users.map(user => {
-                return (
-                  <option key={user.id} value={user.name}>
-                    {user.name}
-                  </option>
-                );
-              })}
-            </select>
-
-            <label>Method</label>
-            <input
-              name="method"
-              onChange={this.onChange}
-              value={this.state.method}
-            />
-
-            <label>Flight Number</label>
-            <input
-              name="flightNum"
-              onChange={this.onChange}
-              value={this.state.flightNum}
-            />
-
-            <label>Date</label>
-            <input
-              name="date"
-              onChange={this.onChange}
-              value={this.state.date}
-            />
-
-            <button onClick={this.onPutSubmit}>Update</button>
-            <button onClick={this.onPostSubmit}>Add</button>
-          </form>
         </div>
+        <form className="travel-form">
+          <select onChange={this.onChange} name="user">
+            {users.map(user => {
+              return (
+                <option key={user.id} value={user.name}>
+                  {user.name}
+                </option>
+              );
+            })}
+          </select>
+
+          <label>Method</label>
+          <input
+            name="method"
+            onChange={this.onChange}
+            value={this.state.method}
+          />
+
+          <label>Flight Number</label>
+          <input
+            name="flightNum"
+            onChange={this.onChange}
+            value={this.state.flightNum}
+          />
+
+          <label>Date</label>
+          <input name="date" onChange={this.onChange} value={this.state.date} />
+
+          <button onClick={this.onPutSubmit}>Update</button>
+          <button onClick={this.onPostSubmit}>Add</button>
+        </form>
       </div>
     );
   }
