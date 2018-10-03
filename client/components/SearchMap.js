@@ -1,30 +1,36 @@
 import React from 'react';
-const _ = require("lodash");
+const _ = require('lodash');
 import {debounce} from 'lodash';
-const { compose, withProps, lifecycle } = require("recompose");
+const {compose, withProps, lifecycle} = require('recompose');
 const {
   withScriptjs,
   withGoogleMap,
   GoogleMap,
-  Marker,
-} = require("react-google-maps");
-const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
+  Marker
+} = require('react-google-maps');
+const {
+  SearchBox
+} = require('react-google-maps/lib/components/places/SearchBox');
+import {fetchCoordinates} from '../store/map';
+import {connect} from 'react-redux';
 
 const MapWithASearchBox = compose(
   withProps({
-    googleMapURL: "https://maps.googleapis.com/maps/api/js?key=AIzaSyD4jSOU0XG9zooC14hIs9G_zTNkEQ6zd_g&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px`}} />,
-    mapElement: <div style={{ height: `100%` }} />,
+    googleMapURL:
+      'https://maps.googleapis.com/maps/api/js?key=AIzaSyD4jSOU0XG9zooC14hIs9G_zTNkEQ6zd_g&libraries=geometry,drawing,places',
+    loadingElement: <div style={{height: `100%`}} />,
+    containerElement: <div style={{height: `400px`}} />,
+    mapElement: <div style={{height: `100%`}} />
   }),
   lifecycle({
     componentWillMount() {
-      const refs = {}
+      const refs = {};
 
       this.setState({
         bounds: null,
         center: {
-          lat: 41.9, lng: -87.624
+          lat: 41.9,
+          lng: -87.624
         },
         markers: [],
         onMapMounted: ref => {
@@ -32,18 +38,18 @@ const MapWithASearchBox = compose(
         },
         onBoundsChanged: debounce(
           () => {
-          this.setState({
-          bounds: refs.map.getBounds(),
-          center: refs.map.getCenter()
-          })
-          let { onBoundsChange } = this.props
-          if (onBoundsChange) {
-          onBoundsChange(refs.map)
-          }
+            this.setState({
+              bounds: refs.map.getBounds(),
+              center: refs.map.getCenter()
+            });
+            let {onBoundsChange} = this.props;
+            if (onBoundsChange) {
+              onBoundsChange(refs.map);
+            }
           },
-          100,
-          { maxWait: 500 }
-          ),
+          Infinity,
+          {maxWait: 500}
+        ),
         onSearchBoxMounted: ref => {
           refs.searchBox = ref;
         },
@@ -51,30 +57,39 @@ const MapWithASearchBox = compose(
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
 
+          const lat = places[0].geometry.location.lat();
+          const long = places[0].geometry.location.lng();
+
+          this.props.fetchCoordinates(lat + ',' + long);
+
           places.forEach(place => {
             if (place.geometry.viewport) {
-              bounds.union(place.geometry.viewport)
+              bounds.union(place.geometry.viewport);
             } else {
-              bounds.extend(place.geometry.location)
+              bounds.extend(place.geometry.location);
             }
           });
           const nextMarkers = places.map(place => ({
-            position: place.geometry.location,
+            position: place.geometry.location
           }));
-          const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+          const nextCenter = _.get(
+            nextMarkers,
+            '0.position',
+            this.state.center
+          );
 
           this.setState({
             center: nextCenter,
-            markers: nextMarkers,
+            markers: nextMarkers
           });
           // refs.map.fitBounds(bounds);
-        },
-      })
-    },
+        }
+      });
+    }
   }),
   withScriptjs,
   withGoogleMap
-)(props =>
+)(props => (
   <GoogleMap
     ref={props.onMapMounted}
     defaultZoom={15}
@@ -101,16 +116,20 @@ const MapWithASearchBox = compose(
           boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
           fontSize: `14px`,
           outline: `none`,
-          textOverflow: `ellipses`,
+          textOverflow: `ellipses`
         }}
       />
     </SearchBox>
-    {props.markers.map((marker, index) =>
+    {props.markers.map((marker, index) => (
       <Marker key={index} position={marker.position} />
-    )}
+    ))}
   </GoogleMap>
-);
+));
 
-<MapWithASearchBox />
+<MapWithASearchBox />;
 
-export default MapWithASearchBox;
+const mapDispatchToProps = dispatch => ({
+  fetchCoordinates: coordinates => dispatch(fetchCoordinates(coordinates))
+});
+
+export default connect(null, mapDispatchToProps)(MapWithASearchBox);
