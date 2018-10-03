@@ -6,6 +6,7 @@ const {
   Activity,
   Transportation
 } = require('../db/models');
+const cleanUp = require('./utils');
 
 router.get('/', (req, res, next) => {
   res.send('This is the trips route. Hello');
@@ -86,5 +87,47 @@ router.get('/:id/accommodations', async (req, res, next) => {
     next(error);
   }
 });
+
+router.get('/:id/all', async (req, res, next) => {
+  try {
+    const tripId = req.params.id;
+    const data = await Trip.findAll({
+      where: {
+        id: tripId
+      },
+      include: [
+        {
+          model: Accommodation,
+          include: [
+            {
+              model: User,
+            }
+          ]
+        },
+        {
+          model: Activity,
+          include: [
+            {
+              model: User,
+            }
+          ]
+        },
+        {
+          model: Transportation,
+          include: [
+            {
+              model: User,
+            }
+          ]
+        }
+      ]
+    })
+    const cleanedData = cleanUp(data);
+
+    res.send(cleanedData);
+  } catch (error) {
+    next(error);
+  }
+})
 
 module.exports = router;
