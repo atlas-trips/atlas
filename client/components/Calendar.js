@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import Sidebar from './Sidebar'
-import { getTripCalendar } from '../store/trip';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import Sidebar from './Sidebar';
+import {getTripCalendar} from '../store/trip';
+import {connect} from 'react-redux';
 import CalendarActivities from './CalendarActivities';
 import CalendarAccommodations from './CalendarAccommodations';
 import CalendarTransportation from './CalendarTransportation';
@@ -10,8 +10,8 @@ const sectionStyle = {
   border: '1px solid black',
   width: '200px',
   textAlign: 'center',
-  height: '200px',
-}
+  height: '200px'
+};
 
 class Calendar extends Component {
   constructor(props) {
@@ -23,37 +23,56 @@ class Calendar extends Component {
   }
 
   render() {
-    const { schedule } = this.props;
+    const {schedule} = this.props;
     return schedule.length ? (
       <div>
         <Sidebar />
-        <div style={{marginLeft: '100px', display: 'flex', flexDirection: 'column'}}>
-          {schedule.map((day,i) => {
+        <div
+          style={{
+            marginLeft: '100px',
+            display: 'flex',
+            flexDirection: 'column'
+          }}
+        >
+          {schedule.map((day, i) => {
             return (
-              <div key={day.date+i} style={{display: 'flex', border: '1px solid red'}}>
-                <div style={{border: '1px solid black', width: '130px', height: '200px'}}>
+              <div
+                key={day.date + i}
+                style={{display: 'flex', border: '1px solid red'}}
+              >
+                <div
+                  style={{
+                    border: '1px solid black',
+                    width: '130px',
+                    height: '200px'
+                  }}
+                >
                   <h3>{day.date}</h3>
                 </div>
                 {day.hasOwnProperty('activities') ? (
                   <div style={sectionStyle}>
                     <h4>Activities:</h4>
-                    <CalendarActivities activities={day.activities}/>
-                  </div> )
-                : null}
+                    <CalendarActivities activities={day.activities} />
+                  </div>
+                ) : null}
                 {day.hasOwnProperty('accommodations') ? (
                   <div style={sectionStyle}>
                     <h4>New Accommodations:</h4>
-                    <CalendarAccommodations accommodations={day.accommodations} />
-                  </div> )
-                : null}
+                    <CalendarAccommodations
+                      accommodations={day.accommodations}
+                    />
+                  </div>
+                ) : null}
                 {day.hasOwnProperty('transportation') ? (
                   <div style={sectionStyle}>
                     <h4>Transportation:</h4>
-                    <CalendarTransportation transportation={day.transportation}/>
-                  </div> )
-                : null}
+                    <CalendarTransportation
+                      transportation={day.transportation}
+                    />
+                  </div>
+                ) : null}
               </div>
-            )
+            );
           })}
         </div>
       </div>
@@ -70,11 +89,11 @@ class Calendar extends Component {
 
 const mapStateToProps = state => ({
   trip: state.trip.selected,
-  schedule: state.trip.tripCalendar,
-})
+  schedule: state.trip.tripCalendar
+});
 
 const mapDispatchToProps = dispatch => ({
   getSchedule: tripId => dispatch(getTripCalendar(tripId))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar);

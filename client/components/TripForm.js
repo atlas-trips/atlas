@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import Helmet from 'react-helmet'
-import DayPicker, {DateUtils} from 'react-day-picker'
-import {connect} from 'react-redux'
-import 'react-day-picker/lib/style.css'
-import {makeTrip} from '../store/trip'
+import React, {Component} from 'react';
+import Helmet from 'react-helmet';
+import DayPicker, {DateUtils} from 'react-day-picker';
+import {connect} from 'react-redux';
+import 'react-day-picker/lib/style.css';
+import {makeTrip} from '../store/trip';
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -21,47 +21,47 @@ const helmetStyle = `
   border-top-right-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
 }
-`
+`;
 
 const formatDate = date => {
-  const data = date.toLocaleDateString().split('/')
-  let [month, day, year] = data
+  const data = date.toLocaleDateString().split('/');
+  let [month, day, year] = data;
   if (day.length === 1) {
-    day = '0' + day
+    day = '0' + day;
   }
-  return `${year}-${month}-${day} 00:00:00`
-}
+  return `${year}-${month}-${day} 00:00:00`;
+};
 
 class TripForm extends Component {
   static defaultProps = {
     numberOfMonths: 2
-  }
+  };
   constructor(props) {
-    super(props)
-    this.handleDayClick = this.handleDayClick.bind(this)
-    this.handleResetClick = this.handleResetClick.bind(this)
-    this.state = this.getInitialState()
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
+    this.state = this.getInitialState();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   getInitialState() {
     return {
       from: undefined,
       to: undefined,
       tripName: ''
-    }
+    };
   }
   handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state)
-    this.setState(range)
+    const range = DateUtils.addDayToRange(day, this.state);
+    this.setState(range);
   }
   handleResetClick() {
-    this.setState(this.getInitialState())
+    this.setState(this.getInitialState());
   }
   handleChange(event) {
     this.setState({
       tripName: event.target.value
-    })
+    });
   }
   handleSubmit() {
     if (
@@ -69,20 +69,20 @@ class TripForm extends Component {
       this.state.to === undefined ||
       this.state.tripName === ''
     ) {
-      alert('You must include a trip name, a start date, and an end date')
-      return
+      alert('You must include a trip name, a start date, and an end date');
+      return;
     }
     const newTrip = {
       name: this.state.tripName,
       startDate: formatDate(this.state.from),
       endDate: formatDate(this.state.to)
-    }
-    this.props.makeTrip(newTrip)
-    this.props.history.push('/dashboard')
+    };
+    this.props.makeTrip(newTrip);
+    this.props.history.push('/dashboard');
   }
   render() {
-    const {from, to, tripName} = this.state
-    const modifiers = {start: from, end: to}
+    const {from, to, tripName} = this.state;
+    const modifiers = {start: from, end: to};
     return (
       <div style={{textAlign: 'center'}}>
         <div>
@@ -117,12 +117,12 @@ class TripForm extends Component {
         </div>
         <button onClick={this.handleSubmit}>Create New Trip</button>
       </div>
-    )
+    );
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   makeTrip: trip => dispatch(makeTrip(trip))
-})
+});
 
-export default connect(null, mapDispatchToProps)(TripForm)
+export default connect(null, mapDispatchToProps)(TripForm);

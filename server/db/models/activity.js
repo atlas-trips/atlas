@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Activity = db.define('activity', {
   location: {
@@ -25,6 +25,6 @@ const Activity = db.define('activity', {
     type: Sequelize.INTEGER,
     defaultValue: 0
   }
-})
+});
 
-module.exports = Activity
+module.exports = Activity;

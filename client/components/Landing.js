@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Landing = () => {
   return (
@@ -18,7 +18,7 @@ const Landing = () => {
         </a>
       </div>
     </div>
-  )
-}
+  );
+};
 
-module.exports = Landing
+module.exports = Landing;

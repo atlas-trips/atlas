@@ -1,110 +1,126 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const GET_TRIPS = 'GET_TRIPS'
-const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP'
-const SET_NEW_TRIP = 'SET_NEW_TRIP'
-const GET_ACTIVITIES = 'GET_ACTIVITIES'
-const SET_ACTIVITY = 'SET_ACTIVITY'
-const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR'
+const GET_TRIPS = 'GET_TRIPS';
+const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP';
+const SET_NEW_TRIP = 'SET_NEW_TRIP';
+const GET_ACTIVITIES = 'GET_ACTIVITIES';
+const SET_ACTIVITY = 'SET_ACTIVITY';
+const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR';
+const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY'
 
 const defaultTrip = {
   all: [],
   selected: {},
   activities: [],
-  tripCalendar: [],
-}
+  tripCalendar: []
+};
 
-const getTrips = trips => ({type: GET_TRIPS, trips})
-const getSelected = trip => ({type: GET_SELECTED_TRIP, trip})
-const setNewTrip = trip => ({type: SET_NEW_TRIP, trip})
+const getTrips = trips => ({type: GET_TRIPS, trips});
+const getSelected = trip => ({type: GET_SELECTED_TRIP, trip});
+const setNewTrip = trip => ({type: SET_NEW_TRIP, trip});
 const getActivities = activities => ({
   type: GET_ACTIVITIES,
   activities
-})
+});
 
-const sendActivity = activity => ({
+const setActivity = activity => ({
   type: SET_ACTIVITY,
   activity
-})
+});
 
 const setTripCalendar = calendar => ({
   type: SET_TRIP_CALENDAR,
-  calendar,
+  calendar
+});
+
+const removeActivity = id => ({
+  type: REMOVE_ACTIVITY,
+  id
 })
 
 export const fetchTrips = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${id}/trips`)
-    dispatch(getTrips(res.data))
+    const res = await axios.get(`/api/users/${id}/trips`);
+    dispatch(getTrips(res.data));
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 export const fetchSelected = tripId => async dispatch => {
   try {
-    const trip = await axios.get(`/api/trips/${tripId}`)
-    dispatch(getSelected(trip.data))
+    const trip = await axios.get(`/api/trips/${tripId}`);
+    dispatch(getSelected(trip.data));
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 export const makeTrip = trip => async dispatch => {
   try {
-    const {data: newTrip} = await axios.post('/api/trips', trip)
-    dispatch(setNewTrip(newTrip))
+    const {data: newTrip} = await axios.post('/api/trips', trip);
+    dispatch(setNewTrip(newTrip));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
-export const fetchActivities = () => async dispatch => {
+export const fetchActivities = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/trips/${tripId}/activities`)
-    dispatch(getActivities(res.data))
+    const res = await axios.get(`/api/trips/${id}/activities`);
+    dispatch(getActivities(res.data));
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
-}
+};
 
 export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
   try {
-    console.log('id is', tripId)
-    const {data} = await axios.post(
+    const {data: newAct} = await axios.post(
       `/api/trips/${tripId}/activities`,
       activityInfo
-    )
-    dispatch(sendActivity(data))
+    );
+    dispatch(setActivity(newAct));
   } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteActivity = (tripId, actId) => async dispatch => {
+  try{
+    await axios.delete(`/api/trips/${tripId}/activities/${actId}`);
+    dispatch(removeActivity(actId));
+  } catch(err){
     console.log(err)
   }
 }
 
 export const getTripCalendar = tripId => async dispatch => {
   try {
-    const { data:calendar } = await axios.get(`/api/trips/${tripId}/all`);
+    const {data: calendar} = await axios.get(`/api/trips/${tripId}/all`);
     dispatch(setTripCalendar(calendar));
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 export default function(state = defaultTrip, action) {
   switch (action.type) {
     case GET_TRIPS:
-      return {...state, all: action.trips}
+      return {...state, all: action.trips};
     case GET_SELECTED_TRIP:
-      return {...state, selected: action.trip}
+      return {...state, selected: action.trip};
     case SET_NEW_TRIP:
-      return {...state, all: [...state.all, action.trip]}
+      return {...state, all: [...state.all, action.trip]};
     case GET_ACTIVITIES:
-      return {...state, activities: action.activities}
+      return {...state, activities: action.activities};
     case SET_ACTIVITY:
-      return {...state, activities: [...state.activities, action.activity]}
+      return {...state, activities: [...state.activities, action.activity]};
+    case REMOVE_ACTIVITY:
+      return {...state, activities: state.activities.filter(act => act.id !== action.id)}
     case SET_TRIP_CALENDAR:
-      return {...state, tripCalendar: [...action.calendar]}
+      return {...state, tripCalendar: [...action.calendar]};
     default:
-      return state
+      return state;
   }
 }

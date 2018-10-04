@@ -1,10 +1,10 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
 const tempActivitiesStyles = {
   textAlign: 'center',
   margin: '3px'
-}
+};
 
 const ActivitiesOverview = props => {
   return (
@@ -22,12 +22,12 @@ const ActivitiesOverview = props => {
           <div style={tempActivitiesStyles} key={activity.id}>
             {activity.name}
           </div>
-        )
+        );
       })}
       ...
       <Link to="/activities">See more</Link>
     </div>
-  )
-}
+  );
+};
 
-export default ActivitiesOverview
+export default ActivitiesOverview;
