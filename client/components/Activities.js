@@ -51,7 +51,6 @@ class Activities extends Component {
   }
 
   render() {
-    console.log('trips are', this.props.trip.activities);
 
     return (
       <div>
