@@ -5,11 +5,13 @@ const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP'
 const SET_NEW_TRIP = 'SET_NEW_TRIP'
 const GET_ACTIVITIES = 'GET_ACTIVITIES'
 const SET_ACTIVITY = 'SET_ACTIVITY'
+const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR'
 
 const defaultTrip = {
   all: [],
   selected: {},
-  activities: []
+  activities: [],
+  tripCalendar: [],
 }
 
 const getTrips = trips => ({type: GET_TRIPS, trips})
@@ -23,6 +25,11 @@ const getActivities = activities => ({
 const sendActivity = activity => ({
   type: SET_ACTIVITY,
   activity
+})
+
+const setTripCalendar = calendar => ({
+  type: SET_TRIP_CALENDAR,
+  calendar,
 })
 
 export const fetchTrips = id => async dispatch => {
@@ -74,6 +81,15 @@ export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
   }
 }
 
+export const getTripCalendar = tripId => async dispatch => {
+  try {
+    const { data:calendar } = await axios.get(`/api/trips/${tripId}/all`);
+    dispatch(setTripCalendar(calendar));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export default function(state = defaultTrip, action) {
   switch (action.type) {
     case GET_TRIPS:
@@ -86,6 +102,8 @@ export default function(state = defaultTrip, action) {
       return {...state, activities: action.activities}
     case SET_ACTIVITY:
       return {...state, activities: [...state.activities, action.activity]}
+    case SET_TRIP_CALENDAR:
+      return {...state, tripCalendar: [...action.calendar]}
     default:
       return state
   }

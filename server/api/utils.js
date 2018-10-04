@@ -14,9 +14,9 @@ const cleanUp = data => {
   const dates = [];
 
   const accoms = data[0].accommodation.reduce((accomArr, current) => {
-    console.log('CURRENT START DATE', current.startDate);
     const currDate = formatDate(current.startDate).slice(0,10)
     const newObj = {
+      id: `accoms${current.id}`,
       date: currDate,
       type: 'accommodation',
       name: current.name,
@@ -39,6 +39,7 @@ const cleanUp = data => {
     if (current.isDecided) {
       const currDate = formatDate(current.date).slice(0,10)
       const newObj = {
+        id: `acts${current.id}`,
         date: currDate,
         type: 'activity',
         name: current.name,
@@ -61,6 +62,7 @@ const cleanUp = data => {
   const trans = data[0].transportation.reduce((transArr, current) => {
     const currDate = formatDate(current.date).slice(0,10)
     const newObj = {
+      id: `trans${current.id}`,
       date: currDate,
       type: 'transportation',
       name: current.method,
@@ -97,4 +99,42 @@ const cleanUp = data => {
   return masterObj;
 }
 
-module.exports = cleanUp;
+const makeCalendarArray = obj => {
+  const days = obj.dates.map(date => ({ date, }))
+  days.forEach(day => {
+    const currentDay = day.date;
+    obj.accommodations.forEach(accom => {
+      if (accom.date === currentDay) {
+        if (day.hasOwnProperty('accommodations')) {
+          day.accommodations.push(accom);
+        } else {
+          day.accommodations = [accom]
+        }
+      }
+    })
+    obj.activities.forEach(act => {
+      if (act.date === currentDay) {
+        if (day.hasOwnProperty('activities')) {
+          day.activities.push(act);
+        } else {
+          day.activities = [act]
+        }
+      }
+    })
+    obj.transportation.forEach(trans => {
+      if (trans.date === currentDay) {
+        if (day.hasOwnProperty('transportation')) {
+          day.transportation.push(trans);
+        } else {
+          day.transportation = [trans]
+        }
+      }
+    })
+  })
+  return days;
+}
+
+module.exports = {
+  cleanUp,
+  makeCalendarArray,
+};

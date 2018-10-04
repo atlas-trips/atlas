@@ -6,7 +6,7 @@ const {
   Activity,
   Transportation
 } = require('../db/models');
-const cleanUp = require('./utils');
+const { cleanUp, makeCalendarArray } = require('./utils');
 
 router.get('/', (req, res, next) => {
   res.send('This is the trips route. Hello');
@@ -123,8 +123,8 @@ router.get('/:id/all', async (req, res, next) => {
       ]
     })
     const cleanedData = cleanUp(data);
-
-    res.send(cleanedData);
+    const calArray = makeCalendarArray(cleanedData);
+    res.send(calArray);
   } catch (error) {
     next(error);
   }
