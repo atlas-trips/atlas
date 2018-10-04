@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
 const tempStyles = {
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'space-evenly'
-}
+};
 
 const tempPersonStyles = {
   textAlign: 'center',
   display: 'flex',
   flexDirection: 'column',
   padding: '10px'
-}
+};
 
 const ParticipantsOverview = props => {
   return (
@@ -31,11 +31,11 @@ const ParticipantsOverview = props => {
               <img src="/images/person.png" width="50" alt="person icon" />
               <a href={`mailto:${person.email}`}>{person.name}</a>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ParticipantsOverview
+export default ParticipantsOverview;

@@ -1,6 +1,6 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 const tempSidebarStyles = {
   display: 'flex',
   flexDirection: 'column',
@@ -14,25 +14,25 @@ const tempSidebarStyles = {
   bottom: 80,
   backgroundColor: 'yellow',
   alignItems: 'center'
-}
+};
 
-const tempContainerStyles = {}
-const defaultPath = '/dashboard'
+const tempContainerStyles = {};
+const defaultPath = '/dashboard';
 
 class Sidebar extends React.Component {
   constructor(props) {
-    super(props)
-    this.handleClick = this.handleClick.bind(this)
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
   }
   handleClick(evt, selected) {
-    evt.preventDefault()
+    evt.preventDefault();
     if (!selected) {
-      alert('Please Select a Trip First')
+      alert('Please Select a Trip First');
     }
   }
 
   render() {
-    const selected = Object.keys(this.props.selected).length !== 0
+    const selected = Object.keys(this.props.selected).length !== 0;
     return (
       <div style={tempSidebarStyles}>
         <div style={{...tempContainerStyles, marginTop: '150px'}}>
@@ -81,12 +81,12 @@ class Sidebar extends React.Component {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
   selected: state.trip.selected
-})
+});
 
-export default connect(mapState, null)(Sidebar)
+export default connect(mapState, null)(Sidebar);

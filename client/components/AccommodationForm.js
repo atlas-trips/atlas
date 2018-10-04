@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
-import Helmet from 'react-helmet'
-import DayPicker, {DateUtils} from 'react-day-picker'
-import {connect} from 'react-redux'
-import 'react-day-picker/lib/style.css'
-import {getNewAccommodation} from '../store/accommodation'
+import React, {Component} from 'react';
+import Helmet from 'react-helmet';
+import DayPicker, {DateUtils} from 'react-day-picker';
+import {connect} from 'react-redux';
+import 'react-day-picker/lib/style.css';
+import {getNewAccommodation} from '../store/accommodation';
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -21,28 +21,28 @@ const helmetStyle = `
   border-top-right-radius: 50% !important;
   border-bottom-right-radius: 50% !important;
 }
-`
+`;
 
 const formatDate = date => {
-  const data = date.toLocaleDateString().split('/')
-  let [month, day, year] = data
+  const data = date.toLocaleDateString().split('/');
+  let [month, day, year] = data;
   if (day.length === 1) {
-    day = '0' + day
+    day = '0' + day;
   }
-  return `${year}-${month}-${day} 00:00:00`
-}
+  return `${year}-${month}-${day} 00:00:00`;
+};
 
 class AccommodationForm extends Component {
   static defaultProps = {
     numberOfMonths: 2
-  }
+  };
   constructor(props) {
-    super(props)
-    this.handleDayClick = this.handleDayClick.bind(this)
-    this.handleResetClick = this.handleResetClick.bind(this)
-    this.state = this.getInitialState()
-    this.handleChange = this.handleChange.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    super(props);
+    this.handleDayClick = this.handleDayClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
+    this.state = this.getInitialState();
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   getInitialState() {
     return {
@@ -50,18 +50,18 @@ class AccommodationForm extends Component {
       to: undefined,
       location: '',
       name: ''
-    }
+    };
   }
   handleDayClick(day) {
-    const range = DateUtils.addDayToRange(day, this.state)
-    this.setState(range)
+    const range = DateUtils.addDayToRange(day, this.state);
+    this.setState(range);
   }
   handleResetClick() {
-    this.setState(this.getInitialState())
+    this.setState(this.getInitialState());
   }
   handleChange(event) {
-    const {name, value} = event.target
-    this.setState({[name]: value})
+    const {name, value} = event.target;
+    this.setState({[name]: value});
   }
   handleSubmit() {
     if (
@@ -72,8 +72,8 @@ class AccommodationForm extends Component {
     ) {
       alert(
         'You must include a location name, address, start date, and an end date'
-      )
-      return
+      );
+      return;
     }
     const newAccommodation = {
       name: this.state.name,
@@ -81,13 +81,13 @@ class AccommodationForm extends Component {
       startDate: formatDate(this.state.from),
       endDate: formatDate(this.state.to),
       tripId: this.props.trip.id
-    }
-    this.props.makeAccommodation(newAccommodation)
-    this.props.history.push('/dashboard')
+    };
+    this.props.makeAccommodation(newAccommodation);
+    this.props.history.push('/dashboard');
   }
   render() {
-    const {from, to, name, location} = this.state
-    const modifiers = {start: from, end: to}
+    const {from, to, name, location} = this.state;
+    const modifiers = {start: from, end: to};
     return (
       <div style={{textAlign: 'center'}}>
         <div>
@@ -136,16 +136,16 @@ class AccommodationForm extends Component {
         </div>
         <button onClick={this.handleSubmit}>Create New Trip</button>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   trip: state.trip.selected
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   makeAccommodation: trip => dispatch(getNewAccommodation(trip))
-})
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccommodationForm)
+export default connect(mapStateToProps, mapDispatchToProps)(AccommodationForm);
