@@ -1,38 +1,71 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {auth} from '../store';
+import {fetchRefTrip} from '../store/trip';
 
 /**
  * COMPONENT
  */
-const AuthForm = props => {
-  const {name, displayName, handleSubmit, error} = props;
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
-    </div>
-  );
-};
+class AuthForm extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    if (this.props.match.params.link) {
+      this.props.getTrip(this.props.match.params.link);
+    }
+  }
+
+  render() {
+    const {
+      name,
+      displayName,
+      handleSubmit,
+      handleSignUpSubmit,
+      error
+    } = this.props;
+    console.log(this.props);
+
+    return (
+      <div>
+        <form
+          onSubmit={
+            this.props.location.pathname === '/login'
+              ? event => handleSubmit(event)
+              : event => handleSignUpSubmit(event, this.props.trip.selected.id)
+          }
+          name={name}
+        >
+          <div>
+            <div>
+              {!this.props.match.params.link ? null : (
+                <h4>Join trip {this.props.trip.selected.name}</h4>
+              )}
+            </div>
+            <label htmlFor="email">
+              <small>Email</small>
+            </label>
+            <input name="email" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button type="submit">{displayName}</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+        <a href="/auth/google">{displayName} with Google</a>
+      </div>
+    );
+  }
+}
 
 /**
  * CONTAINER
@@ -53,7 +86,8 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.user.error,
+    trip: state.trip
   };
 };
 
@@ -65,7 +99,15 @@ const mapDispatch = dispatch => {
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName));
-    }
+    },
+    handleSignUpSubmit(evt, tripId) {
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      dispatch(auth(email, password, formName, tripId));
+    },
+    getTrip: uniqueLink => dispatch(fetchRefTrip(uniqueLink))
   };
 };
 
