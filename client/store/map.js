@@ -10,7 +10,6 @@ const getCoordinates = coordinates => ({
 });
 
 export const fetchCoordinates = coordinates => dispatch => {
-  console.log('being RUN');
   dispatch(getCoordinates(coordinates));
 };
 
