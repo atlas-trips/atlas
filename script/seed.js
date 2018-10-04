@@ -132,6 +132,7 @@ async function seed() {
   vegas.addUser(murphy);
   paris.addUser(sam);
   cancun.addUser(john);
+  cancun.addUser(cody);
   thailand.addUser(jane);
   japan.addUser(gary);
   italy.addUser(jessica);
