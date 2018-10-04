@@ -146,7 +146,7 @@ async function seed() {
     tripId: 2
   });
   const shopping = await Activity.create({
-    location: 'xxxx',
+    location: '36.120854,-115.169570',
     name: 'Venetian Shopping',
     description: 'Also riding around on boats and stuff',
     date: '2018-10-10 00:00:00',
@@ -164,7 +164,7 @@ async function seed() {
     tripId: 3
   });
   const eiffel = await Activity.create({
-    location: 'xxxx',
+    location: '48.858283,2.294509',
     name: 'Eiffel Tower',
     description: 'Climb to the top, look at the city',
     date: '2018-12-05 00:00:00',
@@ -173,7 +173,7 @@ async function seed() {
     tripId: 2
   });
   const circus = await Activity.create({
-    location: 'xxx',
+    location: '36.101778,-115.170127',
     name: 'Cirque de Soleil',
     description: 'Ka - at MGM Grand',
     date: '2018-10-11 00:00:00',
@@ -200,7 +200,7 @@ async function seed() {
     tripId: 3
   });
   const shooting = await Activity.create({
-    location: 'xxxx',
+    location: '36.099807,-115.185839',
     name: 'Shoot guns',
     description: 'Go shooting at range off the strip',
     date: '2018-10-12 00:00:00',
@@ -227,7 +227,7 @@ async function seed() {
     tripId: 5
   });
   const climbing = await Activity.create({
-    location: 'xxxx',
+    location: '8.017879,98.834234',
     name: 'Rock Climbing',
     description: 'Tonsai roof at Tonsai bay',
     date: '2019-02-15 00:00:00',
@@ -245,7 +245,7 @@ async function seed() {
     tripId: 4
   });
   const carnival = await Activity.create({
-    location: 'xxxx',
+    location: '-22.924863,-43.172229',
     name: 'Carnival',
     description: 'In Rio. All day long',
     date: '2019-11-12 00:00:00',
@@ -254,7 +254,7 @@ async function seed() {
     tripId: 6
   });
   const beachTwo = await Activity.create({
-    location: 'xxxx',
+    location: '-22.922681,-43.168783',
     name: 'Chilling on the beach',
     description: 'recovering from Carnival',
     date: '2019-11-13 00:00:00',
@@ -263,7 +263,7 @@ async function seed() {
     tripId: 6
   });
   const pisa = await Activity.create({
-    location: 'xxxx',
+    location: '43.722930,10.396662',
     name: 'Leaning Tower of Pisa',
     description: 'climbing until we reach the top',
     date: '2018-10-06 00:00:00',
@@ -272,7 +272,7 @@ async function seed() {
     tripId: 7
   });
   const florence = await Activity.create({
-    location: 'xxxx',
+    location: '43.767948,11.253123',
     name: 'Walking across the Ponte Vecchio',
     description: 'more tourism in Firenze',
     date: '2018-10-04 00:00:00',
@@ -281,7 +281,7 @@ async function seed() {
     tripId: 7
   });
   const gladiator = await Activity.create({
-    location: 'xxxx',
+    location: '41.890165,12.492440',
     name: 'Colosseum',
     description: "pretending we're in Gladiator",
     date: '2019-10-03 00:00:00',
