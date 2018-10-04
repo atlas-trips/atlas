@@ -6,57 +6,16 @@ import SingleTrip from './SingleTrip';
 import {fetchTrips, fetchSelected} from '../store/trip';
 import {throws} from 'assert';
 
-const dummyData = [
-  {
-    name: 'Vegas',
-    startDate: '2018-09-01 00:00:00',
-    endDate: '2018-10-13 00:00:00'
-  },
-  {
-    name: 'Cali',
-    startDate: '2018-12-10 00:00:00',
-    endDate: '2018-12-13 00:00:00'
-  },
-  {
-    name: 'Japan',
-    startDate: '2019-1-10 00:00:00',
-    endDate: '2019-1-13 00:00:00'
-  }
-];
-
-/*
-const getTime = () => {
-  const currentTime = new Date()
-  let day = currentTime.getDate()
-  let month = currentTime.getMonth() + 1
-  const year = currentTime.getFullYear()
-  if (day < 10) {
-    day = '0' + day
-  }
-  if (month < 10) {
-    month = '0' + month
-  }
-  return `${year}-${month}-${day}`
-}
-
-const singleTrip = trips => {
-  const now = getTime()
-  return trips.filter(trip => {
-    const tripStart = trip.startDate.split(' ')[0]
-    const tripEnd = trip.endDate.split(' ')[0]
-    return now >= tripStart && now <= tripEnd
-  })
-}
-*/
-
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: false
+      selected: false,
+      clicked: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.goBack = this.goBack.bind(this);
+    this.showShareLink = this.showShareLink.bind(this);
   }
   componentDidMount() {
     this.props.fetchTrips(this.props.user.id);
@@ -73,6 +32,10 @@ class Dashboard extends React.Component {
     this.setState({selected: false});
   }
 
+  showShareLink() {
+    this.setState({clicked: !this.state.clicked});
+  }
+
   render() {
     const {user} = this.props;
     //const onATrip = false //Object.keys(this.props.selected).length;
@@ -87,7 +50,17 @@ class Dashboard extends React.Component {
                   <h4>{'< Back'}</h4>
                 </a>
                 <h3>{user.name}'s Trip:</h3>
-                <SingleTrip trip={this.props.selected} />
+                <div>
+                  <p onClick={this.showShareLink}>
+                    Share Your Trip
+                    {this.state.clicked ? (
+                      <span>{this.props.selected.link}</span>
+                    ) : (
+                      ''
+                    )}
+                  </p>
+                  <SingleTrip trip={this.props.selected} />
+                </div>
               </div>
             ) : (
               <AllTrips trips={this.props.trips} click={this.handleClick} />
