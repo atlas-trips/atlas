@@ -109,7 +109,6 @@ router.get('/join/:uniqueLink', async (req, res, next) => {
         link: req.params.uniqueLink
       }
     });
-    console.log('trip found from link is', foundTrip);
     res.send(foundTrip);
   } catch (error) {
     next(error);

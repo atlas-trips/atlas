@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {auth} from '../store';
-import axios from 'axios';
+import {fetchRefTrip} from '../store/trip';
 
 /**
  * COMPONENT
@@ -13,16 +13,37 @@ class AuthForm extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    if (this.props.match.params.link) {
+      this.props.getTrip(this.props.match.params.link);
+    }
+  }
+
   render() {
-    console.log('params', this.props.match.params.link);
-    const {name, displayName, handleSubmit, error} = this.props;
+    const {
+      name,
+      displayName,
+      handleSubmit,
+      handleSignUpSubmit,
+      error
+    } = this.props;
+    console.log(this.props);
 
     return (
       <div>
-        <form onSubmit={handleSubmit} name={name}>
+        <form
+          onSubmit={
+            this.props.location.pathname === '/login'
+              ? event => handleSubmit(event)
+              : event => handleSignUpSubmit(event, this.props.trip.selected.id)
+          }
+          name={name}
+        >
           <div>
             <div>
-              {!this.props.match.params.link ? null : <h4>Join this link</h4>}
+              {!this.props.match.params.link ? null : (
+                <h4>Join trip {this.props.trip.selected.name}</h4>
+              )}
             </div>
             <label htmlFor="email">
               <small>Email</small>
@@ -78,7 +99,15 @@ const mapDispatch = dispatch => {
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName));
-    }
+    },
+    handleSignUpSubmit(evt, tripId) {
+      evt.preventDefault();
+      const formName = evt.target.name;
+      const email = evt.target.email.value;
+      const password = evt.target.password.value;
+      dispatch(auth(email, password, formName, tripId));
+    },
+    getTrip: uniqueLink => dispatch(fetchRefTrip(uniqueLink))
   };
 };
 
