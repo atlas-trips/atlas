@@ -123,7 +123,7 @@ const MapWithASearchBox = compose(
       <Marker key={index} position={marker.position} />
     ))}
     {props.coords.map(coord => (
-      <Marker key={`mapAct${coord.id}`} position={coord.position} title={coord.name} />
+      <Marker key={`mapAct${coord.id}`} position={coord.position} title={coord.name}  />
     ))}
   </GoogleMap>
 ));

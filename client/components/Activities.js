@@ -24,6 +24,7 @@ class Activities extends Component {
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleDayClick(day, {selected}) {
@@ -45,6 +46,10 @@ class Activities extends Component {
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
+  }
+
+  handleDelete(event, id){
+    event.preventDefault()
   }
 
   async componentDidMount() {
@@ -124,7 +129,7 @@ class Activities extends Component {
                         {!this.props.activities.length
                           ? null
                           : this.props.activities.map(activity => {
-                              return <li key={activity.id}>{activity.name}</li>;
+                              return <li key={activity.id}>{activity.name} <button onClick={this.handleDelete(activity.id)}>Remove</button> </li>;
                             })}
                       </ul>
                     </div>
