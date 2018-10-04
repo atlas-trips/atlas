@@ -6,7 +6,7 @@ const {
   Activity,
   Transportation
 } = require('../db/models');
-const { cleanUp, makeCalendarArray } = require('./utils');
+const {cleanUp, makeCalendarArray} = require('./utils');
 
 router.get('/', (req, res, next) => {
   res.send('This is the trips route. Hello');
@@ -45,13 +45,14 @@ router.get('/:id/activities', async (req, res, next) => {
 
 router.post('/:id/activities', async (req, res, next) => {
   try {
-    await Activity.create({
+    let newActivity = await Activity.create({
       location: req.body.location,
       name: req.body.name,
       date: req.body.date,
       tripId: req.body.tripId
     });
-    res.status(201).send();
+
+    res.status(201).send(newActivity);
   } catch (err) {
     next(err);
   }
@@ -113,7 +114,7 @@ router.get('/:id/all', async (req, res, next) => {
           model: Accommodation,
           include: [
             {
-              model: User,
+              model: User
             }
           ]
         },
@@ -121,7 +122,7 @@ router.get('/:id/all', async (req, res, next) => {
           model: Activity,
           include: [
             {
-              model: User,
+              model: User
             }
           ]
         },
@@ -129,18 +130,18 @@ router.get('/:id/all', async (req, res, next) => {
           model: Transportation,
           include: [
             {
-              model: User,
+              model: User
             }
           ]
         }
       ]
-    })
+    });
     const cleanedData = cleanUp(data);
     const calArray = makeCalendarArray(cleanedData);
     res.send(calArray);
   } catch (error) {
     next(error);
   }
-})
+});
 
 module.exports = router;

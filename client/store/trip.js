@@ -22,9 +22,10 @@ const getActivities = activities => ({
   activities
 });
 
-const sendActivity = activity => {
-  return {type: SET_ACTIVITY, activity};
-};
+const setActivity = activity => ({
+  type: SET_ACTIVITY,
+  activity
+});
 
 const setTripCalendar = calendar => ({
   type: SET_TRIP_CALENDAR,
@@ -60,7 +61,7 @@ export const makeTrip = trip => async dispatch => {
 
 export const fetchActivities = id => async dispatch => {
   try {
-    const {res} = await axios.get(`/api/trips/${id}/activities`);
+    const res = await axios.get(`/api/trips/${id}/activities`);
     dispatch(getActivities(res.data));
   } catch (err) {
     console.log(err);
@@ -69,12 +70,11 @@ export const fetchActivities = id => async dispatch => {
 
 export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
   try {
-    const res = await axios.post(
+    const {data: newAct} = await axios.post(
       `/api/trips/${tripId}/activities`,
       activityInfo
     );
-    console.log('DATA', res.data);
-    dispatch(sendActivity(res.data));
+    dispatch(setActivity(newAct));
   } catch (err) {
     console.log(err);
   }

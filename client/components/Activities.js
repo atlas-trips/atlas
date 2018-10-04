@@ -37,10 +37,9 @@ class Activities extends Component {
       location: this.props.map,
       name: this.state.activityName,
       date: this.state.selectedDay,
-      tripId: this.props.trip.id,
-      votes: 0
+      tripId: this.props.trip.id
     };
-    this.props.send(newActivity, this.props.trip.id);
+    this.props.createNewActivity(newActivity, this.props.trip.id);
   }
 
   handleChange(event) {
@@ -48,6 +47,7 @@ class Activities extends Component {
   }
 
   componentDidMount() {
+    console.log('trip id', this.props.trip.id);
     this.props.fetchActivities(this.props.trip.id);
   }
 
@@ -93,6 +93,13 @@ class Activities extends Component {
 
           <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
             Activities List
+            <ul style={{listStyle: 'none'}}>
+              {!this.props.trip.activities.length
+                ? null
+                : this.props.trip.activities.map(activity => {
+                    return <li key={activity.id}>{activity.name}</li>;
+                  })}
+            </ul>
           </div>
         </div>
       </div>
@@ -108,7 +115,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    send: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId)),
+    createNewActivity: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId)),
     fetchActivities: id => dispatch(fetchActivities(id))
   };
 };
