@@ -77,7 +77,7 @@ router.post('/:id/activities', async (req, res, next) => {
 router.delete('/:id/activities/:actId', async(req, res, next) => {
   try{
     const id = Number(req.params.id);
-    const actId = Number(req.params.id);
+    const actId = Number(req.params.actId);
     if(isNaN(id) || isNaN(actId)){
       res.status(400).send('Bad Request');
     }

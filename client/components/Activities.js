@@ -3,7 +3,7 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import Sidebar from './Sidebar';
 import {connect} from 'react-redux';
-import {sendActivityInfo, fetchActivities} from '../store/trip';
+import {sendActivityInfo, fetchActivities, deleteActivity} from '../store/trip';
 import MapWithASearchBox from './SearchMap';
 
 const activitiesOverview = {
@@ -49,7 +49,8 @@ class Activities extends Component {
   }
 
   handleDelete(event, id){
-    event.preventDefault()
+    event.preventDefault();
+    this.props.deleteActivity(this.props.trip.id, id);
   }
 
   async componentDidMount() {
@@ -129,7 +130,7 @@ class Activities extends Component {
                         {!this.props.activities.length
                           ? null
                           : this.props.activities.map(activity => {
-                              return <li key={activity.id}>{activity.name} <button onClick={this.handleDelete(activity.id)}>Remove</button> </li>;
+                              return <li key={activity.id}>{activity.name} <button type='submit' onClick={ e =>this.handleDelete(e, activity.id)}>x</button> </li>;
                             })}
                       </ul>
                     </div>
@@ -151,7 +152,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => {
   return {
     createNewActivity: (obj, tripId) => dispatch(sendActivityInfo(obj, tripId)),
-    fetchActivities: id => dispatch(fetchActivities(id))
+    fetchActivities: id => dispatch(fetchActivities(id)),
+    deleteActivity: (tripId, actId) => dispatch(deleteActivity(tripId, actId))
   };
 };
 
