@@ -11,14 +11,15 @@ const activitiesOverview = {
   justifyContent: 'space-evenly'
 };
 
+
+
 class Activities extends Component {
   constructor(props) {
     super(props);
     this.state = {
       activityName: '',
-      activitySearch: '',
-      activityLocation: '',
-      selectedDay: null
+      selectedDay: null,
+      loaded: false
     };
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -46,62 +47,90 @@ class Activities extends Component {
     this.setState({[event.target.name]: event.target.value});
   }
 
-  componentDidMount() {
-    this.props.fetchActivities(this.props.trip.id);
+  async componentDidMount() {
+     await this.props.fetchActivities(this.props.trip.id);
+     this.setState({loaded: true})
   }
 
   render() {
+    let coords = this.props.activities.map(activity => (
+      {
+        position : {
+          lat: Number(activity.location.split(',')[0]),
+          lng : Number(activity.location.split(',')[1]),
+        },
+        id: activity.id,
+        name: activity.name 
+
+      }
+    ));
+    let startLat = 0;
+    let startLng = 0;
+    
+    if(this.props.activities.length){
+      coords.forEach(coord => {
+        startLat += coord.position.lat;
+        startLng += coord.position.lng;
+      })
+  
+      startLat /= coords.length;
+      startLng /= coords.length;
+      
+    }
 
     return (
       <div>
         <Sidebar />
-        <div style={activitiesOverview}>
-          <div style={{marginLeft: '100px'}}>
-            <div>
-              <div style={{width: '900px'}}>
-                <MapWithASearchBox />
-              </div>
-
-              <h1>_______________</h1>
-
-              <form onSubmit={this.handleSubmit}>
-                <label htmlFor="activityName" />
-                <input
-                  type="text"
-                  name="activityName"
-                  value={this.state.activityName}
-                  onChange={this.handleChange}
-                  placeholder="Name of Activity"
-                />
-
-                <div>
-                  <DayPicker
-                    selectedDays={this.state.selectedDay}
-                    onDayClick={this.handleDayClick}
-                  />
-                  <p>
-                    {this.state.selectedDay
-                      ? this.state.selectedDay.toLocaleDateString()
-                      : 'Please select a day'}
-                  </p>
-                </div>
-
-                <button type="submit">Add activity</button>
-              </form>
-            </div>
-          </div>
-
-          <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
-            Activities List
-            <ul style={{listStyle: 'none'}}>
-              {!this.props.activities.length
-                ? null
-                : this.props.activities.map(activity => {
-                    return <li key={activity.id}>{activity.name}</li>;
-                  })}
-            </ul>
-          </div>
-        </div>
+          {this.state.loaded ? 
+                    <div style={activitiesOverview}>
+                    <div style={{marginLeft: '100px'}}>
+                      <div>
+                        <div style={{width: '900px'}}>
+                          <MapWithASearchBox startLat={startLat} startLng={startLng} coords={coords} />
+                        </div>
+          
+                        <h1>_______________</h1>
+          
+                        <form onSubmit={this.handleSubmit}>
+                          <label htmlFor="activityName" />
+                          <input
+                            type="text"
+                            name="activityName"
+                            value={this.state.activityName}
+                            onChange={this.handleChange}
+                            placeholder="Name of Activity"
+                          />
+          
+                          <div>
+                            <DayPicker
+                              selectedDays={this.state.selectedDay}
+                              onDayClick={this.handleDayClick}
+                            />
+                            <p>
+                              {this.state.selectedDay
+                                ? this.state.selectedDay.toLocaleDateString()
+                                : 'Please select a day'}
+                            </p>
+                          </div>
+          
+                          <button type="submit">Add activity</button>
+                        </form>
+                      </div>
+                    </div>
+          
+                    <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
+                      Activities List
+                      <ul style={{listStyle: 'none'}}>
+                        {!this.props.activities.length
+                          ? null
+                          : this.props.activities.map(activity => {
+                              return <li key={activity.id}>{activity.name}</li>;
+                            })}
+                      </ul>
+                    </div>
+                  </div>  
+          : ''
+        }
       </div>
     );
   }

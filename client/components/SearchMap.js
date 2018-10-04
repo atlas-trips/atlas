@@ -25,12 +25,11 @@ const MapWithASearchBox = compose(
   lifecycle({
     componentWillMount() {
       const refs = {};
-
       this.setState({
         bounds: null,
         center: {
-          lat: 41.9,
-          lng: -87.624
+          lat: this.props.startLat? this.props.startLat : 41.9,
+          lng: this.props.startLng? this.props.startLng : -87.624
         },
         markers: [],
         onMapMounted: ref => {
@@ -92,7 +91,7 @@ const MapWithASearchBox = compose(
 )(props => (
   <GoogleMap
     ref={props.onMapMounted}
-    defaultZoom={15}
+    defaultZoom={14}
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
   >
@@ -122,6 +121,9 @@ const MapWithASearchBox = compose(
     </SearchBox>
     {props.markers.map((marker, index) => (
       <Marker key={index} position={marker.position} />
+    ))}
+    {props.coords.map(coord => (
+      <Marker key={`mapAct${coord.id}`} position={coord.position} title={coord.name} />
     ))}
   </GoogleMap>
 ));
