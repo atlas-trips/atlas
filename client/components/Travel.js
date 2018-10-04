@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Sidebar from './Sidebar';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {fetchTransportation} from '../store/transportation';
 
 class Travel extends Component {
   state = {
@@ -12,10 +11,6 @@ class Travel extends Component {
     date: ''
   };
 
-  componentDidMount() {
-    this.props.getTransportation(this.props.selectedTrip.id);
-  }
-
   onChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -24,22 +19,27 @@ class Travel extends Component {
 
   onPutSubmit = async event => {
     event.preventDefault();
+    const {users} = this.props.selectedTrip;
+    const [user] = users.filter(u => u.name === this.state.user);
 
     await axios.put(
-      `/api/transportation/${this.props.seletctedTrip.id}/${
-        this.state.user.id
-      }`,
+      `/api/transportation/${this.props.selectedTrip.id}/${user.id}`,
       this.state
     );
+
+    this.setState({user: '', method: '', flightNum: '', date: ''});
   };
 
   onPostSubmit = async event => {
     event.preventDefault();
+    const {users} = this.props.selectedTrip;
+    const [user] = users.filter(u => u.name === this.state.user);
 
     await axios.post(
-      `/api/transportation/${this.props.selectedTrip.id}/${this.state.user.id}`,
+      `/api/transportation/${this.props.selectedTrip.id}/${user.id}`,
       this.state
     );
+    this.setState({user: '', method: '', flightNum: '', date: ''});
   };
 
   displaySummary() {
@@ -54,7 +54,18 @@ class Travel extends Component {
               <div key={transport.id}>
                 <hr />
                 <h3>{transport.method}</h3>
-                <h3>{transport.flightNum}</h3>
+                {!transport.flightNum ? null : (
+                  <h3>
+                    <a
+                      href={`http://www.google.com/search?q=${
+                        transport.flightNum
+                      }`}
+                    >
+                      {transport.flightNum}
+                    </a>
+                  </h3>
+                )}
+
                 <h3>
                   {transport.date.replace(
                     /(\d{4})\-(\d{2})\-(\d{2}).*/,
@@ -80,7 +91,9 @@ class Travel extends Component {
           {this.displaySummary()}
         </div>
         <form className="travel-form">
+          <label>User</label>
           <select onChange={this.onChange} name="user">
+            <option defaultValue="--">--</option>
             {users.map(user => {
               return (
                 <option key={user.id} value={user.name}>
@@ -91,18 +104,24 @@ class Travel extends Component {
           </select>
 
           <label>Method</label>
-          <input
-            name="method"
-            onChange={this.onChange}
-            value={this.state.method}
-          />
+          <select onChange={this.onChange} name="method">
+            <option defaultValue="--">--</option>
+            <option value="Flight">Flight</option>
+            <option value="Car">Car</option>
+            <option value="Bus">Bus</option>
+            })}
+          </select>
 
-          <label>Flight Number</label>
-          <input
-            name="flightNum"
-            onChange={this.onChange}
-            value={this.state.flightNum}
-          />
+          {this.state.method !== 'Flight' ? null : (
+            <div>
+              <label>Flight Number</label>
+              <input
+                name="flightNum"
+                onChange={this.onChange}
+                value={this.state.flightNum}
+              />
+            </div>
+          )}
 
           <label>Date</label>
           <input name="date" onChange={this.onChange} value={this.state.date} />
@@ -116,12 +135,7 @@ class Travel extends Component {
 }
 
 const mapState = state => ({
-  selectedTrip: state.trip.selected,
-  transportation: state.transportation
+  selectedTrip: state.trip.selected
 });
 
-const mapDispatch = dispatch => ({
-  getTransportation: tripId => dispatch(fetchTransportation(tripId))
-});
-
-export default connect(mapState, mapDispatch)(Travel);
+export default connect(mapState)(Travel);
