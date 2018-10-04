@@ -47,11 +47,11 @@ class Activities extends Component {
   }
 
   componentDidMount() {
-    console.log('trip id', this.props.trip.id);
     this.props.fetchActivities(this.props.trip.id);
   }
 
   render() {
+
     return (
       <div>
         <Sidebar />
@@ -94,9 +94,9 @@ class Activities extends Component {
           <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
             Activities List
             <ul style={{listStyle: 'none'}}>
-              {!this.props.trip.activities.length
+              {!this.props.activities.length
                 ? null
-                : this.props.trip.activities.map(activity => {
+                : this.props.activities.map(activity => {
                     return <li key={activity.id}>{activity.name}</li>;
                   })}
             </ul>
@@ -110,6 +110,7 @@ class Activities extends Component {
 const mapStateToProps = state => ({
   user: state.user,
   trip: state.trip.selected,
+  activities: state.trip.activities,
   map: state.map
 });
 
