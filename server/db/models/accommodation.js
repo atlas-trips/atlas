@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Accommodation = db.define('accommodation', {
   name: {
@@ -17,6 +17,6 @@ const Accommodation = db.define('accommodation', {
   location: {
     type: Sequelize.STRING
   }
-})
+});
 
-module.exports = Accommodation
+module.exports = Accommodation;

@@ -6,12 +6,14 @@ import user from './user';
 import accommodation from './accommodation';
 import trip from './trip';
 import transportation from './transportation';
+import map from './map';
 
 const reducer = combineReducers({
   user,
   accommodation,
   trip,
-  transportation
+  transportation,
+  map
 });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
@@ -22,3 +24,4 @@ export default store;
 export * from './user';
 export * from './accommodation';
 export * from './trip';
+export * from './map';

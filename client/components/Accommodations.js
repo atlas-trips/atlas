@@ -1,17 +1,17 @@
-import React from 'react'
-import Sidebar from './Sidebar'
-import {getAccommodations} from '../store/accommodation'
-import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import Sidebar from './Sidebar';
+import {getAccommodations} from '../store/accommodation';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 class Accommodations extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount() {
-    const tripId = this.props.trip.id
-    this.props.getAccommodations(tripId)
+    const tripId = this.props.trip.id;
+    this.props.getAccommodations(tripId);
   }
   render() {
     return (
@@ -35,24 +35,24 @@ class Accommodations extends React.Component {
                         {accom.endDate.slice(0, 10)}
                       </p>
                     </div>
-                  )
+                  );
                 })
               : 'No Accommodations Booked'}
           </div>
           <Link to="/addaccommodation">Add a new accommodation:</Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
 const mapState = state => ({
   accommodations: state.accommodation.accommodations,
   trip: state.trip.selected
-})
+});
 
 const mapDispatch = dispatch => ({
   getAccommodations: tripId => dispatch(getAccommodations(tripId))
-})
+});
 
-export default connect(mapState, mapDispatch)(Accommodations)
+export default connect(mapState, mapDispatch)(Accommodations);

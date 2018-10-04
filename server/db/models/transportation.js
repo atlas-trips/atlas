@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Transportation = db.define('transportation', {
   method: {
@@ -12,6 +12,6 @@ const Transportation = db.define('transportation', {
   flightNum: {
     type: Sequelize.STRING
   }
-})
+});
 
-module.exports = Transportation
+module.exports = Transportation;
