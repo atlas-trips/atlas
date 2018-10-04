@@ -52,18 +52,49 @@ router.get('/:id/activities', async (req, res, next) => {
 
 router.post('/:id/activities', async (req, res, next) => {
   try {
-    let newActivity = await Activity.create({
-      location: req.body.location,
-      name: req.body.name,
-      date: req.body.date,
-      tripId: req.body.tripId
-    });
-
-    res.status(201).send(newActivity);
+    const id = Number(req.params.id);
+    if(isNaN(id)){
+      res.status(400).send('Bad Request');
+    }
+    const isAuthorized = await getAuthorizedUsers(id);
+    if(req.user && isAuthorized[req.user.id]){
+      let newActivity = await Activity.create({
+        location: req.body.location,
+        name: req.body.name,
+        date: req.body.date,
+        tripId: req.body.tripId
+      });
+  
+      res.status(201).send(newActivity);
+    } else {
+      res.status(403).send('Forbidden');
+    }
   } catch (err) {
     next(err);
   }
 });
+
+router.delete('/:id/activities/:actId', async(req, res, next) => {
+  try{
+    const id = Number(req.params.id);
+    const actId = Number(req.params.id);
+    if(isNaN(id) || isNaN(actId)){
+      res.status(400).send('Bad Request');
+    }
+    const isAuthorized = await getAuthorizedUsers(id);
+    if(req.user && isAuthorized[req.user.id]){
+      //DO STUFF HERE
+      let act = await Activity.findById(actId);
+      act = await act.destroy();
+      res.status(204).send('No Content');
+
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  } catch(err){
+    next(err);
+  }
+})
 
 router.get('/:id', async (req, res, next) => {
   try {
