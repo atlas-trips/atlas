@@ -21,7 +21,7 @@ router.get('/:tripId', async (req, res, next) => {
 router.post('/:tripId/:userId', async (req, res, next) => {
   try {
     const newTransport = await Transportation.create({
-      method: req.body,
+      method: req.body.method,
       flightNum: req.body.flightNum,
       date: req.body.date
     });
@@ -35,17 +35,17 @@ router.post('/:tripId/:userId', async (req, res, next) => {
 
 router.put('/:tripId/:userId', async (req, res, next) => {
   try {
-    let newTransport = await Travel.findAll({
+    const travel = await Travel.findOne({
       where: {
         [Op.and]: [{tripId: req.params.tripId}, {userId: req.params.userId}]
       }
     });
-    newTransport = newTransport.update({
-      method: req.body,
-      flightNum: req.body.flightNum,
-      date: req.body.date
+    let transport = await Transportation.findById(travel.transportationId);
+    transport = await transport.update({
+      method: req.body.method,
+      flightNum: req.body.flightNum
     });
-    res.json(newTransport);
+    res.json(transport);
   } catch (err) {
     next(err);
   }
