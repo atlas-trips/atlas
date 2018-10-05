@@ -9,16 +9,24 @@ class ActivitiesForm extends Component {
     this.state = {
       activityName: '',
       selectedDay: null,
+      selected: {},
+      added: false
     }
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.addActivity = this.addActivity.bind(this);
+    this.resetMarker = this.resetMarker.bind(this)
   }
 
   handleDayClick(day, {selected}) {
     this.setState({
       selectedDay: selected ? undefined : day
     });
+  }
+
+  addActivity(place){
+    this.setState({selected: place})
   }
 
   handleSubmit(event) {
@@ -30,13 +38,18 @@ class ActivitiesForm extends Component {
       tripId: this.props.tripId
     };
     this.props.createNewActivity(newActivity, this.props.tripId);
+    this.setState({added: true})
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
+  resetMarker(){
+    this.setState({added: false})
+  }
 
   render() {
+    console.log(this.state.selected.formatted_address+'\n'+this.state.selected.name)
     let coords = this.props.activities.map(activity => (
       {
         position : {
@@ -64,9 +77,10 @@ class ActivitiesForm extends Component {
 
       <div>
         <div style={{width: '900px'}}>
-          <MapWithASearchBox startLat={startLat} startLng={startLng} coords={coords} />
+          <MapWithASearchBox startLat={startLat} startLng={startLng} coords={coords} add={this.addActivity} clear={this.state.added} reset={this.resetMarker} />
         </div>
-
+        <h3>Selected:{this.state.selected.id? ' '+this.state.selected.name : ''}</h3>
+        <h4>{this.state.selected.id? this.state.selected.formatted_address : ''}</h4>
         <h1>_______________</h1>
 
         <form onSubmit={this.handleSubmit}>

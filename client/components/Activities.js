@@ -14,8 +14,6 @@ class Activities extends Component {
     super(props);
     this.state = {
       loaded: false,
-      added: true,
-      selected: {}
     };
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -24,10 +22,16 @@ class Activities extends Component {
     event.preventDefault();
     this.props.deleteActivity(this.props.trip.id, id);
   }
+  selectActivity(place){
+    this.setState({added: true, selected: place})
+  }
 
   async componentDidMount() {
     await this.props.fetchActivities(this.props.trip.id);
     this.setState({loaded: true});
+  }
+  resetMarker(){
+    this.setState({added: false})
   }
 
 
@@ -39,7 +43,7 @@ class Activities extends Component {
           <div style={{marginLeft: '100px'}}>
           <div style={activitiesOverview}>
           <ActivitiesForm
-            map={this.props.map}
+            map={this.props.map.coordinates}
             tripId={this.props.trip.id}
             activities={this.props.activities}
             createNewActivity={this.props.createNewActivity}

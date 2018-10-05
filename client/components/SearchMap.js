@@ -54,9 +54,18 @@ const MapWithASearchBox = compose(
           refs.searchBox = ref;
         },
         onPlacesChanged: () => {
+          //this.props.reset()
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
-  
+
+          const newObj = {
+            coordinates: places[0].geometry.location.lat() + ',' + places[0].geometry.location.lng(),
+            place: places[0] 
+          }
+          if(places.length === 1){
+            this.props.fetchCoordinates(newObj);
+            this.props.add(places[0]);
+          }
 
           places.forEach(place => {
             //console.log(place)
@@ -122,13 +131,17 @@ const MapWithASearchBox = compose(
         }}
       />
     </SearchBox>
-    {props.markers.map((marker, index) => (
+    {!props.clear ? props.markers.map((marker, index) => (
       <Marker key={index} position={marker.position} clickable={true} onClick={() => {
-        console.log(marker.position)
-        props.fetchCoordinates(marker.position.lat() + ',' + marker.position.lng());
+        const newObj = {
+          coordinates: marker.position.lat() + ',' + marker.position.lng(),
+          place: marker.info 
+        }
+        props.fetchCoordinates(newObj);
+        props.add(marker.info);
         }}  
       />
-    ))}
+    )) : ''}
     {props.coords.map(coord => (
       <Marker
         key={`mapAct${coord.id}`}
