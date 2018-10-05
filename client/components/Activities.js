@@ -34,39 +34,31 @@ class Activities extends Component {
         <Sidebar />
         {this.state.loaded ? (
           <div style={{marginLeft: '100px'}}>
-            <div style={activitiesOverview}>
-              <ActivitiesForm
-                map={this.props.map}
-                tripId={this.props.trip.id}
-                activities={this.props.activities}
-              />
-              <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
-                Activities List
-                <ul style={{listStyle: 'none'}}>
-                  {!this.props.activities.length
-                    ? null
-                    : this.props.activities.map(activity => {
-                        return (
-                          <li key={activity.id}>
-                            {activity.name}{' '}
-                            <button
-                              type="submit"
-                              onClick={e => this.handleDelete(e, activity.id)}
-                            >
-                              x
-                            </button>{' '}
-                          </li>
-                        );
-                      })}
-                </ul>
-              </div>
-            </div>
+          <div style={activitiesOverview}>
+          <ActivitiesForm
+            map={this.props.map}
+            tripId={this.props.trip.id}
+            activities={this.props.activities}
+            createNewActivity={this.props.createNewActivity}
+          />
+          <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
+            Activities List
+            <ul style={{listStyle: 'none'}}>
+              {!this.props.activities.length
+                ? null
+                : this.props.activities.map(activity => {
+                    return <li key={activity.id}>{activity.name} <button type='submit' onClick={ e =>this.handleDelete(e, activity.id)}>x</button> </li>;
+                  })}
+            </ul>
           </div>
+        </div>
+      </div>
         ) : null}
       </div>
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   user: state.user,
