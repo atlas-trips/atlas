@@ -14,7 +14,7 @@ import {
   Landing,
   TripForm,
   AccommodationForm,
-  EmailLinkForm
+  ShareTrip
 } from './components';
 import {me} from './store';
 
@@ -48,7 +48,7 @@ class Routes extends Component {
             <Route path="/travel" component={Travel} />
             <Route path="/new" component={TripForm} />
             <Route path="/addaccommodation" component={AccommodationForm} />
-            <Route path="/triplink" component={EmailLinkForm} />
+            <Route path="/trips/share" component={ShareTrip} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

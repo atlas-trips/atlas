@@ -8,6 +8,7 @@ const {
 } = require('../db/models');
 const {cleanUp, makeCalendarArray} = require('./utils');
 const nodemailer = require('nodemailer');
+const {email, password} = require('../../secrets');
 
 router.get('/', (req, res, next) => {
   res.status(418).send("I'm a lil teapot");
@@ -30,23 +31,39 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-//share trip
+//SHARE TRIP ROUTE
 
 router.post('/share', async (req, res, next) => {
-  try {
-    const {name, startDate, endDate} = req.body;
-    const newTripObj = {
-      name,
-      startDate,
-      endDate
-    };
-    const newTrip = await Trip.create(newTripObj);
-    const user = await User.findById(req.user.id);
-    user.addTrip(newTrip);
-    res.status(201).send(newTrip);
-  } catch (error) {
-    next(error);
-  }
+  console.log('in the share post route', req.body);
+
+  const transporter = nodemailer.createTransport({
+    service: 'yahoo',
+    port: 465,
+    auth: {
+      user: `${email}`,
+      pass: `${password}`
+    }
+  });
+
+  console.log('transporter', transporter);
+  const mailOptions = {
+    from: `${req.body.emailFrom}`,
+    to: `${req.body.friendEmail}`,
+    subject: `You've been invited to join ${req.body.personFrom}'s ${
+      req.body.tripName
+    } trip!`,
+    text: `I think we need to reseed Heroku for link to register Join here - http://atlas-trips.herokuapp.com/join/${
+      req.body.tripLink
+    }`,
+    replyTo: `${req.body.emailFrom}`
+  };
+  transporter.sendMail(mailOptions, function(err, res) {
+    if (err) {
+      console.error('there was an error: ', err);
+    } else {
+      console.log('here is the res: ', res);
+    }
+  });
 });
 
 router.get('/:id/activities', async (req, res, next) => {
@@ -164,6 +181,7 @@ router.get('/:id/accommodations', async (req, res, next) => {
 
 router.get('/join/:uniqueLink', async (req, res, next) => {
   try {
+    console.log('looking to find trip');
     const foundTrip = await Trip.findOne({
       where: {
         link: req.params.uniqueLink

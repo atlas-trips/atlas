@@ -16,4 +16,4 @@ export {default as AllTrips} from './AllTrips';
 export {default as SingleTrip} from './SingleTrip';
 export {default as TripForm} from './TripForm';
 export {default as AccommodationForm} from './AccommodationForm';
-export {default as EmailLinkForm} from './EmailLinkForm';
+export {default as ShareTrip} from './ShareTrip';

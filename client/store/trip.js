@@ -41,6 +41,11 @@ const removeActivity = id => ({
   id
 });
 
+const shareTripLink = message => ({
+  type: SHARE_TRIP,
+  message
+});
+
 export const fetchTrips = id => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${id}/trips`);
@@ -111,6 +116,15 @@ export const getTripCalendar = tripId => async dispatch => {
   try {
     const {data: calendar} = await axios.get(`/api/trips/${tripId}/all`);
     dispatch(setTripCalendar(calendar));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const shareTrip = tripInfo => async dispatch => {
+  try {
+    const {data: sharedTrip} = await axios.post(`/api/trips/share`, tripInfo);
+    dispatch(shareTripLink(sharedTrip));
   } catch (error) {
     console.log(error);
   }

@@ -28,8 +28,8 @@ const MapWithASearchBox = compose(
       this.setState({
         bounds: null,
         center: {
-          lat: this.props.startLat? this.props.startLat : 41.9,
-          lng: this.props.startLng? this.props.startLng : -87.624
+          lat: this.props.startLat ? this.props.startLat : 41.9,
+          lng: this.props.startLng ? this.props.startLng : -87.624
         },
         markers: [],
         onMapMounted: ref => {
@@ -123,7 +123,11 @@ const MapWithASearchBox = compose(
       <Marker key={index} position={marker.position} />
     ))}
     {props.coords.map(coord => (
-      <Marker key={`mapAct${coord.id}`} position={coord.position} title={coord.name}  />
+      <Marker
+        key={`mapAct${coord.id}`}
+        position={coord.position}
+        title={coord.name}
+      />
     ))}
   </GoogleMap>
 ));
