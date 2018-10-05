@@ -6,7 +6,8 @@ const SET_NEW_TRIP = 'SET_NEW_TRIP';
 const GET_ACTIVITIES = 'GET_ACTIVITIES';
 const SET_ACTIVITY = 'SET_ACTIVITY';
 const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR';
-const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY'
+const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
+const SHARE_TRIP = 'SHARE_TRIP';
 
 const defaultTrip = {
   all: [],
@@ -36,7 +37,7 @@ const setTripCalendar = calendar => ({
 const removeActivity = id => ({
   type: REMOVE_ACTIVITY,
   id
-})
+});
 
 export const fetchTrips = id => async dispatch => {
   try {
@@ -87,13 +88,13 @@ export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
 };
 
 export const deleteActivity = (tripId, actId) => async dispatch => {
-  try{
+  try {
     await axios.delete(`/api/trips/${tripId}/activities/${actId}`);
     dispatch(removeActivity(actId));
-  } catch(err){
-    console.log(err)
+  } catch (err) {
+    console.log(err);
   }
-}
+};
 
 export const getTripCalendar = tripId => async dispatch => {
   try {
@@ -117,7 +118,10 @@ export default function(state = defaultTrip, action) {
     case SET_ACTIVITY:
       return {...state, activities: [...state.activities, action.activity]};
     case REMOVE_ACTIVITY:
-      return {...state, activities: state.activities.filter(act => act.id !== action.id)}
+      return {
+        ...state,
+        activities: state.activities.filter(act => act.id !== action.id)
+      };
     case SET_TRIP_CALENDAR:
       return {...state, tripCalendar: [...action.calendar]};
     default:
