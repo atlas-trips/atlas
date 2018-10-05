@@ -5,6 +5,7 @@ import AllTrips from './AllTrips';
 import SingleTrip from './SingleTrip';
 import {fetchTrips, fetchSelected} from '../store/trip';
 import {throws} from 'assert';
+import {Link} from 'react-router-dom';
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -46,11 +47,12 @@ class Dashboard extends React.Component {
           <div style={{margin: '0 auto'}}>
             {this.state.selected ? (
               <div className="selected-trip">
-                <a href="/dashboard" onClick={this.goBack}>
+                <a href="/dashboard">
                   <h4>{'< Back'}</h4>
                 </a>
                 <h3>{user.name}'s Trip:</h3>
                 <div>
+                  <Link to="/trips/share">Share with your Friends!!</Link>
                   <p onClick={this.showShareLink}>
                     Share Your Trip
                     {this.state.clicked ? (

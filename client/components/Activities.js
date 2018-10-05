@@ -18,21 +18,21 @@ class Activities extends Component {
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDelete(event, id){
+  handleDelete(event, id) {
     event.preventDefault();
     this.props.deleteActivity(this.props.trip.id, id);
   }
 
   async componentDidMount() {
     await this.props.fetchActivities(this.props.trip.id);
-    this.setState({loaded: true})
+    this.setState({loaded: true});
   }
 
   render() {
     return (
-      <div >
+      <div>
         <Sidebar />
-          {this.state.loaded ?
+        {this.state.loaded ? (
           <div style={{marginLeft: '100px'}}>
           <div style={activitiesOverview}>
           <ActivitiesForm
@@ -53,12 +53,12 @@ class Activities extends Component {
           </div>
         </div>
       </div>
-          : null
-        }
+        ) : null}
       </div>
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   user: state.user,
