@@ -2,7 +2,10 @@ import axios from 'axios';
 
 const GET_COORDINATES = 'GET_COORDINATES';
 
-const defaultCoordinates = {};
+const defaultCoordinates = {
+  coordinates: '',
+  place: {}
+};
 
 const getCoordinates = coordinates => ({
   type: GET_COORDINATES,
