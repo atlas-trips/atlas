@@ -6,8 +6,9 @@ const SET_NEW_TRIP = 'SET_NEW_TRIP';
 const GET_ACTIVITIES = 'GET_ACTIVITIES';
 const SET_ACTIVITY = 'SET_ACTIVITY';
 const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR';
-const GET_REF_TRIP = 'GET_REF_TRIP';
 const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
+const SHARE_TRIP = 'SHARE_TRIP';
+const GET_REF_TRIP = 'GET_REF_TRIP';
 
 const defaultTrip = {
   all: [],
@@ -38,6 +39,11 @@ const setTripCalendar = calendar => ({
 const removeActivity = id => ({
   type: REMOVE_ACTIVITY,
   id
+});
+
+const shareTripLink = message => ({
+  type: SHARE_TRIP,
+  message
 });
 
 export const fetchTrips = id => async dispatch => {
@@ -110,6 +116,15 @@ export const getTripCalendar = tripId => async dispatch => {
   try {
     const {data: calendar} = await axios.get(`/api/trips/${tripId}/all`);
     dispatch(setTripCalendar(calendar));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const shareTrip = tripInfo => async dispatch => {
+  try {
+    const {data: sharedTrip} = await axios.post(`/api/trips/share`, tripInfo);
+    dispatch(shareTripLink(sharedTrip));
   } catch (error) {
     console.log(error);
   }
