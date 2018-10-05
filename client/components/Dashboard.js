@@ -42,9 +42,9 @@ class Dashboard extends React.Component {
     //const onATrip = false //Object.keys(this.props.selected).length;
     if (this.props.trips.length > 0) {
       return (
-        <div style={{display: 'flex', marginLeft: '100px'}}>
+        <div className="dashboard">
           <Sidebar />
-          <div style={{margin: '0 auto'}}>
+          <div className="dashboard-content">
             {this.state.selected ? (
               <div className="selected-trip">
                 <a href="/dashboard">
