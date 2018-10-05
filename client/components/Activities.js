@@ -39,6 +39,7 @@ class Activities extends Component {
             map={this.props.map}
             tripId={this.props.trip.id}
             activities={this.props.activities}
+            createNewActivity={this.props.createNewActivity}
           />
           <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
             Activities List

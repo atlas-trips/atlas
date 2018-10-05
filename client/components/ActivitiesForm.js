@@ -29,7 +29,7 @@ class ActivitiesForm extends Component {
       date: this.state.selectedDay,
       tripId: this.props.tripId
     };
-    this.props.createNewActivity(newActivity, this.props.trip.id);
+    this.props.createNewActivity(newActivity, this.props.tripId);
   }
 
   handleChange(event) {
