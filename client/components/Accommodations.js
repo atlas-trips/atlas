@@ -9,9 +9,9 @@ class Accommodations extends React.Component {
     super(props);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     const tripId = this.props.trip.id;
-    this.props.getAccommodations(tripId);
+    await this.props.getAccommodations(tripId);
   }
   render() {
     return (

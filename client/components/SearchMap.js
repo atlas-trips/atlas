@@ -28,12 +28,13 @@ const MapWithASearchBox = compose(
       this.setState({
         bounds: null,
         center: {
-          lat: this.props.startLat ? this.props.startLat : 41.9,
-          lng: this.props.startLng ? this.props.startLng : -87.624
+          lat: this.props.startLat ? this.props.startLat : 40.7049,
+          lng: this.props.startLng ? this.props.startLng : -74.0092
         },
         markers: [],
         onMapMounted: ref => {
           refs.map = ref;
+          
         },
         onBoundsChanged: debounce(
           () => {
@@ -53,15 +54,21 @@ const MapWithASearchBox = compose(
           refs.searchBox = ref;
         },
         onPlacesChanged: () => {
+          //this.props.reset()
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
 
-          const lat = places[0].geometry.location.lat();
-          const long = places[0].geometry.location.lng();
-
-          this.props.fetchCoordinates(lat + ',' + long);
+          const newObj = {
+            coordinates: places[0].geometry.location.lat() + ',' + places[0].geometry.location.lng(),
+            place: places[0] 
+          }
+          if(places.length === 1){
+            this.props.fetchCoordinates(newObj);
+            this.props.add(places[0]);
+          }
 
           places.forEach(place => {
+            //console.log(place)
             if (place.geometry.viewport) {
               bounds.union(place.geometry.viewport);
             } else {
@@ -69,7 +76,9 @@ const MapWithASearchBox = compose(
             }
           });
           const nextMarkers = places.map(place => ({
-            position: place.geometry.location
+            position: place.geometry.location,
+            icon: place.icon,
+            info: place
           }));
           const nextCenter = _.get(
             nextMarkers,
@@ -82,6 +91,9 @@ const MapWithASearchBox = compose(
             markers: nextMarkers
           });
           // refs.map.fitBounds(bounds);
+        },
+        componentDidUpdate(){
+          this.setState({markers: []})
         }
       });
     }
@@ -119,14 +131,23 @@ const MapWithASearchBox = compose(
         }}
       />
     </SearchBox>
-    {props.markers.map((marker, index) => (
-      <Marker key={index} position={marker.position} />
-    ))}
+    {!props.clear ? props.markers.map((marker, index) => (
+      <Marker key={index} position={marker.position} clickable={true} onClick={() => {
+        const newObj = {
+          coordinates: marker.position.lat() + ',' + marker.position.lng(),
+          place: marker.info 
+        }
+        props.fetchCoordinates(newObj);
+        props.add(marker.info);
+        }}  
+      />
+    )) : ''}
     {props.coords.map(coord => (
       <Marker
         key={`mapAct${coord.id}`}
         position={coord.position}
         title={coord.name}
+        icon='https://www.google.com/mapfiles/marker_green.png'
       />
     ))}
   </GoogleMap>
