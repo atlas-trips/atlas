@@ -8,6 +8,7 @@ const SET_ACTIVITY = 'SET_ACTIVITY';
 const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR';
 const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
 const SHARE_TRIP = 'SHARE_TRIP';
+const GET_REF_TRIP = 'GET_REF_TRIP';
 
 const defaultTrip = {
   all: [],
@@ -18,6 +19,7 @@ const defaultTrip = {
 
 const getTrips = trips => ({type: GET_TRIPS, trips});
 const getSelected = trip => ({type: GET_SELECTED_TRIP, trip});
+const getRefTrip = trip => ({type: GET_REF_TRIP, trip});
 const setNewTrip = trip => ({type: SET_NEW_TRIP, trip});
 const getActivities = activities => ({
   type: GET_ACTIVITIES,
@@ -52,6 +54,15 @@ export const fetchSelected = tripId => async dispatch => {
   try {
     const trip = await axios.get(`/api/trips/${tripId}`);
     dispatch(getSelected(trip.data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const fetchRefTrip = tripLink => async dispatch => {
+  try {
+    const trip = await axios.get(`/api/trips/join/${tripLink}`);
+    dispatch(getRefTrip(trip.data));
   } catch (err) {
     console.log(err);
   }
@@ -110,6 +121,8 @@ export default function(state = defaultTrip, action) {
     case GET_TRIPS:
       return {...state, all: action.trips};
     case GET_SELECTED_TRIP:
+      return {...state, selected: action.trip};
+    case GET_REF_TRIP:
       return {...state, selected: action.trip};
     case SET_NEW_TRIP:
       return {...state, all: [...state.all, action.trip]};

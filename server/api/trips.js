@@ -162,6 +162,19 @@ router.get('/:id/accommodations', async (req, res, next) => {
   }
 });
 
+router.get('/join/:uniqueLink', async (req, res, next) => {
+  try {
+    const foundTrip = await Trip.findOne({
+      where: {
+        link: req.params.uniqueLink
+      }
+    });
+    res.send(foundTrip);
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/:id/all', async (req, res, next) => {
   try {
     const isAuthorized = await getAuthorizedUsers(req.params.id);
