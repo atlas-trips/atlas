@@ -69,7 +69,8 @@ const MapWithASearchBox = compose(
             }
           });
           const nextMarkers = places.map(place => ({
-            position: place.geometry.location
+            position: place.geometry.location,
+            icon: place.icon
           }));
           const nextCenter = _.get(
             nextMarkers,
@@ -120,13 +121,18 @@ const MapWithASearchBox = compose(
       />
     </SearchBox>
     {props.markers.map((marker, index) => (
-      <Marker key={index} position={marker.position} />
+      <Marker key={index} position={marker.position} clickable={true} onClick={() => {
+        console.log(marker.position.lat()+","+marker.position.lng())
+        marker.icon= 'https://www.google.com/mapfiles/marker_orange.png'
+        }}  
+      />
     ))}
     {props.coords.map(coord => (
       <Marker
         key={`mapAct${coord.id}`}
         position={coord.position}
         title={coord.name}
+        icon='https://www.google.com/mapfiles/marker_green.png'
       />
     ))}
   </GoogleMap>
