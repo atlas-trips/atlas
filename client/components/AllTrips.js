@@ -1,36 +1,29 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'row'
-};
-
 const divStyle = {
-  display: 'flex',
-  textAlign: 'center',
-  border: '2px solid black',
-  flexDirection: 'column',
-  flexWrap: 'wrap',
-  margin: '25px 10px 10px 5px',
-  padding: '10px'
+
 };
 
 const AllTrips = props => {
   const trips = props.trips;
 
   return !trips.length ? null : (
-    <div style={containerStyle}>
+    <div className="all-trips">
       {trips.map(trip => {
         return (
           <div
-            key={trip.name}
-            style={divStyle}
-            onClick={evt => props.click(evt, trip.id)}
+          key={trip.name}
+          className="all-trips-trip"
+          onClick={evt => props.click(evt, trip.id)}
           >
-            <h1>{trip.name}</h1>
+            <img src="/images/default.png" width="360" alt="" className="all-trips-trip-image"/>
+            <div className="all-trips-trip-filter">
+              <p className="all-trips-trip-name">{trip.name}</p>
+            </div>
+            <h2><span className="all-trips-trip-when">When:</span></h2>
             <h2>
-              {trip.startDate.slice(0, 10)} to {trip.endDate.slice(0, 10)}
+              {new Date(trip.startDate).toString().slice(0,16)} <br/> to <br/>{new Date(trip.endDate).toString().slice(0, 16)}
             </h2>
           </div>
         );
