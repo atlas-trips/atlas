@@ -13,7 +13,9 @@ class Activities extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false
+      loaded: false,
+      added: true,
+      selected: {}
     };
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -27,6 +29,7 @@ class Activities extends Component {
     await this.props.fetchActivities(this.props.trip.id);
     this.setState({loaded: true});
   }
+
 
   render() {
     return (

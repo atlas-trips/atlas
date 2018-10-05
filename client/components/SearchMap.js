@@ -28,12 +28,13 @@ const MapWithASearchBox = compose(
       this.setState({
         bounds: null,
         center: {
-          lat: this.props.startLat ? this.props.startLat : 41.9,
-          lng: this.props.startLng ? this.props.startLng : -87.624
+          lat: this.props.startLat ? this.props.startLat : 40.7049,
+          lng: this.props.startLng ? this.props.startLng : -74.0092
         },
         markers: [],
         onMapMounted: ref => {
           refs.map = ref;
+          
         },
         onBoundsChanged: debounce(
           () => {
@@ -55,13 +56,10 @@ const MapWithASearchBox = compose(
         onPlacesChanged: () => {
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
-
-          const lat = places[0].geometry.location.lat();
-          const long = places[0].geometry.location.lng();
-
-          this.props.fetchCoordinates(lat + ',' + long);
+  
 
           places.forEach(place => {
+            //console.log(place)
             if (place.geometry.viewport) {
               bounds.union(place.geometry.viewport);
             } else {
@@ -70,7 +68,8 @@ const MapWithASearchBox = compose(
           });
           const nextMarkers = places.map(place => ({
             position: place.geometry.location,
-            icon: place.icon
+            icon: place.icon,
+            info: place
           }));
           const nextCenter = _.get(
             nextMarkers,
@@ -83,6 +82,9 @@ const MapWithASearchBox = compose(
             markers: nextMarkers
           });
           // refs.map.fitBounds(bounds);
+        },
+        componentDidUpdate(){
+          this.setState({markers: []})
         }
       });
     }
@@ -122,8 +124,8 @@ const MapWithASearchBox = compose(
     </SearchBox>
     {props.markers.map((marker, index) => (
       <Marker key={index} position={marker.position} clickable={true} onClick={() => {
-        console.log(marker.position.lat()+","+marker.position.lng())
-        marker.icon= 'https://www.google.com/mapfiles/marker_orange.png'
+        console.log(marker.position)
+        props.fetchCoordinates(marker.position.lat() + ',' + marker.position.lng());
         }}  
       />
     ))}
