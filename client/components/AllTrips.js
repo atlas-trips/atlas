@@ -1,33 +1,55 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
-const divStyle = {
-
-};
+import { Link } from 'react-router-dom';
 
 const AllTrips = props => {
   const trips = props.trips;
 
   return !trips.length ? null : (
-    <div className="all-trips">
-      {trips.map(trip => {
-        return (
-          <div
-          key={trip.name}
-          className="all-trips-trip"
-          onClick={evt => props.click(evt, trip.id)}
-          >
-            <img src="/images/default.png" width="360" alt="" className="all-trips-trip-image"/>
-            <div className="all-trips-trip-filter">
-              <p className="all-trips-trip-name">{trip.name}</p>
+    <div className="all-trips-container">
+      <Link to='/new'>
+        <button
+          className="add-trip"
+        >
+          ADD A TRIP +
+        </button>
+      </Link>
+      <div className="all-trips">
+        {trips.map(trip => {
+          return (
+            <div
+              key={trip.name}
+              className="all-trips-trip"
+              onClick={evt => props.click(evt, trip.id)}
+            >
+              <img
+                src={`/images/${trip.name}.jpg`}
+                width="360" alt="" className="all-trips-trip-image"
+              />
+              <p className="all-trips-trip-name">
+                {trip.name.toUpperCase()}
+              </p>
+              <div className="all-trips-info">
+                <div>
+                  <p className="all-trips-trip-when">
+                    START: <br/>
+                    {new Date(trip.startDate).toString().slice(0,16)}
+                  </p>
+                </div>
+                <div className="all-trips-trip-more">
+                  <p>CLICK TO <br/> SEE MORE</p>
+                </div>
+                <div>
+                  <p className="all-trips-trip-when">
+                    END: <br/>
+                    {new Date(trip.endDate).toString().slice(0, 16)}
+                  </p>
+                </div>
+              </div>
             </div>
-            <h2><span className="all-trips-trip-when">When:</span></h2>
-            <h2>
-              {new Date(trip.startDate).toString().slice(0,16)} <br/> to <br/>{new Date(trip.endDate).toString().slice(0, 16)}
-            </h2>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 };
