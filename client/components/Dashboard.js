@@ -76,6 +76,13 @@ class Dashboard extends React.Component {
           <Sidebar />
           <div className="noTrips-content">
             <h3>No Trips Available</h3>
+            <Link to='/new'>
+              <button
+                className="add-trip"
+              >
+                ADD A TRIP +
+              </button>
+            </Link>
           </div>
         </div>
       );
