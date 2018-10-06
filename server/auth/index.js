@@ -42,10 +42,18 @@ router.post('/signup', async (req, res, next) => {
 
 router.post('/refsignup', async (req, res, next) => {
   try {
+    console.log('req body', req.body);
     const user = await User.create(req.body);
-    const {users} = req.body;
+    const users = req.body.trip.users;
+    console.log('users', users);
+    const usersArr = users
+      .map(u => {
+        return `${u.email}`;
+      })
+      .toString();
+    console.log('usersArr', usersArr);
 
-    const foundTrip = await Trip.findById(req.body.tripId);
+    const foundTrip = await Trip.findById(req.body.trip.id);
     if (foundTrip) {
       foundTrip.addUser(user);
     }
@@ -59,8 +67,8 @@ router.post('/refsignup', async (req, res, next) => {
     });
     const mailOptions = {
       from: `${email}`,
-      to: users.map(u => `${u.email}`).toString(),
-      subject: `${req.body.user.email} has joined your trip!`,
+      to: usersArr,
+      subject: `${req.body.email} has joined your trip!`,
       text: `Test`,
       replyTo: `${req.body.emailFrom}`
     };

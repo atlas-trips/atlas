@@ -28,7 +28,6 @@ class AuthForm extends Component {
       handleSignUpSubmit,
       error
     } = this.props;
-    console.log(this.props);
 
     return (
       <div>
@@ -36,9 +35,13 @@ class AuthForm extends Component {
           onSubmit={
             this.props.location.pathname === '/login'
               ? event => handleSubmit(event)
-              : event => handleSignUpSubmit(event, this.props.trip.selected.id)
+              : event => handleSignUpSubmit(event, this.props.trip.selected)
           }
-          name={name}
+          name={
+            this.props.location.pathname.startsWith('/join')
+              ? 'refsignup'
+              : name
+          }
         >
           <div>
             <div>
@@ -102,19 +105,12 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName));
     },
-    async handleSignUpSubmit(evt, tripId) {
+    handleSignUpSubmit(evt, trip) {
       evt.preventDefault();
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(email, password, formName, tripId));
-      const user = this.props.user;
-      // Axios alert
-      await axios.post(`/api/${this.props.trip.selected.id}/notification`, {
-        users: this.props.trip.selected.users,
-        user
-      });
-      // req.body = { users: ... }
+      dispatch(auth(email, password, formName, trip));
     },
     getTrip: uniqueLink => dispatch(fetchRefTrip(uniqueLink))
   };

@@ -185,7 +185,8 @@ router.get('/join/:uniqueLink', async (req, res, next) => {
     const foundTrip = await Trip.findOne({
       where: {
         link: req.params.uniqueLink
-      }
+      },
+      include: [{model: User}]
     });
     res.send(foundTrip);
   } catch (error) {
