@@ -13,7 +13,7 @@ class Activities extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loaded: false,
+      loaded: false
     };
     this.handleDelete = this.handleDelete.bind(this);
   }
@@ -22,18 +22,17 @@ class Activities extends Component {
     event.preventDefault();
     this.props.deleteActivity(this.props.trip.id, id);
   }
-  selectActivity(place){
-    this.setState({added: true, selected: place})
+  selectActivity(place) {
+    this.setState({added: true, selected: place});
   }
 
   async componentDidMount() {
     await this.props.fetchActivities(this.props.trip.id);
     this.setState({loaded: true});
   }
-  resetMarker(){
-    this.setState({added: false})
+  resetMarker() {
+    this.setState({added: false});
   }
-
 
   render() {
     return (
@@ -41,31 +40,40 @@ class Activities extends Component {
         <Sidebar />
         {this.state.loaded ? (
           <div style={{marginLeft: '100px'}}>
-          <div style={activitiesOverview}>
-          <ActivitiesForm
-            map={this.props.map.coordinates}
-            tripId={this.props.trip.id}
-            activities={this.props.activities}
-            createNewActivity={this.props.createNewActivity}
-          />
-          <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
-            Activities List
-            <ul style={{listStyle: 'none'}}>
-              {!this.props.activities.length
-                ? null
-                : this.props.activities.map(activity => {
-                    return <li key={activity.id}>{activity.name} <button type='submit' onClick={ e =>this.handleDelete(e, activity.id)}>x</button> </li>;
-                  })}
-            </ul>
+            <div style={activitiesOverview}>
+              <ActivitiesForm
+                map={this.props.map.coordinates}
+                tripId={this.props.trip.id}
+                activities={this.props.activities}
+                createNewActivity={this.props.createNewActivity}
+              />
+              <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
+                Activities List
+                <ul style={{listStyle: 'none'}}>
+                  {!this.props.activities.length
+                    ? null
+                    : this.props.activities.map(activity => {
+                        return (
+                          <li key={activity.id}>
+                            {activity.name}{' '}
+                            <button
+                              type="submit"
+                              onClick={e => this.handleDelete(e, activity.id)}
+                            >
+                              x
+                            </button>{' '}
+                          </li>
+                        );
+                      })}
+                </ul>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
         ) : null}
       </div>
     );
   }
 }
-
 
 const mapStateToProps = state => ({
   user: state.user,

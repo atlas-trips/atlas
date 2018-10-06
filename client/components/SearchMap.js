@@ -34,7 +34,6 @@ const MapWithASearchBox = compose(
         markers: [],
         onMapMounted: ref => {
           refs.map = ref;
-          
         },
         onBoundsChanged: debounce(
           () => {
@@ -59,10 +58,13 @@ const MapWithASearchBox = compose(
           const bounds = new google.maps.LatLngBounds();
 
           const newObj = {
-            coordinates: places[0].geometry.location.lat() + ',' + places[0].geometry.location.lng(),
-            place: places[0] 
-          }
-          if(places.length === 1){
+            coordinates:
+              places[0].geometry.location.lat() +
+              ',' +
+              places[0].geometry.location.lng(),
+            place: places[0]
+          };
+          if (places.length === 1) {
             this.props.fetchCoordinates(newObj);
             this.props.add(places[0]);
           }
@@ -92,8 +94,8 @@ const MapWithASearchBox = compose(
           });
           // refs.map.fitBounds(bounds);
         },
-        componentDidUpdate(){
-          this.setState({markers: []})
+        componentDidUpdate() {
+          this.setState({markers: []});
         }
       });
     }
@@ -131,23 +133,30 @@ const MapWithASearchBox = compose(
         }}
       />
     </SearchBox>
-    {!props.clear ? props.markers.map((marker, index) => (
-      <Marker key={index} position={marker.position} clickable={true} onClick={() => {
-        const newObj = {
-          coordinates: marker.position.lat() + ',' + marker.position.lng(),
-          place: marker.info 
-        }
-        props.fetchCoordinates(newObj);
-        props.add(marker.info);
-        }}  
-      />
-    )) : ''}
+    {!props.clear
+      ? props.markers.map((marker, index) => (
+          <Marker
+            key={index}
+            position={marker.position}
+            clickable={true}
+            onClick={() => {
+              const newObj = {
+                coordinates:
+                  marker.position.lat() + ',' + marker.position.lng(),
+                place: marker.info
+              };
+              props.fetchCoordinates(newObj);
+              props.add(marker.info);
+            }}
+          />
+        ))
+      : ''}
     {props.coords.map(coord => (
       <Marker
         key={`mapAct${coord.id}`}
         position={coord.position}
         title={coord.name}
-        icon='https://www.google.com/mapfiles/marker_green.png'
+        icon="https://www.google.com/mapfiles/marker_green.png"
       />
     ))}
   </GoogleMap>

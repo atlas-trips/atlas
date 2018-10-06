@@ -1,18 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const AllTrips = props => {
   const trips = props.trips;
 
   return !trips.length ? null : (
     <div className="all-trips-container">
-      <Link to='/new'>
-        <button
-          className="add-trip"
-        >
-          ADD A TRIP +
-        </button>
+      <Link to="/new">
+        <button className="add-trip">ADD A TRIP +</button>
       </Link>
       <div className="all-trips">
         {trips.map(trip => {
@@ -24,24 +20,26 @@ const AllTrips = props => {
             >
               <img
                 src={`/images/${trip.name}.jpg`}
-                width="360" alt="" className="all-trips-trip-image"
+                width="360"
+                alt=""
+                className="all-trips-trip-image"
               />
-              <p className="all-trips-trip-name">
-                {trip.name.toUpperCase()}
-              </p>
+              <p className="all-trips-trip-name">{trip.name.toUpperCase()}</p>
               <div className="all-trips-info">
                 <div>
                   <p className="all-trips-trip-when">
-                    START: <br/>
-                    {new Date(trip.startDate).toString().slice(0,16)}
+                    START: <br />
+                    {new Date(trip.startDate).toString().slice(0, 16)}
                   </p>
                 </div>
                 <div className="all-trips-trip-more">
-                  <p>CLICK TO <br/> SEE MORE</p>
+                  <p>
+                    CLICK TO <br /> SEE MORE
+                  </p>
                 </div>
                 <div>
                   <p className="all-trips-trip-when">
-                    END: <br/>
+                    END: <br />
                     {new Date(trip.endDate).toString().slice(0, 16)}
                   </p>
                 </div>
