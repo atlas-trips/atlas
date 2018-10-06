@@ -240,6 +240,36 @@ router.get('/:id/all', async (req, res, next) => {
   }
 });
 
+router.post('/:id/notification', async (req, res, next) => {
+  const {users} = req.body;
+  // let email = '';
+  // users.forEach(user => {
+  //   email += user.email + ', ';
+  // })
+  const transporter = nodemailer.createTransport({
+    service: 'yahoo',
+    port: 465,
+    auth: {
+      user: `${email}`,
+      pass: `${password}`
+    }
+  });
+  const mailOptions = {
+    from: `${email}`,
+    to: users.map(user => `${user.email}`),
+    subject: `${req.body.user.email} has joined your trip!`,
+    text: `Test`,
+    replyTo: `${req.body.emailFrom}`
+  };
+  transporter.sendMail(mailOptions, function(err, res) {
+    if (err) {
+      console.error('there was an error: ', err);
+    } else {
+      console.log('here is the res: ', res);
+    }
+  });
+});
+
 async function getAuthorizedUsers(tripId) {
   //returns an object of user ids for all users authorized to view details of this trip
   try {

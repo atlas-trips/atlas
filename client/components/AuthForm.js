@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {auth} from '../store';
 import {fetchRefTrip} from '../store/trip';
+import axios from 'axios';
 
 /**
  * COMPONENT
@@ -87,7 +88,8 @@ const mapSignup = state => {
     name: 'signup',
     displayName: 'Sign Up',
     error: state.user.error,
-    trip: state.trip
+    trip: state.trip,
+    user: state.user
   };
 };
 
@@ -100,12 +102,19 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName));
     },
-    handleSignUpSubmit(evt, tripId) {
+    async handleSignUpSubmit(evt, tripId) {
       evt.preventDefault();
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName, tripId));
+      const user = this.props.user;
+      // Axios alert
+      await axios.post(`/api/${this.props.trip.selected.id}/notification`, {
+        users: this.props.trip.selected.users,
+        user
+      });
+      // req.body = { users: ... }
     },
     getTrip: uniqueLink => dispatch(fetchRefTrip(uniqueLink))
   };
