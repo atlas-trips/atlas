@@ -23,7 +23,7 @@ const AllTrips = props => {
               onClick={evt => props.click(evt, trip.id)}
             >
               <img
-                src={`/images/${trip.name}.jpg`}
+                src={`/images/${trip.name.toLowerCase()}.jpg`}
                 width="360" alt="" className="all-trips-trip-image"
               />
               <p className="all-trips-trip-name">
