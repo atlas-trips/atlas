@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {fetchSelected, shareTrip} from '../store/trip';
 import {email} from '../../secrets';
+import Modal from 'react-responsive-modal';
 
 class ShareTrip extends Component {
   constructor(props) {
@@ -9,15 +10,28 @@ class ShareTrip extends Component {
     this.state = {
       emailFrom: email,
       friendEmail: '',
-      message: ''
+      message: '',
+      confirmationMessage: 'Your Invite has been sent!',
+      open: true
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
+  }
+
+  onOpenModal() {
+    this.setState({open: true});
+  }
+
+  onCloseModal() {
+    this.setState({open: false});
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
+
   handleSubmit(event) {
     event.preventDefault();
     const shareLink = {
@@ -28,8 +42,8 @@ class ShareTrip extends Component {
       tripName: this.props.trip.selected.name,
       personFrom: this.props.user.name
     };
-    console.log('sending over', shareLink);
     this.props.shareTrip(shareLink);
+    this.onCloseModal();
   }
 
   componentDidMount() {
@@ -37,34 +51,34 @@ class ShareTrip extends Component {
   }
 
   render() {
-    console.log('redux state', this.props);
-
     return (
-      <div>
-        <h1>Share Your Trip with Your Friends</h1>
+      <Modal open={this.state.open} onClose={this.onCloseModal} center>
+        <div>
+          <h1>Share Your Trip with Your Friends</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="friendEmail" />
-          <input
-            type="email"
-            name="friendEmail"
-            value={this.state.friendEmail}
-            onChange={this.handleChange}
-            placeholder="Friends Email"
-          />
+          <form onSubmit={this.handleSubmit}>
+            <label htmlFor="friendEmail" />
+            <input
+              type="email"
+              name="friendEmail"
+              value={this.state.friendEmail}
+              onChange={this.handleChange}
+              placeholder="Friends Email"
+            />
 
-          <label htmlFor="message" />
-          <input
-            type="text"
-            name="message"
-            value={this.state.message}
-            onChange={this.handleChange}
-            placeholder="Additional Message"
-          />
+            <label htmlFor="message" />
+            <input
+              type="text"
+              name="message"
+              value={this.state.message}
+              onChange={this.handleChange}
+              placeholder="Additional Message"
+            />
 
-          <button type="submit">Share Trip</button>
-        </form>
-      </div>
+            <button type="submit">Share Trip</button>
+          </form>
+        </div>
+      </Modal>
     );
   }
 }

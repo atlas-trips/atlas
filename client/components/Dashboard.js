@@ -18,6 +18,7 @@ class Dashboard extends React.Component {
     this.goBack = this.goBack.bind(this);
     this.showShareLink = this.showShareLink.bind(this);
   }
+
   componentDidMount() {
     this.props.fetchTrips(this.props.user.id);
   }
@@ -52,15 +53,6 @@ class Dashboard extends React.Component {
                 </a>
                 <h3>{user.name}'s Trip:</h3>
                 <div>
-                  <Link to="/trips/share">Share with your Friends!!</Link>
-                  <p onClick={this.showShareLink}>
-                    Share Your Trip
-                    {this.state.clicked ? (
-                      <span>{this.props.selected.link}</span>
-                    ) : (
-                      ''
-                    )}
-                  </p>
                   <SingleTrip trip={this.props.selected} />
                 </div>
               </div>
@@ -76,12 +68,8 @@ class Dashboard extends React.Component {
           <Sidebar />
           <div className="noTrips-content">
             <h3>No Trips Available</h3>
-            <Link to='/new'>
-              <button
-                className="add-trip"
-              >
-                ADD A TRIP +
-              </button>
+            <Link to="/new">
+              <button className="add-trip">ADD A TRIP +</button>
             </Link>
           </div>
         </div>
