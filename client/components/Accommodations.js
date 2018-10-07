@@ -1,6 +1,6 @@
 import React from 'react';
 import Sidebar from './Sidebar';
-import {getAccommodations} from '../store/accommodation';
+import { getAccommodations, deleteAccommodation } from '../store/accommodation';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import AccommodationForm from './AccommodationForm';
@@ -12,12 +12,17 @@ class Accommodations extends React.Component {
       adding: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleClick() {
     this.setState({
       adding: !this.state.adding
     });
+  }
+
+  handleDelete(accomId) {
+    this.props.deleteAccommodation(accomId);
   }
 
   async componentDidMount() {
@@ -53,16 +58,18 @@ class Accommodations extends React.Component {
                         <h4>{accom.name}</h4>
                         <img src="/images/bed.png" width="80" alt="" />
                       </div>
-                      <div className="accom-card-info">
-                        <span className="accom-card-info-title">Location:</span>
-                        <span>{accom.location}</span>
-                        <br />
-                        <span className="accom-card-info-title">From:</span>
-                        {new Date(accom.startDate).toString().slice(0, 16)}
-                        <span className="accom-card-info-title">To:</span>
-                        {new Date(accom.endDate).toString().slice(0, 16)}
+                    <div className="accom-card-info">
+                      <span className="accom-card-info-title">Location:</span>
+                      <span>{accom.location}</span>
+                      <span className="accom-card-info-title">From:</span>
+                      {new Date(accom.startDate).toString().slice(0, 16)}
+                      <span className="accom-card-info-title">To:</span>
+                      {new Date(accom.endDate).toString().slice(0, 16)}
+                      <div className="accom-card-delete">
+                        <button onClick={() =>this.handleDelete(accom.id)}>X</button>
                       </div>
                     </div>
+                  </div>
                   );
                 })
               ) : (
@@ -89,7 +96,8 @@ const mapState = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  getAccommodations: tripId => dispatch(getAccommodations(tripId))
+  getAccommodations: tripId => dispatch(getAccommodations(tripId)),
+  deleteAccommodation: accomId => dispatch(deleteAccommodation(accomId))
 });
 
 export default connect(mapState, mapDispatch)(Accommodations);
