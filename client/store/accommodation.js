@@ -20,8 +20,8 @@ const setNewAccommodation = accommodation => ({
 
 const removeAccommodation = id => ({
   type: DELETE_ACCOMMODATION,
-  id,
-})
+  id
+});
 
 export const getAccommodations = tripId => async dispatch => {
   try {
@@ -46,12 +46,12 @@ export const getNewAccommodation = accommo => async dispatch => {
 
 export const deleteAccommodation = accomId => async dispatch => {
   try {
-    await axios.delete('api/accommodations', {data: {id:accomId}});
+    await axios.delete('api/accommodations', {data: {id: accomId}});
     dispatch(removeAccommodation(accomId));
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
-}
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
@@ -63,7 +63,12 @@ export default function(state = initialState, action) {
         accommodations: [...state.accommodations, action.accommodation]
       };
     case DELETE_ACCOMMODATION:
-      return {...state, accommodations: [...state.accommodations.filter(accom => accom.id !== action.id)]}
+      return {
+        ...state,
+        accommodations: [
+          ...state.accommodations.filter(accom => accom.id !== action.id)
+        ]
+      };
     default:
       return state;
   }

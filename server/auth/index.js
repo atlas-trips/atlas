@@ -61,7 +61,6 @@ router.post('/refsignup', async (req, res, next) => {
         pass: process.env.PASSWORD
       }
     });
-    const email = process.env.EMAIL;
     const mailOptions = {
       from: 'Atlas Trips' + '<' + process.env.EMAIL + '>',
       to: usersArr,
