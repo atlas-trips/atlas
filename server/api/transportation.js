@@ -25,27 +25,30 @@ router.post('/:tripId/:userId', async (req, res, next) => {
       flightNum: req.body.flightNum,
       date: req.body.date
     });
-    newTransport.setTrip(req.params.tripId);
-    newTransport.setUser(req.params.userId);
-    res.json(newTransport);
+    const travel = await Travel.create({
+      tripId: req.params.tripId,
+      transportationId: newTransport.id,
+      userId: req.params.userId
+    });
+    res.json(travel);
   } catch (err) {
     next(err);
   }
 });
 
-router.put('/:tripId/:userId', async (req, res, next) => {
+router.delete('/:tripId/:userId/:transportationId', async (req, res, next) => {
   try {
-    const travel = await Travel.findOne({
+    await Travel.destroy({
       where: {
-        [Op.and]: [{tripId: req.params.tripId}, {userId: req.params.userId}]
+        [Op.and]: [
+          {tripId: req.params.tripId},
+          {userId: req.params.userId},
+          {transportationId: req.params.transportationId}
+        ]
       }
     });
-    let transport = await Transportation.findById(travel.transportationId);
-    transport = await transport.update({
-      method: req.body.method,
-      flightNum: req.body.flightNum
-    });
-    res.json(transport);
+
+    res.sendStatus(200);
   } catch (err) {
     next(err);
   }

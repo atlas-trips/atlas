@@ -10,7 +10,7 @@ const {
   Accommodation,
   Travel
 } = require('../server/db/models');
-
+/*eslint-disable*/
 async function seed() {
   await db.sync({force: true});
   console.log('db synced!');
@@ -19,11 +19,6 @@ async function seed() {
     email: 'cody@email.com',
     password: '123',
     name: 'Cody'
-  });
-  const kemet = await User.create({
-    email: 'soccerk718@yahoo.com',
-    password: '123',
-    name: 'Kemet'
   });
   const murphy = await User.create({
     email: 'murphy@email.com',
