@@ -89,18 +89,11 @@ class TripForm extends Component {
         <Sidebar />
         <div className="trip-form">
           <div className="trip-form-title">
-            <div className="trip-form-title-content">
-              Atlas
-            </div>
-            <div className="trip-form-title-content">
-              Add A Trip
-            </div>
+            <div className="trip-form-title-content">Atlas</div>
+            <div className="trip-form-title-content">Add A Trip</div>
           </div>
           <div className="trip-form-name">
-            <label
-              className="trip-form-name-label"
-              htmlFor="tripName"
-            >
+            <label className="trip-form-name-label" htmlFor="tripName">
               Trip Name:
             </label>
             <input
@@ -121,7 +114,10 @@ class TripForm extends Component {
                     ${to.toLocaleDateString()}`}{' '}
               {from &&
                 to && (
-                  <button className="link date-reset-button" onClick={this.handleResetClick}>
+                  <button
+                    className="link date-reset-button"
+                    onClick={this.handleResetClick}
+                  >
                     Reset
                   </button>
                 )}
@@ -137,10 +133,7 @@ class TripForm extends Component {
               <style>{helmetStyle}</style>
             </Helmet>
           </div>
-          <button
-            onClick={this.handleSubmit}
-            className="trip-form-submit"
-          >
+          <button onClick={this.handleSubmit} className="trip-form-submit">
             <div className="trip-form-submit-text">SUBMIT</div>
           </button>
         </div>
