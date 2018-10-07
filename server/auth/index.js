@@ -61,13 +61,13 @@ router.post('/refsignup', async (req, res, next) => {
         pass: process.env.PASSWORD
       }
     });
-    const email = process.env.email;
+    const email = process.env.EMAIL;
     const mailOptions = {
-      from: `Atlas Trips <${email}>`,
+      from: 'Atlas Trips' + '<' + process.env.EMAIL + '>',
       to: usersArr,
       subject: `${req.body.email} has joined your trip!`,
       text: `Test`,
-      replyTo: `${email}`
+      replyTo: process.env.EMAIL
     };
     transporter.sendMail(mailOptions, function(err, res) {
       if (err) {

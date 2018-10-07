@@ -43,9 +43,9 @@ router.post('/share', async (req, res, next) => {
   });
 
   console.log('transporter', transporter);
-  const email = process.env.email;
+  const email = process.env.EMAIL;
   const mailOptions = {
-    from: `Atlas Trips <${email}>`,
+    from: 'Atlas Trips' + '<' + process.env.EMAIL + '>',
     to: `${req.body.friendEmail}`,
     subject: `You've been invited to join ${req.body.personFrom}'s ${
       req.body.tripName
@@ -53,7 +53,7 @@ router.post('/share', async (req, res, next) => {
     text: `Join here - http://atlas-trips.herokuapp.com/join/${
       req.body.tripLink
     }`,
-    replyTo: `${email}`
+    replyTo: process.env.EMAIL
   };
   transporter.sendMail(mailOptions, function(err, res) {
     if (err) {
