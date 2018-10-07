@@ -8,7 +8,7 @@ const {
 } = require('../db/models');
 const {cleanUp, makeCalendarArray} = require('./utils');
 const nodemailer = require('nodemailer');
-const {email, password} = require('../../secrets');
+// const {email, password} = require('../../secrets');
 
 router.get('/', (req, res, next) => {
   res.status(418).send("I'm a lil teapot");
@@ -38,12 +38,13 @@ router.post('/share', async (req, res, next) => {
     service: 'yahoo',
     port: 465,
     auth: {
-      user: `${email}`,
-      pass: `${password}`
+      user: process.env.email,
+      pass: process.env.password
     }
   });
 
   console.log('transporter', transporter);
+  const email = process.env.email
   const mailOptions = {
     from: `Atlas Trips <${email}>`,
     to: `${req.body.friendEmail}`,

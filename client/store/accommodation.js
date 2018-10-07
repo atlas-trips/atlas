@@ -12,9 +12,9 @@ const setAccommodations = accommodations => ({
   type: SET_ACCOMMODATIONS,
   accommodations
 });
-const setNewAccommodation = accomodation => ({
+const setNewAccommodation = accommodation => ({
   type: SET_NEW_ACCOMMODATION,
-  accomodation
+  accommodation
 });
 
 export const getAccommodations = tripId => async dispatch => {

@@ -498,7 +498,7 @@ nav a {
 }
 
 .accom-container {
-  width: 700px;
+  width: 1000px;
   background-color: white;
   margin: 40px auto 0;
   text-align: center;
@@ -513,26 +513,13 @@ nav a {
   justify-content: space-evenly;
 }
 
-.accom-card-border {
-  width: 400px;
-  height: 198px;
-  border-top: 2px solid #004578;
-  border-bottom: 2px solid #53aad9;
-  background-image:
-      linear-gradient(#004578, #53aad9),
-      linear-gradient(#004578, #53aad9)
-  ;
-  background-size:1px 100%;
-  background-position:0 0, 100% 0;
-  background-repeat:no-repeat;
-  margin: 8px;
-  box-shadow: -4px 5px 7px -2px rgba(0,0,0,0.75);
-}
-
 .accom-card {
   display: flex;
   width: 400px;
   height: 200px;
+  box-shadow: -4px 5px 7px -2px rgba(0,0,0,0.75);
+  border: 1px solid lightgray;
+  margin: 15px;
 }
 
 .accom-card-color {
@@ -566,7 +553,7 @@ nav a {
 .accom-header {
   color: white;
   background-color: #53aad9;
-  width: 700px;
+  width: 1000px;
   height: 40px;
   display: flex;
   justify-content: space-between;
