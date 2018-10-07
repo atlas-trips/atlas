@@ -2,7 +2,7 @@ const router = require('express').Router();
 const User = require('../db/models/user');
 const Trip = require('../db/models/trip');
 const nodemailer = require('nodemailer');
-const {email, password} = require('../../secrets');
+// const {email, password} = require('../../secrets');
 
 module.exports = router;
 
@@ -58,10 +58,11 @@ router.post('/refsignup', async (req, res, next) => {
       service: 'yahoo',
       port: 465,
       auth: {
-        user: `${email}`,
-        pass: `${password}`
+        user: process.env.email,
+        pass: process.env.password
       }
     });
+    const email = process.env.email
     const mailOptions = {
       from: `Atlas Trips <${email}>`,
       to: usersArr,

@@ -64,7 +64,8 @@ class AccommodationForm extends Component {
     const {name, value} = event.target;
     this.setState({[name]: value});
   }
-  handleSubmit() {
+  async handleSubmit(event) {
+    event.preventDefault();
     if (
       this.state.from === undefined ||
       this.state.to === undefined ||
@@ -83,8 +84,8 @@ class AccommodationForm extends Component {
       endDate: formatDate(this.state.to),
       tripId: this.props.trip.id
     };
-    this.props.makeAccommodation(newAccommodation);
-    this.props.history.push('/accommodations');
+    await this.props.makeAccommodation(newAccommodation);
+    this.props.handleClick();
   }
   render() {
     const {from, to, name, location} = this.state;
