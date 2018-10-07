@@ -3,6 +3,14 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MapWithASearchBox from './SearchMap';
 
+const activityFormStyle = {
+  border: '2px solid black',
+  display: 'flex',
+  justifyContent: 'space-around',
+  borderRadius: '15px',
+  width: '500px'
+};
+
 class ActivitiesForm extends Component {
   constructor(props) {
     super(props);
@@ -94,29 +102,32 @@ class ActivitiesForm extends Component {
         </h4>
         <h1>_______________</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="activityName" />
-          <input
-            type="text"
-            name="activityName"
-            value={this.state.activityName}
-            onChange={this.handleChange}
-            placeholder="Name of Activity"
-          />
-
+        <form style={activityFormStyle} onSubmit={this.handleSubmit}>
           <div>
-            <DayPicker
-              selectedDays={this.state.selectedDay}
-              onDayClick={this.handleDayClick}
-            />
             <p>
               {this.state.selectedDay
                 ? this.state.selectedDay.toLocaleDateString()
                 : 'Please select a day'}
             </p>
-          </div>
 
-          <button type="submit">Add activity</button>
+            <DayPicker
+              onDayClick={this.handleDayClick}
+              selectedDays={this.state.selectedDay}
+            />
+          </div>
+          <div style={{position: 'center', margin: '0 auto'}}>
+            <label htmlFor="activityName" />
+            <input
+              type="text"
+              name="activityName"
+              value={this.state.activityName}
+              onChange={this.handleChange}
+              placeholder="Name of Activity"
+              style={{display: 'block'}}
+            />
+
+            <button type="submit">Add activity</button>
+          </div>
         </form>
       </div>
     );

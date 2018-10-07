@@ -63,11 +63,11 @@ router.post('/refsignup', async (req, res, next) => {
       }
     });
     const mailOptions = {
-      from: `${email}`,
+      from: `Atlas Trips <${email}>`,
       to: usersArr,
       subject: `${req.body.email} has joined your trip!`,
       text: `Test`,
-      replyTo: `${req.body.emailFrom}`
+      replyTo: `${email}`
     };
     transporter.sendMail(mailOptions, function(err, res) {
       if (err) {

@@ -34,8 +34,6 @@ router.post('/', async (req, res, next) => {
 //SHARE TRIP ROUTE
 
 router.post('/share', async (req, res, next) => {
-  console.log('in the share post route', req.body);
-
   const transporter = nodemailer.createTransport({
     service: 'yahoo',
     port: 465,
@@ -47,15 +45,15 @@ router.post('/share', async (req, res, next) => {
 
   console.log('transporter', transporter);
   const mailOptions = {
-    from: `${req.body.emailFrom}`,
+    from: `Atlas Trips <${email}>`,
     to: `${req.body.friendEmail}`,
     subject: `You've been invited to join ${req.body.personFrom}'s ${
       req.body.tripName
     } trip!`,
-    text: `I think we need to reseed Heroku for link to register Join here - http://atlas-trips.herokuapp.com/join/${
+    text: `Join here - http://atlas-trips.herokuapp.com/join/${
       req.body.tripLink
     }`,
-    replyTo: `${req.body.emailFrom}`
+    replyTo: `${email}`
   };
   transporter.sendMail(mailOptions, function(err, res) {
     if (err) {
