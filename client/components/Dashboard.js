@@ -10,12 +10,10 @@ class Dashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: false,
-      clicked: false
+      selected: false
     };
     this.handleClick = this.handleClick.bind(this);
     this.goBack = this.goBack.bind(this);
-    this.showShareLink = this.showShareLink.bind(this);
   }
 
   componentDidMount() {
@@ -31,10 +29,6 @@ class Dashboard extends React.Component {
   goBack(evt) {
     evt.preventDefault();
     this.setState({selected: false});
-  }
-
-  showShareLink() {
-    this.setState({clicked: !this.state.clicked});
   }
 
   render() {

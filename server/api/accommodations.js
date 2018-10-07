@@ -35,11 +35,11 @@ router.delete('/', async (req, res, next) => {
     const accomId = req.body.id;
     await Accommodation.destroy({
       where: {
-        id: accomId,
+        id: accomId
       }
-    })
+    });
     res.status(204).send();
   } catch (error) {
     next(error);
   }
-})
+});

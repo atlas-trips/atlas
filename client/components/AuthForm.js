@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {auth} from '../store';
 import {fetchRefTrip} from '../store/trip';
-import Sidebar from './Sidebar';
 
 /**
  * COMPONENT
@@ -31,7 +30,6 @@ class AuthForm extends Component {
 
     return (
       <div>
-        <Sidebar />
         <div className="auth-container">
           <div className="auth-form">
             <div className="auth-form-title">

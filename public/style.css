@@ -101,6 +101,22 @@ nav a {
   box-shadow: 5px 0px 19px -7px rgba(0, 0, 0, 0.75);
 }
 
+.sidebar-minimal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 88px;
+  height: 100%;
+  margin-right: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 80;
+  background-color: #007ba7;
+  align-items: center;
+  box-shadow: 5px 0px 19px -7px rgba(0, 0, 0, 0.75);
+}
+
 .sidebar-item {
   padding: 15px 24px;
 }
@@ -119,7 +135,6 @@ nav a {
 
 .side-top {
   margin-top: 100px;
-  margin-bottom: 50px;
 }
 
 .side-bottom {
