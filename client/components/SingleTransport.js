@@ -8,15 +8,16 @@ const SingleTransport = props => {
       <h3>{transport.method}</h3>
       {!transport.flightNum ? null : (
         <h3>
-          <a href={`http://www.google.com/search?q=${transport.flightNum}`}>
+          <a
+            target="_blank"
+            href={`http://www.google.com/search?q=${transport.flightNum}`}
+          >
             {transport.flightNum}
           </a>
         </h3>
       )}
 
-      <h3>
-        {transport.date.replace(/(\d{4})\-(\d{2})\-(\d{2}).*/, '$3-$2-$1')}
-      </h3>
+      <h3>{transport.date.slice(0, 10)}</h3>
       <button
         type="submit"
         onClick={() => props.onDelete(user.id, transport.id)}

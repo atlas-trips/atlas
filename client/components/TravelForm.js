@@ -23,27 +23,6 @@ class TravelForm extends Component {
     });
   };
 
-  // onDelete = async event => {
-  //   event.preventDefault();
-  //   const {users} = this.props.selectedTrip;
-  //   const [selectedUser] = users.filter(
-  //     u => u.name === this.state.selectedUser
-  //   );
-
-  //   await axios.put(
-  //     `/api/transportation/${this.props.selectedTrip.id}/${selectedUser.id}`,
-  //     this.state
-  //   );
-
-  //   this.setState({
-  //     selectedUser: '',
-  //     method: '',
-  //     flightNum: '',
-  //     date: undefined
-  //   });
-  //   this.props.getTrip(this.props.selectedTrip.id);
-  // };
-
   onSubmit = async event => {
     event.preventDefault();
     const {users} = this.props.selectedTrip;
@@ -66,6 +45,8 @@ class TravelForm extends Component {
 
   render() {
     const {users} = this.props.selectedTrip;
+    const enabled =
+      this.state.selectedUser && this.state.method && this.state.date;
 
     return (
       <form onSubmit={this.onSubmit} className="travel-form">
@@ -110,10 +91,11 @@ class TravelForm extends Component {
         )}
 
         <label>Date</label>
-        {/* <input name="date" onChange={this.onChange} value={this.state.date} /> */}
         <DayPickerInput onDayChange={this.selectDay} />
 
-        <button type="submit">Add Transportation </button>
+        <button disabled={!enabled} type="submit">
+          Add Transportation{' '}
+        </button>
       </form>
     );
   }
