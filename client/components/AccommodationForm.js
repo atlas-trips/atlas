@@ -95,18 +95,13 @@ class AccommodationForm extends Component {
         <Sidebar />
         <div className="accommo-form">
           <div className="accommo-form-title">
-            <div className="accommo-form-title-content">
-              Atlas
-            </div>
+            <div className="accommo-form-title-content">Atlas</div>
             <div className="accommo-form-title-content">
               Add An Accommodation
             </div>
           </div>
           <div className="accommo-form-inputs">
-            <label
-              htmlFor="name"
-              className="accommo-form-input-label"
-            >
+            <label htmlFor="name" className="accommo-form-input-label">
               Accommodation Name:
             </label>
             <input
@@ -117,12 +112,10 @@ class AccommodationForm extends Component {
               className="accommo-form-text-input"
               autoFocus={true}
             />
-          </div><br/>
+          </div>
+          <br />
           <div className="accommo-form-inputs">
-            <label
-              htmlFor="location"
-              className="accommo-form-input-label"
-            >
+            <label htmlFor="location" className="accommo-form-input-label">
               Accommodation Address:
             </label>
             <input
@@ -143,7 +136,10 @@ class AccommodationForm extends Component {
                     ${to.toLocaleDateString()}`}{' '}
               {from &&
                 to && (
-                  <button className="link date-reset-button" onClick={this.handleResetClick}>
+                  <button
+                    className="link date-reset-button"
+                    onClick={this.handleResetClick}
+                  >
                     Reset
                   </button>
                 )}
@@ -159,10 +155,7 @@ class AccommodationForm extends Component {
               <style>{helmetStyle}</style>
             </Helmet>
           </div>
-          <button
-            onClick={this.handleSubmit}
-            className="accommo-form-submit"
-          >
+          <button onClick={this.handleSubmit} className="accommo-form-submit">
             <div className="accommo-form-submit-text">SUBMIT</div>
           </button>
         </div>
