@@ -158,15 +158,12 @@ class AccommodationForm extends Component {
               <style>{helmetStyle}</style>
             </Helmet>
           </div>
-          <div
+          <button
             onClick={this.handleSubmit}
-            className="accommo-form-add"
+            className="accommo-form-submit"
           >
-            <div className="accommo-form-add-plus">+</div>
-            <div className="accommo-form-add-text">
-              Create New Accommodation
-            </div>
-          </div>
+            <div className="accommo-form-submit-text">SUBMIT</div>
+          </button>
         </div>
       </div>
     );

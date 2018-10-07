@@ -137,15 +137,12 @@ class TripForm extends Component {
               <style>{helmetStyle}</style>
             </Helmet>
           </div>
-          <div
+          <button
             onClick={this.handleSubmit}
-            className="trip-form-add"
+            className="trip-form-submit"
           >
-            <div className="trip-form-add-plus">+</div>
-            <div className="trip-form-add-text">
-              Create New Trip
-            </div>
-          </div>
+            <div className="trip-form-submit-text">SUBMIT</div>
+          </button>
         </div>
       </div>
     );
