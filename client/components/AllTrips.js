@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 
 const AllTrips = props => {
   const trips = props.trips;
-
   return !trips.length ? null : (
     <div className="all-trips-container">
       <Link to="/new">

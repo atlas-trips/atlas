@@ -254,7 +254,7 @@ nav a {
   border: 1px solid #53aad9;
 }
 
-.trip-form {
+.trip-form, .accommo-form {
   text-align: center;
   width: 700px;
   height: 450px;
@@ -262,14 +262,14 @@ nav a {
   box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.75);
 }
 
-.trip-form-name {
+.trip-form-name, .accommo-form-inputs {
   color: white;
   font-weight: bolder;
   display: flex;
   justify-content: center;
 }
 
-.trip-form-title {
+.trip-form-title, .accommo-form-title {
   width: 700px;
   height: 40px;
   background-color: #53aad9;
@@ -278,7 +278,7 @@ nav a {
   margin-bottom: 10px;
 }
 
-.trip-form-title-content {
+.trip-form-title-content, .accommo-form-title-content {
   color: white;
   font-family: 'Istok Web', sans-serif;
   line-height: 40px;
@@ -286,7 +286,7 @@ nav a {
   margin: 0 10px;
 }
 
-.trip-form-name-label {
+.trip-form-name-label, .accommo-form-input-label {
   width: 130px;
   height: 30px;
   line-height: 30px;
@@ -297,14 +297,14 @@ nav a {
   font-size: 1.1em;
 }
 
-.trip-form-name-input {
+.trip-form-name-input, .accommo-form-text-input, .accommo-form-text-input-loc {
   border: 1px solid #c60057;
   width: 130px;
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
   font-family: 'Istok Web', sans-serif;
   color: #c60057;
-  padding-left: 15px;
+  padding-left: 10px;
   font-size: 1.1em;
 }
 
@@ -325,13 +325,13 @@ nav a {
   font-weight: bold;
 }
 
-.trip-form-container {
+.trip-form-container, .accommo-form-container {
   display: flex;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 70px;
 }
 
-.trip-form-add {
+.trip-form-add, .accommo-form-add {
   width: 180px;
   height: 40px;
   border: 2px solid #c60057;
@@ -343,7 +343,7 @@ nav a {
   cursor: pointer;
 }
 
-.trip-form-add-plus {
+.trip-form-add-plus, .accommo-form-add-plus {
   color: white;
   background-color: #c60057;
   border: 1px solid #c60057;
@@ -354,7 +354,28 @@ nav a {
   line-height: 28px;
 }
 
-.trip-form-add-text {
+.trip-form-add-text, .accommo-form-add-text {
   color: #c60057;
   font-weight: bold;
+}
+
+.accommo-form {
+  height: 490px;
+}
+
+.accommo-form-input-label {
+  width: 200px;
+  font-size: 1em;
+}
+
+.accommo-form-text-input {
+  width: 180px;
+}
+
+.accommo-form-text-input-loc {
+  width: 290px;
+}
+
+.accommo-form-add {
+  width: 280px;
 }
