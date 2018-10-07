@@ -57,14 +57,6 @@ class Sidebar extends React.Component {
             <img src="/images/activity.png" height="40" alt="activity" />
           </Link>
         </div>
-        {/* <div
-          className="sidebar-item-bottom"
-          onClick={e => this.handleClick(e, selected)}
-        >
-          <Link to={selected ? '/expenses' : defaultPath}>
-            <img src="/images/money.png" height="50" alt="money" />
-          </Link>
-        </div> */}
       </div>
     );
   }

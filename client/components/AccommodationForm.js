@@ -4,6 +4,7 @@ import DayPicker, {DateUtils} from 'react-day-picker';
 import {connect} from 'react-redux';
 import 'react-day-picker/lib/style.css';
 import {getNewAccommodation} from '../store/accommodation';
+import Sidebar from './Sidebar';
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -83,58 +84,90 @@ class AccommodationForm extends Component {
       tripId: this.props.trip.id
     };
     this.props.makeAccommodation(newAccommodation);
-    this.props.history.push('/dashboard');
+    this.props.history.push('/accommodations');
   }
   render() {
     const {from, to, name, location} = this.state;
     const modifiers = {start: from, end: to};
     return (
-      <div style={{textAlign: 'center'}}>
-        <div>
-          <label htmlFor="name">Accommodation Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={name}
-            onChange={this.handleChange}
-          />
+      <div className="accommo-form-container">
+        <Sidebar />
+        <div className="accommo-form">
+          <div className="accommo-form-title">
+            <div className="accommo-form-title-content">
+              Atlas
+            </div>
+            <div className="accommo-form-title-content">
+              Add An Accommodation
+            </div>
+          </div>
+          <div className="accommo-form-inputs">
+            <label
+              htmlFor="name"
+              className="accommo-form-input-label"
+            >
+              Accommodation Name:
+            </label>
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={this.handleChange}
+              className="accommo-form-text-input"
+              autoFocus="true"
+            />
+          </div><br/>
+          <div className="accommo-form-inputs">
+            <label
+              htmlFor="location"
+              className="accommo-form-input-label"
+            >
+              Accommodation Address:
+            </label>
+            <input
+              type="text"
+              name="location"
+              value={location}
+              onChange={this.handleChange}
+              className="accommo-form-text-input-loc"
+            />
+          </div>
+          <div className="RangeExample">
+            <p>
+              {!from && !to && 'Please select the first day:'}
+              {from && !to && 'Please select the last day:'}
+              {from &&
+                to &&
+                `Selected from ${from.toLocaleDateString()} to
+                    ${to.toLocaleDateString()}`}{' '}
+              {from &&
+                to && (
+                  <button className="link date-reset-button" onClick={this.handleResetClick}>
+                    Reset
+                  </button>
+                )}
+            </p>
+            <DayPicker
+              className="Selectable"
+              numberOfMonths={this.props.numberOfMonths}
+              selectedDays={[from, {from, to}]}
+              modifiers={modifiers}
+              onDayClick={this.handleDayClick}
+            />
+            <Helmet>
+              <style>{helmetStyle}</style>
+            </Helmet>
+          </div>
+          <div
+            onClick={this.handleSubmit}
+            className="accommo-form-add"
+          >
+            <div className="accommo-form-add-plus">+</div>
+            <div className="accommo-form-add-text">
+              Create New Accommodation
+            </div>
+          </div>
         </div>
-        <div>
-          <label htmlFor="location">Accommodation Address:</label>
-          <input
-            type="text"
-            name="location"
-            value={location}
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="RangeExample">
-          <p>
-            {!from && !to && 'Please select the first day.'}
-            {from && !to && 'Please select the last day.'}
-            {from &&
-              to &&
-              `Selected from ${from.toLocaleDateString()} to
-                  ${to.toLocaleDateString()}`}{' '}
-            {from &&
-              to && (
-                <button className="link" onClick={this.handleResetClick}>
-                  Reset
-                </button>
-              )}
-          </p>
-          <DayPicker
-            className="Selectable"
-            numberOfMonths={this.props.numberOfMonths}
-            selectedDays={[from, {from, to}]}
-            modifiers={modifiers}
-            onDayClick={this.handleDayClick}
-          />
-          <Helmet>
-            <style>{helmetStyle}</style>
-          </Helmet>
-        </div>
-        <button onClick={this.handleSubmit}>Create New Trip</button>
       </div>
     );
   }
