@@ -108,7 +108,7 @@ class TripForm extends Component {
               value={tripName}
               onChange={this.handleChange}
               className="trip-form-name-input"
-              autoFocus="true"
+              autoFocus={true}
             />
           </div>
           <div className="RangeExample">
