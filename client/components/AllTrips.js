@@ -12,38 +12,36 @@ const AllTrips = props => {
       <div className="all-trips">
         {trips.map(trip => {
           return (
-            <div
-              key={trip.name}
-              className="all-trips-trip"
-              onClick={evt => props.click(evt, trip.id)}
-            >
-              <img
-                src={`/images/${trip.name.toLowerCase()}.jpg`}
-                width="360"
-                alt=""
-                className="all-trips-trip-image"
-              />
-              <p className="all-trips-trip-name">{trip.name.toUpperCase()}</p>
-              <div className="all-trips-info">
-                <div>
-                  <p className="all-trips-trip-when">
-                    START: <br />
-                    {new Date(trip.startDate).toString().slice(0, 16)}
-                  </p>
-                </div>
-                <div className="all-trips-trip-more">
-                  <p>
-                    CLICK TO <br /> SEE MORE
-                  </p>
-                </div>
-                <div>
-                  <p className="all-trips-trip-when">
-                    END: <br />
-                    {new Date(trip.endDate).toString().slice(0, 16)}
-                  </p>
+            <Link to={`/trip/${trip.id}`} key={trip.name}>
+              <div className="all-trips-trip">
+                <img
+                  src={`/images/${trip.name.toLowerCase()}.jpg`}
+                  width="360"
+                  alt=""
+                  className="all-trips-trip-image"
+                />
+                <p className="all-trips-trip-name">{trip.name.toUpperCase()}</p>
+                <div className="all-trips-info">
+                  <div>
+                    <p className="all-trips-trip-when">
+                      START: <br />
+                      {new Date(trip.startDate).toString().slice(0, 16)}
+                    </p>
+                  </div>
+                  <div className="all-trips-trip-more">
+                    <p>
+                      CLICK TO <br /> SEE MORE
+                    </p>
+                  </div>
+                  <div>
+                    <p className="all-trips-trip-when">
+                      END: <br />
+                      {new Date(trip.endDate).toString().slice(0, 16)}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           );
         })}
       </div>

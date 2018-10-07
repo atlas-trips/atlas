@@ -14,7 +14,8 @@ import {
   Landing,
   TripForm,
   AccommodationForm,
-  ShareTrip
+  ShareTrip,
+  SingleTrip
 } from './components';
 import {me} from './store';
 
@@ -41,6 +42,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/trip/:id" component={SingleTrip} />
             <Route path="/accommodations" component={Accommodations} />
             <Route path="/calendar" component={Calendar} />
             <Route path="/expenses" component={Expenses} />

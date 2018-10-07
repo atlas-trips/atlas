@@ -101,6 +101,22 @@ nav a {
   box-shadow: 5px 0px 19px -7px rgba(0, 0, 0, 0.75);
 }
 
+.sidebar-minimal {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 88px;
+  height: 100%;
+  margin-right: 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 80;
+  background-color: #007ba7;
+  align-items: center;
+  box-shadow: 5px 0px 19px -7px rgba(0, 0, 0, 0.75);
+}
+
 .sidebar-item {
   padding: 15px 24px;
 }
@@ -119,7 +135,6 @@ nav a {
 
 .side-top {
   margin-top: 100px;
-  margin-bottom: 50px;
 }
 
 .side-bottom {
@@ -254,22 +269,25 @@ nav a {
   border: 1px solid #53aad9;
 }
 
-.trip-form, .accommo-form {
+.trip-form,
+.accommo-form {
   text-align: center;
   width: 700px;
   height: 500px;
   background-color: white;
-  box-shadow: -7px 7px 6px -2px rgba(0,0,0,0.75);
+  box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
 }
 
-.trip-form-name, .accommo-form-inputs {
+.trip-form-name,
+.accommo-form-inputs {
   color: white;
   font-weight: bolder;
   display: flex;
   justify-content: center;
 }
 
-.trip-form-title, .accommo-form-title {
+.trip-form-title,
+.accommo-form-title {
   width: 700px;
   height: 40px;
   background-color: #53aad9;
@@ -278,7 +296,8 @@ nav a {
   margin-bottom: 10px;
 }
 
-.trip-form-title-content, .accommo-form-title-content {
+.trip-form-title-content,
+.accommo-form-title-content {
   color: white;
   font-family: 'Istok Web', sans-serif;
   line-height: 40px;
@@ -286,7 +305,8 @@ nav a {
   margin: 0 10px;
 }
 
-.trip-form-name-label, .accommo-form-input-label {
+.trip-form-name-label,
+.accommo-form-input-label {
   width: 130px;
   height: 30px;
   line-height: 30px;
@@ -297,7 +317,9 @@ nav a {
   font-size: 1.1em;
 }
 
-.trip-form-name-input, .accommo-form-text-input, .accommo-form-text-input-loc {
+.trip-form-name-input,
+.accommo-form-text-input,
+.accommo-form-text-input-loc {
   border: 1px solid #c60057;
   width: 130px;
   border-top-right-radius: 3px;
@@ -325,13 +347,15 @@ nav a {
   font-weight: bold;
 }
 
-.trip-form-container, .accommo-form-container {
+.trip-form-container,
+.accommo-form-container {
   display: flex;
   justify-content: center;
   margin-top: 70px;
 }
 
-.trip-form-add, .accommo-form-add {
+.trip-form-add,
+.accommo-form-add {
   width: 180px;
   height: 45px;
   border: 2px solid #c60057;
@@ -343,7 +367,8 @@ nav a {
   cursor: pointer;
 }
 
-.trip-form-add-plus, .accommo-form-add-plus {
+.trip-form-add-plus,
+.accommo-form-add-plus {
   color: white;
   background-color: #c60057;
   border: 2px solid #c60057;
@@ -354,7 +379,8 @@ nav a {
   line-height: 40px;
 }
 
-.trip-form-add-text, .accommo-form-add-text {
+.trip-form-add-text,
+.accommo-form-add-text {
   color: #c60057;
   font-weight: bold;
 }
@@ -400,7 +426,7 @@ nav a {
   display: flex;
   background-color: white;
   margin: 40px auto 0;
-  box-shadow: 0px 5px 13px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 13px -4px rgba(0, 0, 0, 0.75);
 }
 
 .auth-form {
@@ -411,7 +437,8 @@ nav a {
   align-items: center;
 }
 
-.auth-form-label, .auth-form-label-pass {
+.auth-form-label,
+.auth-form-label-pass {
   width: 38px;
   height: 30px;
   line-height: 30px;
@@ -428,7 +455,8 @@ nav a {
   display: flex;
 }
 
-.auth-form-text, .auth-form-text-pass {
+.auth-form-text,
+.auth-form-text-pass {
   border: 1px solid #c60057;
   width: 132px;
   border-top-right-radius: 3px;
@@ -436,7 +464,7 @@ nav a {
   font-family: 'Istok Web', sans-serif;
   color: #c60057;
   padding-left: 5px;
-  font-size: .8em;
+  font-size: 0.8em;
 }
 
 .auth-form-label-pass {
@@ -462,7 +490,7 @@ nav a {
   font-size: 1.3em;
   border-radius: 2px;
   cursor: pointer;
-  box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 22px -4px rgba(0, 0, 0, 0.75);
 }
 
 .auth-oauth {
@@ -470,7 +498,7 @@ nav a {
   flex-direction: column;
   align-items: center;
   padding: 7px;
-  box-shadow: 0px 5px 13px -4px rgba(0,0,0,0.75);
+  box-shadow: 0px 5px 13px -4px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
 }
 
@@ -498,12 +526,12 @@ nav a {
 }
 
 .accom-container {
-  width: 700px;
+  width: 1000px;
   background-color: white;
   margin: 40px auto 0;
   text-align: center;
   font-family: 'Istok Web', sans-serif;
-  box-shadow: -7px 7px 6px -2px rgba(0,0,0,0.75);
+  box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
 }
 
@@ -513,26 +541,13 @@ nav a {
   justify-content: space-evenly;
 }
 
-.accom-card-border {
-  width: 400px;
-  height: 198px;
-  border-top: 2px solid #004578;
-  border-bottom: 2px solid #53aad9;
-  background-image:
-      linear-gradient(#004578, #53aad9),
-      linear-gradient(#004578, #53aad9)
-  ;
-  background-size:1px 100%;
-  background-position:0 0, 100% 0;
-  background-repeat:no-repeat;
-  margin: 8px;
-  box-shadow: -4px 5px 7px -2px rgba(0,0,0,0.75);
-}
-
 .accom-card {
   display: flex;
   width: 400px;
   height: 200px;
+  box-shadow: -4px 5px 7px -2px rgba(0, 0, 0, 0.75);
+  border: 1px solid lightgray;
+  margin: 15px;
 }
 
 .accom-card-color {
@@ -566,7 +581,7 @@ nav a {
 .accom-header {
   color: white;
   background-color: #53aad9;
-  width: 700px;
+  width: 1000px;
   height: 40px;
   display: flex;
   justify-content: space-between;
@@ -576,7 +591,8 @@ nav a {
   border-top-right-radius: 3px;
 }
 
-.accommo-form-submit, .trip-form-submit {
+.accommo-form-submit,
+.trip-form-submit {
   width: 130px;
   height: 40px;
   background-color: #c60057;
@@ -586,14 +602,14 @@ nav a {
   border-radius: 3px;
   align-items: center;
   cursor: pointer;
-  box-shadow: -3px 3px 6px -2px rgba(0,0,0,0.75);
-
+  box-shadow: -3px 3px 6px -2px rgba(0, 0, 0, 0.75);
 }
 
-.accommo-form-submit-text, .trip-form-submit-text {
+.accommo-form-submit-text,
+.trip-form-submit-text {
   color: white;
   font-size: 1.4em;
-  font-weight: bolder
+  font-weight: bolder;
 }
 
 .RangeExample {
@@ -602,4 +618,23 @@ nav a {
 
 .accommo-form {
   height: 550px;
+}
+
+.accom-card-delete {
+  display: flex;
+  justify-content: flex-end;
+  width: 220px;
+}
+
+.accom-card-delete button {
+  background-color: rgb(208, 4, 4);
+  color: white;
+  border: none;
+  font-weight: bolder;
+  font-size: 125%;
+  align-self: flex-end;
+  margin-top: 10px;
+  border-top: 1px solid darkgray;
+  border-left: 1px solid darkgray;
+  cursor: pointer;
 }
