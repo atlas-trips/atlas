@@ -17,29 +17,54 @@ class Accommodations extends React.Component {
     return (
       <div>
         <Sidebar />
-        <div style={{marginLeft: '100px'}}>
-          <h1>accommodations go here</h1>
-          <br />
-          <div className="accommodation-container">
-            {this.props.accommodations.length > 0
-              ? this.props.accommodations.map(accom => {
-                  return (
-                    <div
-                      className="single-accomodation"
-                      key={`accom${accom.id}`}
-                    >
-                      <h4>{accom.name}</h4>
-                      <h5>{accom.location}</h5>
-                      <p>
-                        {accom.startDate.slice(0, 10)} -{' '}
-                        {accom.endDate.slice(0, 10)}
-                      </p>
-                    </div>
-                  );
-                })
-              : 'No Accommodations Booked'}
+        <div className="accom-container">
+          <div className="accom-header">
+            <div>
+              <span style={{marginLeft: '8px'}}>Atlas</span>
+            </div>
+            <div>
+              <span style={{marginRight: '8px'}}>
+                {this.props.trip.name} Accommodations
+              </span>
+            </div>
           </div>
-          <Link to="/addaccommodation">Add a new accommodation:</Link>
+          <div className="accom-card-container">
+            {this.props.accommodations.length > 0 ? (
+              this.props.accommodations.map(accom => {
+                return (
+                  <div className="accom-card-border">
+                    <div className="accom-card" key={`accom${accom.id}`}>
+                      <div className="accom-card-color">
+                        <h4>{accom.name}</h4>
+                        <img src="/images/bed.png" width="80" alt="" />
+                      </div>
+                      <div className="accom-card-info">
+                        <span className="accom-card-info-title">Location:</span>
+                        <span>{accom.location}</span>
+                        <br />
+                        <span className="accom-card-info-title">From:</span>
+                        {new Date(accom.startDate).toString().slice(0, 16)}
+                        <span className="accom-card-info-title">To:</span>
+                        {new Date(accom.endDate).toString().slice(0, 16)}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <h2>No Accommodations Booked</h2>
+            )}
+          </div>
+          <br />
+          <Link to="/addaccommodation">
+            <div onClick={this.handleSubmit} className="accommo-form-add">
+              <div className="accommo-form-add-plus">+</div>
+              <div className="accommo-form-add-text">
+                Create New Accommodation
+              </div>
+            </div>
+          </Link>
+          <br />
         </div>
       </div>
     );
