@@ -4,6 +4,7 @@ import DayPicker, {DateUtils} from 'react-day-picker';
 import {connect} from 'react-redux';
 import 'react-day-picker/lib/style.css';
 import {makeTrip} from '../store/trip';
+import Sidebar from './Sidebar';
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -84,38 +85,68 @@ class TripForm extends Component {
     const {from, to, tripName} = this.state;
     const modifiers = {start: from, end: to};
     return (
-      <div style={{textAlign: 'center'}}>
-        <div>
-          <label htmlFor="tripName">Trip Name:</label>
-          <input type="text" value={tripName} onChange={this.handleChange} />
+      <div className="trip-form-container">
+        <Sidebar />
+        <div className="trip-form">
+          <div className="trip-form-title">
+            <div className="trip-form-title-content">
+              Atlas
+            </div>
+            <div className="trip-form-title-content">
+              Add A Trip
+            </div>
+          </div>
+          <div className="trip-form-name">
+            <label
+              className="trip-form-name-label"
+              htmlFor="tripName"
+            >
+              Trip Name:
+            </label>
+            <input
+              type="text"
+              value={tripName}
+              onChange={this.handleChange}
+              className="trip-form-name-input"
+              autoFocus="true"
+            />
+          </div>
+          <div className="RangeExample">
+            <p>
+              {!from && !to && 'Please select the first day:'}
+              {from && !to && 'Please select the last day:'}
+              {from &&
+                to &&
+                `Selected from ${from.toLocaleDateString()} to
+                    ${to.toLocaleDateString()}`}{' '}
+              {from &&
+                to && (
+                  <button className="link date-reset-button" onClick={this.handleResetClick}>
+                    Reset
+                  </button>
+                )}
+            </p>
+            <DayPicker
+              className="Selectable"
+              numberOfMonths={this.props.numberOfMonths}
+              selectedDays={[from, {from, to}]}
+              modifiers={modifiers}
+              onDayClick={this.handleDayClick}
+            />
+            <Helmet>
+              <style>{helmetStyle}</style>
+            </Helmet>
+          </div>
+          <div
+            onClick={this.handleSubmit}
+            className="trip-form-add"
+          >
+            <div className="trip-form-add-plus">+</div>
+            <div className="trip-form-add-text">
+              Create New Trip
+            </div>
+          </div>
         </div>
-        <div className="RangeExample">
-          <p>
-            {!from && !to && 'Please select the first day.'}
-            {from && !to && 'Please select the last day.'}
-            {from &&
-              to &&
-              `Selected from ${from.toLocaleDateString()} to
-                  ${to.toLocaleDateString()}`}{' '}
-            {from &&
-              to && (
-                <button className="link" onClick={this.handleResetClick}>
-                  Reset
-                </button>
-              )}
-          </p>
-          <DayPicker
-            className="Selectable"
-            numberOfMonths={this.props.numberOfMonths}
-            selectedDays={[from, {from, to}]}
-            modifiers={modifiers}
-            onDayClick={this.handleDayClick}
-          />
-          <Helmet>
-            <style>{helmetStyle}</style>
-          </Helmet>
-        </div>
-        <button onClick={this.handleSubmit}>Create New Trip</button>
       </div>
     );
   }
