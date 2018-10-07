@@ -29,3 +29,17 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
+
+router.delete('/', async (req, res, next) => {
+  try {
+    const accomId = req.body.id;
+    await Accommodation.destroy({
+      where: {
+        id: accomId,
+      }
+    })
+    res.status(204).send();
+  } catch (error) {
+    next(error);
+  }
+})
