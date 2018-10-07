@@ -34,17 +34,17 @@ class Dashboard extends React.Component {
   render() {
     const {user} = this.props;
     return (
-      <div className='dashboard'>
+      <div className="dashboard">
         <Sidebar />
         <div className="dashboard-content">
-          {this.props.trips.length > 0 ?
-              <AllTrips trips={this.props.trips} select={this.handleClick} />
-            : 
-            <h3>No Trips Available</h3>}
+          {this.props.trips.length > 0 ? (
+            <AllTrips trips={this.props.trips} select={this.handleClick} />
+          ) : (
+            <h3>No Trips Available</h3>
+          )}
         </div>
-      
       </div>
-    )
+    );
   }
 }
 
@@ -55,8 +55,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatch = dispatch => ({
-  fetchTrips: id => dispatch(fetchTrips(id)),
-
+  fetchTrips: id => dispatch(fetchTrips(id))
 });
 
 export default connect(mapStateToProps, mapDispatch)(Dashboard);
