@@ -20,6 +20,11 @@ async function seed() {
     password: '123',
     name: 'Cody'
   });
+  const kemet = await User.create({
+    email: 'soccerk718@yahoo.com',
+    password: '123',
+    name: 'Kemet'
+  });
   const murphy = await User.create({
     email: 'murphy@email.com',
     password: '123',

@@ -64,10 +64,10 @@ nav a {
   margin: 1em;
 }
 
-form div {
+/* form div {
   margin: 1em;
   display: inline-block;
-}
+} */
 
 .travel-container {
   display: flex;
@@ -98,7 +98,7 @@ form div {
   bottom: 80;
   background-color: #007ba7;
   align-items: center;
-  box-shadow: 5px 0px 19px -7px rgba(0,0,0,0.75);
+  box-shadow: 5px 0px 19px -7px rgba(0, 0, 0, 0.75);
 }
 
 .sidebar-item {
@@ -110,7 +110,7 @@ form div {
 }
 
 .sidebar-item img {
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .sidebar-item img:hover {
@@ -154,7 +154,7 @@ form div {
   background-color: white;
   border-radius: 3px;
   transition: all ease-in-out 300ms;
-  box-shadow: 0px 17px 10px -10px rgba(0,0,0,0.4);
+  box-shadow: 0px 17px 10px -10px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   min-width: 350px;
   height: 221px;
@@ -162,7 +162,7 @@ form div {
 }
 
 .all-trips-trip:hover {
-  box-shadow: 0px 37px 20px -15px rgba(0,0,0,0.2);
+  box-shadow: 0px 37px 20px -15px rgba(0, 0, 0, 0.2);
   transform: translate(0px, -10px);
 }
 
@@ -201,7 +201,7 @@ form div {
   text-align: center;
   border-radius: 15px;
   background-color: white;
-  box-shadow: 0px 0px 7px 0px rgba(5,13,168,1);
+  box-shadow: 0px 0px 7px 0px rgba(5, 13, 168, 1);
   display: flex;
   justify-content: space-evenly;
 }
@@ -229,7 +229,7 @@ form div {
   border-radius: 50px;
   color: white;
   margin-top: 15px;
-  box-shadow: 0px 0px 3px 0px rgba(0,0,0,1);
+  box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 1);
   font-size: 70%;
 }
 
@@ -242,10 +242,10 @@ form div {
   color: white;
   font-family: 'Istok Web', sans-serif;
   font-size: 1em;
-  border: 1px solid #007ba7;;
+  border: 1px solid #007ba7;
   border-radius: 20px;
   font-weight: bolder;
-  box-shadow: 0px 0px 16px -4px rgba(0,0,0,1);
+  box-shadow: 0px 0px 16px -4px rgba(0, 0, 0, 1);
 }
 
 .add-trip:hover {

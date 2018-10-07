@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {auth} from '../store';
 import {fetchRefTrip} from '../store/trip';
+import axios from 'axios';
 
 /**
  * COMPONENT
@@ -27,7 +28,6 @@ class AuthForm extends Component {
       handleSignUpSubmit,
       error
     } = this.props;
-    console.log(this.props);
 
     return (
       <div>
@@ -35,9 +35,13 @@ class AuthForm extends Component {
           onSubmit={
             this.props.location.pathname === '/login'
               ? event => handleSubmit(event)
-              : event => handleSignUpSubmit(event, this.props.trip.selected.id)
+              : event => handleSignUpSubmit(event, this.props.trip.selected)
           }
-          name={name}
+          name={
+            this.props.location.pathname.startsWith('/join')
+              ? 'refsignup'
+              : name
+          }
         >
           <div>
             <div>
@@ -87,7 +91,8 @@ const mapSignup = state => {
     name: 'signup',
     displayName: 'Sign Up',
     error: state.user.error,
-    trip: state.trip
+    trip: state.trip,
+    user: state.user
   };
 };
 
@@ -100,12 +105,12 @@ const mapDispatch = dispatch => {
       const password = evt.target.password.value;
       dispatch(auth(email, password, formName));
     },
-    handleSignUpSubmit(evt, tripId) {
+    handleSignUpSubmit(evt, trip) {
       evt.preventDefault();
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(email, password, formName, tripId));
+      dispatch(auth(email, password, formName, trip));
     },
     getTrip: uniqueLink => dispatch(fetchRefTrip(uniqueLink))
   };

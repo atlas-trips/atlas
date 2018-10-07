@@ -1,7 +1,15 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MapWithASearchBox from './SearchMap';
+
+const activityFormStyle = {
+  border: '2px solid black',
+  display: 'flex',
+  justifyContent: 'space-around',
+  borderRadius: '15px',
+  width: '500px'
+};
 
 class ActivitiesForm extends Component {
   constructor(props) {
@@ -11,12 +19,12 @@ class ActivitiesForm extends Component {
       selectedDay: null,
       selected: {},
       added: false
-    }
+    };
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addActivity = this.addActivity.bind(this);
-    this.resetMarker = this.resetMarker.bind(this)
+    this.resetMarker = this.resetMarker.bind(this);
   }
 
   handleDayClick(day, {selected}) {
@@ -25,8 +33,8 @@ class ActivitiesForm extends Component {
     });
   }
 
-  addActivity(place){
-    this.setState({selected: place})
+  addActivity(place) {
+    this.setState({selected: place});
   }
 
   handleSubmit(event) {
@@ -38,74 +46,88 @@ class ActivitiesForm extends Component {
       tripId: this.props.tripId
     };
     this.props.createNewActivity(newActivity, this.props.tripId);
-    this.setState({added: true})
+    this.setState({added: true});
   }
 
   handleChange(event) {
     this.setState({[event.target.name]: event.target.value});
   }
-  resetMarker(){
-    this.setState({added: false})
+  resetMarker() {
+    this.setState({added: false});
   }
 
   render() {
-    console.log(this.state.selected.formatted_address+'\n'+this.state.selected.name)
-    let coords = this.props.activities.map(activity => (
-      {
-        position : {
-          lat: Number(activity.location.split(',')[0]),
-          lng : Number(activity.location.split(',')[1]),
-        },
-        id: activity.id,
-        name: activity.name
-
-      }
-    ));
+    console.log(
+      this.state.selected.formatted_address + '\n' + this.state.selected.name
+    );
+    let coords = this.props.activities.map(activity => ({
+      position: {
+        lat: Number(activity.location.split(',')[0]),
+        lng: Number(activity.location.split(',')[1])
+      },
+      id: activity.id,
+      name: activity.name
+    }));
     let startLat = 0;
     let startLng = 0;
 
-    if(this.props.activities.length){
+    if (this.props.activities.length) {
       coords.forEach(coord => {
         startLat += coord.position.lat;
         startLng += coord.position.lng;
-      })
+      });
 
       startLat /= coords.length;
       startLng /= coords.length;
     }
     return (
-
       <div>
         <div style={{width: '900px'}}>
-          <MapWithASearchBox startLat={startLat} startLng={startLng} coords={coords} add={this.addActivity} clear={this.state.added} reset={this.resetMarker} />
+          <MapWithASearchBox
+            startLat={startLat}
+            startLng={startLng}
+            coords={coords}
+            add={this.addActivity}
+            clear={this.state.added}
+            reset={this.resetMarker}
+          />
         </div>
-        <h3>Selected:{this.state.selected.id? ' '+this.state.selected.name : ''}</h3>
-        <h4>{this.state.selected.id? this.state.selected.formatted_address : ''}</h4>
+        <h3>
+          Selected:{this.state.selected.id
+            ? ' ' + this.state.selected.name
+            : ''}
+        </h3>
+        <h4>
+          {this.state.selected.id ? this.state.selected.formatted_address : ''}
+        </h4>
         <h1>_______________</h1>
 
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="activityName" />
-          <input
-            type="text"
-            name="activityName"
-            value={this.state.activityName}
-            onChange={this.handleChange}
-            placeholder="Name of Activity"
-          />
-
+        <form style={activityFormStyle} onSubmit={this.handleSubmit}>
           <div>
-            <DayPicker
-              selectedDays={this.state.selectedDay}
-              onDayClick={this.handleDayClick}
-            />
             <p>
               {this.state.selectedDay
                 ? this.state.selectedDay.toLocaleDateString()
                 : 'Please select a day'}
             </p>
-          </div>
 
-          <button type="submit">Add activity</button>
+            <DayPicker
+              onDayClick={this.handleDayClick}
+              selectedDays={this.state.selectedDay}
+            />
+          </div>
+          <div style={{position: 'center', margin: '0 auto'}}>
+            <label htmlFor="activityName" />
+            <input
+              type="text"
+              name="activityName"
+              value={this.state.activityName}
+              onChange={this.handleChange}
+              placeholder="Name of Activity"
+              style={{display: 'block'}}
+            />
+
+            <button type="submit">Add activity</button>
+          </div>
         </form>
       </div>
     );
