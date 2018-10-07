@@ -257,9 +257,9 @@ nav a {
 .trip-form, .accommo-form {
   text-align: center;
   width: 700px;
-  height: 450px;
+  height: 500px;
   background-color: white;
-  box-shadow: 0px 2px 5px 2px rgba(0,0,0,0.75);
+  box-shadow: -7px 7px 6px -2px rgba(0,0,0,0.75);
 }
 
 .trip-form-name, .accommo-form-inputs {
@@ -594,4 +594,12 @@ nav a {
   color: white;
   font-size: 1.4em;
   font-weight: bolder
+}
+
+.RangeExample {
+  height: 340px;
+}
+
+.accommo-form {
+  height: 550px;
 }

@@ -114,7 +114,7 @@ class AccommodationForm extends Component {
               value={name}
               onChange={this.handleChange}
               className="accommo-form-text-input"
-              autoFocus="true"
+              autoFocus={true}
             />
           </div><br/>
           <div className="accommo-form-inputs">
