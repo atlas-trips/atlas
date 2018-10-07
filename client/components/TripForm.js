@@ -84,22 +84,41 @@ class TripForm extends Component {
     const {from, to, tripName} = this.state;
     const modifiers = {start: from, end: to};
     return (
-      <div style={{textAlign: 'center'}}>
-        <div>
-          <label htmlFor="tripName">Trip Name:</label>
-          <input type="text" value={tripName} onChange={this.handleChange} />
+      <div className="trip-form">
+        <div className="trip-form-title">
+          <div className="trip-form-title-content">
+            Atlas
+          </div>
+          <div className="trip-form-title-content">
+            Add A Trip
+          </div>
+        </div>
+        <div className="trip-form-name">
+          <label
+            className="trip-form-name-label"
+            htmlFor="tripName"
+          >
+            Trip Name:
+          </label>
+          <input
+            type="text"
+            value={tripName}
+            onChange={this.handleChange}
+            className="trip-form-name-input"
+            placeholder="destination"
+          />
         </div>
         <div className="RangeExample">
           <p>
-            {!from && !to && 'Please select the first day.'}
-            {from && !to && 'Please select the last day.'}
+            {!from && !to && 'Please select the first day:'}
+            {from && !to && 'Please select the last day:'}
             {from &&
               to &&
               `Selected from ${from.toLocaleDateString()} to
                   ${to.toLocaleDateString()}`}{' '}
             {from &&
               to && (
-                <button className="link" onClick={this.handleResetClick}>
+                <button className="link date-reset-button" onClick={this.handleResetClick}>
                   Reset
                 </button>
               )}

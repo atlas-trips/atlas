@@ -4,7 +4,6 @@ import Sidebar from './Sidebar';
 import AllTrips from './AllTrips';
 import SingleTrip from './SingleTrip';
 import {fetchTrips, fetchSelected} from '../store/trip';
-import {throws} from 'assert';
 import {Link} from 'react-router-dom';
 
 class Dashboard extends React.Component {
