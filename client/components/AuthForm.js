@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {auth} from '../store';
 import {fetchRefTrip} from '../store/trip';
-import axios from 'axios';
+import Sidebar from './Sidebar';
 
 /**
  * COMPONENT
@@ -31,41 +31,74 @@ class AuthForm extends Component {
 
     return (
       <div>
-        <form
-          onSubmit={
-            this.props.location.pathname === '/login'
-              ? event => handleSubmit(event)
-              : event => handleSignUpSubmit(event, this.props.trip.selected)
-          }
-          name={
-            this.props.location.pathname.startsWith('/join')
-              ? 'refsignup'
-              : name
-          }
-        >
-          <div>
+        <Sidebar />
+        <div className="auth-container">
+          <div className="auth-form">
+          <div className="auth-form-title">
+                <div className="trip-form-title-content">
+                  Atlas
+                </div>
+              </div>
+            <form
+              onSubmit={
+                this.props.location.pathname === '/login'
+                  ? event => handleSubmit(event)
+                  : event => handleSignUpSubmit(event, this.props.trip.selected)
+              }
+              name={
+                this.props.location.pathname.startsWith('/join')
+                  ? 'refsignup'
+                  : name
+              }
+            >
+              <div>
+                <div>
+                  {!this.props.match.params.link ? null : (
+                    <h4>Join trip {this.props.trip.selected.name}</h4>
+                  )}
+                </div>
+                <div className="auth-form-inputs">
+                  <label htmlFor="email" className="auth-form-label">
+                    <small>Email</small>
+                  </label>
+                  <input
+                    name="email"
+                    type="text"
+                    className="auth-form-text"
+                  />
+                </div> <br/>
+                <div className="auth-form-inputs">
+                  <label
+                    htmlFor="password" className="auth-form-label-pass"
+                  >
+                    <small>Password</small>
+                  </label>
+                  <input
+                    name="password"
+                    type="password"
+                    className="auth-form-text-pass"
+                  />
+                </div><br/>
+                <div className="enter-button-container">
+                  <button
+                    type="submit"
+                    className="enter-button"
+                  >
+                    {displayName}
+                  </button>
+                </div>
+                {error && error.response && <div> {error.response.data} </div>}
+              </div><br/>
+            </form>
             <div>
-              {!this.props.match.params.link ? null : (
-                <h4>Join trip {this.props.trip.selected.name}</h4>
-              )}
+              <a href="/auth/google" className="auth-oauth"><img src="/images/google.png" width="60" alt=""/><small className="oauth-text">{displayName} with Google</small>
+              </a>
             </div>
-            <label htmlFor="email">
-              <small>Email</small>
-            </label>
-            <input name="email" type="text" />
           </div>
-          <div>
-            <label htmlFor="password">
-              <small>Password</small>
-            </label>
-            <input name="password" type="password" />
+          <div className="auth-background">
+            <div className="auth-form-container"></div>
           </div>
-          <div>
-            <button type="submit">{displayName}</button>
-          </div>
-          {error && error.response && <div> {error.response.data} </div>}
-        </form>
-        <a href="/auth/google">{displayName} with Google</a>
+        </div>
       </div>
     );
   }

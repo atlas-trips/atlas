@@ -379,3 +379,120 @@ nav a {
 .accommo-form-add {
   width: 280px;
 }
+
+.auth-background {
+  width: 700px;
+  height: 400px;
+  margin: auto 0;
+  background-image: url('/images/loginBack.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.auth-form-container {
+  height: 400px;
+  background: linear-gradient(to right, white, transparent 80%);
+}
+
+.auth-container {
+  width: 900px;
+  height: 400px;
+  display: flex;
+  background-color: white;
+  margin: 40px auto 0;
+  box-shadow: 0px 5px 13px -4px rgba(0,0,0,0.75);
+}
+
+.auth-form {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-form-label, .auth-form-label-pass {
+  width: 38px;
+  height: 30px;
+  line-height: 30px;
+  font-family: 'Istok Web', sans-serif;
+  background-color: #c60057;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: 1.1em;
+  color: white;
+  padding-left: 2px;
+}
+
+.auth-form-inputs {
+  display: flex;
+}
+
+.auth-form-text, .auth-form-text-pass {
+  border: 1px solid #c60057;
+  width: 132px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-family: 'Istok Web', sans-serif;
+  color: #c60057;
+  padding-left: 5px;
+  font-size: .8em;
+}
+
+.auth-form-label-pass {
+  width: 65px;
+}
+
+.auth-form-text-pass {
+  width: 105px;
+}
+
+.enter-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.enter-button {
+  width: 115px;
+  height: 35px;
+  background-color: #c60057;
+  color: white;
+  font-family: 'Istok Web', sans-serif;
+  border: 1px solid #c60057;
+  font-size: 1.3em;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0px 0px 22px -4px rgba(0,0,0,0.75);
+}
+
+.auth-oauth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7px;
+  box-shadow: 0px 5px 13px -4px rgba(0,0,0,0.75);
+  border-radius: 3px;
+}
+
+.oauth-text {
+  color: #c60057;
+}
+
+.auth-form-title {
+  width: 200px;
+  height: 40px;
+  background-image: linear-gradient(to right, #53aad9, white);
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  position: fixed;
+  top: 40px;
+}
+
+.auth-form-title-content {
+  color: white;
+  font-family: 'Istok Web', sans-serif;
+  line-height: 40px;
+  font-size: 1.4em;
+  margin: 0 10px;
+}
