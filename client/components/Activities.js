@@ -39,7 +39,7 @@ class Activities extends Component {
       <div>
         <Sidebar />
         {this.state.loaded ? (
-          <div style={{marginLeft: '100px'}}>
+          <div style={{marginLeft: '10px'}}>
             <div style={activitiesOverview}>
               <ActivitiesForm
                 map={this.props.map.coordinates}
@@ -47,7 +47,7 @@ class Activities extends Component {
                 activities={this.props.activities}
                 createNewActivity={this.props.createNewActivity}
               />
-              <div style={{textAlign: 'right', margin: '0px auto 0px auto'}}>
+              <div style={{textAlign: 'right', margin: '0px auto'}}>
                 Activities List
                 <ul style={{listStyle: 'none'}}>
                   {!this.props.activities.length

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import ParticipantsOverview from './ParticipantsOverview';
 import ActivitiesOverview from './ActivitiesOverview';
 import AccommodationOverview from './AccommodationOverview';
-import Modal from 'react-responsive-modal';
 import ShareTrip from './ShareTrip';
 
 const divStyle = {
@@ -31,7 +30,6 @@ class SingleTrip extends Component {
   render() {
     const trip = this.props.trip;
     const {open} = this.state;
-    console.log(this.props);
 
     return (
       <div>
@@ -39,11 +37,12 @@ class SingleTrip extends Component {
           {trip.name}: {trip.startDate.slice(0, 10)} to{' '}
           {trip.endDate.slice(0, 10)}
         </span>
-        <span style={{...divStyle, fontColor: 'white'}}>
-          <button onClick={this.handleClick}>
-            Invite your Friends {this.state.open ? <ShareTrip /> : null}
-          </button>
-        </span>
+        <button
+          style={{...divStyle, color: 'black'}}
+          onClick={this.handleClick}
+        >
+          Invite your Friends {this.state.open ? <ShareTrip /> : null}
+        </button>
 
         <span />
         <div style={{display: 'flex', flexWrap: 'wrap'}}>

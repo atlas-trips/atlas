@@ -4,13 +4,19 @@ import {fetchSelected, shareTrip} from '../store/trip';
 import {email} from '../../secrets';
 import Modal from 'react-responsive-modal';
 
+const formStyle = {
+  display: 'inline-block',
+  width: '200px',
+  height: '300px',
+  marginRight: '50px'
+};
+
 class ShareTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
       emailFrom: email,
       friendEmail: '',
-      message: '',
       confirmationMessage: 'Your Invite has been sent!',
       open: true
     };
@@ -37,7 +43,6 @@ class ShareTrip extends Component {
     const shareLink = {
       friendEmail: this.state.friendEmail,
       emailFrom: this.state.emailFrom,
-      message: this.state.message,
       tripLink: this.props.trip.selected.link,
       tripName: this.props.trip.selected.name,
       personFrom: this.props.user.name
@@ -54,9 +59,9 @@ class ShareTrip extends Component {
     return (
       <Modal open={this.state.open} onClose={this.onCloseModal} center>
         <div>
-          <h1>Share Your Trip with Your Friends</h1>
+          <h3>Invite Your Friends</h3>
 
-          <form onSubmit={this.handleSubmit}>
+          <form style={formStyle} onSubmit={this.handleSubmit}>
             <label htmlFor="friendEmail" />
             <input
               type="email"
@@ -64,15 +69,6 @@ class ShareTrip extends Component {
               value={this.state.friendEmail}
               onChange={this.handleChange}
               placeholder="Friends Email"
-            />
-
-            <label htmlFor="message" />
-            <input
-              type="text"
-              name="message"
-              value={this.state.message}
-              onChange={this.handleChange}
-              placeholder="Additional Message"
             />
 
             <button type="submit">Share Trip</button>
