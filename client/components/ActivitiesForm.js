@@ -8,7 +8,8 @@ const activityFormStyle = {
   display: 'flex',
   justifyContent: 'space-around',
   borderRadius: '15px',
-  width: '500px'
+  width: '500px',
+  background: 'white'
 };
 
 class ActivitiesForm extends Component {
@@ -120,7 +121,8 @@ class ActivitiesForm extends Component {
         </div>
         <hr />
         {this.state.modalOpen?
-                  <form style={activityFormStyle} onSubmit={this.handleSubmit}>
+          <div className="activity-modal">
+             <form style={activityFormStyle} onSubmit={this.handleSubmit}>
                   <div>
                     <p>
                       {this.state.selectedDay
@@ -146,7 +148,13 @@ class ActivitiesForm extends Component {
         
                     <button type="submit">Add activity</button>
                   </div>
-                </form> : ''}
+                </form>
+          
+          </div>
+
+
+
+          : ''}
       </div>
     );
   }

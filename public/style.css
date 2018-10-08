@@ -34,6 +34,13 @@
   font-size: 18px;
 }
 
+.activity-modal{
+  z-index: 100;
+  margin: 0 auto;
+  top: 0;
+
+}
+
 .landing-header {
   text-align: right;
   margin: 0 auto;
