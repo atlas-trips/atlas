@@ -304,6 +304,10 @@ nav a {
   margin-bottom: 10px;
 }
 
+.accommo-form-title {
+  width: 1000px;
+}
+
 .trip-form-title-content,
 .accommo-form-title-content {
   color: white;
@@ -394,20 +398,13 @@ nav a {
 }
 
 .accommo-form {
-  height: 490px;
+  height:500px;
+  width: 1000px
 }
 
 .accommo-form-input-label {
-  width: 200px;
-  font-size: 1em;
-}
-
-.accommo-form-text-input {
-  width: 180px;
-}
-
-.accommo-form-text-input-loc {
-  width: 290px;
+  width: 150px;
+  font-size: 0.8em;
 }
 
 .accommo-form-add {
@@ -624,10 +621,6 @@ nav a {
   height: 340px;
 }
 
-.accommo-form {
-  height: 550px;
-}
-
 .accom-card-delete {
   display: flex;
   justify-content: flex-end;
@@ -645,4 +638,77 @@ nav a {
   border-top: 1px solid darkgray;
   border-left: 1px solid darkgray;
   cursor: pointer;
+}
+
+.location-search-input {
+  width: 330px;
+  height: 25px;
+  border: 1px solid #c60057;
+  font-family: 'Istok Web', sans-serif;
+  color: #c60057;
+  font-size: 0.9em;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.accommo-form-search-container {
+  display: flex;
+  justify-content: center;
+}
+
+.accommo-form-search-label {
+  width: 70px;
+  height: 29px;
+  line-height: 29px;
+  font-family: 'Istok Web', sans-serif;
+  background-color: #c60057;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  font-size: .8em;
+  color: white;
+  font-weight: bolder;
+}
+
+.autocomplete-dropdown-container {
+  width: 400px;
+  font-size: 75%;
+}
+
+.accommo-form-inputs-top {
+  /* margin-top: 85px; */
+  color: white;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+}
+
+.accommo-form-sections {
+  display: flex;
+}
+
+.accommo-form-sections-search {
+  width: 450px;
+  height: 440px;
+  border-right: 1px solid lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.accommo-form-sections-date {
+  width: 550px;
+}
+
+.accommo-form-text-input-loc, .accommo-form-text-input {
+  width: 250px;
+  font-size: 0.8em;
+}
+
+.accommo-form-sections-date {
+  margin-top: 20px;
+}
+
+.google-power {
+  align-self: flex-start;
+  margin-bottom: -10px;
 }

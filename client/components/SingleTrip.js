@@ -64,7 +64,6 @@ class SingleTrip extends Component {
             Remove Trip
           </button>
 
-          <span />
           <div style={{display: 'flex', flexWrap: 'wrap'}}>
             <ParticipantsOverview peeps={trip.users} />
             <ActivitiesOverview activities={trip.activities} />
