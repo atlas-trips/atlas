@@ -7,9 +7,15 @@ const Landing = () => {
         <img src="images/splash.jpg" width="100%" />
       </div>
       <div className="landing-header">
-        <a href="login">
-          <h4>Login</h4>
-        </a>
+        <div className='landing-header-img'>
+          <img src='images/logo.png' height='30px' />
+        </div>
+        <div className='landing-header-txt'>
+          <a href="login">
+            <h4>Login</h4>
+          </a>
+        </div>
+        
       </div>
       <div className="landing-text">
         <h1>What was the slogan again</h1>
