@@ -8,9 +8,9 @@ import {fetchSelected} from '../store/trip';
 class Travel extends Component {
   onDelete = async (userId, transportationId) => {
     await axios.delete(
-      `/api/transportation/${
+      `/api/trips/${
         this.props.selectedTrip.id
-      }/${userId}/${transportationId}`
+      }/transportation/${userId}/${transportationId}`
     );
 
     this.props.getTrip(this.props.selectedTrip.id);

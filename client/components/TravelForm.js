@@ -31,7 +31,9 @@ class TravelForm extends Component {
     );
 
     await axios.post(
-      `/api/transportation/${this.props.selectedTrip.id}/${selectedUser.id}`,
+      `/api/trips/${this.props.selectedTrip.id}/transportation/${
+        selectedUser.id
+      }`,
       this.state
     );
     this.setState({
