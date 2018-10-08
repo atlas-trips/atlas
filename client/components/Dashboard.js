@@ -32,9 +32,6 @@ class Dashboard extends React.Component {
 
   render() {
     const {user} = this.props;
-    console.log('this.props from dashboard is', this.props);
-    console.log('inTrip', this.props.selected.length);
-
     return (
       <div className="dashboard">
         <Sidebar />
