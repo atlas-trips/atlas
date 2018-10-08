@@ -97,7 +97,7 @@ class ActivitiesForm extends Component {
         <h4>
           {this.state.selected.id ? this.state.selected.formatted_address : ''}
         </h4>
-        <h1>_______________</h1>
+        <hr />
 
         <form style={activityFormStyle} onSubmit={this.handleSubmit}>
           <div>
