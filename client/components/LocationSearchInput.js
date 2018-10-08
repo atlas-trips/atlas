@@ -44,7 +44,6 @@ class LocationSearchInput extends Component {
   };
 
   render() {
-    console.log('PROPS', this.props);
     return (
       <PlacesAutocomplete
         value={this.state.address}
