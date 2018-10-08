@@ -1,34 +1,19 @@
 import React from 'react';
 
-const tempStyles = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'space-evenly'
-};
-
-const tempPersonStyles = {
-  textAlign: 'center',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '10px'
-};
-
 const ParticipantsOverview = props => {
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        width: '300px',
-        border: '1px solid black',
-        marginTop: '50px'
-      }}
-    >
-      <h4>Who's coming:</h4>
-      <div style={tempStyles}>
+    <div className="participants-container">
+      <div className="participants-container-header">
+        <span>Who's coming:</span>
+      </div>
+      <div className="participants-container-bottom">
         {props.peeps.map(person => {
           return (
-            <div style={tempPersonStyles} key={person.id}>
-              <img src="/images/person.png" width="50" alt="person icon" />
+            <div
+              className="participants-container-bottom-single"
+              key={person.id}
+            >
+              <img src="/images/person.png" width="150" alt="person icon" />
               <a href={`mailto:${person.email}`}>{person.name}</a>
             </div>
           );

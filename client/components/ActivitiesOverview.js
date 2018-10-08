@@ -1,25 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const tempActivitiesStyles = {
-  textAlign: 'center',
-  margin: '3px'
-};
-
 const ActivitiesOverview = props => {
   return (
-    <div
-      style={{
-        textAlign: 'center',
-        width: '300px',
-        border: '1px solid black',
-        marginTop: '50px'
-      }}
-    >
-      <h4>Activities:</h4>
+    <div className="activities-container">
+      <div className="activities-container-header">
+        <span>Activities:</span>
+      </div>
       {props.activities.filter((item, idx) => idx < 3).map(activity => {
         return (
-          <div style={tempActivitiesStyles} key={activity.id}>
+          <div className="activities-container-list" key={activity.id}>
             {activity.name}
           </div>
         );
