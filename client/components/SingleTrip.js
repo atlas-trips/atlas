@@ -4,8 +4,8 @@ import ActivitiesOverview from './ActivitiesOverview';
 import AccommodationOverview from './AccommodationOverview';
 import ShareTrip from './ShareTrip';
 import {connect} from 'react-redux';
-import {fetchSelected} from '../store/trip'
-import Sidebar from './Sidebar'
+import {fetchSelected, deleteTrip} from '../store/trip';
+import Sidebar from './Sidebar';
 
 const divStyle = {
   textAlign: 'center',
@@ -24,24 +24,26 @@ class SingleTrip extends Component {
       open: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
-
-
 
   handleClick(event) {
     this.setState({open: true});
   }
 
-  async componentDidMount(){
-    console.log('mounted')
-    await this.props.fetchSelected(this.props.match.params.id) 
-    console.log('loaded')
+  handleDelete(event) {
+    this.props.deleteTrip(this.props.trip.id);
+    this.props.history.push('/dashboard');
+  }
+
+  async componentDidMount() {
+    await this.props.fetchSelected(this.props.match.params.id);
   }
 
   render() {
     const trip = this.props.trip;
-    const {open} = this.state;
-    if(Object.keys(this.props.trip).length){
+
+    if (Object.keys(this.props.trip).length) {
       return (
         <div>
           <Sidebar />
@@ -55,7 +57,13 @@ class SingleTrip extends Component {
           >
             Invite your Friends {this.state.open ? <ShareTrip /> : null}
           </button>
-  
+          <button
+            style={{...divStyle, color: 'black'}}
+            onClick={this.handleDelete}
+          >
+            Remove Trip {this.state.open ? <ShareTrip /> : null}
+          </button>
+
           <span />
           <div style={{display: 'flex', flexWrap: 'wrap'}}>
             <ParticipantsOverview peeps={trip.users} />
@@ -65,17 +73,17 @@ class SingleTrip extends Component {
         </div>
       );
     } else {
-      return ('')
+      return '';
     }
-    
   }
 }
 
 const mapState = state => ({
   trip: state.trip.selected
-})
+});
 const mapDispatch = dispatch => ({
-  fetchSelected: tripId => dispatch(fetchSelected(tripId))
-})
+  fetchSelected: tripId => dispatch(fetchSelected(tripId)),
+  deleteTrip: tripId => dispatch(deleteTrip(tripId))
+});
 
 export default connect(mapState, mapDispatch)(SingleTrip);
