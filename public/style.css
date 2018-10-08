@@ -15,13 +15,22 @@
 
 .landing-header {
   text-align: right;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   width: 95%;
   z-index: 1;
   position: absolute;
 }
+.landing-header-img {
+  margin-left: 2%;
+}
 
 .landing-header a {
   color: white;
+  display: flex;
+  
 }
 
 .landing-text {
