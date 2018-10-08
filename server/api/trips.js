@@ -4,10 +4,13 @@ const {
   Trip,
   Accommodation,
   Activity,
-  Transportation
+  Transportation,
+  Travel
 } = require('../db/models');
 const {cleanUp, makeCalendarArray} = require('./utils');
 const nodemailer = require('nodemailer');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 router.get('/', (req, res, next) => {
   res.status(418).send("I'm a lil teapot");
@@ -252,6 +255,45 @@ router.get('/:id/all', async (req, res, next) => {
     next(error);
   }
 });
+
+router.post('/:id/transportation/:userId', async (req, res, next) => {
+  try {
+    const newTransport = await Transportation.create({
+      method: req.body.method,
+      flightNum: req.body.flightNum,
+      date: req.body.date
+    });
+    const travel = await Travel.create({
+      tripId: req.params.id,
+      transportationId: newTransport.id,
+      userId: req.params.userId
+    });
+    res.json(travel);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.delete(
+  '/:id/transportation/:userId/:transportationId',
+  async (req, res, next) => {
+    try {
+      await Travel.destroy({
+        where: {
+          [Op.and]: [
+            {tripId: req.params.id},
+            {userId: req.params.userId},
+            {transportationId: req.params.transportationId}
+          ]
+        }
+      });
+
+      res.sendStatus(200);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
 
 async function getAuthorizedUsers(tripId) {
   //returns an object of user ids for all users authorized to view details of this trip
