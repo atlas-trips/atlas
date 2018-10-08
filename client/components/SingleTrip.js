@@ -61,7 +61,7 @@ class SingleTrip extends Component {
             style={{...divStyle, color: 'black'}}
             onClick={this.handleDelete}
           >
-            Remove Trip {this.state.open ? <ShareTrip /> : null}
+            Remove Trip
           </button>
 
           <span />

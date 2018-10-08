@@ -70,7 +70,6 @@ const MapWithASearchBox = compose(
           }
 
           places.forEach(place => {
-            //console.log(place)
             if (place.geometry.viewport) {
               bounds.union(place.geometry.viewport);
             } else {

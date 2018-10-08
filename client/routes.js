@@ -28,7 +28,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props;
+    const {isLoggedIn, inTrip} = this.props;
 
     return (
       <Switch>
@@ -38,21 +38,39 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route path="/join/:link" component={Signup} />
 
-        {isLoggedIn && (
-          <Switch>
-            {/* Routes placed here are only available after logging in */}
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/trip/:id" component={SingleTrip} />
-            <Route path="/accommodations" component={Accommodations} />
-            <Route path="/calendar" component={Calendar} />
-            <Route path="/expenses" component={Expenses} />
-            <Route path="/activities" component={Activities} />
-            <Route path="/travel" component={Travel} />
-            <Route path="/new" component={TripForm} />
-            <Route path="/addaccommodation" component={AccommodationForm} />
-            <Route path="/trips/share" component={ShareTrip} />
-          </Switch>
-        )}
+        {isLoggedIn &&
+          Object.keys(inTrip).length > 0 && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/trip/:id" component={SingleTrip} />
+              <Route path="/accommodations" component={Accommodations} />
+              <Route path="/calendar" component={Calendar} />
+              <Route path="/expenses" component={Expenses} />
+              <Route path="/activities" component={Activities} />
+              <Route path="/travel" component={Travel} />
+              <Route path="/new" component={TripForm} />
+              <Route path="/addaccommodation" component={AccommodationForm} />
+              <Route path="/trips/share" component={ShareTrip} />
+            </Switch>
+          )}
+
+        {isLoggedIn &&
+          Object.keys(inTrip).length === 0 && (
+            <Switch>
+              {/* Routes placed here are only available after logging in */}
+              <Route path="/dashboard" component={Dashboard} />
+              <Route path="/trip/:id" component={Dashboard} />
+              <Route path="/accommodations" component={Dashboard} />
+              <Route path="/calendar" component={Dashboard} />
+              <Route path="/expenses" component={Dashboard} />
+              <Route path="/activities" component={Dashboard} />
+              <Route path="/travel" component={Dashboard} />
+              <Route path="/new" component={Dashboard} />
+              <Route path="/addaccommodation" component={Dashboard} />
+              <Route path="/trips/share" component={Dashboard} />
+            </Switch>
+          )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
@@ -67,7 +85,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    inTrip: state.trip.selected
   };
 };
 
