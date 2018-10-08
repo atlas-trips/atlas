@@ -45,29 +45,33 @@ class SingleTrip extends Component {
 
     if (Object.keys(this.props.trip).length) {
       return (
-        <div>
+        <div className="single-trip">
           <Sidebar />
-          <span style={divStyle}>
+          <div className="single-trip-header">
             {trip.name}: {trip.startDate.slice(0, 10)} to{' '}
             {trip.endDate.slice(0, 10)}
-          </span>
-          <button
-            style={{...divStyle, color: 'black'}}
-            onClick={this.handleClick}
-          >
-            Invite your Friends {this.state.open ? <ShareTrip /> : null}
-          </button>
-          <button
-            style={{...divStyle, color: 'black'}}
-            onClick={this.handleDelete}
-          >
-            Remove Trip
-          </button>
+            <button
+              style={{...divStyle, color: 'black'}}
+              onClick={this.handleClick}
+            >
+              Invite your Friends {this.state.open ? <ShareTrip /> : null}
+            </button>
+            <button
+              style={{...divStyle, color: 'black'}}
+              onClick={this.handleDelete}
+            >
+              Remove Trip
+            </button>
+          </div>
+          <div className="single-trip-info">
+            <div className="single-trip-info-top">
+              <ParticipantsOverview peeps={trip.users} />
+            </div>
 
-          <div style={{display: 'flex', flexWrap: 'wrap'}}>
-            <ParticipantsOverview peeps={trip.users} />
-            <ActivitiesOverview activities={trip.activities} />
-            <AccommodationOverview accommodations={trip.accommodation} />
+            <div className="single-trip-info-bottom">
+              <ActivitiesOverview activities={trip.activities} />
+              <AccommodationOverview accommodations={trip.accommodation} />
+            </div>
           </div>
         </div>
       );
