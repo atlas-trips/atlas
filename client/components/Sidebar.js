@@ -18,7 +18,6 @@ class Sidebar extends React.Component {
 
   render() {
     const selected = Object.keys(this.props.selected).length !== 0;
-    console.log('props is', this.props);
     return !selected ? (
       <div className="sidebar-minimal">
         <div className="sidebar-item side-top">
