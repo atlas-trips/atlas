@@ -37,10 +37,9 @@ class LocationSearchInput extends Component {
       name,
       streetAdd: `${streetAdd}${extraAdd}`,
       address: name,
-      selected: true
-    });
-    this.props.handleSearch(this.state.name, this.state.streetAdd);
- 
+      selected: true,
+    })
+    this.props.handleSearch(this.state.name, this.state.streetAdd, this.state.latLng, this.state.placeId);
   };
 
   render() {
@@ -50,14 +49,22 @@ class LocationSearchInput extends Component {
         onChange={this.handleChange}
         onSelect={this.handleSelect}
       >
-        {({getInputProps, suggestions, getSuggestionItemProps, loading}) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input'
-              })}
-            />
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div >
+            <div   className="accommo-form-search-container">
+              <label
+                htmlFor="search"
+                className="accommo-form-search-label"
+              >
+                Search:
+              </label>
+              <input
+                {...getInputProps({
+                  placeholder: 'Search Places ...',
+                  className: 'location-search-input',
+                })}
+              />
+            </div>
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {

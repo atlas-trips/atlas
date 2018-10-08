@@ -13,13 +13,15 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const {name, location, startDate, endDate, tripId} = req.body;
+    const {name, location, startDate, endDate, tripId, coordinates, placeId} = req.body;
     const newAccomObj = {
       name,
       startDate,
       endDate,
       location,
-      tripId
+      tripId,
+      coordinates,
+      placeId,
     };
     const newAccommodation = await Accommodation.create(newAccomObj);
     const user = await User.findById(req.user.id);
