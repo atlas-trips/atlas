@@ -30,8 +30,6 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-//SHARE TRIP ROUTE
-
 router.post('/share', async (req, res, next) => {
   const transporter = nodemailer.createTransport({
     service: 'yahoo',
@@ -42,8 +40,6 @@ router.post('/share', async (req, res, next) => {
     }
   });
 
-  console.log('transporter', transporter);
-  const email = process.env.EMAIL;
   const mailOptions = {
     from: 'Atlas Trips' + '<' + process.env.EMAIL + '>',
     to: `${req.body.friendEmail}`,
@@ -62,6 +58,26 @@ router.post('/share', async (req, res, next) => {
       console.log('here is the res: ', res);
     }
   });
+});
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (isNaN(id)) {
+      res.status(400).send('Bad Request');
+    }
+    const isAuthorized = await getAuthorizedUsers(id);
+    if (req.user && isAuthorized[req.user.id]) {
+      //DO STUFF HERE
+      let trip = await Trip.findById(id);
+      trip = await trip.destroy();
+      res.status(204).send('No Content');
+    } else {
+      res.status(403).send('Forbidden');
+    }
+  } catch (err) {
+    next(err);
+  }
 });
 
 router.get('/:id/activities', async (req, res, next) => {

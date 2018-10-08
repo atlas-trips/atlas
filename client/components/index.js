@@ -17,3 +17,5 @@ export {default as SingleTrip} from './SingleTrip';
 export {default as TripForm} from './TripForm';
 export {default as AccommodationForm} from './AccommodationForm';
 export {default as ShareTrip} from './ShareTrip';
+export {default as TravelForm} from './TravelForm';
+export {default as SingleTransport} from './SingleTransport';
