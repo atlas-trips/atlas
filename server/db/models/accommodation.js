@@ -16,7 +16,13 @@ const Accommodation = db.define('accommodation', {
   },
   location: {
     type: Sequelize.STRING
-  }
+  },
+  coordinates: {
+    type: Sequelize.STRING,
+  },
+  placeId: {
+    type: Sequelize.STRING,
+  },
 });
 
 module.exports = Accommodation;

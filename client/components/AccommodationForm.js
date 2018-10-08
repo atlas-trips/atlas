@@ -52,7 +52,9 @@ class AccommodationForm extends Component {
       from: undefined,
       to: undefined,
       location: '',
-      name: ''
+      name: '',
+      coords: '',
+      placeId: '',
     };
   }
   handleDayClick(day) {
@@ -69,12 +71,13 @@ class AccommodationForm extends Component {
     this.setState({[name]: value});
   }
 
-  handleSearch(name, location) {
-    console.log('am i getting here')
+  handleSearch(name, location, coords, placeId) {
     this.setState({
       location,
       name,
-    })
+      coords,
+      placeId,
+    });
   }
 
   async handleSubmit(event) {
@@ -95,7 +98,9 @@ class AccommodationForm extends Component {
       location: this.state.location,
       startDate: formatDate(this.state.from),
       endDate: formatDate(this.state.to),
-      tripId: this.props.trip.id
+      tripId: this.props.trip.id,
+      coordinates: this.state.coords,
+      placeId: this.state.placeId,
     };
     await this.props.makeAccommodation(newAccommodation);
     this.props.handleClick();
@@ -113,65 +118,80 @@ class AccommodationForm extends Component {
               Add An Accommodation
             </div>
           </div>
-          <LocationSearchInput handleSearch={this.handleSearch}/>
-          <div className="accommo-form-inputs">
-            <label htmlFor="name" className="accommo-form-input-label">
-              Accommodation Name:
-            </label>
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={this.handleChange}
-              className="accommo-form-text-input"
-              autoFocus={true}
-            />
+          <div className="accommo-form-sections">
+            <div className="accommo-form-sections-search">
+              <div style={{flex: 1}}>
+                <LocationSearchInput handleSearch={this.handleSearch} />
+              </div>
+              <div style={{flex: 1, display: 'flex', flexDirection: 'column',justifyContent: 'space-between'}}>
+                <div>
+                  <div className="accommo-form-inputs-top">
+                    <label htmlFor="name" className="accommo-form-input-label">
+                      Accommodation Name:
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={name}
+                      onChange={this.handleChange}
+                      className="accommo-form-text-input"
+                    />
+                  </div>
+                  <br />
+                  <div className="accommo-form-inputs">
+                    <label htmlFor="location" className="accommo-form-input-label">
+                      Accommodation Address:
+                    </label>
+                    <input
+                      type="text"
+                      name="location"
+                      value={location}
+                      onChange={this.handleChange}
+                      className="accommo-form-text-input-loc"
+                    />
+                  </div>
+                </div>
+                <img src="/images/googlePower.png" width="200" className="google-power" alt=""/>
+              </div>
+            </div>
+            <div className="accommo-form-sections-date">
+              <div className="RangeExample">
+                <p>
+                  {!from && !to && 'Please select the first day:'}
+                  {from && !to && 'Please select the last day:'}
+                  {from &&
+                    to &&
+                    `Selected from ${from.toLocaleDateString()} to
+                        ${to.toLocaleDateString()}`}{' '}
+                  {from &&
+                    to && (
+                      <button
+                        className="link date-reset-button"
+                        onClick={this.handleResetClick}
+                      >
+                        Reset
+                      </button>
+                    )}
+                </p>
+                <DayPicker
+                  className="Selectable"
+                  numberOfMonths={this.props.numberOfMonths}
+                  selectedDays={[from, {from, to}]}
+                  modifiers={modifiers}
+                  onDayClick={this.handleDayClick}
+                />
+                <Helmet>
+                  <style>{helmetStyle}</style>
+                </Helmet>
+              </div>
+              <button
+                onClick={this.handleSubmit}
+                className="accommo-form-submit"
+              >
+                <div className="accommo-form-submit-text">SUBMIT</div>
+              </button>
+            </div>
           </div>
-          <br />
-          <div className="accommo-form-inputs">
-            <label htmlFor="location" className="accommo-form-input-label">
-              Accommodation Address:
-            </label>
-            <input
-              type="text"
-              name="location"
-              value={location}
-              onChange={this.handleChange}
-              className="accommo-form-text-input-loc"
-            />
-          </div>
-          <div className="RangeExample">
-            <p>
-              {!from && !to && 'Please select the first day:'}
-              {from && !to && 'Please select the last day:'}
-              {from &&
-                to &&
-                `Selected from ${from.toLocaleDateString()} to
-                    ${to.toLocaleDateString()}`}{' '}
-              {from &&
-                to && (
-                  <button
-                    className="link date-reset-button"
-                    onClick={this.handleResetClick}
-                  >
-                    Reset
-                  </button>
-                )}
-            </p>
-            <DayPicker
-              className="Selectable"
-              numberOfMonths={this.props.numberOfMonths}
-              selectedDays={[from, {from, to}]}
-              modifiers={modifiers}
-              onDayClick={this.handleDayClick}
-            />
-            <Helmet>
-              <style>{helmetStyle}</style>
-            </Helmet>
-          </div>
-          <button onClick={this.handleSubmit} className="accommo-form-submit">
-            <div className="accommo-form-submit-text">SUBMIT</div>
-          </button>
         </div>
       </div>
     );

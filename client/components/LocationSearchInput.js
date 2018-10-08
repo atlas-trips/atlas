@@ -39,13 +39,10 @@ class LocationSearchInput extends Component {
       address: name,
       selected: true,
     })
-    this.props.handleSearch(this.state.name, this.state.streetAdd);
-    console.log('Success', latLng)
-    console.log('state is', this.state)
+    this.props.handleSearch(this.state.name, this.state.streetAdd, this.state.latLng, this.state.placeId);
   };
 
   render() {
-    console.log('PROPS', this.props)
     return (
       <PlacesAutocomplete
         value={this.state.address}
@@ -53,13 +50,21 @@ class LocationSearchInput extends Component {
         onSelect={this.handleSelect}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
+          <div >
+            <div   className="accommo-form-search-container">
+              <label
+                htmlFor="search"
+                className="accommo-form-search-label"
+              >
+                Search:
+              </label>
+              <input
+                {...getInputProps({
+                  placeholder: 'Search Places ...',
+                  className: 'location-search-input',
+                })}
+              />
+            </div>
             <div className="autocomplete-dropdown-container">
               {loading && <div>Loading...</div>}
               {suggestions.map(suggestion => {
