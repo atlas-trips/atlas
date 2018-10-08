@@ -40,7 +40,6 @@ class LocationSearchInput extends Component {
       selected: true
     });
     this.props.handleSearch(this.state.name, this.state.streetAdd);
- 
   };
 
   render() {

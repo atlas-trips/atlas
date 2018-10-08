@@ -60,7 +60,7 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are only available after logging in */}
               <Route path="/dashboard" component={Dashboard} />
-              <Route path="/trip/:id" component={Dashboard} />
+              <Route path="/trip/:id" component={SingleTrip} />
               <Route path="/accommodations" component={Dashboard} />
               <Route path="/calendar" component={Dashboard} />
               <Route path="/expenses" component={Dashboard} />
