@@ -39,7 +39,12 @@ class Dashboard extends React.Component {
           {this.props.trips.length > 0 ? (
             <AllTrips trips={this.props.trips} select={this.handleClick} />
           ) : (
-            <h3>No Trips Available</h3>
+            <div>
+              <Link to="/new">
+                <button className="add-trip">ADD A TRIP +</button>
+              </Link>
+              <h3>No Trips Available</h3>
+            </div>
           )}
         </div>
       </div>
