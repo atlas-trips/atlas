@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PlacesAutocomplete, {
   geocodeByAddress,
-  getLatLng,
+  getLatLng
 } from 'react-places-autocomplete';
 
 class LocationSearchInput extends Component {
@@ -13,7 +13,7 @@ class LocationSearchInput extends Component {
       placeId: '',
       latLng: '',
       streetAdd: '',
-      selected: false,
+      selected: false
     };
   }
 
@@ -27,7 +27,7 @@ class LocationSearchInput extends Component {
     const add = address.split(', ');
     const name = add[0];
     const streetAdd = `${add[1]}, `;
-    const extraAdd = add.slice(2).join(', ')
+    const extraAdd = add.slice(2).join(', ');
     const addressInfo = await geocodeByAddress(address);
     const placeId = addressInfo[0].place_id;
     const latLng = await getLatLng(addressInfo[0]);
@@ -74,13 +74,17 @@ class LocationSearchInput extends Component {
                   : 'suggestion-item';
                 // inline style for demonstration purpose
                 const style = suggestion.active
-                  ? { backgroundColor: '#ff0f83', color: 'white',cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                  ? {
+                      backgroundColor: '#ff0f83',
+                      color: 'white',
+                      cursor: 'pointer'
+                    }
+                  : {backgroundColor: '#ffffff', cursor: 'pointer'};
                 return (
                   <div
                     {...getSuggestionItemProps(suggestion, {
                       className,
-                      style,
+                      style
                     })}
                   >
                     <span>{suggestion.description}</span>
