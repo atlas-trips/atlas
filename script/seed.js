@@ -10,7 +10,7 @@ const {
   Accommodation,
   Travel
 } = require('../server/db/models');
-
+/*eslint-disable*/
 async function seed() {
   await db.sync({force: true});
   console.log('db synced!');
