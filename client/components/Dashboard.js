@@ -20,10 +20,9 @@ class Dashboard extends React.Component {
     this.props.fetchTrips(this.props.user.id);
   }
 
-  async handleClick(evt, id) {
+  handleClick(evt, id) {
     evt.preventDefault();
-    await this.props.fetchSelected(id);
-    //this.setState({selected: true});
+    this.props.fetchSelected(id);
   }
 
   goBack(evt) {
@@ -33,6 +32,9 @@ class Dashboard extends React.Component {
 
   render() {
     const {user} = this.props;
+    console.log('this.props from dashboard is', this.props);
+    console.log('inTrip', this.props.selected.length);
+
     return (
       <div className="dashboard">
         <Sidebar />

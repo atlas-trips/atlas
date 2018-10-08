@@ -70,11 +70,11 @@ class AccommodationForm extends Component {
   }
 
   handleSearch(name, location) {
-    console.log('am i getting here')
+    console.log('am i getting here');
     this.setState({
       location,
-      name,
-    })
+      name
+    });
   }
 
   async handleSubmit(event) {
@@ -113,7 +113,7 @@ class AccommodationForm extends Component {
               Add An Accommodation
             </div>
           </div>
-          <LocationSearchInput handleSearch={this.handleSearch}/>
+          <LocationSearchInput handleSearch={this.handleSearch} />
           <div className="accommo-form-inputs">
             <label htmlFor="name" className="accommo-form-input-label">
               Accommodation Name:
