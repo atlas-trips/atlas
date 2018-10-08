@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import 'react-day-picker/lib/style.css';
 import {getNewAccommodation} from '../store/accommodation';
 import Sidebar from './Sidebar';
+import LocationSearchInput from './LocationSearchInput';
 
 const helmetStyle = `
 .Selectable .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -44,6 +45,7 @@ class AccommodationForm extends Component {
     this.state = this.getInitialState();
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
   getInitialState() {
     return {
@@ -57,13 +59,24 @@ class AccommodationForm extends Component {
     const range = DateUtils.addDayToRange(day, this.state);
     this.setState(range);
   }
+
   handleResetClick() {
     this.setState(this.getInitialState());
   }
+
   handleChange(event) {
     const {name, value} = event.target;
     this.setState({[name]: value});
   }
+
+  handleSearch(name, location) {
+    console.log('am i getting here');
+    this.setState({
+      location,
+      name
+    });
+  }
+
   async handleSubmit(event) {
     event.preventDefault();
     if (
@@ -100,6 +113,7 @@ class AccommodationForm extends Component {
               Add An Accommodation
             </div>
           </div>
+          <LocationSearchInput handleSearch={this.handleSearch} />
           <div className="accommo-form-inputs">
             <label htmlFor="name" className="accommo-form-input-label">
               Accommodation Name:

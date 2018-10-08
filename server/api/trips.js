@@ -87,7 +87,6 @@ router.get('/:id/activities', async (req, res, next) => {
   try {
     const tripId = Number(req.params.id);
     const isAuthorized = await getAuthorizedUsers(tripId);
-    console.log(isAuthorized);
     if (req.user && isAuthorized[req.user.id]) {
       const activities = await Activity.findAll({
         where: {
@@ -198,7 +197,6 @@ router.get('/:id/accommodations', async (req, res, next) => {
 
 router.get('/join/:uniqueLink', async (req, res, next) => {
   try {
-    console.log('looking to find trip');
     const foundTrip = await Trip.findOne({
       where: {
         link: req.params.uniqueLink
