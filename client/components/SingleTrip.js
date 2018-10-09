@@ -7,16 +7,6 @@ import {connect} from 'react-redux';
 import {fetchSelected, deleteTrip} from '../store/trip';
 import Sidebar from './Sidebar';
 
-const divStyle = {
-  textAlign: 'center',
-  border: '2px solid black',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  padding: '10px',
-  marginRight: '15px',
-  borderRadius: '15px'
-};
-
 class SingleTrip extends Component {
   constructor(props) {
     super(props);
@@ -47,7 +37,8 @@ class SingleTrip extends Component {
           display: 'flex',
           flexDirection: 'column',
           backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`,
-          height: '100vh'
+          height: '100vh',
+          margin: '-20px'
         }
       : '';
 
@@ -60,26 +51,30 @@ class SingleTrip extends Component {
               <div className="single-trip-header-name">{trip.name}:</div>
               <div className="single-trip-header-dates">
                 <span>
-                  {trip.startDate.slice(0, 10)} to {trip.endDate.slice(0, 10)}
+                  {new Date(trip.startDate.slice(0, 10))
+                    .toString()
+                    .slice(0, 16)}{' '}
+                  to{' '}
+                  {new Date(trip.endDate.slice(0, 10)).toString().slice(0, 16)}
                 </span>
               </div>
-              <div className="single-trip-header-buttons">
+              <div>
                 <button
                   className="single-trip-header-buttons-invite"
-                  style={{...divStyle, color: 'black'}}
                   onClick={this.handleClick}
                 >
                   INVITE YOUR FRIENDS! {this.state.open ? <ShareTrip /> : null}
                 </button>
-                <button
-                  className="single-trip-header-buttons-remove"
-                  style={{...divStyle, color: 'black'}}
-                  onClick={this.handleDelete}
-                >
-                  REMOVE TRIP
-                </button>
               </div>
             </div>
+            <button
+              id="remove-trip"
+              className="single-trip-header-buttons-remove"
+              onClick={this.handleDelete}
+            >
+              REMOVE TRIP
+            </button>
+
             <div className="single-trip-info">
               <div className="single-trip-info-top">
                 <ParticipantsOverview peeps={trip.users} />
