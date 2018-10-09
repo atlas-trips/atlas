@@ -66,7 +66,7 @@ class Routes extends Component {
               <Route path="/expenses" component={Dashboard} />
               <Route path="/activities" component={Dashboard} />
               <Route path="/travel" component={Dashboard} />
-              <Route path="/new" component={Dashboard} />
+              <Route path="/new" component={TripForm} />
               <Route path="/addaccommodation" component={Dashboard} />
               <Route path="/trips/share" component={Dashboard} />
             </Switch>

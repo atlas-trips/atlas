@@ -21,18 +21,35 @@ class Travel extends Component {
 
     return users.map(user => {
       return (
-        <div key={user.id} className="travel-container-card">
-          <h1>{user.name}</h1>
-          {user.transportation.map(transport => {
-            return (
-              <SingleTransport
-                key={transport.id}
-                transport={transport}
-                user={user}
-                onDelete={this.onDelete}
-              />
-            );
-          })}
+        <div key={user.id}>
+          <div style={{marginBotton: '50px'}}>
+            <h3
+              style={{
+                textAlign: 'center',
+                border: '2px solid black',
+                marginRight: '3px',
+                borderRadius: '5px',
+                backgroundColor: 'white'
+              }}
+            >
+              {user.name}
+            </h3>
+          </div>
+          <div className="travel-container-card">
+            {user.transportation.map(transport => {
+              return (
+                <div>
+                  <SingleTransport
+                    key={transport.id}
+                    transport={transport}
+                    user={user}
+                    onDelete={this.onDelete}
+                    style={{marginTop: '15px'}}
+                  />
+                </div>
+              );
+            })}
+          </div>
         </div>
       );
     });
@@ -42,9 +59,7 @@ class Travel extends Component {
     return (
       <div className="travel-container">
         <Sidebar />
-        <div className="travel-container-info" style={{marginLeft: '100px'}}>
-          {this.displaySummary()}
-        </div>
+        <div className="travel-container-info">{this.displaySummary()}</div>
         <TravelForm />
       </div>
     );

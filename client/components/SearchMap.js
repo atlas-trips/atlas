@@ -19,7 +19,7 @@ const MapWithASearchBox = compose(
     googleMapURL:
       'https://maps.googleapis.com/maps/api/js?key=AIzaSyD4jSOU0XG9zooC14hIs9G_zTNkEQ6zd_g&libraries=geometry,drawing,places',
     loadingElement: <div style={{height: `100%`}} />,
-    containerElement: <div style={{height: `500px`,}} />,
+    containerElement: <div style={{height: `500px`}} />,
     mapElement: <div style={{height: `100%`, zIndex: 0}} />
   }),
   lifecycle({
@@ -151,7 +151,7 @@ const MapWithASearchBox = compose(
         ))
       : ''}
 
-      {console.log("COORDS FROM MAP YO", props.coords)}
+    {console.log('COORDS FROM MAP YO', props.coords)}
     {props.coords.map(coord => (
       <Marker
         key={`mapAct${coord.id}`}
