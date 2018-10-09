@@ -717,17 +717,101 @@ nav a {
 .single-trip-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   height: 100vh;
 }
 
+/* .single-trip {
+  display: flex;
+  flex-direction: column;
+} */
+
 .single-trip-header {
-  margin: 0 auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.single-trip-header-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.5em;
+  color: white;
+  padding: 3px;
+  border: 5px solid white;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  width: 145px;
+  height: 35px;
+  line-height: 35px;
+  z-index: 10;
+  align-self: center;
+  text-align: center;
+}
+
+.single-trip-header-dates {
+  height: 45px;
+  z-index: 100;
+  text-align: center;
+  border-radius: 15px;
+  background-color: white;
+  box-shadow: 0px 0px 7px 0px rgba(5, 13, 168, 1);
+  margin-bottom: 15px;
+}
+
+.single-trip-header-dates span {
+  color: #c60057;
+  font-size: 70%;
+  font-size: 30px;
+}
+
+.single-trip-header-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.single-trip-header-buttons-invite {
+  width: 200px;
+  height: 40px;
+  margin-top: 15px;
+  cursor: pointer;
+  background-color: #00a767;
+  color: white;
+  font-family: 'Istok Web', sans-serif;
+  font-size: 1em;
+  border: 1px solid #007ba7;
+  border-radius: 20px;
+  font-weight: bolder;
+  box-shadow: 0px 0px 16px -4px rgba(0, 0, 0, 1);
+}
+
+.single-trip-header-buttons-remove {
+  width: 200px;
+  height: 40px;
+  margin-top: 15px;
+  cursor: pointer;
+  background-color: #b90e1c;
+  color: white;
+  font-family: 'Istok Web', sans-serif;
+  font-size: 1em;
+  border: 1px solid #007ba7;
+  border-radius: 20px;
+  font-weight: bolder;
+  box-shadow: 0px 0px 16px -4px rgba(0, 0, 0, 1);
+}
+
+.single-trip-header-buttons-invite:hover {
+  background-color: #039474;
+  color: white;
+  border: 1px solid #53aad9;
+}
+
+.single-trip-header-buttons-remove:hover {
+  background-color: #860c33;
+  color: white;
+  border: 1px solid #53aad9;
 }
 
 .single-trip-info-top {
-  align-content: center;
-  margin: 0 auto;
+  align-self: center;
 }
 
 .single-trip-info-bottom {
@@ -741,7 +825,7 @@ nav a {
   text-align: center;
   width: 500px;
   border: 1px solid black;
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: white;
   margin: 40px auto 0;
   font-family: 'Istok Web', sans-serif;
