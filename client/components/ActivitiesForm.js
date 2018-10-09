@@ -85,7 +85,7 @@ class ActivitiesForm extends Component {
       startLng /= coords.length;
     }
     return (
-      <div className="activities-container">
+      <div className="activities-map-container">
         <div style={{width: '900px'}} className="map-container">
         <div className='map-container'>
         
