@@ -3,13 +3,6 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MapWithASearchBox from './SearchMap';
 
-const activityFormStyle = {
-  border: '2px solid black',
-  display: 'flex',
-  justifyContent: 'space-around',
-  borderRadius: '15px',
-  width: '500px'
-};
 
 class ActivitiesForm extends Component {
   constructor(props) {
@@ -18,19 +11,25 @@ class ActivitiesForm extends Component {
       activityName: '',
       selectedDay: null,
       selected: {},
-      added: false
+      added: false,
+      modalOpen: false
     };
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addActivity = this.addActivity.bind(this);
     this.resetMarker = this.resetMarker.bind(this);
+    this.openModal = this.openModal.bind(this);
   }
 
   handleDayClick(day, {selected}) {
     this.setState({
       selectedDay: selected ? undefined : day
     });
+  }
+  openModal(evt){
+    evt.preventDefault();
+    this.setState({modalOpen: !this.state.modalOpen})
   }
 
   addActivity(place) {
@@ -39,6 +38,9 @@ class ActivitiesForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if(!this.state.selectedDay){
+      return;
+    }
     const newActivity = {
       location: this.props.map,
       name: this.state.activityName,
@@ -46,7 +48,7 @@ class ActivitiesForm extends Component {
       tripId: this.props.tripId
     };
     this.props.createNewActivity(newActivity, this.props.tripId);
-    this.setState({added: true});
+    this.setState({added: true, modalOpen: false});
   }
 
   handleChange(event) {
@@ -78,54 +80,72 @@ class ActivitiesForm extends Component {
       startLng /= coords.length;
     }
     return (
-      <div>
-        <div style={{width: '900px'}}>
+      <div className="activities-map-container">
+        <div style={{width: '900px'}} className="map-container">
+        <div className='map-container'>
+        
           <MapWithASearchBox
             startLat={startLat}
             startLng={startLng}
-            coords={coords}
+            coords={coords.filter(coord => coord.position.lat && coord.position.lng )}
             add={this.addActivity}
             clear={this.state.added}
             reset={this.resetMarker}
           />
+          </div>
+          
+          
         </div>
-        <h3>
-          Selected:{this.state.selected.id
-            ? ' ' + this.state.selected.name
-            : ''}
-        </h3>
-        <h4>
-          {this.state.selected.id ? this.state.selected.formatted_address : ''}
-        </h4>
-        <hr />
-
-        <form style={activityFormStyle} onSubmit={this.handleSubmit}>
-          <div>
-            <p>
-              {this.state.selectedDay
-                ? this.state.selectedDay.toLocaleDateString()
-                : 'Please select a day'}
-            </p>
-
-            <DayPicker
-              onDayClick={this.handleDayClick}
-              selectedDays={this.state.selectedDay}
-            />
+        <div className="map-footer">
+          <div className="map-footer-text">
+            <h3>
+              Selected:{this.state.selected.id
+                ? ' ' + this.state.selected.name
+                : ''}
+            </h3>
+           <h4>
+            {this.state.selected.id ? this.state.selected.formatted_address : ''}
+          </h4>
           </div>
-          <div style={{position: 'center', margin: '0 auto'}}>
-            <label htmlFor="activityName" />
-            <input
-              type="text"
-              name="activityName"
-              value={this.state.activityName}
-              onChange={this.handleChange}
-              placeholder="Name of Activity"
-              style={{display: 'block'}}
-            />
 
-            <button type="submit">Add activity</button>
+          <div className="map-footer-button">
+                <button type='submit' onClick={this.openModal}>{this.state.modalOpen ? "Close" : "Add"}</button>
           </div>
-        </form>
+        </div>
+      
+        {this.state.modalOpen ?
+          <div className="activity-modal">
+            <div className="activity-modal-contnent">
+              <form onSubmit={this.handleSubmit}>
+                    <div className='modal-calendar'>
+                      <p>
+                        {this.state.selectedDay
+                          ? this.state.selectedDay.toLocaleDateString()
+                          : 'Please select a day'}
+                      </p>
+          
+                      <DayPicker
+                        onDayClick={this.handleDayClick}
+                        selectedDays={this.state.selectedDay}
+                      />
+                    </div>
+                    <div className='modal-form'>
+                        <label htmlFor="activityName" />
+                        <input
+                          type="text"
+                          name="activityName"
+                          value={this.state.activityName}
+                          onChange={this.handleChange}
+                          placeholder="Name of Activity"
+                        />
+                        <div>
+                        <button type="submit">Add</button>
+                        </div>
+                    </div>
+                  </form>
+            </div>
+          </div>
+          : ''}
       </div>
     );
   }
