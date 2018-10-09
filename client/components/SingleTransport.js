@@ -8,7 +8,7 @@ const SingleTransport = props => {
         <div
           style={{
             marginTrop: '25px',
-            backgroundColor: 'gray',
+            backgroundColor: 'white',
             borderRadius: '5px',
             marginLeft: '25px',
             marginRight: '25px',
@@ -18,14 +18,29 @@ const SingleTransport = props => {
         >
           <div>
             <h3>
-              {transport.method}{' '}
-              <button
-                type="submit"
-                onClick={() => props.onDelete(user.id, transport.id)}
-                style={{display: 'inline', right: '10px'}}
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  padding: '3px'
+                }}
               >
-                X
-              </button>
+                <div>{transport.method} </div>
+                <div>
+                  <button
+                    type="submit"
+                    onClick={() => props.onDelete(user.id, transport.id)}
+                    style={{
+                      display: 'inline',
+                      right: '10px',
+                      color: 'red',
+                      borderRadius: '3px'
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+              </div>
             </h3>
           </div>
           {!transport.flightNum ? null : (

@@ -23,7 +23,7 @@ class Travel extends Component {
       return (
         <div key={user.id}>
           <div style={{marginBotton: '50px'}}>
-            <h1
+            <h3
               style={{
                 textAlign: 'center',
                 border: '2px solid black',
@@ -33,18 +33,20 @@ class Travel extends Component {
               }}
             >
               {user.name}
-            </h1>
+            </h3>
           </div>
           <div className="travel-container-card">
             {user.transportation.map(transport => {
               return (
-                <SingleTransport
-                  key={transport.id}
-                  transport={transport}
-                  user={user}
-                  onDelete={this.onDelete}
-                  style={{marginTop: '15px'}}
-                />
+                <div>
+                  <SingleTransport
+                    key={transport.id}
+                    transport={transport}
+                    user={user}
+                    onDelete={this.onDelete}
+                    style={{marginTop: '15px'}}
+                  />
+                </div>
               );
             })}
           </div>

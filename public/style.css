@@ -403,11 +403,19 @@ nav a {
 }
 
 .travel-form {
-  text-align: center;
+  margin-top: 35px;
   width: 400px;
-  height: 200px;
+  height: 300px;
   background-color: white;
   box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
+}
+
+.travel-form-label {
+  background-color: #c60057;
+  color: white;
+  padding: 5px;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
 }
 
 .accommo-form {
