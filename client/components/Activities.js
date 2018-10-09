@@ -49,8 +49,10 @@ class Activities extends Component {
               />
               <div className="activity-list">
                 <div className="activity-list-header">
-                  <h4 style={{textAlign: 'center', margin: 0}}>Activities List</h4>
-                  </div>
+                  <h4 style={{textAlign: 'center', margin: 0}}>
+                    Activities List
+                  </h4>
+                </div>
                 <ul>
                   {!this.props.activities.length
                     ? null

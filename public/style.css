@@ -13,7 +13,7 @@
   width: 100%;
 }
 
-.activities-map-container{
+.activities-map-container {
   margin-top: 50px;
   background: white;
   border-radius: 5px;
@@ -23,12 +23,11 @@
   width: 100%;
   height: 460px;
   border-radius: 5px;
-  
 }
 
 .map-footer {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   margin: 10px;
   margin-top: 40px;
@@ -41,10 +40,9 @@
   background: #c60057;
   color: white;
   font-size: 18px;
- 
 }
 
-.activity-modal{
+.activity-modal {
   z-index: 100;
   margin-top: -180px;
   left: 400px;
@@ -59,11 +57,11 @@
   text-align: center;
 }
 
-.activity-modal-content{
+.activity-modal-content {
   margin: 0 auto;
 }
 
-.modal-form{
+.modal-form {
   margin: 0 auto;
 }
 
@@ -82,10 +80,9 @@
   border-radius: 50px;
   width: 85px;
   height: 40px;
-  
 }
 
-.activity-list{
+.activity-list {
   text-align: right;
   width: 350px;
   margin: 0px auto;
@@ -94,7 +91,7 @@
   margin-top: 50px;
 }
 
-.activity-list-header{
+.activity-list-header {
   color: white;
   background: #53aad9;
   border-radius: 5px 5px 0px 0px;
@@ -112,7 +109,7 @@
   margin-bottom: 5px;
 }
 
-.activity-list button{
+.activity-list button {
   color: white;
   height: 18px;
   border: none;
@@ -120,9 +117,6 @@
   border-radius: 50px;
   text-align: center;
 }
-
-
-
 
 .landing-header {
   text-align: right;
