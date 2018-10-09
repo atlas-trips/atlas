@@ -42,12 +42,14 @@ class SingleTrip extends Component {
 
   render() {
     const trip = this.props.trip;
-    console.log('trip', trip);
-    const singleTripStyle = {
-      display: 'flex',
-      flexDirection: 'column',
-      backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`
-    };
+    const singleTripStyle = trip.name
+      ? {
+          display: 'flex',
+          flexDirection: 'column',
+          backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`,
+          height: '100vh'
+        }
+      : '';
 
     if (Object.keys(this.props.trip).length) {
       return (
