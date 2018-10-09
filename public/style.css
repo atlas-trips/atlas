@@ -951,17 +951,89 @@ nav a {
 .single-trip-info {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   height: 100vh;
 }
 
 .single-trip-header {
-  margin: 0 auto;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  width: 100vw;
+  background: linear-gradient(to bottom, #53aad9, transparent 80%);
+}
+
+.single-trip-header-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2em;
+  color: white;
+  padding: 3px;
+  border: 5px solid white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 175px;
+  height: 100px;
+  line-height: 35px;
+  z-index: 10;
+  align-self: center;
+  text-align: center;
+}
+
+.single-trip-header-dates {
+  height: 45px;
+  z-index: 100;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.single-trip-header-dates span {
+  color: white;
+  font-size: 70%;
+  font-size: 30px;
+}
+
+.single-trip-right button {
+  width: 200px;
+  height: 40px;
+  margin-top: 20px;
+  cursor: pointer;
+  font-family: 'Istok Web', sans-serif;
+  font-size: 1em;
+  border-radius: 20px;
+  font-weight: bolder;
+  box-shadow: 0px 0px 16px -4px rgba(0, 0, 0, 1);
+}
+
+.single-trip-header-buttons-invite {
+  background-color: #03ad83;
+  border-color: #03ad83;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.single-trip-header-buttons-remove {
+  background-color: #aa0f40;
+  border-color: #aa0f40;
+  color: white;
+  position: absolute;
+  left: 85%;
+}
+
+.single-trip-header-buttons-invite:hover {
+  background-color: #039474;
+  color: white;
+  border-color: #039474;
+}
+
+.single-trip-header-buttons-remove:hover {
+  background-color: #860c33;
+  color: white;
+  border-color: #860c33;
 }
 
 .single-trip-info-top {
-  align-content: center;
-  margin: 0 auto;
+  align-self: center;
 }
 
 .single-trip-info-bottom {
@@ -975,7 +1047,7 @@ nav a {
   text-align: center;
   width: 500px;
   border: 1px solid black;
-  margin-top: 50px;
+  margin-top: 20px;
   background-color: white;
   margin: 40px auto 0;
   font-family: 'Istok Web', sans-serif;

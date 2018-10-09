@@ -7,16 +7,6 @@ import {connect} from 'react-redux';
 import {fetchSelected, deleteTrip} from '../store/trip';
 import Sidebar from './Sidebar';
 
-const divStyle = {
-  textAlign: 'center',
-  border: '2px solid black',
-  flexWrap: 'wrap',
-  justifyContent: 'space-between',
-  padding: '10px',
-  marginRight: '15px',
-  borderRadius: '15px'
-};
-
 class SingleTrip extends Component {
   constructor(props) {
     super(props);
@@ -42,35 +32,58 @@ class SingleTrip extends Component {
 
   render() {
     const trip = this.props.trip;
+    const singleTripStyle = trip.name
+      ? {
+          display: 'flex',
+          flexDirection: 'column',
+          backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`,
+          height: '100vh',
+          margin: '-20px'
+        }
+      : '';
 
     if (Object.keys(this.props.trip).length) {
       return (
         <div className="single-trip">
           <Sidebar />
-          <div className="single-trip-header">
-            {trip.name}: {trip.startDate.slice(0, 10)} to{' '}
-            {trip.endDate.slice(0, 10)}
+          <div className="single-trip-right" style={singleTripStyle}>
+            <div className="single-trip-header">
+              <div className="single-trip-header-name">{trip.name}:</div>
+              <div className="single-trip-header-dates">
+                <span>
+                  {new Date(trip.startDate.slice(0, 10))
+                    .toString()
+                    .slice(0, 16)}{' '}
+                  to{' '}
+                  {new Date(trip.endDate.slice(0, 10)).toString().slice(0, 16)}
+                </span>
+              </div>
+              <div>
+                <button
+                  className="single-trip-header-buttons-invite"
+                  onClick={this.handleClick}
+                >
+                  INVITE YOUR FRIENDS! {this.state.open ? <ShareTrip /> : null}
+                </button>
+              </div>
+            </div>
             <button
-              style={{...divStyle, color: 'black'}}
-              onClick={this.handleClick}
-            >
-              Invite your Friends {this.state.open ? <ShareTrip /> : null}
-            </button>
-            <button
-              style={{...divStyle, color: 'black'}}
+              id="remove-trip"
+              className="single-trip-header-buttons-remove"
               onClick={this.handleDelete}
             >
-              Remove Trip
+              REMOVE TRIP
             </button>
-          </div>
-          <div className="single-trip-info">
-            <div className="single-trip-info-top">
-              <ParticipantsOverview peeps={trip.users} />
-            </div>
 
-            <div className="single-trip-info-bottom">
-              <ActivitiesOverview activities={trip.activities} />
-              <AccommodationOverview accommodations={trip.accommodation} />
+            <div className="single-trip-info">
+              <div className="single-trip-info-top">
+                <ParticipantsOverview peeps={trip.users} />
+              </div>
+
+              <div className="single-trip-info-bottom">
+                <ActivitiesOverview activities={trip.activities} />
+                <AccommodationOverview accommodations={trip.accommodation} />
+              </div>
             </div>
           </div>
         </div>
