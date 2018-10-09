@@ -52,7 +52,7 @@ class TravelForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit} className="travel-form">
-        <label>User</label>
+        <label className="travel-form-label">User</label>
         <select
           value={this.state.selectedUser}
           onChange={this.onChange}
