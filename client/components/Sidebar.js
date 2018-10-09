@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
     return !selected ? (
       <div className="sidebar-minimal">
         <div className="sidebar-item side-top">
-          <Link style={{fontSize: '9px'}} to="/">
+          <Link className="sidebar-signout" to="/">
             Sign Out
           </Link>
         </div>
@@ -35,7 +35,7 @@ class Sidebar extends React.Component {
       <div className="sidebar">
         <div>
           <div className="sidebar-item side-top">
-            <Link style={{fontSize: '9px'}} to="/">
+            <Link className="sidebar-signout" to="/">
               Sign Out
             </Link>
           </div>

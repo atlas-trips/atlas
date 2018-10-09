@@ -6,9 +6,17 @@ const CalendarTransportation = props => {
     <div>
       {transportation.map(trans => {
         return (
-          <div key={trans.id}>
-            <h5>{trans.name}</h5>
-            {/* {trans.users.map((user,i) => <h6 key={i}>{user}</h6>)} */}
+          <div key={trans.id} className="trans-card-single-trans">
+            <div className="trans-card-single-trans-info-container">
+              <div className="trans-card-single-trans-info">
+                {trans.users.includes(props.user) ? (
+                  <img src="/images/greenDot.png" width="8" alt="" />
+                ) : (
+                  <img src="/images/blackDot.png" width="8" alt="" />
+                )}
+                {' ' + trans.name}
+              </div>
+            </div>
           </div>
         );
       })}

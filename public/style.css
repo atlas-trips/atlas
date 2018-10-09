@@ -142,11 +142,11 @@ nav a {
 }
 
 .side-top {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .side-bottom {
-  margin-bottom: 100px;
+  margin-bottom: 250px;
 }
 
 .dashboard-content {
@@ -714,6 +714,114 @@ nav a {
   margin-bottom: -10px;
 }
 
+.calendar {
+  width: 840px;
+  background-color: white;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  margin-left: 80px;
+  box-shadow: -5px 6px 5px -2px rgba(0, 0, 0, 0.75);
+  border-radius: 4px;
+}
+
+.calendar-card {
+  display: flex;
+  margin: 10px 4px;
+}
+
+.calendar-card-date {
+  width: 170px;
+  height: 170px;
+  margin: 15px;
+  border: 1px solid #007ba7;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.calendar-card-date-month {
+  flex: 1;
+  background-color: #007ba7;
+  border: 1px solid #007ba7;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  text-align: center;
+  font-family: 'Istok Web', sans-serif;
+  color: white;
+  font-size: 2.2em;
+  font-weight: bolder;
+  line-height: 55px;
+  border-bottom: 1px solid #004f78;
+}
+
+.calendar-card-date-day {
+  flex: 2;
+  text-align: center;
+}
+
+.calendar-card-date-day-num {
+  font-family: 'Istok Web', sans-serif;
+  color: red;
+  font-size: 4em;
+}
+
+.calendar-card-date-day-word {
+  margin-top: -11px;
+}
+
+.calendar-card-title {
+  width: 200px;
+  height: 200px;
+  background-image: linear-gradient(#007ba7, #004f78);
+  text-align: center;
+  color: white;
+  border-radius: 3px;
+  margin: 0 3px;
+}
+
+.calendar-card-item-title {
+  font-size: 1.3em;
+  font-family: 'Istok Web', sans-serif;
+  font-weight: bolder;
+  background-color: #53aad9;
+}
+
+.activity-card-single-activity {
+  background-color: white;
+  border-radius: 2px;
+  color: #007ba7;
+  margin: 2px;
+  line-height: 25px;
+  font-size: 80%;
+}
+
+.activity-card-single-activity-info-container,
+.accom-card-single-accom-info-container,
+.trans-card-single-trans-info-container {
+  display: flex;
+}
+
+.activity-card-single-activity-info {
+  margin-left: 5px;
+}
+
+.accom-card-single-accom,
+.trans-card-single-trans {
+  background-color: white;
+  border-radius: 2px;
+  color: #007ba7;
+  margin: 2px;
+  line-height: 25px;
+}
+
+.accom-card-single-accom-name,
+.trans-card-single-trans-info {
+  font-size: 80%;
+  margin-left: 5px;
+}
+
 .single-trip-info {
   display: flex;
   flex-direction: column;
@@ -869,4 +977,33 @@ nav a {
 .activities-container-header span,
 .participants-container-header span {
   margin-left: 8px;
+}
+
+.sidebar-signout {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Istok Web', sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
+.dashboard-no-trips {
+  width: 500px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  font-family: 'Istok Web', sans-serif;
+  color: #007ba7;
+  justify-content: space-between;
+  background-image: url('/images/noTrips.jpg');
+  background-size: cover;
+  border: 15px solid white;
+  border-radius: 4px;
+  box-shadow: -5px 7px 5px 0px rgba(0,0,0,0.75);
+}
+
+.dashboard-no-trips .add-trip {
+  margin-bottom: 30px;
 }
