@@ -59,8 +59,35 @@
 
 .modal-form{
   margin: 0 auto;
-  flex-direction: column;
+  
 }
+
+.activity-list{
+  text-align: right;
+  margin: 0px auto;
+  background: white;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+.activity-list ul {
+  margin-right: 10px;
+  list-style: none;
+}
+
+.activity-list li {
+  margin-bottom: 5px;
+}
+
+.activity-list button{
+  color: white;
+  height: 18px;
+  border: none;
+  background: red;
+  border-radius: 50px;
+  text-align: center;
+}
+
 
 
 
