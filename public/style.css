@@ -59,6 +59,23 @@
 
 .modal-form{
   margin: 0 auto;
+}
+
+.modal-form input {
+  border: 1px solid #c60057;
+  height: 25px;
+  margin-bottom: 10px;
+  width: 230px;
+}
+.modal-form button {
+  margin-bottom: 10px;
+  background: #c60057;
+  color: white;
+  font-size: 20px;
+  border: none;
+  border-radius: 50px;
+  width: 85px;
+  height: 40px;
   
 }
 

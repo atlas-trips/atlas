@@ -38,6 +38,9 @@ class ActivitiesForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    if(!this.state.selectedDay){
+      return;
+    }
     const newActivity = {
       location: this.props.map,
       name: this.state.activityName,
@@ -136,7 +139,7 @@ class ActivitiesForm extends Component {
                           placeholder="Name of Activity"
                         />
                         <div>
-                        <button type="submit">Add activity</button>
+                        <button type="submit">Add</button>
                         </div>
                     </div>
                   </form>
