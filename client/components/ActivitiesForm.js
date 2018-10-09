@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
-//import MapWithASearchBox from './SearchMap';
+import MapWithASearchBox from './SearchMap';
 
 const activityFormStyle = {
   border: '2px solid black',
@@ -88,7 +88,7 @@ class ActivitiesForm extends Component {
       <div className="activities-container">
         <div style={{width: '900px'}} className="map-container">
         <div className='map-container'>
-        { /*
+        
           <MapWithASearchBox
             startLat={startLat}
             startLng={startLng}
@@ -96,9 +96,7 @@ class ActivitiesForm extends Component {
             add={this.addActivity}
             clear={this.state.added}
             reset={this.resetMarker}
-          
           />
-          */} 
           </div>
           
           
@@ -116,11 +114,11 @@ class ActivitiesForm extends Component {
           </div>
 
           <div className="map-footer-button">
-                <button type='submit' onClick={this.openModal}>Add</button>
+                <button type='submit' onClick={this.openModal}>{this.state.modalOpen ? "Close" : "Add"}</button>
           </div>
         </div>
         <hr />
-        {this.state.modalOpen?
+        {this.state.modalOpen ?
           <div className="activity-modal">
              <form style={activityFormStyle} onSubmit={this.handleSubmit}>
                   <div>
@@ -145,15 +143,10 @@ class ActivitiesForm extends Component {
                       placeholder="Name of Activity"
                       style={{display: 'block'}}
                     />
-        
                     <button type="submit">Add activity</button>
                   </div>
                 </form>
-          
           </div>
-
-
-
           : ''}
       </div>
     );
