@@ -22,7 +22,7 @@ const getDayName = shortName => {
   } else {
     return 'Sunday';
   }
-}
+};
 
 class Calendar extends Component {
   constructor(props) {
@@ -40,22 +40,15 @@ class Calendar extends Component {
         <Sidebar />
         <div className="calendar">
           {schedule.map((day, i) => {
-            const date = (new Date(day.date).toString()).split(' ');
+            const date = new Date(day.date).toString().split(' ');
             return (
-              <div
-                key={day.date + i}
-                className="calendar-card"
-              >
+              <div key={day.date + i} className="calendar-card">
                 <div className="calendar-card-date">
-                  <div className="calendar-card-date-month">
-                  {date[1]}
-                  </div>
+                  <div className="calendar-card-date-month">{date[1]}</div>
                   <div className="calendar-card-date-day">
-                    <div className="calendar-card-date-day-num">
-                      {date[2]}
-                    </div>
+                    <div className="calendar-card-date-day-num">{date[2]}</div>
                     <div className="calendar-card-date-day-word">
-                    {getDayName(date[0])}
+                      {getDayName(date[0])}
                     </div>
                   </div>
                 </div>
@@ -70,7 +63,9 @@ class Calendar extends Component {
                 ) : null}
                 {day.hasOwnProperty('accommodations') ? (
                   <div className="calendar-card-title">
-                    <div className="calendar-card-item-title">New Accommodations:</div>
+                    <div className="calendar-card-item-title">
+                      New Accommodations:
+                    </div>
                     <CalendarAccommodations
                       accommodations={day.accommodations}
                       user={this.props.user.name}
@@ -79,7 +74,9 @@ class Calendar extends Component {
                 ) : null}
                 {day.hasOwnProperty('transportation') ? (
                   <div className="calendar-card-title">
-                    <div className="calendar-card-item-title">Transportation:</div>
+                    <div className="calendar-card-item-title">
+                      Transportation:
+                    </div>
                     <CalendarTransportation
                       transportation={day.transportation}
                       user={this.props.user.name}
@@ -105,7 +102,7 @@ class Calendar extends Component {
 const mapStateToProps = state => ({
   trip: state.trip.selected,
   schedule: state.trip.tripCalendar,
-  user: state.user,
+  user: state.user
 });
 
 const mapDispatchToProps = dispatch => ({
