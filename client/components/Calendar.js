@@ -6,12 +6,23 @@ import CalendarActivities from './CalendarActivities';
 import CalendarAccommodations from './CalendarAccommodations';
 import CalendarTransportation from './CalendarTransportation';
 
-const sectionStyle = {
-  border: '1px solid black',
-  width: '200px',
-  textAlign: 'center',
-  height: '200px'
-};
+const getDayName = shortName => {
+  if (shortName === 'Mon') {
+    return 'Monday';
+  } else if (shortName === 'Tue') {
+    return 'Tuesday';
+  } else if (shortName === 'Wed') {
+    return 'Wednesday';
+  } else if (shortName === 'Thu') {
+    return 'Thursday';
+  } else if (shortName === 'Fri') {
+    return 'Friday';
+  } else if (shortName === 'Sat') {
+    return 'Saturday';
+  } else {
+    return 'Sunday';
+  }
+}
 
 class Calendar extends Component {
   constructor(props) {
@@ -27,47 +38,51 @@ class Calendar extends Component {
     return schedule.length ? (
       <div>
         <Sidebar />
-        <div
-          style={{
-            marginLeft: '100px',
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
+        <div className="calendar">
           {schedule.map((day, i) => {
+            const date = (new Date(day.date).toString()).split(' ');
             return (
               <div
                 key={day.date + i}
-                style={{display: 'flex', border: '1px solid red'}}
+                className="calendar-card"
               >
-                <div
-                  style={{
-                    border: '1px solid black',
-                    width: '130px',
-                    height: '200px'
-                  }}
-                >
-                  <h3>{day.date}</h3>
+                <div className="calendar-card-date">
+                  <div className="calendar-card-date-month">
+                  {date[1]}
+                  </div>
+                  <div className="calendar-card-date-day">
+                    <div className="calendar-card-date-day-num">
+                      {date[2]}
+                    </div>
+                    <div className="calendar-card-date-day-word">
+                    {getDayName(date[0])}
+                    </div>
+                  </div>
                 </div>
                 {day.hasOwnProperty('activities') ? (
-                  <div style={sectionStyle}>
-                    <h4>Activities:</h4>
-                    <CalendarActivities activities={day.activities} />
+                  <div className="calendar-card-title">
+                    <div className="calendar-card-item-title">Activities:</div>
+                    <CalendarActivities
+                      activities={day.activities}
+                      user={this.props.user.name}
+                    />
                   </div>
                 ) : null}
                 {day.hasOwnProperty('accommodations') ? (
-                  <div style={sectionStyle}>
-                    <h4>New Accommodations:</h4>
+                  <div className="calendar-card-title">
+                    <div className="calendar-card-item-title">New Accommodations:</div>
                     <CalendarAccommodations
                       accommodations={day.accommodations}
+                      user={this.props.user.name}
                     />
                   </div>
                 ) : null}
                 {day.hasOwnProperty('transportation') ? (
-                  <div style={sectionStyle}>
-                    <h4>Transportation:</h4>
+                  <div className="calendar-card-title">
+                    <div className="calendar-card-item-title">Transportation:</div>
                     <CalendarTransportation
                       transportation={day.transportation}
+                      user={this.props.user.name}
                     />
                   </div>
                 ) : null}
@@ -89,7 +104,8 @@ class Calendar extends Component {
 
 const mapStateToProps = state => ({
   trip: state.trip.selected,
-  schedule: state.trip.tripCalendar
+  schedule: state.trip.tripCalendar,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
