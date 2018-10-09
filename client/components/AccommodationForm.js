@@ -54,7 +54,7 @@ class AccommodationForm extends Component {
       location: '',
       name: '',
       coords: '',
-      placeId: '',
+      placeId: ''
     };
   }
   handleDayClick(day) {
@@ -76,7 +76,7 @@ class AccommodationForm extends Component {
       location,
       name,
       coords,
-      placeId,
+      placeId
     });
   }
 
@@ -100,7 +100,7 @@ class AccommodationForm extends Component {
       endDate: formatDate(this.state.to),
       tripId: this.props.trip.id,
       coordinates: this.state.coords,
-      placeId: this.state.placeId,
+      placeId: this.state.placeId
     };
     await this.props.makeAccommodation(newAccommodation);
     this.props.handleClick();
@@ -123,7 +123,14 @@ class AccommodationForm extends Component {
               <div style={{flex: 1}}>
                 <LocationSearchInput handleSearch={this.handleSearch} />
               </div>
-              <div style={{flex: 1, display: 'flex', flexDirection: 'column',justifyContent: 'space-between'}}>
+              <div
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between'
+                }}
+              >
                 <div>
                   <div className="accommo-form-inputs-top">
                     <label htmlFor="name" className="accommo-form-input-label">
@@ -139,7 +146,10 @@ class AccommodationForm extends Component {
                   </div>
                   <br />
                   <div className="accommo-form-inputs">
-                    <label htmlFor="location" className="accommo-form-input-label">
+                    <label
+                      htmlFor="location"
+                      className="accommo-form-input-label"
+                    >
                       Accommodation Address:
                     </label>
                     <input
@@ -151,7 +161,12 @@ class AccommodationForm extends Component {
                     />
                   </div>
                 </div>
-                <img src="/images/googlePower.png" width="200" className="google-power" alt=""/>
+                <img
+                  src="/images/googlePower.png"
+                  width="200"
+                  className="google-power"
+                  alt=""
+                />
               </div>
             </div>
             <div className="accommo-form-sections-date">
