@@ -87,7 +87,7 @@ class ActivitiesForm extends Component {
           <MapWithASearchBox
             startLat={startLat}
             startLng={startLng}
-            coords={coords}
+            coords={coords.filter(coord => coord.position.lat && coord.position.lng )}
             add={this.addActivity}
             clear={this.state.added}
             reset={this.resetMarker}
@@ -112,7 +112,7 @@ class ActivitiesForm extends Component {
                 <button type='submit' onClick={this.openModal}>{this.state.modalOpen ? "Close" : "Add"}</button>
           </div>
         </div>
-        <hr />
+      
         {this.state.modalOpen ?
           <div className="activity-modal">
             <div className="activity-modal-contnent">

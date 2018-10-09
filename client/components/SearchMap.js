@@ -150,6 +150,8 @@ const MapWithASearchBox = compose(
           />
         ))
       : ''}
+
+      {console.log("COORDS FROM MAP YO", props.coords)}
     {props.coords.map(coord => (
       <Marker
         key={`mapAct${coord.id}`}

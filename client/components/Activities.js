@@ -48,8 +48,10 @@ class Activities extends Component {
                 createNewActivity={this.props.createNewActivity}
               />
               <div className="activity-list">
-                <h4 style={{textAlign: 'center'}}>Activities List</h4>
-                <ul style={{listStyle: 'none'}}>
+                <div className="activity-list-header">
+                  <h4 style={{textAlign: 'center', margin: 0}}>Activities List</h4>
+                  </div>
+                <ul>
                   {!this.props.activities.length
                     ? null
                     : this.props.activities.map(activity => {
