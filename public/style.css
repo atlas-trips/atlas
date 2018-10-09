@@ -142,11 +142,11 @@ nav a {
 }
 
 .side-top {
-  margin-top: 100px;
+  margin-top: 50px;
 }
 
 .side-bottom {
-  margin-bottom: 100px;
+  margin-bottom: 250px;
 }
 
 .dashboard-content {
@@ -721,7 +721,7 @@ nav a {
   display: flex;
   flex-direction: column;
   margin-left: 80px;
-  box-shadow: -5px 6px 5px -2px rgba(0,0,0,0.75);
+  box-shadow: -5px 6px 5px -2px rgba(0, 0, 0, 0.75);
   border-radius: 4px;
 }
 
@@ -738,7 +738,7 @@ nav a {
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 .calendar-card-date-month {
@@ -797,7 +797,9 @@ nav a {
   font-size: 80%;
 }
 
-.activity-card-single-activity-info-container, .accom-card-single-accom-info-container, .trans-card-single-trans-info-container {
+.activity-card-single-activity-info-container,
+.accom-card-single-accom-info-container,
+.trans-card-single-trans-info-container {
   display: flex;
 }
 
@@ -805,7 +807,8 @@ nav a {
   margin-left: 5px;
 }
 
-.accom-card-single-accom, .trans-card-single-trans {
+.accom-card-single-accom,
+.trans-card-single-trans {
   background-color: white;
   border-radius: 2px;
   color: #007ba7;
@@ -813,9 +816,11 @@ nav a {
   line-height: 25px;
 }
 
-.accom-card-single-accom-name, .trans-card-single-trans-info {
+.accom-card-single-accom-name,
+.trans-card-single-trans-info {
   font-size: 80%;
   margin-left: 5px;
+}
 
 .single-trip-info {
   display: flex;
@@ -888,4 +893,12 @@ nav a {
 .activities-container-header span,
 .participants-container-header span {
   margin-left: 8px;
+}
+
+.sidebar-signout {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Istok Web', sans-serif;
+  color: white;
+  text-decoration: none;
 }

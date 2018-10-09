@@ -6,16 +6,14 @@ const CalendarActivities = props => {
     <div>
       {activities.map(act => {
         return (
-          <div
-            key={act.id}
-            className="activity-card-single-activity"
-          >
+          <div key={act.id} className="activity-card-single-activity">
             <div className="activity-card-single-activity-info-container">
               <div className="activity-card-single-activity-info">
-                {act.users.includes(props.user) ?
-                  <img src="/images/greenDot.png" width="8" alt=""/>
-                  :
-                  <img src="/images/blackDot.png" width="8" alt=""/> }
+                {act.users.includes(props.user) ? (
+                  <img src="/images/greenDot.png" width="8" alt="" />
+                ) : (
+                  <img src="/images/blackDot.png" width="8" alt="" />
+                )}
                 {' ' + act.name}
               </div>
             </div>
