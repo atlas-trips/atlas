@@ -17,7 +17,7 @@ class ShareTrip extends Component {
     this.state = {
       emailFrom: email,
       friendEmail: '',
-      confirmationMessage: 'Your Invite has been sent!',
+      confirmationMessage: '',
       open: true
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -56,26 +56,7 @@ class ShareTrip extends Component {
   }
 
   render() {
-    return (
-      <Modal open={this.state.open} onClose={this.onCloseModal} center>
-        <div>
-          <h3>Invite Your Friends</h3>
-
-          <form style={formStyle} onSubmit={this.handleSubmit}>
-            <label htmlFor="friendEmail" />
-            <input
-              type="email"
-              name="friendEmail"
-              value={this.state.friendEmail}
-              onChange={this.handleChange}
-              placeholder="Friends Email"
-            />
-
-            <button type="submit">Share Trip</button>
-          </form>
-        </div>
-      </Modal>
-    );
+    return <div />;
   }
 }
 
