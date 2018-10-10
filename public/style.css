@@ -1,3 +1,6 @@
+@import url('http://fonts.googleapis.com/css?family=Pacifico');
+@import url('http://fonts.googleapis.com/css?family=Great+Vibes');
+
 *:focus {
   outline: none;
 }
@@ -964,32 +967,22 @@ nav a {
 }
 
 .single-trip-header-name {
-  font-family: 'Oswald', sans-serif;
-  font-size: 2em;
-  color: white;
-  padding: 3px;
-  border: 5px solid white;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  width: 175px;
-  height: 100px;
-  line-height: 35px;
-  z-index: 10;
-  align-self: center;
-  text-align: center;
+  font: 400 100px/1.5 'Great Vibes', Helvetica, sans-serif;
+  color: rgb(242, 243, 176);
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
 }
 
 .single-trip-header-dates {
   height: 45px;
   z-index: 100;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 50px;
 }
 
 .single-trip-header-dates span {
-  color: white;
-  font-size: 70%;
-  font-size: 30px;
+  font: 400 25px/1.5 'Pacifico', Helvetica, sans-serif;
+  color: #e7ecee;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
 }
 
 .single-trip-right button {
@@ -1008,7 +1001,8 @@ nav a {
   background-color: #03ad83;
   border-color: #03ad83;
   color: black;
-  margin-bottom: 20px;
+  position: absolute;
+  left: 8%;
 }
 
 .single-trip-header-buttons-remove {
@@ -1033,11 +1027,13 @@ nav a {
 
 .single-trip-info-top {
   align-self: center;
+  margin-top: 15px;
 }
 
 .single-trip-info-bottom {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  margin-top: 10px;
 }
 
 .accommodation-container,
@@ -1048,7 +1044,7 @@ nav a {
   border: 1px solid black;
   margin-top: 20px;
   background-color: white;
-  margin: 40px auto 0;
+
   font-family: 'Istok Web', sans-serif;
   box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
