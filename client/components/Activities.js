@@ -42,7 +42,7 @@ class Activities extends Component {
           <div style={{marginLeft: '10px'}}>
             <div style={activitiesOverview}>
               <ActivitiesForm
-                map={this.props.map.coordinates}
+                map={this.props.map}
                 tripId={this.props.trip.id}
                 activities={this.props.activities}
                 createNewActivity={this.props.createNewActivity}

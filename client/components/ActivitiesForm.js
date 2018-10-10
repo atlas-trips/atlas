@@ -41,10 +41,11 @@ class ActivitiesForm extends Component {
       return;
     }
     const newActivity = {
-      location: this.props.map,
+      location: this.props.map.coordinates,
       name: this.state.activityName,
       date: this.state.selectedDay,
-      tripId: this.props.tripId
+      tripId: this.props.tripId,
+      placeID: this.props.map.place.place_id
     };
     this.props.createNewActivity(newActivity, this.props.tripId);
     this.setState({added: true, modalOpen: false});
@@ -58,6 +59,7 @@ class ActivitiesForm extends Component {
   }
 
   render() {
+    //console.log('MAP DEETS YO',this.props.map)
     let coords = this.props.activities.filter(act => act.location !== '').map(activity => ({
       position: {
         lat: Number(activity.location.split(',')[0]),
