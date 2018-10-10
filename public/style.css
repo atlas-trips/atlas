@@ -957,9 +957,6 @@ nav a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: black;
-  width: 100vw;
-  background: linear-gradient(to bottom, #53aad9, transparent 80%);
 }
 
 .single-trip-header-name {
