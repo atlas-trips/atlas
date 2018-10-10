@@ -17,7 +17,7 @@ const Landing = () => {
         </div>
       </div>
       <div className="landing-text">
-        <h1>What was the slogan again</h1>
+        <h1>Effortless trip planning</h1>
         <a href="/signup">
           <button>sign up</button>
         </a>

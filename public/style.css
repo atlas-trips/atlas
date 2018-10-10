@@ -523,6 +523,10 @@ nav a {
   border-bottom-left-radius: 3px;
 }
 
+.travel-form-label-input {
+  height: 100%;
+}
+
 .accommo-form {
   height: 500px;
   width: 1000px;
