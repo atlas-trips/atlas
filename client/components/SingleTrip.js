@@ -101,8 +101,6 @@ class SingleTrip extends Component {
                   {new Date(trip.endDate.slice(0, 10)).toString().slice(0, 16)}
                 </span>
               </div>
-<<<<<<< HEAD
-=======
               <div>
                 <button
                   className="single-trip-header-buttons-invite"
@@ -133,7 +131,6 @@ class SingleTrip extends Component {
                   </div>
                 </Modal>
               </div>
->>>>>>> master
             </div>
 
             <button
