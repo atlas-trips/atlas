@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import CalendarActivities from './CalendarActivities';
 import CalendarAccommodations from './CalendarAccommodations';
 import CalendarTransportation from './CalendarTransportation';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const getDayName = shortName => {
   if (shortName === 'Mon') {
@@ -56,9 +56,7 @@ class Calendar extends Component {
                 <div className="calendar-card-container">
                   {day.hasOwnProperty('activities') ? (
                     <div className="calendar-card-container-content">
-                      <div
-                        className="calendar-card-item-title"
-                      >
+                      <div className="calendar-card-item-title">
                         Activities:
                       </div>
                       <CalendarActivities
@@ -100,19 +98,13 @@ class Calendar extends Component {
         <Sidebar />
         <div className="no-calendar-container">
           <h3 className="no-calendar">Nothing currently scheduled...</h3>
-          <Link
-            className="no-calendar-link"
-            to="/activities">
+          <Link className="no-calendar-link" to="/activities">
             Add an activity
           </Link>
-          <Link
-            className="no-calendar-link"
-            to="/accommodations">
+          <Link className="no-calendar-link" to="/accommodations">
             Add an accommodation
           </Link>
-          <Link
-            className="no-calendar-link"
-            to="/travel">
+          <Link className="no-calendar-link" to="/travel">
             Add transportation
           </Link>
         </div>

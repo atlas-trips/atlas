@@ -161,6 +161,11 @@
   color: white;
 }
 
+.landing-text button:hover {
+  background: white;
+  color: black;
+}
+
 body {
   font-family: sans-serif;
   background-color: #004578;
@@ -1066,6 +1071,7 @@ nav a {
 .participants-container-bottom-single {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .accommodation-container-header,
@@ -1164,7 +1170,8 @@ nav a {
   border-radius: 3px;
 }
 
-.no-calendar-link, .no-calendar-link:visited {
+.no-calendar-link,
+.no-calendar-link:visited {
   text-decoration: none;
   color: #004f78;
 }

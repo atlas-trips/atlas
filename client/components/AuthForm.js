@@ -28,6 +28,8 @@ class AuthForm extends Component {
       error
     } = this.props;
 
+    console.log('props from auth form', this.props);
+
     return (
       <div>
         <div className="auth-container">
@@ -53,6 +55,21 @@ class AuthForm extends Component {
                     <h4>Join trip {this.props.trip.selected.name}</h4>
                   )}
                 </div>
+                {this.props.match.path === '/login' ? (
+                  ''
+                ) : (
+                  <div className="auth-form-inputs">
+                    <label htmlFor="userName" className="auth-form-label">
+                      <small>Name</small>
+                    </label>
+                    <input
+                      name="userName"
+                      type="text"
+                      className="auth-form-text"
+                    />
+                  </div>
+                )}
+                <br />
                 <div className="auth-form-inputs">
                   <label htmlFor="email" className="auth-form-label">
                     <small>Email</small>
@@ -135,7 +152,8 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name;
       const email = evt.target.email.value;
       const password = evt.target.password.value;
-      dispatch(auth(email, password, formName, trip));
+      const userName = evt.target.userName.value;
+      dispatch(auth(email, password, formName, trip, userName));
     },
     getTrip: uniqueLink => dispatch(fetchRefTrip(uniqueLink))
   };
