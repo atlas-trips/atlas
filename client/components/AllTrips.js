@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 const AllTrips = props => {
   const trips = props.trips;
+
   return !trips.length ? null : (
     <div className="all-trips-container">
       <Link to="/new">
@@ -15,7 +16,14 @@ const AllTrips = props => {
             <Link to={`/trip/${trip.id}`} key={trip.name}>
               <div className="all-trips-trip">
                 <img
-                  src={`/images/${trip.name.toLowerCase()}.jpg`}
+                  src={
+                    trip.name.toLowerCase() === 'cancun' ||
+                    trip.name.toLowerCase() === 'vegas' ||
+                    trip.name.toLowerCase() === 'japan' ||
+                    trip.name.toLowerCase() === 'paris'
+                      ? `/images/${trip.name.toLowerCase()}.jpg`
+                      : `/images/default.jpg`
+                  }
                   width="360"
                   alt=""
                   className="all-trips-trip-image"
