@@ -22,8 +22,7 @@ class SingleTrip extends Component {
     this.state = {
       open: false,
       emailFrom: email,
-      friendEmail: '',
-      confirmationMessage: ''
+      friendEmail: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -101,48 +100,35 @@ class SingleTrip extends Component {
                   {new Date(trip.endDate.slice(0, 10)).toString().slice(0, 16)}
                 </span>
               </div>
-              <div>
-                <button
-                  className="single-trip-header-buttons-invite"
-                  onClick={this.onOpenModal}
-                >
-                  INVITE YOUR FRIENDS!
-                </button>
-                <Modal
-                  open={this.state.open}
-                  onClose={this.onCloseModal}
-                  center
-                >
-                  <div>
-                    <h3>Invite Your Friends</h3>
 
-                    <form style={formStyle} onSubmit={this.handleSubmit}>
-                      <label htmlFor="friendEmail" />
-                      <input
-                        type="email"
-                        name="friendEmail"
-                        value={this.state.friendEmail}
-                        onChange={this.handleChange}
-                        placeholder="Friends Email"
-                      />
+              <Modal open={this.state.open} onClose={this.onCloseModal} center>
+                <div>
+                  <h3>Invite Your Friends</h3>
 
-                      <button type="submit">Share Trip</button>
-                    </form>
-                  </div>
-                </Modal>
-              </div>
+                  <form style={formStyle} onSubmit={this.handleSubmit}>
+                    <label htmlFor="friendEmail" />
+                    <input
+                      type="email"
+                      name="friendEmail"
+                      value={this.state.friendEmail}
+                      onChange={this.handleChange}
+                      placeholder="Friends Email"
+                    />
+
+                    <button type="submit">Share Trip</button>
+                  </form>
+                </div>
+              </Modal>
             </div>
 
             <button
-              type="submit"
               className="single-trip-header-buttons-invite"
-              onClick={this.handleClick}
+              onClick={this.onOpenModal}
             >
-              INVITE YOUR FRIENDS! {this.state.open ? <ShareTrip /> : null}
+              INVITE YOUR FRIENDS!
             </button>
 
             <button
-              type="submit"
               className="single-trip-header-buttons-remove"
               onClick={this.handleDelete}
             >
