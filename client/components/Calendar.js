@@ -52,37 +52,43 @@ class Calendar extends Component {
                     </div>
                   </div>
                 </div>
-                {day.hasOwnProperty('activities') ? (
-                  <div className="calendar-card-title">
-                    <div className="calendar-card-item-title">Activities:</div>
-                    <CalendarActivities
-                      activities={day.activities}
-                      user={this.props.user.name}
-                    />
-                  </div>
-                ) : null}
-                {day.hasOwnProperty('accommodations') ? (
-                  <div className="calendar-card-title">
-                    <div className="calendar-card-item-title">
-                      New Accommodations:
+                <div className="calendar-card-container">
+                  {day.hasOwnProperty('activities') ? (
+                    <div className="calendar-card-container-content">
+                      <div
+                        className="calendar-card-item-title"
+                      >
+                        Activities:
+                      </div>
+                      <CalendarActivities
+                        activities={day.activities}
+                        user={this.props.user.name}
+                      />
                     </div>
-                    <CalendarAccommodations
-                      accommodations={day.accommodations}
-                      user={this.props.user.name}
-                    />
-                  </div>
-                ) : null}
-                {day.hasOwnProperty('transportation') ? (
-                  <div className="calendar-card-title">
-                    <div className="calendar-card-item-title">
-                      Transportation:
+                  ) : null}
+                  {day.hasOwnProperty('accommodations') ? (
+                    <div className="calendar-card-container-content">
+                      <div className="calendar-card-item-title">
+                        Accommodations:
+                      </div>
+                      <CalendarAccommodations
+                        accommodations={day.accommodations}
+                        user={this.props.user.name}
+                      />
                     </div>
-                    <CalendarTransportation
-                      transportation={day.transportation}
-                      user={this.props.user.name}
-                    />
-                  </div>
-                ) : null}
+                  ) : null}
+                  {day.hasOwnProperty('transportation') ? (
+                    <div className="calendar-card-container-content">
+                      <div className="calendar-card-item-title">
+                        Transportation:
+                      </div>
+                      <CalendarTransportation
+                        transportation={day.transportation}
+                        user={this.props.user.name}
+                      />
+                    </div>
+                  ) : null}
+                </div>
               </div>
             );
           })}

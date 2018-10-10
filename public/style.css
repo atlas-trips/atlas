@@ -841,7 +841,7 @@ nav a {
 }
 
 .calendar {
-  width: 840px;
+  width: 1000px;
   background-color: white;
   margin-top: 40px;
   display: flex;
@@ -849,6 +849,7 @@ nav a {
   margin-left: 80px;
   box-shadow: -5px 6px 5px -2px rgba(0, 0, 0, 0.75);
   border-radius: 4px;
+  background: linear-gradient(70deg, white 40%, #53aad9 40%);
 }
 
 .calendar-card {
@@ -900,27 +901,21 @@ nav a {
 .calendar-card-title {
   width: 200px;
   height: 200px;
-  background-image: linear-gradient(#007ba7, #004f78);
   text-align: center;
   color: white;
   border-radius: 3px;
   margin: 0 3px;
 }
 
-.calendar-card-item-title {
-  font-size: 1.3em;
-  font-family: 'Istok Web', sans-serif;
-  font-weight: bolder;
-  background-color: #53aad9;
-}
-
 .activity-card-single-activity {
-  background-color: white;
+  background: linear-gradient(to right, white, transparent 90%);
   border-radius: 2px;
-  color: #007ba7;
+  color: #043b4e;
   margin: 2px;
   line-height: 25px;
   font-size: 80%;
+  opacity: 0.9;
+  font-weight: bolder;
 }
 
 .activity-card-single-activity-info-container,
@@ -935,11 +930,14 @@ nav a {
 
 .accom-card-single-accom,
 .trans-card-single-trans {
-  background-color: white;
+  background: linear-gradient(to right, white, transparent 90%);
   border-radius: 2px;
-  color: #007ba7;
+  color: #043b4e;
   margin: 2px;
   line-height: 25px;
+  font-size: 100%;
+  opacity: 0.9;
+  font-weight: bolder;
 }
 
 .accom-card-single-accom-name,
@@ -1117,4 +1115,35 @@ nav a {
 
 .dashboard-no-trips .add-trip {
   margin-bottom: 30px;
+}
+
+.calendar-card-container {
+  /* width: 780px; */
+  height: 204px;
+  background-color: #ad20ff;
+  display: flex;
+  border-radius: 2px;
+  box-shadow: -2px 3px 3px 0px rgba(0, 0, 0, 0.75);
+  background-image: url('/images/map.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.calendar-card-container-content {
+  width: 260px;
+  height: 200px;
+  text-align: center;
+}
+
+.calendar-card-item-title {
+  font-size: 1em;
+  font-family: 'Istok Web', sans-serif;
+  color: white;
+  margin: 5px;
+}
+
+.background-map-image {
+  position: absolute;
+  width: 400px;
+  overflow: hidden;
 }

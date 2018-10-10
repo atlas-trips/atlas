@@ -7,7 +7,7 @@ const AllTrips = props => {
   return !trips.length ? null : (
     <div className="all-trips-container">
       <Link to="/new">
-        <button className="add-trip">ADD A TRIP +</button>
+        <button className="add-trip">ADD A TRIP</button>
       </Link>
       <div className="all-trips">
         {trips.map(trip => {
