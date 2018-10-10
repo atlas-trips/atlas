@@ -149,12 +149,18 @@ class SingleTrip extends Component {
 
             <div className="single-trip-info">
               <div className="single-trip-info-top">
-                <ParticipantsOverview peeps={trip.users} />
+                {!trip.users.length ? null : (
+                  <ParticipantsOverview peeps={trip.users} />
+                )}
               </div>
 
               <div className="single-trip-info-bottom">
-                <ActivitiesOverview activities={trip.activities} />
-                <AccommodationOverview accommodations={trip.accommodation} />
+                {!trip.activities.length ? null : (
+                  <ActivitiesOverview activities={trip.activities} />
+                )}
+                {!trip.accommodation.length ? null : (
+                  <AccommodationOverview accommodations={trip.accommodation} />
+                )}
               </div>
             </div>
           </div>

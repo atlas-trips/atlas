@@ -247,7 +247,7 @@ nav a {
 }
 
 .sidebar-item-middle {
-  transition: .5s ease;
+  transition: 0.5s ease;
   opacity: 0;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -258,7 +258,7 @@ nav a {
   opacity: 1;
   display: block;
   width: 40px;
-  transition: .5s ease;
+  transition: 0.5s ease;
   backface-visibility: hidden;
 }
 
@@ -272,7 +272,8 @@ nav a {
   opacity: 0.3;
 }
 
-.sidebar-item .sidebar-hover-text, .sidebar-item .sidebar-hover-text-large{
+.sidebar-item .sidebar-hover-text,
+.sidebar-item .sidebar-hover-text-large {
   margin-left: 40px;
   margin-bottom: 40px;
 }
