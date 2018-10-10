@@ -49,7 +49,7 @@ router.post('/share', async (req, res, next) => {
     subject: `You've been invited to join ${req.body.personFrom}'s ${
       req.body.tripName
     } trip!`,
-    text: `Join here - http://atlas-trips.herokuapp.com/join/${
+    text: `Join here - https://atlas-trips.herokuapp.com/join/${
       req.body.tripLink
     }`,
     replyTo: process.env.EMAIL
