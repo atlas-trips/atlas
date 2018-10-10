@@ -25,11 +25,16 @@ class Sidebar extends React.Component {
             Sign Out
           </Link>
         </div>
-        <div className="sidebar-item ">
-          <Link to={defaultPath}>
+        <Link to={defaultPath}>
+          <div className="sidebar-item ">
             <img src="/images/home.png" height="40" alt="home" />
-          </Link>
-        </div>
+            <div className="sidebar-item-middle">
+              <div className="sidebar-hover-text">
+                Home
+              </div>
+            </div>
+          </div>
+        </Link>
       </div>
     ) : (
       <div className="sidebar">
@@ -39,46 +44,59 @@ class Sidebar extends React.Component {
               Sign Out
             </Link>
           </div>
-          <div className="sidebar-item">
-            <Link to={defaultPath}>
+          <Link to={defaultPath}>
+            <div className="sidebar-item ">
               <img src="/images/home.png" height="40" alt="home" />
-            </Link>
-          </div>
+              <div className="sidebar-item-middle">
+                <div className="sidebar-hover-text">
+                  Home
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
 
         <div>
-          <div
-            className="sidebar-item"
-            onClick={e => this.handleClick(e, selected)}
-          >
-            <Link to="/accommodations">
-              <img src="/images/bed.png" height="40" alt="bed" />
-            </Link>
-          </div>
-          <div
-            className="sidebar-item"
-            onClick={e => this.handleClick(e, selected)}
-          >
-            <Link to="/travel">
-              <img src="/images/plane.png" height="40" alt="plane" />
-            </Link>
-          </div>
-          <div
-            className="sidebar-item"
-            onClick={e => this.handleClick(e, selected)}
-          >
-            <Link to="/calendar">
-              <img src="/images/calendar.png" height="40" alt="calendar" />
-            </Link>
-          </div>
-          <div
-            className="sidebar-item side-bottom"
-            onClick={e => this.handleClick(e, selected)}
-          >
-            <Link to="/activities">
-              <img src="/images/activity.png" height="40" alt="activity" />
-            </Link>
-          </div>
+          <Link to="/accommodations">
+            <div className="sidebar-item ">
+              <img src="/images/bed.png" height="40" alt="home" />
+              <div className="sidebar-item-middle">
+                <div className="sidebar-hover-text-large">
+                  Accommodations
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to="/travel">
+            <div className="sidebar-item ">
+              <img src="/images/plane.png" height="40" alt="home" />
+              <div className="sidebar-item-middle">
+                <div className="sidebar-hover-text-large">
+                  Transportation
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to="/calendar">
+            <div className="sidebar-item ">
+              <img src="/images/calendar.png" height="40" alt="home" />
+              <div className="sidebar-item-middle">
+                <div style={{fontSize: '1em'}}className="sidebar-hover-text-large">
+                  Calendar
+                </div>
+              </div>
+            </div>
+          </Link>
+          <Link to="/activities">
+            <div className="sidebar-item">
+              <img src="/images/activity.png" height="40" alt="home" />
+              <div className="sidebar-item-middle">
+                <div style={{fontSize: '1em'}}className="sidebar-hover-text-large">
+                  Activities
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
       </div>
     );
