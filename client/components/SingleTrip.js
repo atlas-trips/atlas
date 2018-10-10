@@ -22,7 +22,8 @@ class SingleTrip extends Component {
     this.state = {
       open: false,
       emailFrom: email,
-      friendEmail: ''
+      friendEmail: '',
+      friendName: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -60,7 +61,8 @@ class SingleTrip extends Component {
       emailFrom: this.state.emailFrom,
       tripLink: this.props.trip.link,
       tripName: this.props.trip.name,
-      personFrom: this.props.user.name
+      personFrom: this.props.user.name,
+      name: this.state.friendName
     };
     this.props.shareTrip(shareLink);
     this.onCloseModal();
@@ -106,15 +108,23 @@ class SingleTrip extends Component {
                   <h3>Invite Your Friends</h3>
 
                   <form style={formStyle} onSubmit={this.handleSubmit}>
+                    <label htmlFor="friendName" />
+                    <input
+                      type="text"
+                      name="friendName"
+                      value={this.state.friendName}
+                      onChange={this.handleChange}
+                      placeholder="Friend's Name"
+                    />
+
                     <label htmlFor="friendEmail" />
                     <input
                       type="email"
                       name="friendEmail"
                       value={this.state.friendEmail}
                       onChange={this.handleChange}
-                      placeholder="Friends Email"
+                      placeholder="Friend's Email"
                     />
-
                     <button type="submit">Share Trip</button>
                   </form>
                 </div>
@@ -122,6 +132,7 @@ class SingleTrip extends Component {
             </div>
 
             <button
+              type="submit"
               className="single-trip-header-buttons-invite"
               onClick={this.onOpenModal}
             >
@@ -129,6 +140,7 @@ class SingleTrip extends Component {
             </button>
 
             <button
+              type="submit"
               className="single-trip-header-buttons-remove"
               onClick={this.handleDelete}
             >
@@ -137,12 +149,18 @@ class SingleTrip extends Component {
 
             <div className="single-trip-info">
               <div className="single-trip-info-top">
-                <ParticipantsOverview peeps={trip.users} />
+                {!trip.users.length ? null : (
+                  <ParticipantsOverview peeps={trip.users} />
+                )}
               </div>
 
               <div className="single-trip-info-bottom">
-                <ActivitiesOverview activities={trip.activities} />
-                <AccommodationOverview accommodations={trip.accommodation} />
+                {!trip.activities.length ? null : (
+                  <ActivitiesOverview activities={trip.activities} />
+                )}
+                {!trip.accommodation.length ? null : (
+                  <AccommodationOverview accommodations={trip.accommodation} />
+                )}
               </div>
             </div>
           </div>

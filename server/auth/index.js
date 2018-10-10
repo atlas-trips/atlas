@@ -24,7 +24,13 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    const user = await User.create(req.body);
+    console.log('from the signup', req.body);
+    const user = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+      name: req.body.name
+    });
+    console.log('user created is', user);
     const foundTrip = await Trip.findById(req.body.tripId);
     if (foundTrip) {
       foundTrip.addUser(user);
@@ -41,7 +47,11 @@ router.post('/signup', async (req, res, next) => {
 
 router.post('/refsignup', async (req, res, next) => {
   try {
-    const user = await User.create(req.body);
+    const user = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+      name: req.body.name
+    });
     const users = req.body.trip.users;
     const usersArr = users
       .map(u => {
@@ -64,7 +74,7 @@ router.post('/refsignup', async (req, res, next) => {
     const mailOptions = {
       from: 'Atlas Trips' + '<' + process.env.EMAIL + '>',
       to: usersArr,
-      subject: `${req.body.email} has joined your trip!`,
+      subject: `${req.body.userName} has joined your trip!`,
       text: `Test`,
       replyTo: process.env.EMAIL
     };

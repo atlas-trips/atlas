@@ -13,7 +13,12 @@ const ParticipantsOverview = props => {
               className="participants-container-bottom-single"
               key={person.id}
             >
-              <img src="/images/ninja.png" width="150" alt="person icon" />
+              <img
+                src="/images/ninja.png"
+                width="100"
+                height="100"
+                alt="person icon"
+              />
               <a href={`mailto:${person.email}`}>{person.name}</a>
             </div>
           );

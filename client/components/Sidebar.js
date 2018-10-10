@@ -29,9 +29,7 @@ class Sidebar extends React.Component {
           <div className="sidebar-item ">
             <img src="/images/home.png" height="40" alt="home" />
             <div className="sidebar-item-middle">
-              <div className="sidebar-hover-text">
-                Home
-              </div>
+              <div className="sidebar-hover-text">Home</div>
             </div>
           </div>
         </Link>
@@ -48,9 +46,7 @@ class Sidebar extends React.Component {
             <div className="sidebar-item ">
               <img src="/images/home.png" height="40" alt="home" />
               <div className="sidebar-item-middle">
-                <div className="sidebar-hover-text">
-                  Home
-                </div>
+                <div className="sidebar-hover-text">Home</div>
               </div>
             </div>
           </Link>
@@ -61,9 +57,7 @@ class Sidebar extends React.Component {
             <div className="sidebar-item ">
               <img src="/images/bed.png" height="40" alt="home" />
               <div className="sidebar-item-middle">
-                <div className="sidebar-hover-text-large">
-                  Accommodations
-                </div>
+                <div className="sidebar-hover-text-large">Accommodations</div>
               </div>
             </div>
           </Link>
@@ -71,9 +65,7 @@ class Sidebar extends React.Component {
             <div className="sidebar-item ">
               <img src="/images/plane.png" height="40" alt="home" />
               <div className="sidebar-item-middle">
-                <div className="sidebar-hover-text-large">
-                  Transportation
-                </div>
+                <div className="sidebar-hover-text-large">Transportation</div>
               </div>
             </div>
           </Link>
@@ -81,7 +73,10 @@ class Sidebar extends React.Component {
             <div className="sidebar-item ">
               <img src="/images/calendar.png" height="40" alt="home" />
               <div className="sidebar-item-middle">
-                <div style={{fontSize: '1em'}}className="sidebar-hover-text-large">
+                <div
+                  style={{fontSize: '1em'}}
+                  className="sidebar-hover-text-large"
+                >
                   Calendar
                 </div>
               </div>
@@ -91,7 +86,10 @@ class Sidebar extends React.Component {
             <div className="sidebar-item">
               <img src="/images/activity.png" height="40" alt="home" />
               <div className="sidebar-item-middle">
-                <div style={{fontSize: '1em'}}className="sidebar-hover-text-large">
+                <div
+                  style={{fontSize: '1em'}}
+                  className="sidebar-hover-text-large"
+                >
                   Activities
                 </div>
               </div>
