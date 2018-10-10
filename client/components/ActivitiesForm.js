@@ -58,7 +58,7 @@ class ActivitiesForm extends Component {
   }
 
   render() {
-    let coords = this.props.activities.map(activity => ({
+    let coords = this.props.activities.filter(act => act.location !== '').map(activity => ({
       position: {
         lat: Number(activity.location.split(',')[0]),
         lng: Number(activity.location.split(',')[1])
