@@ -59,7 +59,7 @@ class ActivitiesForm extends Component {
   }
 
   render() {
-<<<<<<< HEAD
+    //console.log('MAP DEETS YO',this.props.map)
     let coords = this.props.activities
       .filter(act => act.location !== '')
       .map(activity => ({
@@ -70,17 +70,6 @@ class ActivitiesForm extends Component {
         id: activity.id,
         name: activity.name
       }));
-=======
-    //console.log('MAP DEETS YO',this.props.map)
-    let coords = this.props.activities.filter(act => act.location !== '').map(activity => ({
-      position: {
-        lat: Number(activity.location.split(',')[0]),
-        lng: Number(activity.location.split(',')[1])
-      },
-      id: activity.id,
-      name: activity.name
-    }));
->>>>>>> master
     let startLat = 0;
     let startLng = 0;
 
