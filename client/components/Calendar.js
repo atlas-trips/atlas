@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import CalendarActivities from './CalendarActivities';
 import CalendarAccommodations from './CalendarAccommodations';
 import CalendarTransportation from './CalendarTransportation';
+import { Link } from 'react-router-dom';
 
 const getDayName = shortName => {
   if (shortName === 'Mon') {
@@ -97,8 +98,23 @@ class Calendar extends Component {
     ) : (
       <div>
         <Sidebar />
-        <div style={{marginLeft: '100px'}}>
-          <h1>nothing currently scheduled...</h1>
+        <div className="no-calendar-container">
+          <h3 className="no-calendar">Nothing currently scheduled...</h3>
+          <Link
+            className="no-calendar-link"
+            to="/activities">
+            Add an activity
+          </Link>
+          <Link
+            className="no-calendar-link"
+            to="/accommodations">
+            Add an accommodation
+          </Link>
+          <Link
+            className="no-calendar-link"
+            to="/travel">
+            Add transportation
+          </Link>
         </div>
       </div>
     );
