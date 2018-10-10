@@ -2,28 +2,69 @@ import React, {Component} from 'react';
 import ParticipantsOverview from './ParticipantsOverview';
 import ActivitiesOverview from './ActivitiesOverview';
 import AccommodationOverview from './AccommodationOverview';
-import ShareTrip from './ShareTrip';
+// import ShareTrip from './ShareTrip';
 import {connect} from 'react-redux';
-import {fetchSelected, deleteTrip} from '../store/trip';
+import {fetchSelected, deleteTrip, shareTrip} from '../store/trip';
 import Sidebar from './Sidebar';
+import {email} from '../../secrets';
+import Modal from 'react-responsive-modal';
+
+const formStyle = {
+  display: 'inline-block',
+  width: '200px',
+  height: '300px',
+  marginRight: '50px'
+};
 
 class SingleTrip extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      emailFrom: email,
+      friendEmail: '',
+      confirmationMessage: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.onOpenModal = this.onOpenModal.bind(this);
+    this.onCloseModal = this.onCloseModal.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  onOpenModal() {
+    this.setState({open: true});
+  }
+
+  onCloseModal() {
+    this.setState({open: false});
   }
 
   handleClick(event) {
     this.setState({open: true});
   }
 
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
+
   handleDelete(event) {
     this.props.deleteTrip(this.props.trip.id);
     this.props.history.push('/dashboard');
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const shareLink = {
+      friendEmail: this.state.friendEmail,
+      emailFrom: this.state.emailFrom,
+      tripLink: this.props.trip.link,
+      tripName: this.props.trip.name,
+      personFrom: this.props.user.name
+    };
+    this.props.shareTrip(shareLink);
+    this.onCloseModal();
   }
 
   async componentDidMount() {
@@ -61,10 +102,32 @@ class SingleTrip extends Component {
               <div>
                 <button
                   className="single-trip-header-buttons-invite"
-                  onClick={this.handleClick}
+                  onClick={this.onOpenModal}
                 >
-                  INVITE YOUR FRIENDS! {this.state.open ? <ShareTrip /> : null}
+                  INVITE YOUR FRIENDS!
                 </button>
+                <Modal
+                  open={this.state.open}
+                  onClose={this.onCloseModal}
+                  center
+                >
+                  <div>
+                    <h3>Invite Your Friends</h3>
+
+                    <form style={formStyle} onSubmit={this.handleSubmit}>
+                      <label htmlFor="friendEmail" />
+                      <input
+                        type="email"
+                        name="friendEmail"
+                        value={this.state.friendEmail}
+                        onChange={this.handleChange}
+                        placeholder="Friends Email"
+                      />
+
+                      <button type="submit">Share Trip</button>
+                    </form>
+                  </div>
+                </Modal>
               </div>
             </div>
             <button
@@ -95,11 +158,13 @@ class SingleTrip extends Component {
 }
 
 const mapState = state => ({
-  trip: state.trip.selected
+  trip: state.trip.selected,
+  user: state.user
 });
 const mapDispatch = dispatch => ({
   fetchSelected: tripId => dispatch(fetchSelected(tripId)),
-  deleteTrip: tripId => dispatch(deleteTrip(tripId))
+  deleteTrip: tripId => dispatch(deleteTrip(tripId)),
+  shareTrip: link => dispatch(shareTrip(link))
 });
 
 export default connect(mapState, mapDispatch)(SingleTrip);
