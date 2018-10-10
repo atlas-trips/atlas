@@ -2,7 +2,6 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import {getAccommodations, deleteAccommodation} from '../store/accommodation';
 import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
 import AccommodationForm from './AccommodationForm';
 
 class Accommodations extends React.Component {

@@ -1122,7 +1122,6 @@ nav a {
 }
 
 .calendar-card-container {
-  /* width: 780px; */
   height: 204px;
   background-color: #ad20ff;
   display: flex;
@@ -1150,4 +1149,26 @@ nav a {
   position: absolute;
   width: 400px;
   overflow: hidden;
+}
+
+.no-calendar-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 100px;
+  align-items: center;
+  font-family: 'Istok Web';
+  color: #ff0f83;
+  text-align: center;
+  width: 50%;
+  margin: 60px auto;
+  height: 200px;
+  background-color: white;
+  box-shadow: -2px 3px 3px 0px rgba(0, 0, 0, 0.75);
+  border-radius: 3px;
+}
+
+.no-calendar-link, .no-calendar-link:visited {
+  text-decoration: none;
+  color: #004f78;
 }
