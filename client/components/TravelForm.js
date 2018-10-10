@@ -83,7 +83,8 @@ class TravelForm extends Component {
                   border: '0px',
                   outline: '0px',
                   marginRight: '1px',
-                  marginBottom: '1px'
+                  marginBottom: '1px',
+                  width: '150px'
                 }}
               >
                 <option defaultValue={this.state.selectedUser}>--</option>
@@ -107,13 +108,17 @@ class TravelForm extends Component {
                   border: '0px',
                   outline: '0px',
                   marginRight: '1px',
-                  marginBottom: '1px'
+                  marginBottom: '1px',
+                  width: '150px',
+                  backgroundColor: 'none'
                 }}
               >
                 <option defaultValue={this.state.method}>--</option>
                 <option value="Flight">Flight</option>
+                <option value="Flight">Ferry</option>
                 <option value="Car">Car</option>
                 <option value="Bus">Bus</option>
+                <option value="Other">Other</option>
                 })}
               </select>
 
@@ -132,11 +137,8 @@ class TravelForm extends Component {
             <div style={travelFormStyle}>
               <label className="travel-form-label">Date</label>
               <DayPickerInput
-                className="travel-form-label"
                 onDayChange={this.selectDay}
-                style={{
-                  border: '0px'
-                }}
+                className="travel-form-label-input"
               />
             </div>
           </div>
