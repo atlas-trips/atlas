@@ -36,7 +36,7 @@ class SingleTrip extends Component {
       ? {
           display: 'flex',
           flexDirection: 'column',
-          backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`,
+          //backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`,
           height: '100vh',
           margin: '-20px'
         }
@@ -48,7 +48,9 @@ class SingleTrip extends Component {
           <Sidebar />
           <div className="single-trip-right" style={singleTripStyle}>
             <div className="single-trip-header">
-              <div className="single-trip-header-name">{trip.name}:</div>
+              <div className="single-trip-header-name">
+                {trip.name.toUpperCase()}:
+              </div>
               <div className="single-trip-header-dates">
                 <span>
                   {new Date(trip.startDate.slice(0, 10))
