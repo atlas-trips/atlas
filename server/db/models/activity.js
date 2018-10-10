@@ -24,6 +24,10 @@ const Activity = db.define('activity', {
   votes: {
     type: Sequelize.INTEGER,
     defaultValue: 0
+  },
+  placeID: {
+    type: Sequelize.STRING,
+    defaultValue: ''
   }
 });
 

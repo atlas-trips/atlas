@@ -130,7 +130,7 @@ async function seed() {
   });
   vegas.addUser(cody);
   vegas.addUser(murphy);
-  paris.addUser(sam);
+  paris.addUser(cody);
   cancun.addUser(john);
   cancun.addUser(cody);
   thailand.addUser(jane);
@@ -153,7 +153,8 @@ async function seed() {
     date: '2018-10-10 00:00:00',
     isDecided: true,
     votes: 2,
-    tripId: 1
+    tripId: 1,
+    placeID: 'ChIJiwV3rBXEyIARRdN3c345tKE'
   });
   const beach = await Activity.create({
     location: 'xxxx',
@@ -171,16 +172,18 @@ async function seed() {
     date: '2018-12-05 00:00:00',
     isDecided: true,
     votes: 5,
-    tripId: 2
+    tripId: 2,
+    placeID: 'ChIJrbS_8-Fv5kcRzSjPvnUT03s'
   });
   const circus = await Activity.create({
-    location: '36.101778,-115.170127',
+    location: '36.1029999,-115.1735578',
     name: 'Cirque de Soleil',
     description: 'Ka - at MGM Grand',
     date: '2018-10-11 00:00:00',
     isDecided: true,
     votes: 1,
-    tripId: 1
+    tripId: 1,
+    placeID: 'ChIJLYtZLjPEyIARafHUtDqJJGU'
   });
   const spa = await Activity.create({
     location: 'xxxx',
