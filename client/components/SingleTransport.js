@@ -54,7 +54,9 @@ const SingleTransport = props => {
             </h3>
           )}
 
-          <h3>{transport.date.slice(0, 10)} </h3>
+          <h3>
+            {new Date(transport.date.slice(0, 10)).toString().slice(0, 16)}{' '}
+          </h3>
         </div>
       </div>
     </div>
