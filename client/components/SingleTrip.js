@@ -90,7 +90,7 @@ class SingleTrip extends Component {
           <div className="single-trip-right" style={singleTripStyle}>
             <div className="single-trip-header">
               <div className="single-trip-header-name">
-                {trip.name.toUpperCase()}:
+                {trip.name.toUpperCase()}
               </div>
               <div className="single-trip-header-dates">
                 <span>
@@ -132,8 +132,17 @@ class SingleTrip extends Component {
                 </Modal>
               </div>
             </div>
+
             <button
-              id="remove-trip"
+              type="submit"
+              className="single-trip-header-buttons-invite"
+              onClick={this.handleClick}
+            >
+              INVITE YOUR FRIENDS! {this.state.open ? <ShareTrip /> : null}
+            </button>
+
+            <button
+              type="submit"
               className="single-trip-header-buttons-remove"
               onClick={this.handleDelete}
             >
