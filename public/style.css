@@ -1226,3 +1226,19 @@ nav a {
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
   font-size: 25px;
 }
+
+button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.travel-form-button {
+  color: white;
+  font-size: 1.4em;
+  font-weight: bolder;
+  background-color: #c60057;
+  border-radius: 10px;
+  align: left;
+  margin-left: 10px;
+}
