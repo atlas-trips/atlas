@@ -141,17 +141,9 @@ class TravelForm extends Component {
 
           <div>
             <button
+              className="travel-form-button"
               disabled={!enabled}
               type="submit"
-              style={{
-                color: 'white',
-                fontSize: '1.4em',
-                fontWeight: 'bolder',
-                backgroundColor: '#c60057',
-                borderRadius: '10px',
-                align: 'left',
-                marginLeft: '10px'
-              }}
             >
               {' '}
               SUBMIT{' '}

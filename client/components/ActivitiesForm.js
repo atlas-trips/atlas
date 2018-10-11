@@ -82,6 +82,9 @@ class ActivitiesForm extends Component {
       startLat /= coords.length;
       startLng /= coords.length;
     }
+
+    const activityHasName = !!this.state.activityName;
+
     return (
       <div className="activities-map-container">
         <div style={{width: '900px'}} className="map-container">
@@ -145,7 +148,9 @@ class ActivitiesForm extends Component {
                     placeholder="Name of Activity"
                   />
                   <div>
-                    <button type="submit">Add</button>
+                    <button disabled={!activityHasName} type="submit">
+                      Add
+                    </button>
                   </div>
                 </div>
               </form>
