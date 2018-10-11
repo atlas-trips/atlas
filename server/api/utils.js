@@ -37,7 +37,7 @@ const cleanUp = data => {
 
   const acts = data[0].activities
     .reduce((actArr, current) => {
-      if (current.isDecided) {
+      if (current.isDecided || !current.isDecided) {
         const currDate = formatDate(current.date).slice(0, 10);
         const newObj = {
           id: `acts${current.id}`,

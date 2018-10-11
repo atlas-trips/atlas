@@ -74,7 +74,7 @@ router.post('/refsignup', async (req, res, next) => {
     const mailOptions = {
       from: 'Atlas Trips' + '<' + process.env.EMAIL + '>',
       to: usersArr,
-      subject: `${req.body.userName} has joined your trip!`,
+      subject: `${req.body.name} has joined your trip!`,
       text: `Test`,
       replyTo: process.env.EMAIL
     };
