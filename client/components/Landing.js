@@ -10,17 +10,17 @@ const Landing = () => {
         <div className="landing-header-img">
           <img src="images/logo.png" height="30px" />
         </div>
-        <div className="landing-header-txt">
-          <a href="login">
-            <h4>Login</h4>
-          </a>
-        </div>
       </div>
       <div className="landing-text">
         <h1>Effortless trip planning</h1>
-        <a href="/signup">
-          <button>sign up</button>
-        </a>
+        <div className="landing-button-container">
+          <a href="login">
+            <button>Login</button><br/>
+          </a>
+          <a href="/signup">
+            <button>Sign Up</button>
+          </a>
+        </div>
       </div>
     </div>
   );

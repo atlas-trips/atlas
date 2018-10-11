@@ -135,11 +135,6 @@
   margin-left: 2%;
 }
 
-.landing-header a {
-  color: white;
-  display: flex;
-}
-
 .landing-text {
   align-self: center;
   margin: 0 auto;
@@ -156,9 +151,10 @@
   border-radius: 10%;
   font-size: 20px;
   height: 40px;
-  width: 100px;
+  width: 120px;
   background: rgba(240, 248, 255, 0);
   color: white;
+  margin: 5px;
 }
 
 .landing-text button:hover {
@@ -610,7 +606,7 @@ nav a {
 }
 
 .auth-form {
-  width: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -633,6 +629,15 @@ nav a {
 
 .auth-form-inputs {
   display: flex;
+}
+
+.auth-form-inputs-top {
+  display: flex;
+  margin-top: 10px;
+}
+
+.auth-directions {
+  font-family: 'Istok Web', sans-serif;
 }
 
 .auth-form-text,
@@ -687,7 +692,7 @@ nav a {
 }
 
 .auth-form-title {
-  width: 200px;
+  width: 270px;
   height: 40px;
   background-image: linear-gradient(to right, #53aad9, white);
   display: flex;
