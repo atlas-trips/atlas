@@ -24,8 +24,6 @@ class AuthForm extends Component {
       error
     } = this.props;
 
-    console.log('props from auth form', this.props);
-
     return (
       <div>
         <div className="auth-container">
