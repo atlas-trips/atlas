@@ -4,10 +4,6 @@ import PropTypes from 'prop-types';
 import {auth} from '../store';
 import {fetchRefTrip} from '../store/trip';
 
-/**
- * COMPONENT
- */
-
 class AuthForm extends Component {
   constructor(props) {
     super(props);
@@ -54,11 +50,12 @@ class AuthForm extends Component {
                   {!this.props.match.params.link ? null : (
                     <h4>Join trip {this.props.trip.selected.name}</h4>
                   )}
+                  {this.props.match.path === '/login' ? <div className="auth-directions">Log In To Your Account</div> : <div className="auth-directions">Please Create an Account</div>}
                 </div>
                 {this.props.match.path === '/login' ? (
-                  ''
+                  null
                 ) : (
-                  <div className="auth-form-inputs">
+                  <div className="auth-form-inputs-top">
                     <label htmlFor="userName" className="auth-form-label">
                       <small>Name</small>
                     </label>
@@ -66,15 +63,21 @@ class AuthForm extends Component {
                       name="userName"
                       type="text"
                       className="auth-form-text"
+                      placeholder="my name..."
                     />
                   </div>
                 )}
                 <br />
-                <div className="auth-form-inputs">
+                <div className={this.props.match.path === '/login' ? 'auth-form-inputs-top' : 'auth-form-inputs'}
+                >
                   <label htmlFor="email" className="auth-form-label">
                     <small>Email</small>
                   </label>
-                  <input name="email" type="text" className="auth-form-text" />
+                  <input
+                    name="email"
+                    type="text" className="auth-form-text"
+                    placeholder="you@example.com"
+                  />
                 </div>{' '}
                 <br />
                 <div className="auth-form-inputs">
@@ -85,6 +88,7 @@ class AuthForm extends Component {
                     name="password"
                     type="password"
                     className="auth-form-text-pass"
+                    placeholder="password"
                   />
                 </div>
                 <br />
@@ -97,12 +101,12 @@ class AuthForm extends Component {
               </div>
               <br />
             </form>
-            <div>
+            {/* <div>
               <a href="/auth/google" className="auth-oauth">
                 <img src="/images/google.png" width="60" alt="" />
                 <small className="oauth-text">{displayName} with Google</small>
               </a>
-            </div>
+            </div> */}
           </div>
           <div className="auth-background">
             <div className="auth-form-container" />
