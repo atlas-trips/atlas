@@ -432,9 +432,10 @@ nav a {
 .accommo-form {
   text-align: center;
   width: 700px;
-  height: 500px;
+  height: 470px;
   background-color: white;
   box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
+  background-image: url('/images/map.png');
 }
 
 .trip-form-name,
@@ -443,6 +444,11 @@ nav a {
   font-weight: bolder;
   display: flex;
   justify-content: center;
+}
+
+.trip-form-label-input {
+  display: flex;
+  margin: 50px 0 70px;
 }
 
 .trip-form-title,
@@ -1216,4 +1222,74 @@ nav a {
 .no-calendar-link:visited {
   text-decoration: none;
   color: #004f78;
+}
+
+.trip-form-name-label {
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 1.3em;
+}
+
+.trip-form-name-input {
+  width: 200px;
+  font-size: 1.3em;
+}
+
+.trip-form-buttons-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.trip-form-submit-two {
+  width: 130px;
+  height: 40px;
+  background-color: #c60057;
+  border: 1px solid #c60057;
+  justify-content: space-evenly;
+  border-radius: 3px;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: -3px 3px 6px -2px rgba(0, 0, 0, 0.75);
+}
+
+.trip-submit-three-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 60px;
+}
+
+.stage-three-info {
+  font-family: 'Istok Web';
+  background-color: #ad20ff;
+  width: 50%;
+  margin: 10px auto 0;
+  opacity: .8;
+  border-radius: 3px;
+  padding: 8px;
+}
+
+.stage-three-info-title {
+  color: white;
+  margin: 8px;
+}
+
+.stage-three-info h2, .stage-three-info h3 {
+  color: white;
+}
+
+.stage-three-info-container {
+  display: flex;
+  justify-content: center;
+}
+
+.DayPicker-Months {
+  background-color: #004578;
+  border-radius: 3px;
+  opacity: 0.9;
+}
+
+.DayPicker-Caption div {
+  color: white;
 }
