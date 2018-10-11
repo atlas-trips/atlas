@@ -1020,9 +1020,10 @@ nav a {
 }
 
 .single-trip-header-name {
-  font: 400 100px/1.5 'Great Vibes', Helvetica, sans-serif;
-  color: rgb(242, 243, 176);
+  font: 'Istok Web';
+  color: white;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  font-size: 50px;
 }
 
 .single-trip-header-dates {
@@ -1292,4 +1293,28 @@ nav a {
 
 .DayPicker-Caption div {
   color: white;
+}
+
+.header-header h1 {
+  margin-left: 10px;
+  font: 'Istok Web';
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  font-size: 25px;
+}
+
+button:disabled {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+}
+
+.travel-form-button {
+  color: white;
+  font-size: 1.4em;
+  font-weight: bolder;
+  background-color: #c60057;
+  border-radius: 10px;
+  align: left;
+  margin-left: 10px;
 }

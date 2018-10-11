@@ -17,7 +17,7 @@ const travelFormStyle = {
 
 class TravelForm extends Component {
   state = {
-    selectedUser: '',
+    selectedUser: 0,
     method: '',
     flightNum: '',
     date: undefined
@@ -35,16 +35,12 @@ class TravelForm extends Component {
 
   onSubmit = async event => {
     event.preventDefault();
-    const {users} = this.props.selectedTrip;
-    const [selectedUser] = users.filter(
-      u => u.name === this.state.selectedUser
-    );
 
     await axios.post(
       `/api/trips/${this.props.selectedTrip.id}/transportation/${
-        selectedUser.id
+        this.state.selectedUser
       }`,
-      this.state
+      {...this.state, tripId: this.props.selectedTrip.id}
     );
     this.setState({
       selectedUser: '',
@@ -90,7 +86,7 @@ class TravelForm extends Component {
                 <option defaultValue={this.state.selectedUser}>--</option>
                 {users.map(user => {
                   return (
-                    <option key={user.id} value={user.name}>
+                    <option key={user.id} value={user.id}>
                       {user.name}
                     </option>
                   );
@@ -115,7 +111,7 @@ class TravelForm extends Component {
               >
                 <option defaultValue={this.state.method}>--</option>
                 <option value="Flight">Flight</option>
-                <option value="Flight">Ferry</option>
+                <option value="Train">Train</option>
                 <option value="Car">Car</option>
                 <option value="Bus">Bus</option>
                 <option value="Other">Other</option>
@@ -145,17 +141,9 @@ class TravelForm extends Component {
 
           <div>
             <button
+              className="travel-form-button"
               disabled={!enabled}
               type="submit"
-              style={{
-                color: 'white',
-                fontSize: '1.4em',
-                fontWeight: 'bolder',
-                backgroundColor: '#c60057',
-                borderRadius: '10px',
-                align: 'left',
-                marginLeft: '10px'
-              }}
             >
               {' '}
               SUBMIT{' '}

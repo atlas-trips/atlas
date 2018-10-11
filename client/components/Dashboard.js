@@ -2,7 +2,6 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Sidebar from './Sidebar';
 import AllTrips from './AllTrips';
-import SingleTrip from './SingleTrip';
 import {fetchTrips, fetchSelected} from '../store/trip';
 import {Link} from 'react-router-dom';
 
