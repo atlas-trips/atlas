@@ -1014,9 +1014,10 @@ nav a {
 }
 
 .single-trip-header-name {
-  font: 400 100px/1.5 'Great Vibes', Helvetica, sans-serif;
-  color: rgb(242, 243, 176);
+  font: 'Istok Web';
+  color: white;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  font-size: 50px;
 }
 
 .single-trip-header-dates {
@@ -1216,4 +1217,12 @@ nav a {
 .no-calendar-link:visited {
   text-decoration: none;
   color: #004f78;
+}
+
+.header-header h1 {
+  margin-left: 10px;
+  font: 'Istok Web';
+  color: white;
+  text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
+  font-size: 25px;
 }
