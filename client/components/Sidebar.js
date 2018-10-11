@@ -20,16 +20,16 @@ class Sidebar extends React.Component {
     const selected = Object.keys(this.props.selected).length !== 0;
     return !selected ? (
       <div className="sidebar-minimal">
-        <div className="sidebar-item side-top">
-          <Link className="sidebar-signout" to="/">
-            Sign Out
-          </Link>
-        </div>
+        <Link className="sidebar-signout" to="/">
+          <div className="sidebar-item side-top">
+              Sign Out
+          </div>
+        </Link>
         <Link to={defaultPath}>
           <div className="sidebar-item ">
             <img src="/images/home.png" height="40" alt="home" />
             <div className="sidebar-item-middle">
-              <div className="sidebar-hover-text">Home</div>
+              <div className="sidebar-hover-text">My Trips</div>
             </div>
           </div>
         </Link>
@@ -46,7 +46,7 @@ class Sidebar extends React.Component {
             <div className="sidebar-item ">
               <img src="/images/home.png" height="40" alt="home" />
               <div className="sidebar-item-middle">
-                <div className="sidebar-hover-text">Home</div>
+                <div className="sidebar-hover-text">My Trips</div>
               </div>
             </div>
           </Link>
