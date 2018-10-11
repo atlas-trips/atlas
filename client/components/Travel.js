@@ -20,6 +20,9 @@ class Travel extends Component {
     const {users} = this.props.selectedTrip;
 
     return users.map(user => {
+      const transportation = user.transportation.filter(
+        transport => transport.tripId === this.props.selectedTrip.id
+      );
       return (
         <div key={user.id}>
           <div style={{marginBotton: '50px'}}>
@@ -36,17 +39,15 @@ class Travel extends Component {
             </h3>
           </div>
           <div className="travel-container-card">
-            {user.transportation.map(transport => {
+            {transportation.map(transport => {
               return (
-                <div>
-                  <SingleTransport
-                    key={transport.id}
-                    transport={transport}
-                    user={user}
-                    onDelete={this.onDelete}
-                    style={{marginTop: '15px'}}
-                  />
-                </div>
+                <SingleTransport
+                  key={transport.id}
+                  transport={transport}
+                  user={user}
+                  onDelete={this.onDelete}
+                  style={{marginTop: '15px'}}
+                />
               );
             })}
           </div>

@@ -261,7 +261,8 @@ router.post('/:id/transportation/:userId', async (req, res, next) => {
     const newTransport = await Transportation.create({
       method: req.body.method,
       flightNum: req.body.flightNum,
-      date: req.body.date
+      date: req.body.date,
+      tripId: req.body.tripId
     });
     const travel = await Travel.create({
       tripId: req.params.id,
