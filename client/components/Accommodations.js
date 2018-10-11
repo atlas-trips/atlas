@@ -3,6 +3,7 @@ import Sidebar from './Sidebar';
 import {getAccommodations, deleteAccommodation} from '../store/accommodation';
 import {connect} from 'react-redux';
 import AccommodationForm from './AccommodationForm';
+import {Header} from '../components';
 
 class Accommodations extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class Accommodations extends React.Component {
   }
   render() {
     return (
-      <div>
+      <Header>
         <Sidebar />
         {this.state.adding ? (
           <AccommodationForm handleClick={this.handleClick} />
@@ -86,7 +87,7 @@ class Accommodations extends React.Component {
             <br />
           </div>
         )}
-      </div>
+      </Header>
     );
   }
 }

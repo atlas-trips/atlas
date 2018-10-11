@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import Sidebar from './Sidebar';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {TravelForm, SingleTransport} from '../components';
+import {TravelForm, SingleTransport, Header} from '../components';
 import {fetchSelected} from '../store/trip';
 
 class Travel extends Component {
@@ -58,11 +58,13 @@ class Travel extends Component {
 
   render() {
     return (
-      <div className="travel-container">
-        <Sidebar />
-        <div className="travel-container-info">{this.displaySummary()}</div>
-        <TravelForm />
-      </div>
+      <Header>
+        <div className="travel-container">
+          <Sidebar />
+          <div className="travel-container-info">{this.displaySummary()}</div>
+          <TravelForm />
+        </div>
+      </Header>
     );
   }
 }

@@ -18,3 +18,4 @@ export {default as AccommodationForm} from './AccommodationForm';
 export {default as ShareTrip} from './ShareTrip';
 export {default as TravelForm} from './TravelForm';
 export {default as SingleTransport} from './SingleTransport';
+export {default as Header} from './Header';
