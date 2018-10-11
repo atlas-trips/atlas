@@ -53,7 +53,6 @@ const MapWithASearchBox = compose(
           refs.searchBox = ref;
         },
         onPlacesChanged: () => {
-          //this.props.reset()
           const places = refs.searchBox.getPlaces();
           const bounds = new google.maps.LatLngBounds();
 
@@ -95,6 +94,7 @@ const MapWithASearchBox = compose(
         },
         componentDidUpdate() {
           this.setState({markers: []});
+          console.log('hello')
         }
       });
     }
@@ -107,6 +107,33 @@ const MapWithASearchBox = compose(
     defaultZoom={14}
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
+    onClick={async () => {
+      let elem =  await document.getElementsByClassName('gm-style-iw')
+      let link = elem[0].getElementsByTagName('a')[0].href
+      //console.log(link.slice(link.indexOf('=')+1, link.indexOf('&')) );
+      const title = await document.getElementsByClassName('title')[0].innerText
+      let address = await document.getElementsByClassName('address')[0].innerText
+      address = address.replace('↵', ' ');
+      let newObj = {
+        coordinates: link.slice(link.indexOf('=')+1, link.indexOf('&')),
+        place: {
+          name: title,
+          formatted_address: address,
+          place_id: '',
+          id: 'hi'
+        }
+      }
+      props.fetchCoordinates(newObj);
+      props.add(newObj.place);
+      //console.log(newObj.place.name + ' ' + newObj.coordinates)
+    
+
+      //40.709357,-74.011487 //opening page
+      //40.709357,-74.011487 //off box 
+      //40.7050758,-74.00916039999998
+
+    
+    }}  //gm-style-iw
   >
     <SearchBox
       ref={props.onSearchBoxMounted}

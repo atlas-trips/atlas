@@ -32,6 +32,7 @@ class ActivitiesForm extends Component {
   }
 
   addActivity(place) {
+    console.log('PLACE', place)
     this.setState({selected: place});
   }
 
@@ -59,7 +60,7 @@ class ActivitiesForm extends Component {
   }
 
   render() {
-    //console.log('MAP DEETS YO',this.props.map)
+    console.log(this.props.map.coordinates)
     let coords = this.props.activities
       .filter(act => act.location !== '')
       .map(activity => ({
