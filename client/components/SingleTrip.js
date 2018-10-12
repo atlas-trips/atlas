@@ -9,13 +9,6 @@ import {email} from '../../secrets';
 import Modal from 'react-responsive-modal';
 import {Header} from '../components';
 
-const formStyle = {
-  display: 'inline-block',
-  width: '200px',
-  height: '300px',
-  marginRight: '50px'
-};
-
 class SingleTrip extends Component {
   constructor(props) {
     super(props);
@@ -74,93 +67,65 @@ class SingleTrip extends Component {
 
   render() {
     const trip = this.props.trip;
-    const singleTripStyle = trip.name
-      ? {
-          display: 'flex',
-          flexDirection: 'column',
-          //backgroundImage: `url('/images/${trip.name.toLowerCase()}.jpg')`,
-          height: '100vh',
-          margin: '-20px'
-        }
-      : '';
-
     if (Object.keys(this.props.trip).length) {
       return (
-        <Header>
-          <div className="single-trip">
-            <Sidebar />
-            <div className="single-trip-right" style={singleTripStyle}>
-              <div className="single-trip-header">
-                <div className="single-trip-header-name">
-                  {trip.name.toUpperCase()}
+        <div className="single-trip">
+          <Header />
+          <Sidebar />
+          <div className="single-trip-right">
+            <div className="single-trip-header">
+              <Modal open={this.state.open} onClose={this.onCloseModal} left>
+                <div>
+                  <h3>Invite Your Friends</h3>
+
+                  <form className="modal-form" onSubmit={this.handleSubmit}>
+                    <label htmlFor="friendName" />
+                    <input
+                      type="text"
+                      name="friendName"
+                      value={this.state.friendName}
+                      onChange={this.handleChange}
+                      placeholder="Friend's Name"
+                    />
+
+                    <label htmlFor="friendEmail" />
+                    <input
+                      type="email"
+                      name="friendEmail"
+                      value={this.state.friendEmail}
+                      onChange={this.handleChange}
+                      placeholder="Friend's Email"
+                    />
+                    <button type="submit">Share Trip</button>
+                  </form>
                 </div>
-                <div className="single-trip-header-dates">
-                  <span>
-                    {new Date(trip.startDate.slice(0, 10))
-                      .toString()
-                      .slice(0, 16)}{' '}
-                    to{' '}
-                    {new Date(trip.endDate.slice(0, 10))
-                      .toString()
-                      .slice(0, 16)}
-                  </span>
-                </div>
+              </Modal>
+            </div>
 
-                <Modal
-                  open={this.state.open}
-                  onClose={this.onCloseModal}
-                  center
-                >
-                  <div>
-                    <h3>Invite Your Friends</h3>
+            <button
+              type="submit"
+              className="single-trip-header-buttons-remove"
+              onClick={this.handleDelete}
+            >
+              DELETE TRIP
+            </button>
 
-                    <form style={formStyle} onSubmit={this.handleSubmit}>
-                      <label htmlFor="friendName" />
-                      <input
-                        type="text"
-                        name="friendName"
-                        value={this.state.friendName}
-                        onChange={this.handleChange}
-                        placeholder="Friend's Name"
-                      />
-
-                      <label htmlFor="friendEmail" />
-                      <input
-                        type="email"
-                        name="friendEmail"
-                        value={this.state.friendEmail}
-                        onChange={this.handleChange}
-                        placeholder="Friend's Email"
-                      />
-                      <button type="submit">Share Trip</button>
-                    </form>
-                  </div>
-                </Modal>
-              </div>
-
-              <button
-                type="submit"
-                className="single-trip-header-buttons-invite"
-                onClick={this.onOpenModal}
-              >
-                INVITE YOUR FRIENDS!
-              </button>
-
-              <button
-                type="submit"
-                className="single-trip-header-buttons-remove"
-                onClick={this.handleDelete}
-              >
-                REMOVE TRIP
-              </button>
-
-              <div className="single-trip-info">
-                <div className="single-trip-info-top">
-                  {!trip.users ? null : (
+            <div className="single-trip-info">
+              <div className="single-trip-info-top">
+                {!trip.users ? null : (
+                  <div className="participants-container-single-trip">
                     <ParticipantsOverview peeps={trip.users} />
-                  )}
-                </div>
-
+                    <button
+                      type="submit"
+                      className="single-trip-header-buttons-invite"
+                      onClick={this.onOpenModal}
+                    >
+                      INVITE A FRIEND
+                    </button>
+                  </div>
+                )}
+              </div>
+              <div className="single-trip-bottom-container">
                 <div className="single-trip-info-bottom">
                   {!trip.activities ? null : (
                     <ActivitiesOverview activities={trip.activities} />
@@ -174,7 +139,7 @@ class SingleTrip extends Component {
               </div>
             </div>
           </div>
-        </Header>
+        </div>
       );
     } else {
       return '';

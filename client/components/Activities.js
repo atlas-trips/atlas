@@ -3,7 +3,7 @@ import ActivitiesForm from './ActivitiesForm';
 import Sidebar from './Sidebar';
 import {connect} from 'react-redux';
 import {sendActivityInfo, fetchActivities, deleteActivity} from '../store/trip';
-import {Header} from '../components';
+import Header from './Header';
 
 const activitiesOverview = {
   display: 'flex',
@@ -37,7 +37,8 @@ class Activities extends Component {
 
   render() {
     return (
-      <Header>
+      <div>
+        <Header />
         <Sidebar />
         {this.state.loaded ? (
           <div style={{marginLeft: '10px'}}>
@@ -75,7 +76,7 @@ class Activities extends Component {
             </div>
           </div>
         ) : null}
-      </Header>
+      </div>
     );
   }
 }

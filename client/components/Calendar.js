@@ -6,7 +6,7 @@ import CalendarActivities from './CalendarActivities';
 import CalendarAccommodations from './CalendarAccommodations';
 import CalendarTransportation from './CalendarTransportation';
 import {Link} from 'react-router-dom';
-import {Header} from '../components';
+import Header from './Header';
 
 const getDayName = shortName => {
   if (shortName === 'Mon') {
@@ -38,7 +38,8 @@ class Calendar extends Component {
   render() {
     const {schedule} = this.props;
     return schedule.length ? (
-      <Header>
+      <div>
+        <Header />
         <Sidebar />
         <div className="calendar">
           {schedule.map((day, i) => {
@@ -93,9 +94,10 @@ class Calendar extends Component {
             );
           })}
         </div>
-      </Header>
+      </div>
     ) : (
-      <Header>
+      <div>
+        <Header />
         <Sidebar />
         <div className="no-calendar-container">
           <h3 className="no-calendar">Nothing currently scheduled...</h3>
@@ -109,7 +111,7 @@ class Calendar extends Component {
             Add transportation
           </Link>
         </div>
-      </Header>
+      </div>
     );
   }
 }
