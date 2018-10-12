@@ -1,5 +1,6 @@
 import React from 'react';
 const _ = require('lodash');
+import axios from 'axios';
 import {debounce} from 'lodash';
 const {compose, withProps, lifecycle} = require('recompose');
 const {
@@ -94,7 +95,7 @@ const MapWithASearchBox = compose(
         },
         componentDidUpdate() {
           this.setState({markers: []});
-          console.log('hello')
+          //console.log('hello')
         }
       });
     }
@@ -111,9 +112,11 @@ const MapWithASearchBox = compose(
       let elem =  await document.getElementsByClassName('gm-style-iw')
       let link = elem[0].getElementsByTagName('a')[0].href
       //console.log(link.slice(link.indexOf('=')+1, link.indexOf('&')) );
-      const title = await document.getElementsByClassName('title')[0].innerText
-      let address = await document.getElementsByClassName('address')[0].innerText
-      address = address.replace('↵', ' ');
+      const title =  await document.getElementsByClassName('title')[0].innerText
+      let address =  await document.getElementsByClassName('address')[0].innerText
+      //console.log(elem[0].getElementsByTagName('a'))
+      let id = link.slice(link.indexOf('&cid=')+5)
+      
       let newObj = {
         coordinates: link.slice(link.indexOf('=')+1, link.indexOf('&')),
         place: {
@@ -127,10 +130,15 @@ const MapWithASearchBox = compose(
       props.add(newObj.place);
       //console.log(newObj.place.name + ' ' + newObj.coordinates)
     
+      //console.log(`${title}\n${address}\n${newObj.coordinates}\n${id}`)
 
       //40.709357,-74.011487 //opening page
       //40.709357,-74.011487 //off box 
       //40.7050758,-74.00916039999998
+      //key AIzaSyD4jSOU0XG9zooC14hIs9G
+
+      const {data: result } =  await axios.get(`/api/${id}`)
+      console.log(result)
 
     
     }}  //gm-style-iw
