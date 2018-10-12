@@ -7,15 +7,15 @@ const ActivitiesOverview = props => {
       <div className="activities-container-header">
         <span>Activities:</span>
       </div>
-      {props.activities.filter((item, idx) => idx < 3).map(activity => {
+      {props.activities.filter((item, idx) => idx < 5).map(activity => {
         return (
           <div className="activities-container-list" key={activity.id}>
-            {activity.name}
+            <span>{activity.name}</span>
           </div>
         );
       })}
-      ...
-      <Link to="/activities">See more</Link>
+      <br/>
+      <Link to="/activities">Add Activities</Link>
     </div>
   );
 };
