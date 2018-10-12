@@ -58,13 +58,15 @@ class Travel extends Component {
 
   render() {
     return (
-      <Header>
-        <div className="travel-container">
+      <div>
+        <Header />
           <Sidebar />
+
+        <div className="travel-container">
           <div className="travel-container-info">{this.displaySummary()}</div>
           <TravelForm />
         </div>
-      </Header>
+      </div>
     );
   }
 }

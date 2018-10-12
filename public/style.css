@@ -421,7 +421,7 @@ nav a {
   height: 470px;
   background-color: white;
   box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
-  background-image: url('/images/map.png');
+  /* background-image: url('/images/map.png'); */
 }
 
 .trip-form-name,
@@ -1281,10 +1281,16 @@ nav a {
   background-color: #004578;
   border-radius: 3px;
   opacity: 0.9;
+  z-index: -10;
 }
 
 .DayPicker-Caption div {
   color: white;
+  z-index: 5000;
+}
+
+.DayPicker-NavButton {
+  z-index: 400;
 }
 
 .header-header {
