@@ -80,9 +80,9 @@
   color: white;
   font-size: 20px;
   border: none;
-  border-radius: 50px;
+  border-radius: 3px;
   width: 85px;
-  height: 40px;
+  height: 60px;
 }
 
 .activity-list {
@@ -181,24 +181,10 @@ nav a {
   margin: 1em;
 }
 
-/* form div {
-  margin: 1em;
-  display: inline-block;
-} */
-
 .travel-container {
   display: flex;
   justify-content: space-around;
 }
-
-/* .travel-container-card {
-  margin-left: 25px;
-  margin-right: 25px;
-  box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
-  border-radius: 5px;
-  width: 200px;
-  margin-bottom: 20px;
-} */
 
 .travel-container-info {
   margin-left: 25px;
@@ -820,7 +806,7 @@ nav a {
   font-weight: bolder;
   font-size: 125%;
   align-self: flex-end;
-  margin-top: 10px;
+  margin-top: 60px;
   border-top: 1px solid darkgray;
   border-left: 1px solid darkgray;
   cursor: pointer;
@@ -1009,7 +995,6 @@ nav a {
 .single-trip-info {
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
 
 .single-trip-header {
@@ -1039,38 +1024,39 @@ nav a {
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
 }
 
+.single-trip-right {
+  display: flex;
+  /* flex-direction: column; */
+}
+
 .single-trip-right button {
   width: 200px;
   height: 40px;
-  margin-top: 20px;
+  margin-top: 1px;
   cursor: pointer;
   font-family: 'Istok Web', sans-serif;
   font-size: 1em;
-  border-radius: 20px;
+  border-radius: 2px;
   font-weight: bolder;
   box-shadow: 0px 0px 16px -4px rgba(0, 0, 0, 1);
 }
 
 .single-trip-header-buttons-invite {
-  background-color: #03ad83;
-  border-color: #03ad83;
-  color: black;
-  position: absolute;
-  left: 8%;
+  background-color: #007ba7;
+  color: white;
+  margin-left: 10px;
 }
 
 .single-trip-header-buttons-remove {
   background-color: #aa0f40;
   border-color: #aa0f40;
   color: white;
-  position: absolute;
-  left: 85%;
+  margin-top: -10px;
 }
 
 .single-trip-header-buttons-invite:hover {
-  background-color: #039474;
+  background-color: #ad20ff;
   color: white;
-  border-color: #039474;
 }
 
 .single-trip-header-buttons-remove:hover {
@@ -1085,6 +1071,7 @@ nav a {
 }
 
 .single-trip-info-bottom {
+  width: 1000px;
   display: flex;
   justify-content: space-evenly;
   margin-top: 10px;
@@ -1094,11 +1081,9 @@ nav a {
 .activities-container,
 .participants-container {
   text-align: center;
-  width: 500px;
-  border: 1px solid black;
+  width: 400px;
   margin-top: 20px;
   background-color: white;
-
   font-family: 'Istok Web', sans-serif;
   box-shadow: -7px 7px 6px -2px rgba(0, 0, 0, 0.75);
   border-radius: 3px;
@@ -1121,6 +1106,12 @@ nav a {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  z-index: 15;
+}
+
+.participants-container-bottom-single h1 {
+  font-family: 'Istok Web', sans-serif;
+  color: white;
 }
 
 .accommodation-container-header,
@@ -1141,6 +1132,7 @@ nav a {
 .activities-container-header span,
 .participants-container-header span {
   margin-left: 8px;
+  font-family: 'Istok Web', sans-serif;
 }
 
 .sidebar-signout {
@@ -1295,9 +1287,20 @@ nav a {
   color: white;
 }
 
-.header-header h1 {
-  margin-left: 10px;
-  font: 'Istok Web';
+.header-header {
+  height: 50px;
+  width: 680px;
+  line-height: 50px;
+  background: linear-gradient(to right, #ad20ff, #004578);
+  display: flex;
+  line-height: 50px;
+  margin-top: -6px;
+}
+
+.header-header div {
+  line-height: 50px;
+  margin: 0 0 0 9px;
+  font-family: 'Istok Web';
   color: white;
   text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1), 7px 7px 0px rgba(0, 0, 0, 0.05);
   font-size: 25px;
@@ -1315,6 +1318,42 @@ button:disabled {
   font-weight: bolder;
   background-color: #c60057;
   border-radius: 10px;
-  align: left;
   margin-left: 10px;
+}
+
+.participants-pic-container {
+  opacity: 0.3;
+  width: 400px;
+  position: absolute;
+}
+
+.participants-pic {
+  object-fit: cover;
+  width: 400px;
+  height: 210px;
+  z-index: -1;
+  margin-top: 40px;
+}
+
+.modal-form {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  margin-right: 50px;
+}
+
+.single-trip-bottom-container {
+  width: 1000px;
+}
+
+.participants-container-single-trip {
+  display: flex;
+  align-items: center;
+}
+
+.activities-container-list span,
+.accommodation-container-list span {
+  color: #c60057;
+  font-family: 'Istok Web';
+  font-size: 1.3em;
 }

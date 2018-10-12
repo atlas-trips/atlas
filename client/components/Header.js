@@ -4,8 +4,16 @@ import {connect} from 'react-redux';
 const Header = props => {
   return (
     <div className="header-header">
-      <h1>Current Trip: {props.trip.name.toUpperCase()}</h1>
-      {props.children}
+      <div>{props.trip.name.toUpperCase()}:</div>
+      <div>
+        {new Date(props.trip.startDate.slice(0, 10))
+          .toString()
+          .slice(0, 16)}{' '}
+        to{' '}
+        {new Date(props.trip.endDate.slice(0, 10))
+          .toString()
+          .slice(0, 16)}
+      </div>
     </div>
   );
 };

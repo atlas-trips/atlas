@@ -10,12 +10,12 @@ const AccommodationOverview = props => {
       {props.accommodations.filter((item, idx) => idx < 3).map(accom => {
         return (
           <div className="accommodation-container-list" key={accom.id}>
-            {accom.name} - {accom.start}
+            <span>{accom.name}</span>
           </div>
         );
       })}
-      ...
-      <Link to="/accommodations">See more</Link>
+      <br/>
+      <Link to="/accommodations">Add Accommodations</Link>
     </div>
   );
 };
