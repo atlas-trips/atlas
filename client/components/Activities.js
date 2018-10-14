@@ -7,7 +7,8 @@ import Header from './Header';
 
 const activitiesOverview = {
   display: 'flex',
-  justifyContent: 'space-evenly'
+  justifyContent: 'space-evenly',
+  marginTop: '-30px'
 };
 
 class Activities extends Component {
@@ -55,23 +56,25 @@ class Activities extends Component {
                     Activities List
                   </h4>
                 </div>
-                <ul>
+
                   {!this.props.activities.length
                     ? null
                     : this.props.activities.map(activity => {
                         return (
-                          <li key={activity.id}>
-                            {activity.name}{' '}
+                          <div key={activity.id} className="activity-list-item">
+                            <div className="activity-list-item-name">
+                              {activity.name}
+                              </div>
                             <button
                               type="submit"
                               onClick={e => this.handleDelete(e, activity.id)}
                             >
-                              x
+                              X
                             </button>{' '}
-                          </li>
+                          </div>
                         );
                       })}
-                </ul>
+
               </div>
             </div>
           </div>
