@@ -34,15 +34,17 @@
   align-items: center;
   margin: 10px;
   margin-top: 40px;
+  font-family: 'Istok Web', sans-serif;
 }
 .map-footer button {
   height: 30px;
   width: 80px;
   border: #c60057;
-  border-radius: 20px;
+  border-radius: 3px;
   background: #c60057;
   color: white;
   font-size: 18px;
+  font-family: 'Istok Web', sans-serif;
 }
 
 .activity-modal {
@@ -87,7 +89,7 @@
 
 .activity-list {
   text-align: right;
-  width: 350px;
+  width: 300px;
   margin: 0px auto;
   background: white;
   border-radius: 5px;
@@ -97,28 +99,41 @@
 .activity-list-header {
   color: white;
   background: #53aad9;
-  border-radius: 5px 5px 0px 0px;
+  border-radius: 3px 3px 0px 0px;
   height: 30px;
   font-size: 1.3em;
   margin: 0;
+  font-family: 'Istok Web', sans-serif;
 }
 
-.activity-list ul {
-  margin-right: 10px;
-  list-style: none;
+.activity-list-item {
+  margin: 3px;
+  color: white;
+  height: 35px;
+  line-height: 35px;
+  display: flex;
+  justify-content: flex-end;
+  width: 296px;
+  margin-right: 1px;
 }
 
-.activity-list li {
-  margin-bottom: 5px;
+.activity-list-item-name {
+  margin-right: 3px;
+  font-size: 80%;
+  border-radius: 3px;
+  background-color: #ad20ff;
+  width: 260px;
+  text-align: center;
 }
 
 .activity-list button {
   color: white;
-  height: 18px;
+  height: 100%;
   border: none;
   background: red;
-  border-radius: 50px;
   text-align: center;
+  width: 30px;
+  cursor: pointer;
 }
 
 .landing-header {

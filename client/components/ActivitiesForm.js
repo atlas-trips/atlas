@@ -32,7 +32,10 @@ class ActivitiesForm extends Component {
   }
 
   addActivity(place) {
-    this.setState({selected: place});
+    this.setState({
+      selected: place,
+      activityName: place.name,
+    });
   }
 
   handleSubmit(event) {
@@ -87,7 +90,7 @@ class ActivitiesForm extends Component {
 
     return (
       <div className="activities-map-container">
-        <div style={{width: '900px'}} className="map-container">
+        <div style={{width: '700px'}} className="map-container">
           <div className="map-container">
             <MapWithASearchBox
               startLat={startLat}

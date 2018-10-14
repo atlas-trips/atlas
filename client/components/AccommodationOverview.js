@@ -14,8 +14,13 @@ const AccommodationOverview = props => {
           </div>
         );
       })}
-      <br/>
-      <Link to="/accommodations">Add Accommodations</Link>
+      <br />
+      <Link to="/accommodations" style={{marginBottom: '5px'}}>
+        <div className="accommo-form-add">
+          <div className="accommo-form-add-plus">+</div>
+          <div className="accommo-form-add-text">Create New Activity</div>
+        </div>
+      </Link>
     </div>
   );
 };
