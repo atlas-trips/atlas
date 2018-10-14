@@ -62,7 +62,7 @@ class ActivitiesForm extends Component {
   }
 
   render() {
-    console.log('selected: ',this.state.selected)
+    //console.log('selected: ',this.state.selected)
     let coords = this.props.activities
       .filter(act => act.location !== '')
       .map(activity => ({
