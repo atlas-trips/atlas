@@ -13,10 +13,19 @@ const reducer = combineReducers({
   trip,
   map
 });
+
+function combined(state = {}, action){
+  return {
+    user: user(state.user, action),
+    accommodation: accommodation(state.accommodation, action),
+    trip: trip(state.trip, action),
+    map: map(state.map, action)
+  }
+}
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 );
-const store = createStore(reducer, middleware);
+const store = createStore(combined, middleware);
 
 export default store;
 export * from './user';
