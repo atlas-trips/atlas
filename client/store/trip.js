@@ -171,8 +171,8 @@ export default function(state = defaultTrip, action) {
     case GET_ACTIVITIES:
       return {...state, activities: action.activities};
     case SET_ACTIVITY:
-    const newState = {...state, activities: [...state.activities, action.activity]}   
-    socket.emit('tripUpdate', action.activity);  
+      const newState = {...state, activities: [...state.activities, action.activity]}   
+      socket.emit('tripUpdate', action.activity);  
       return newState;
     case SET_ACTIVITY_SOCKET:
       return {...state, activities: [...state.activities, action.activity]}
