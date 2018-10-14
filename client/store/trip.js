@@ -1,10 +1,12 @@
 import axios from 'axios';
+import socket from '../socket'
 
 const GET_TRIPS = 'GET_TRIPS';
 const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP';
 const SET_NEW_TRIP = 'SET_NEW_TRIP';
 const GET_ACTIVITIES = 'GET_ACTIVITIES';
 const SET_ACTIVITY = 'SET_ACTIVITY';
+const SET_ACTIVITY_SOCKET = 'SET_ACTIVITY_SOCKET';
 const SET_TRIP_CALENDAR = 'SET_TRIP_CALENDAR';
 const REMOVE_ACTIVITY = 'REMOVE_ACTIVITY';
 const REMOVE_TRIP = 'REMOVE_TRIP';
@@ -19,7 +21,7 @@ const defaultTrip = {
 };
 
 const getTrips = trips => ({type: GET_TRIPS, trips});
-const getSelected = trip => ({type: GET_SELECTED_TRIP, trip});
+export const getSelected = trip => ({type: GET_SELECTED_TRIP, trip});
 const getRefTrip = trip => ({type: GET_REF_TRIP, trip});
 const setNewTrip = trip => ({type: SET_NEW_TRIP, trip});
 const getActivities = activities => ({
@@ -31,6 +33,11 @@ const setActivity = activity => ({
   type: SET_ACTIVITY,
   activity
 });
+
+const setActivitySocket = activity => ({
+  type: SET_ACTIVITY_SOCKET,
+  activity
+})
 
 const setTripCalendar = calendar => ({
   type: SET_TRIP_CALENDAR,
@@ -60,6 +67,10 @@ export const fetchTrips = id => async dispatch => {
     console.log(err);
   }
 };
+export const updateAct = act => dispatch => {
+  console.log('updating!')
+  dispatch(setActivitySocket(act))
+}
 
 export const fetchSelected = tripId => async dispatch => {
   try {
@@ -82,6 +93,7 @@ export const fetchRefTrip = tripLink => async dispatch => {
 export const makeTrip = trip => async dispatch => {
   try {
     const {data: newTrip} = await axios.post('/api/trips', trip);
+   
     dispatch(setNewTrip(newTrip));
   } catch (error) {
     console.log(error);
@@ -104,6 +116,7 @@ export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
       activityInfo
     );
     dispatch(setActivity(newAct));
+    
   } catch (err) {
     console.log(err);
   }
@@ -158,7 +171,11 @@ export default function(state = defaultTrip, action) {
     case GET_ACTIVITIES:
       return {...state, activities: action.activities};
     case SET_ACTIVITY:
-      return {...state, activities: [...state.activities, action.activity]};
+    const newState = {...state, activities: [...state.activities, action.activity]}   
+    socket.emit('tripUpdate', action.activity);  
+      return newState;
+    case SET_ACTIVITY_SOCKET:
+      return {...state, activities: [...state.activities, action.activity]}
     case REMOVE_ACTIVITY:
       return {
         ...state,
