@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ParticipantsOverview from './ParticipantsOverview';
-import ActivitiesOverview from './ActivitiesOverview';
-import AccommodationOverview from './AccommodationOverview';
+import ActivitiesOverview from './ActivityComponents/ActivitiesOverview'
+import AccommodationOverview from './AccommodationComponents/AccommodationOverview';
 import {connect} from 'react-redux';
 import {fetchSelected, deleteTrip, shareTrip} from '../store/trip';
 import Sidebar from './Sidebar';

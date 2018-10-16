@@ -3,8 +3,8 @@ import Helmet from 'react-helmet';
 import DayPicker, {DateUtils} from 'react-day-picker';
 import {connect} from 'react-redux';
 import 'react-day-picker/lib/style.css';
-import {getNewAccommodation} from '../store/accommodation';
-import Sidebar from './Sidebar';
+import {getNewAccommodation} from '../../store/accommodation';
+import Sidebar from '../Sidebar';
 import LocationSearchInput from './LocationSearchInput';
 
 const helmetStyle = `

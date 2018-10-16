@@ -8,7 +8,6 @@ import {
   Dashboard,
   Accommodations,
   Calendar,
-  Expenses,
   Activities,
   Travel,
   Landing,
@@ -46,7 +45,6 @@ class Routes extends Component {
               <Route path="/trip/:id" component={SingleTrip} />
               <Route path="/accommodations" component={Accommodations} />
               <Route path="/calendar" component={Calendar} />
-              <Route path="/expenses" component={Expenses} />
               <Route path="/activities" component={Activities} />
               <Route path="/travel" component={Travel} />
               <Route path="/new" component={TripForm} />

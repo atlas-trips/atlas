@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import Sidebar from './Sidebar';
+import Sidebar from '../Sidebar';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {TravelForm, SingleTransport, Header} from '../components';
-import {fetchSelected} from '../store/trip';
+import {TravelForm, SingleTransport, Header} from '..';
+import {fetchSelected} from '../../store/trip';
 
 class Travel extends Component {
   onDelete = async (userId, transportationId) => {

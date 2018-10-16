@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import Sidebar from './Sidebar';
-import {getTripCalendar} from '../store/trip';
+import Sidebar from '../Sidebar';
+import {getTripCalendar} from '../../store/trip';
 import {connect} from 'react-redux';
 import CalendarActivities from './CalendarActivities';
 import CalendarAccommodations from './CalendarAccommodations';
 import CalendarTransportation from './CalendarTransportation';
 import {Link} from 'react-router-dom';
-import Header from './Header';
+import Header from '../Header';
 
 const getDayName = shortName => {
   if (shortName === 'Mon') {
