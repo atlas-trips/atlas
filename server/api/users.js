@@ -35,7 +35,7 @@ router.get('/:id', async (req, res, next) => {
 router.get('/:id/trips', async (req, res, next) => {
   try {
     const id = Number(req.params.id);
-    if (isNaN(id)) {
+    if (Number.isNaN(id)) {
       res.status(400).send('Bad Request');
     } else if (req.user && req.user.id === id) {
       const {trips} = await User.find({

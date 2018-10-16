@@ -21,9 +21,7 @@ class Sidebar extends React.Component {
     return !selected ? (
       <div className="sidebar-minimal">
         <Link className="sidebar-signout" to="/">
-          <div className="sidebar-item side-top">
-              Sign Out
-          </div>
+          <div className="sidebar-item side-top">Sign Out</div>
         </Link>
         <Link to={defaultPath}>
           <div className="sidebar-item ">

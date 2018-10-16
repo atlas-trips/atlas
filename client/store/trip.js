@@ -1,5 +1,5 @@
 import axios from 'axios';
-import socket from '../socket'
+import socket from '../socket';
 
 const GET_TRIPS = 'GET_TRIPS';
 const GET_SELECTED_TRIP = 'GET_SELECTED_TRIP';
@@ -37,7 +37,7 @@ const setActivity = activity => ({
 const setActivitySocket = activity => ({
   type: SET_ACTIVITY_SOCKET,
   activity
-})
+});
 
 const setTripCalendar = calendar => ({
   type: SET_TRIP_CALENDAR,
@@ -59,25 +59,22 @@ const shareTripLink = message => ({
   message
 });
 
-
-
 export const fetchTrips = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${id}/trips`);
-    dispatch(getTrips(res.data));
+    const {data: trips} = await axios.get(`/api/users/${id}/trips`);
+    dispatch(getTrips(trips));
   } catch (err) {
     console.log(err);
   }
 };
 export const updateAct = act => dispatch => {
-  console.log('updating!')
-  dispatch(setActivitySocket(act))
-}
+  dispatch(setActivitySocket(act));
+};
 
 export const fetchSelected = tripId => async dispatch => {
   try {
-    const trip = await axios.get(`/api/trips/${tripId}`);
-    dispatch(getSelected(trip.data));
+    const {data: trip} = await axios.get(`/api/trips/${tripId}`);
+    dispatch(getSelected(trip));
   } catch (err) {
     console.log(err);
   }
@@ -85,8 +82,8 @@ export const fetchSelected = tripId => async dispatch => {
 
 export const fetchRefTrip = tripLink => async dispatch => {
   try {
-    const trip = await axios.get(`/api/trips/join/${tripLink}`);
-    dispatch(getRefTrip(trip.data));
+    const {data: trip} = await axios.get(`/api/trips/join/${tripLink}`);
+    dispatch(getRefTrip(trip));
   } catch (err) {
     console.log(err);
   }
@@ -95,7 +92,7 @@ export const fetchRefTrip = tripLink => async dispatch => {
 export const makeTrip = trip => async dispatch => {
   try {
     const {data: newTrip} = await axios.post('/api/trips', trip);
-   
+
     dispatch(setNewTrip(newTrip));
   } catch (error) {
     console.log(error);
@@ -104,16 +101,16 @@ export const makeTrip = trip => async dispatch => {
 
 export const fetchActivities = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/trips/${id}/activities`);
-    dispatch(getActivities(res.data));
+    const {data: activities} = await axios.get(`/api/trips/${id}/activities`);
+    dispatch(getActivities(activities));
   } catch (err) {
     console.log(err);
   }
 };
 
 export const sendSocket = newAct => dispatch => {
-  dispatch(setActivitySocket(newAct))
-}
+  dispatch(setActivitySocket(newAct));
+};
 
 export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
   try {
@@ -122,7 +119,6 @@ export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
       activityInfo
     );
     dispatch(setActivity(newAct));
-    
   } catch (err) {
     console.log(err);
   }
@@ -177,11 +173,14 @@ export default function(state = defaultTrip, action) {
     case GET_ACTIVITIES:
       return {...state, activities: action.activities};
     case SET_ACTIVITY:
-      const newState = {...state, activities: [...state.activities, action.activity]}   
-      socket.emit('tripUpdate', action.activity);  
+      const newState = {
+        ...state,
+        activities: [...state.activities, action.activity]
+      };
+      socket.emit('tripUpdate', action.activity);
       return newState;
     case SET_ACTIVITY_SOCKET:
-      return {...state, activities: [...state.activities, action.activity]}
+      return {...state, activities: [...state.activities, action.activity]};
     case REMOVE_ACTIVITY:
       return {
         ...state,

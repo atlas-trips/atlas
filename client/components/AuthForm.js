@@ -48,11 +48,17 @@ class AuthForm extends Component {
                   {!this.props.match.params.link ? null : (
                     <h4>Join trip {this.props.trip.selected.name}</h4>
                   )}
-                  {this.props.match.path === '/login' ? <div className="auth-directions">Log In To Your Account</div> : <div className="auth-directions">Please Create an Account</div>}
+                  {this.props.match.path === '/login' ? (
+                    <div className="auth-directions">
+                      Log In To Your Account
+                    </div>
+                  ) : (
+                    <div className="auth-directions">
+                      Please Create an Account
+                    </div>
+                  )}
                 </div>
-                {this.props.match.path === '/login' ? (
-                  null
-                ) : (
+                {this.props.match.path === '/login' ? null : (
                   <div className="auth-form-inputs-top">
                     <label htmlFor="userName" className="auth-form-label">
                       <small>Name</small>
@@ -66,14 +72,20 @@ class AuthForm extends Component {
                   </div>
                 )}
                 <br />
-                <div className={this.props.match.path === '/login' ? 'auth-form-inputs-top' : 'auth-form-inputs'}
+                <div
+                  className={
+                    this.props.match.path === '/login'
+                      ? 'auth-form-inputs-top'
+                      : 'auth-form-inputs'
+                  }
                 >
                   <label htmlFor="email" className="auth-form-label">
                     <small>Email</small>
                   </label>
                   <input
                     name="email"
-                    type="text" className="auth-form-text"
+                    type="text"
+                    className="auth-form-text"
                     placeholder="you@example.com"
                   />
                 </div>{' '}

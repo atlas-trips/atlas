@@ -25,18 +25,20 @@ const removeAccommodation = id => ({
 
 export const getAccommodations = tripId => async dispatch => {
   try {
-    const res = await axios.get(`/api/trips/${tripId}/accommodations`);
-    dispatch(setAccommodations(res.data));
+    const {data: accommodations} = await axios.get(
+      `/api/trips/${tripId}/accommodations`
+    );
+    dispatch(setAccommodations(accommodations));
   } catch (err) {
     console.log(err);
   }
 };
 
-export const getNewAccommodation = accommo => async dispatch => {
+export const getNewAccommodation = accommodation => async dispatch => {
   try {
     const {data: accommodation} = await axios.post(
       '/api/accommodations',
-      accommo
+      accommodation
     );
     dispatch(setNewAccommodation(accommodation));
   } catch (error) {

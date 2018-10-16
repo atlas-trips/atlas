@@ -60,7 +60,7 @@ class Travel extends Component {
     return (
       <div>
         <Header />
-          <Sidebar />
+        <Sidebar />
 
         <div className="travel-container">
           <div className="travel-container-info">{this.displaySummary()}</div>

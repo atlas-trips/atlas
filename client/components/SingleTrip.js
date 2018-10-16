@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ParticipantsOverview from './ParticipantsOverview';
-import ActivitiesOverview from './ActivityComponents/ActivitiesOverview'
+import ActivitiesOverview from './ActivityComponents/ActivitiesOverview';
 import AccommodationOverview from './AccommodationComponents/AccommodationOverview';
 import {connect} from 'react-redux';
 import {fetchSelected, deleteTrip, shareTrip} from '../store/trip';

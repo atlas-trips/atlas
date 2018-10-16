@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const GET_COORDINATES = 'GET_COORDINATES';
 
 const defaultCoordinates = {
