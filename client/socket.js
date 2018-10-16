@@ -1,7 +1,7 @@
  import io from 'socket.io-client'
  import {updateAct} from './store/trip'
 //import store from './store'
- const socket = typeof window !== undefined ? io(window.location.origin) : null
+ const socket = typeof window !== 'undefined' ? io(window.location.origin) : null
 
  socket.on('connect', () => {
    console.log('Connected!')
