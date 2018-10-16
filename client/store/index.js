@@ -25,7 +25,7 @@ function combined(state = {}, action){
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 );
-const store = createStore(combined, middleware);
+const store = createStore(reducer, middleware);
 
 export default store;
 export * from './user';
