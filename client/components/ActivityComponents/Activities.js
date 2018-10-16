@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import ActivitiesForm from './ActivitiesForm';
-import Sidebar from './Sidebar';
+import Sidebar from '../Sidebar';
 import {connect} from 'react-redux';
-import {sendActivityInfo, fetchActivities, deleteActivity} from '../store/trip';
-import Header from './Header';
+import {sendActivityInfo, fetchActivities, deleteActivity} from '../../store/trip';
+import Header from '../Header';
 
 const activitiesOverview = {
   display: 'flex',

@@ -2,27 +2,14 @@ import React, {Component} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MapWithASearchBox from './SearchMap';
-import socket from '../socket'
-import store from '../store'
-import io from 'socket.io-client'
-import {updateAct} from '../store/trip'
-//import store from './store'
+import socket from '../../socket';
+import store from '../../store';
+import io from 'socket.io-client';
+import {updateAct} from '../../store/trip';
 
-
-
-
-//export default socket
-
-
-
-
-
-socket.on('tripBroad', (trip) => {
-  console.log('activity added!, new trip: ',trip)
-  console.log('update: ',updateAct)
+socket.on('tripBroad', trip => {
   store.dispatch(updateAct(trip));
-  console.log('called thunk')
-})
+});
 
 class ActivitiesForm extends Component {
   constructor(props) {
@@ -55,7 +42,7 @@ class ActivitiesForm extends Component {
   addActivity(place) {
     this.setState({
       selected: place,
-      activityName: place.name,
+      activityName: place.name
     });
   }
 
@@ -81,29 +68,25 @@ class ActivitiesForm extends Component {
   resetMarker() {
     this.setState({added: false});
   }
-  componentDidMount(){
-    const socket = typeof window !== 'undefined' ? io(window.location.origin) : null
+  componentDidMount() {
+    const socket =
+      typeof window !== 'undefined' ? io(window.location.origin) : null;
 
+    //travis why do you make me do this
+    if (socket) {
+      socket.on('connect', () => {
+        console.log('Connected!');
 
-//travis why do you make me do this
-if(socket){
- socket.on('connect', () => {
-   console.log('Connected!')
-   
-   //on broadcast listen
-   socket.on('tripBroad', (trip) => {
-    console.log('activity added!, new trip: ',trip)
-    //console.log('update: ',updateAct)
-    updateAct(trip);
-    //console.log('called thunk')
-  })
- })
-} 
-
+        //on broadcast listen
+        socket.on('tripBroad', trip => {
+          console.log('activity added!, new trip: ', trip);
+          updateAct(trip);
+        });
+      });
+    }
   }
 
   render() {
-    //console.log('selected: ',this.state.selected)
     let coords = this.props.activities
       .filter(act => act.location !== '')
       .map(activity => ({
@@ -168,7 +151,7 @@ if(socket){
 
         {this.state.modalOpen ? (
           <div className="activity-modal">
-            <div className="activity-modal-contnent">
+            <div className="activity-modal-content">
               <form onSubmit={this.handleSubmit}>
                 <div className="modal-calendar">
                   <p>

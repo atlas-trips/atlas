@@ -12,7 +12,7 @@ const {
 const {
   SearchBox
 } = require('react-google-maps/lib/components/places/SearchBox');
-import {fetchCoordinates} from '../store/map';
+import {fetchCoordinates} from '../../store/map';
 import {connect} from 'react-redux';
 
 const MapWithASearchBox = compose(
@@ -116,7 +116,7 @@ const MapWithASearchBox = compose(
       let address =  await document.getElementsByClassName('address')[0].innerText
       //console.log(elem[0].getElementsByTagName('a'))
       let id = link.slice(link.indexOf('&cid=')+5)
-      
+
       let newObj = {
         coordinates: link.slice(link.indexOf('=')+1, link.indexOf('&')),
         place: {
@@ -129,18 +129,18 @@ const MapWithASearchBox = compose(
       props.fetchCoordinates(newObj);
       props.add(newObj.place);
       //console.log(newObj.place.name + ' ' + newObj.coordinates)
-    
+
       //console.log(`${title}\n${address}\n${newObj.coordinates}\n${id}`)
 
       //40.709357,-74.011487 //opening page
-      //40.709357,-74.011487 //off box 
+      //40.709357,-74.011487 //off box
       //40.7050758,-74.00916039999998
       //key AIzaSyD4jSOU0XG9zooC14hIs9G
 
       const {data: result } =  await axios.get(`/api/${id}`)
       console.log(result)
 
-    
+
     }}  //gm-style-iw
   >
     <SearchBox

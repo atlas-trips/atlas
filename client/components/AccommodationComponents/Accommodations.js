@@ -1,9 +1,9 @@
 import React from 'react';
-import Sidebar from './Sidebar';
-import {getAccommodations, deleteAccommodation} from '../store/accommodation';
+import Sidebar from '../Sidebar';
+import {getAccommodations, deleteAccommodation} from '../../store/accommodation';
 import {connect} from 'react-redux';
 import AccommodationForm from './AccommodationForm';
-import Header from './Header';
+import Header from '../Header';
 
 class Accommodations extends React.Component {
   constructor(props) {
