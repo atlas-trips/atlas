@@ -2,6 +2,16 @@ import React, {Component} from 'react';
 import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MapWithASearchBox from './SearchMap';
+import socket from '../socket'
+import {updateAct} from '../store/trip'
+import store from '../store'
+
+socket.on('tripBroad', (trip) => {
+  console.log('activity added!, new trip: ',trip)
+  console.log('update: ',updateAct)
+  store.dispatch(updateAct(trip));
+  console.log('called thunk')
+})
 
 class ActivitiesForm extends Component {
   constructor(props) {
@@ -62,7 +72,7 @@ class ActivitiesForm extends Component {
   }
 
   render() {
-    console.log('selected: ',this.state.selected)
+    //console.log('selected: ',this.state.selected)
     let coords = this.props.activities
       .filter(act => act.location !== '')
       .map(activity => ({
