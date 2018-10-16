@@ -1,6 +1,6 @@
  import io from 'socket.io-client'
  import {updateAct} from './store/trip'
-import store from './store'
+//import store from './store'
  const socket = io(window.location.origin)
 
  socket.on('connect', () => {
@@ -10,9 +10,9 @@ import store from './store'
    //on broadcast listen
    socket.on('tripBroad', (trip) => {
     console.log('activity added!, new trip: ',trip)
-    console.log('update: ',updateAct)
-    store.dispatch(updateAct(trip));
-    console.log('called thunk')
+    //console.log('update: ',updateAct)
+    updateAct(trip);
+    //console.log('called thunk')
   })
  })
 

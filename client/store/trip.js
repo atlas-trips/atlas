@@ -59,6 +59,8 @@ const shareTripLink = message => ({
   message
 });
 
+
+
 export const fetchTrips = id => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${id}/trips`);
@@ -108,6 +110,10 @@ export const fetchActivities = id => async dispatch => {
     console.log(err);
   }
 };
+
+export const sendSocket = newAct => dispatch => {
+  dispatch(setActivitySocket(newAct))
+}
 
 export const sendActivityInfo = (activityInfo, tripId) => async dispatch => {
   try {
