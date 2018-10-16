@@ -1,6 +1,9 @@
 import React from 'react';
 import Sidebar from '../Sidebar';
-import {getAccommodations, deleteAccommodation} from '../../store/accommodation';
+import {
+  getAccommodations,
+  deleteAccommodation
+} from '../../store/accommodation';
 import {connect} from 'react-redux';
 import AccommodationForm from './AccommodationForm';
 import Header from '../Header';

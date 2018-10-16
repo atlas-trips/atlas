@@ -15,7 +15,8 @@ const Landing = () => {
         <h1>Effortless trip planning</h1>
         <div className="landing-button-container">
           <a href="login">
-            <button>Login</button><br/>
+            <button>Login</button>
+            <br />
           </a>
           <a href="/signup">
             <button>Sign Up</button>

@@ -1149,7 +1149,7 @@ nav a {
   background-color: #ad20ff;
   width: 50%;
   margin: 10px auto 0;
-  opacity: .8;
+  opacity: 0.8;
   border-radius: 3px;
   padding: 8px;
 }
@@ -1159,7 +1159,8 @@ nav a {
   margin: 8px;
 }
 
-.stage-three-info h2, .stage-three-info h3 {
+.stage-three-info h2,
+.stage-three-info h3 {
   color: white;
 }
 

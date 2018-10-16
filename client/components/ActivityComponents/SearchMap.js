@@ -109,23 +109,24 @@ const MapWithASearchBox = compose(
     center={props.center}
     onBoundsChanged={props.onBoundsChanged}
     onClick={async () => {
-      let elem =  await document.getElementsByClassName('gm-style-iw')
-      let link = elem[0].getElementsByTagName('a')[0].href
+      let elem = await document.getElementsByClassName('gm-style-iw');
+      let link = elem[0].getElementsByTagName('a')[0].href;
       //console.log(link.slice(link.indexOf('=')+1, link.indexOf('&')) );
-      const title =  await document.getElementsByClassName('title')[0].innerText
-      let address =  await document.getElementsByClassName('address')[0].innerText
+      const title = await document.getElementsByClassName('title')[0].innerText;
+      let address = await document.getElementsByClassName('address')[0]
+        .innerText;
       //console.log(elem[0].getElementsByTagName('a'))
-      let id = link.slice(link.indexOf('&cid=')+5)
+      let id = link.slice(link.indexOf('&cid=') + 5);
 
       let newObj = {
-        coordinates: link.slice(link.indexOf('=')+1, link.indexOf('&')),
+        coordinates: link.slice(link.indexOf('=') + 1, link.indexOf('&')),
         place: {
           name: title,
           formatted_address: address,
           place_id: '',
           id: 'hi'
         }
-      }
+      };
       props.fetchCoordinates(newObj);
       props.add(newObj.place);
       //console.log(newObj.place.name + ' ' + newObj.coordinates)
@@ -137,11 +138,9 @@ const MapWithASearchBox = compose(
       //40.7050758,-74.00916039999998
       //key AIzaSyD4jSOU0XG9zooC14hIs9G
 
-      const {data: result } =  await axios.get(`/api/${id}`)
-      console.log(result)
-
-
-    }}  //gm-style-iw
+      const {data: result} = await axios.get(`/api/${id}`);
+      console.log(result);
+    }} //gm-style-iw
   >
     <SearchBox
       ref={props.onSearchBoxMounted}

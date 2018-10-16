@@ -4,7 +4,7 @@ const ParticipantsOverview = props => {
   return (
     <div className="participants-container">
       <div className="participants-pic-container">
-        <img src="/images/group.png" className="participants-pic" alt=""/>
+        <img src="/images/group.png" className="participants-pic" alt="" />
       </div>
       <div className="participants-container-header">
         <span>Who's Coming:</span>
@@ -16,7 +16,7 @@ const ParticipantsOverview = props => {
               className="participants-container-bottom-single"
               key={person.id}
             >
-            <h3>{person.name}</h3>
+              <h3>{person.name}</h3>
             </div>
           );
         })}

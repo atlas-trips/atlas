@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import ActivitiesForm from './ActivitiesForm';
 import Sidebar from '../Sidebar';
 import {connect} from 'react-redux';
-import {sendActivityInfo, fetchActivities, deleteActivity} from '../../store/trip';
+import {
+  sendActivityInfo,
+  fetchActivities,
+  deleteActivity
+} from '../../store/trip';
 import Header from '../Header';
 
 const activitiesOverview = {
@@ -57,24 +61,23 @@ class Activities extends Component {
                   </h4>
                 </div>
 
-                  {!this.props.activities.length
-                    ? null
-                    : this.props.activities.map(activity => {
-                        return (
-                          <div key={activity.id} className="activity-list-item">
-                            <div className="activity-list-item-name">
-                              {activity.name}
-                              </div>
-                            <button
-                              type="submit"
-                              onClick={e => this.handleDelete(e, activity.id)}
-                            >
-                              X
-                            </button>{' '}
+                {!this.props.activities.length
+                  ? null
+                  : this.props.activities.map(activity => {
+                      return (
+                        <div key={activity.id} className="activity-list-item">
+                          <div className="activity-list-item-name">
+                            {activity.name}
                           </div>
-                        );
-                      })}
-
+                          <button
+                            type="submit"
+                            onClick={e => this.handleDelete(e, activity.id)}
+                          >
+                            X
+                          </button>{' '}
+                        </div>
+                      );
+                    })}
               </div>
             </div>
           </div>

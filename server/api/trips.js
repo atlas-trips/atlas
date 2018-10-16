@@ -135,7 +135,6 @@ router.delete('/:id/activities/:actId', async (req, res, next) => {
     }
     const isAuthorized = await getAuthorizedUsers(id);
     if (req.user && isAuthorized[req.user.id]) {
-      //DO STUFF HERE
       let act = await Activity.findById(actId);
       act = await act.destroy();
       res.status(204).send('No Content');
@@ -297,7 +296,6 @@ router.delete(
 );
 
 async function getAuthorizedUsers(tripId) {
-  //returns an object of user ids for all users authorized to view details of this trip
   try {
     const {users} = await Trip.findById(tripId, {include: [User]});
     const authorized = {};
