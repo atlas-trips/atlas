@@ -3,8 +3,19 @@ import DayPicker from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import MapWithASearchBox from './SearchMap';
 import socket from '../socket'
-import {updateAct} from '../store/trip'
 import store from '../store'
+import io from 'socket.io-client'
+import {updateAct} from '../store/trip'
+//import store from './store'
+
+
+
+
+//export default socket
+
+
+
+
 
 socket.on('tripBroad', (trip) => {
   console.log('activity added!, new trip: ',trip)
@@ -69,6 +80,26 @@ class ActivitiesForm extends Component {
   }
   resetMarker() {
     this.setState({added: false});
+  }
+  componentDidMount(){
+    const socket = typeof window !== 'undefined' ? io(window.location.origin) : null
+
+
+//travis why do you make me do this
+if(socket){
+ socket.on('connect', () => {
+   console.log('Connected!')
+   
+   //on broadcast listen
+   socket.on('tripBroad', (trip) => {
+    console.log('activity added!, new trip: ',trip)
+    //console.log('update: ',updateAct)
+    updateAct(trip);
+    //console.log('called thunk')
+  })
+ })
+} 
+
   }
 
   render() {

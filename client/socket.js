@@ -3,18 +3,21 @@
 //import store from './store'
  const socket = typeof window !== 'undefined' ? io(window.location.origin) : null
 
- socket.on('connect', () => {
-   console.log('Connected!')
-   
-   
-   //on broadcast listen
-   socket.on('tripBroad', (trip) => {
-    console.log('activity added!, new trip: ',trip)
-    //console.log('update: ',updateAct)
-    updateAct(trip);
-    //console.log('called thunk')
+
+ //travis why do you make me do this
+if(socket){
+  socket.on('connect', () => {
+    console.log('Connected!')
+    
+    //on broadcast listen
+    socket.on('tripBroad', (trip) => {
+     console.log('activity added!, new trip: ',trip)
+     //console.log('update: ',updateAct)
+     updateAct(trip);
+     //console.log('called thunk')
+   })
   })
- })
+} 
 
 
 
