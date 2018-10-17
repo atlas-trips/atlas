@@ -79,7 +79,6 @@ class ActivitiesForm extends Component {
 
         //on broadcast listen
         socket.on('tripBroad', trip => {
-          console.log('activity added!, new trip: ', trip);
           updateAct(trip);
         });
       });

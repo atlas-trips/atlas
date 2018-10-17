@@ -58,7 +58,6 @@ router.post('/share', async (req, res, next) => {
     if (err) {
       console.error('there was an error: ', err);
     } else {
-      console.log('here is the res: ', res);
     }
   });
 });

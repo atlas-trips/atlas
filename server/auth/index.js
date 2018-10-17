@@ -24,13 +24,11 @@ router.post('/login', async (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
   try {
-    console.log('from the signup', req.body);
     const user = await User.create({
       email: req.body.email,
       password: req.body.password,
       name: req.body.name
     });
-    console.log('user created is', user);
     const foundTrip = await Trip.findById(req.body.tripId);
     if (foundTrip) {
       foundTrip.addUser(user);
@@ -82,7 +80,6 @@ router.post('/refsignup', async (req, res, next) => {
       if (err) {
         console.error('there was an error: ', err);
       } else {
-        console.log('here is the res: ', res);
       }
     });
 
