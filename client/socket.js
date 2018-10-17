@@ -11,10 +11,7 @@ if (socket) {
 
     //on broadcast listen
     socket.on('tripBroad', trip => {
-      console.log('activity added!, new trip: ', trip);
-      //console.log('update: ',updateAct)
       updateAct(trip);
-      //console.log('called thunk')
     });
   });
 }

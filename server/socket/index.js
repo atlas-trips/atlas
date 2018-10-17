@@ -5,7 +5,6 @@ module.exports = io => {
     );
 
     socket.on('tripUpdate', act => {
-      //console.log('new trip: ',trip)
       socket.broadcast.emit('tripBroad', act);
     });
 

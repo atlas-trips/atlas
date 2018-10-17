@@ -95,7 +95,6 @@ const MapWithASearchBox = compose(
         },
         componentDidUpdate() {
           this.setState({markers: []});
-          //console.log('hello')
         }
       });
     }
@@ -110,12 +109,10 @@ const MapWithASearchBox = compose(
     onBoundsChanged={props.onBoundsChanged}
     onClick={async () => {
       let elem = await document.getElementsByClassName('gm-style-iw');
-      let link = elem[0].getElementsByTagName('a')[0].href;
-      //console.log(link.slice(link.indexOf('=')+1, link.indexOf('&')) );
+      let link = await elem[0].getElementsByTagName('a')[0].href;
       const title = await document.getElementsByClassName('title')[0].innerText;
       let address = await document.getElementsByClassName('address')[0]
         .innerText;
-      //console.log(elem[0].getElementsByTagName('a'))
       let id = link.slice(link.indexOf('&cid=') + 5);
 
       let newObj = {
@@ -129,18 +126,7 @@ const MapWithASearchBox = compose(
       };
       props.fetchCoordinates(newObj);
       props.add(newObj.place);
-      //console.log(newObj.place.name + ' ' + newObj.coordinates)
-
-      //console.log(`${title}\n${address}\n${newObj.coordinates}\n${id}`)
-
-      //40.709357,-74.011487 //opening page
-      //40.709357,-74.011487 //off box
-      //40.7050758,-74.00916039999998
-      //key AIzaSyD4jSOU0XG9zooC14hIs9G
-
-      const {data: result} = await axios.get(`/api/${id}`);
-      console.log(result);
-    }} //gm-style-iw
+    }}
   >
     <SearchBox
       ref={props.onSearchBoxMounted}
